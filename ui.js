@@ -4,6 +4,8 @@
 
     function bind(toolbar, widgets, btable) {
 
+        toolbar.disable();
+
         btable.on("refresh", refresh);
         btable.on("focuschange", function () {
             enableToolbar(toolbar);
@@ -20,6 +22,9 @@
         initItalic(widgets.italic, btable);
         initHAlign(widgets.hAlign, btable);
         initVAlign(widgets.vAlign, btable);
+        initFillColor(widgets.fillcolor, btable);
+        initFrontColor(widgets.frontcolor, btable);
+
     }
 
     /**
@@ -52,6 +57,7 @@
                 return;
             }
             btable.execCommand("font", this.getValue());
+            btable.execCommand("inputfocus");
         });
 
         listen(function () {
@@ -68,29 +74,29 @@
     }
 
     function initFontSize(widget, btable) {
-        //var command = 'font';
-        //var hold = false;
-        //
+        var command = 'fontsize';
+        var hold = false;
+
         widget.on("select", function (evt, info) {
-            //if (hold) {
-            //    return;
-            //}
-            //btable.execCommand("font", this.getValue());
-            alert("淘气");
+            if (hold) {
+                return;
+            }
+            btable.execCommand(command, this.getValue());
+            btable.execCommand("inputfocus");
         });
-        //
-        //
-        //listen(function () {
-        //    var value = btable.queryCommandValue(command);
-        //
-        //    hold = true;
-        //    if (value) {
-        //        widget.selectByValue(value);
-        //    } else {
-        //        widget.select(6);
-        //    }
-        //    hold = false;
-        //});
+
+
+        listen(function () {
+            var value = btable.queryCommandValue(command);
+
+            hold = true;
+            if (value) {
+                widget.selectByValue(value);
+            } else {
+                widget.select(6);
+            }
+            hold = false;
+        });
     }
 
     function initPrint(widget, btable) {
@@ -128,6 +134,7 @@
                 return;
             }
             btable.execCommand(command);
+            btable.execCommand("inputfocus");
         });
 
 
@@ -153,6 +160,7 @@
                 return;
             }
             btable.execCommand(command);
+            btable.execCommand("inputfocus");
         });
 
 
@@ -178,6 +186,7 @@
                 return;
             }
             btable.execCommand(command, this.getValue());
+            btable.execCommand('inputfocus');
         });
 
 
@@ -203,6 +212,7 @@
                 return;
             }
             btable.execCommand(command, this.getValue());
+            btable.execCommand('inputfocus');
         });
 
 
@@ -214,6 +224,58 @@
                 widget.selectByValue(value);
             } else {
                 widget.clearSelect();
+            }
+            hold = false;
+        });
+    }
+
+    function initFillColor(widget, btable) {
+        var command = 'fill';
+        var hold = false;
+
+        widget.on("select", function (evt, color) {
+            if (hold) {
+                return;
+            }
+            btable.execCommand(command, color);
+            btable.execCommand('inputfocus');
+        });
+
+
+        listen(function () {
+            var value = btable.queryCommandValue(command);
+
+            hold = true;
+            if (value) {
+                widget.selectByColor(value);
+            } else {
+                widget.resetColor();
+            }
+            hold = false;
+        });
+    }
+
+    function initFrontColor(widget, btable) {
+        var command = 'color';
+        var hold = false;
+
+        widget.on("select", function (evt, color) {
+            if (hold) {
+                return;
+            }
+            btable.execCommand(command, color);
+            btable.execCommand('inputfocus');
+        });
+
+
+        listen(function () {
+            var value = btable.queryCommandValue(command);
+
+            hold = true;
+            if (value) {
+                widget.selectByColor(value);
+            } else {
+                widget.resetColor();
             }
             hold = false;
         });

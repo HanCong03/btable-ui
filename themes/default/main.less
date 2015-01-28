@@ -16,6 +16,9 @@
       height: 40px;
       margin: 0px auto;
 
+      line-height: 0;
+      font-size: 0;
+
       .fui-widget {
         vertical-align: top;
         display: inline-block;
@@ -57,14 +60,14 @@
   }
 
   .outer-input-wrapper {
+    box-sizing: border-box;
     margin-left: 50px;
     height: 24px;
+    padding: 2px 5px;
+    overflow: scroll;
 
     .outer-input {
-      box-sizing: border-box;
-      padding: 2px 5px;
       outline: none;
-      height: 100%;
       line-height: 20px;
     }
 

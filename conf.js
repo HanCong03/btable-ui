@@ -107,7 +107,34 @@ var config = {
         },
 
         {
+            clazz: 'ColorPicker',
+            className: 'b-colorpicker',
+            id: 'frontcolor',
+            text: '前景色',
+            defaultColor: '#000',
+            icon: {
+                className: 'b-frontcolor-icon'
+            },
+            openIcon: {
+                className: 'b-open-icon'
+            }
+        },
+
+        {
             clazz: 'Separator'
+        },
+
+        {
+            clazz: 'ColorPicker',
+            className: 'b-colorpicker b-fillcolor',
+            id: 'fillcolor',
+            text: '填充色',
+            icon: {
+                className: 'b-fillcolor-icon'
+            },
+            openIcon: {
+                className: 'b-open-icon'
+            }
         },
 
         {

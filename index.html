@@ -28,17 +28,21 @@
     <script src="lib/jquery-1.11.1.js"></script>
     <script src="lib/jhtmls.min.js"></script>
     <script src="lib/btable.all.js"></script>
+    <script src="btable.plugin.js"></script>
     <script src="lib/fui.all.js"></script>
     <script src="conf.js"></script>
     <script src="ui.js"></script>
     <script>
         window.onload = function () {
             var btable = new BTable(document.getElementById("btable"));
-            btable.execCommand("init");
 
             var toolbar = FUI.Creator.parse(config);
             toolbar.appendTo(document.getElementById("toolbar"));
             UI.bind(toolbar, FUI.widgets, btable);
+
+            btable.execCommand("lockinput");
+            btable.execCommand("init");
+            btable.execCommand("focus", 0, 0);
         };
     </script>
 </head>
@@ -49,10 +53,10 @@
         <div id="toolbar" class="toolbar"></div>
     </div>
 </div>
-<div id="outerInput" class="outer-input-container">
+<div class="outer-input-container">
     <div class="fx-icon"><div class="icon-box"></div></div>
     <div class="outer-input-wrapper">
-        <div id="input" class="outer-input" contenteditable="true"></div>
+        <div id="outerInput" class="outer-input" contenteditable="true"></div>
     </div>
 </div>
 <div id="btable" class="btable"></div>
