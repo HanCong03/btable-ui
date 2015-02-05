@@ -93,6 +93,12 @@
     word-break: break-all;
 }
 
+.btb-isolated {
+    position: absolute;
+    top: -10000000px;
+    left: -1000000px;
+}
+
 .btb-input-label {
     display: none;
     padding: 0 5px;
@@ -116,6 +122,8 @@
     z-index: -1;
     visibility: hidden;
     width: 10000000px;
+    line-height: 0;
+    font-size: 0;
 }
 
 .btb-core-content > div {
@@ -242,4 +250,14 @@
     position: relative;
     top: 0;
     left: 0;
+}
+
+/*----- clipboard ---------*/
+.btb-copy-tip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 2px dashed #4285f4;
+    margin: -2px;
+    display: none;
 }

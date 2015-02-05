@@ -23,6 +23,7 @@
         initVAlign(widgets.vAlign, btable);
         initFillColor(widgets.fillcolor, btable);
         initFrontColor(widgets.frontcolor, btable);
+        initSort(widgets, btable);
     }
 
     /**
@@ -277,6 +278,16 @@
                 widget.resetColor();
             }
             hold = false;
+        });
+    }
+
+    function initSort(widgets, btable) {
+        widgets.ascColumn.on("btnclick", function (evt, color) {
+            btable.execCommand('sortcolumnbyasc', color);
+        });
+
+        widgets.descColumn.on("btnclick", function (evt, color) {
+            btable.execCommand('sortcolumnbydesc', color);
         });
     }
 

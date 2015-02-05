@@ -11,6 +11,12 @@
   height: 20px;
   background: url(icon.png) no-repeat 0 0;
 }
+.toolbar .b-toolbar-panel > .fui-panel-content > .fui-button.b-column-asc .fui-icon {
+  background: url(asc.png) no-repeat 0 0;
+}
+.toolbar .b-toolbar-panel > .fui-panel-content > .fui-button.b-column-desc .fui-icon {
+  background: url(desc.png) no-repeat 0 0;
+}
 .toolbar .b-toolbar-panel > .fui-panel-content > .fui-button:HOVER {
   border-color: #ccc;
 }
