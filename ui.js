@@ -3,7 +3,6 @@
     var pool = [];
 
     function bind(toolbar, widgets, btable) {
-
         toolbar.disable();
 
         btable.on("refresh", refresh);
@@ -24,7 +23,6 @@
         initVAlign(widgets.vAlign, btable);
         initFillColor(widgets.fillcolor, btable);
         initFrontColor(widgets.frontcolor, btable);
-
     }
 
     /**
@@ -91,7 +89,8 @@
 
             hold = true;
             if (value) {
-                widget.selectByValue(value);
+                //debugger;
+                widget.selectByValue(parseInt(value, 10));
             } else {
                 widget.select(6);
             }

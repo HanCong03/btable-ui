@@ -113,9 +113,6 @@
   top: 18px;
   left: 3px;
 }
-.toolbar .b-colorpicker.b-fillcolor .fui-color-bar {
-  top: 20px;
-}
 .toolbar .b-colorpicker .b-open-icon {
   width: 5px;
   height: 3px;
@@ -317,6 +314,7 @@
 .outer-input-container .outer-input-wrapper .outer-input {
   outline: none;
   line-height: 20px;
+  color: black;
 }
 
 .toolbar .fui-select {
