@@ -195,20 +195,20 @@ var config = {
 
         {
             clazz: 'Separator'
-        },
-
-        {
-            clazz: 'Button',
-            className: 'b-column-asc',
-            id: 'ascColumn',
-            text: '升序'
-        },
-
-        {
-            clazz: 'Button',
-            className: 'b-column-desc',
-            id: 'descColumn',
-            text: '降序'
+        //},
+        //
+        //{
+        //    clazz: 'Button',
+        //    className: 'b-column-asc',
+        //    id: 'ascColumn',
+        //    text: '升序'
+        //},
+        //
+        //{
+        //    clazz: 'Button',
+        //    className: 'b-column-desc',
+        //    id: 'descColumn',
+        //    text: '降序'
         }
 
     ]

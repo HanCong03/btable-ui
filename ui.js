@@ -23,7 +23,7 @@
         initVAlign(widgets.vAlign, btable);
         initFillColor(widgets.fillcolor, btable);
         initFrontColor(widgets.frontcolor, btable);
-        initSort(widgets, btable);
+        //initSort(widgets, btable);
     }
 
     /**
