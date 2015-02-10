@@ -138,6 +138,75 @@ var config = {
         },
 
         {
+            clazz: 'SubMenu',
+            id: "borderSelect",
+            className: 'b-border-select',
+            button: {
+                icon: [{
+                    className: 'b-border-select-icon'
+                }, {
+                    className: 'b-border-select-open-icon'
+                }]
+            },
+            text: '边框',
+            widgets: [
+                {
+                    clazz: 'Item',
+                    className: 'b-border-bottom',
+                    label: '下框线',
+                    value: 'bottom'
+                }, {
+                    clazz: 'Item',
+                    className: 'b-border-top',
+                    label: '上框线',
+                    value: 'top'
+                }, {
+                    clazz: 'Item',
+                    className: 'b-border-left',
+                    label: '左框线',
+                    value: 'left'
+                }, {
+                    clazz: 'Item',
+                    className: 'b-border-right',
+                    label: '右框线',
+                    value: 'right'
+                }, {
+                    clazz: 'Separator'
+                }, {
+                    clazz: 'Item',
+                    className: 'b-border-none',
+                    label: '无框线',
+                    value: 'none'
+                }, {
+                    clazz: 'Item',
+                    className: 'b-border-all',
+                    label: '所有框线',
+                    value: 'all'
+                }, {
+                    clazz: 'Item',
+                    className: 'b-border-outer',
+                    label: '外侧框线',
+                    value: 'outer'
+                }, {
+                    clazz: 'Separator'
+                }, {
+                    clazz: 'ColorPicker',
+                    className: 'b-colorpicker b-border-color',
+                    id: 'borderColor',
+                    text: '边框色',
+                    layout: 'right',
+                    defaultColor: '#000',
+                    icon: {
+                        className: 'b-border-color-icon'
+                    },
+                    openIcon: {
+                        className: 'b-open-icon'
+                    }
+                }
+            ]
+        },
+
+        {
             clazz: 'Buttonset',
             id: 'hAlign',
             buttons: [ {

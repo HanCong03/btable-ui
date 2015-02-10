@@ -28,6 +28,17 @@ BTable.plugin('OuterInput', (function () {
                 _self.sync();
             }).on('blur', function () {
                 _self.close();
+            }).on('keydown', function (e) {
+                if (e.keyCode === 13) {
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    if (e.altKey || e.metaKey) {
+                        _self.__newLine();
+                    } else {
+                        _self.close();
+                    }
+                }
             });
         },
 
@@ -69,6 +80,30 @@ BTable.plugin('OuterInput', (function () {
 
         contentchange: function (content) {
             this.input.innerHTML = content;
+        },
+
+        __newLine: function () {
+            var range = this.getDocument().getSelection().getRangeAt(0);
+
+            range = range.cloneRange();
+
+            range.deleteContents();
+
+            range.collapse(false);
+
+            range.insertNode(this.createElement('br'));
+
+            range.collapse(false);
+
+            range.insertNode(this.getDocument().createTextNode('\uFEFF'));
+
+            range.collapse(false);
+
+            this.getDocument().getSelection().removeAllRanges();
+
+            this.getDocument().getSelection().addRange(range);
+
+            this.sync();
         }
 
     };

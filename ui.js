@@ -24,6 +24,7 @@
         initFillColor(widgets.fillcolor, btable);
         initFrontColor(widgets.frontcolor, btable);
         //initSort(widgets, btable);
+        initBorder(widgets, btable);
     }
 
     /**
@@ -267,7 +268,6 @@
             btable.execCommand('inputfocus');
         });
 
-
         listen(function () {
             var value = btable.queryCommandValue(command);
 
@@ -279,6 +279,71 @@
             }
             hold = false;
         });
+    }
+
+    function initBorder(widgets, btable) {
+        var command = 'color';
+        var hold = false;
+
+        var defaultColor = '#000';
+        var currentColor = defaultColor;
+
+        var selectWidget = widgets.borderSelect;
+
+        selectWidget.getPanel().on("itemclick", function (evt) {
+            //if (hold) {
+            //    return;
+            //}
+            //btable.execCommand(command, color);
+            //btable.execCommand('inputfocus');
+            applyBorder(evt.widget.getValue());
+
+            selectWidget.close();
+        });
+
+        widgets.borderColor.on("select", function (evt, color) {
+            currentColor = color || defaultColor;
+        });
+
+        function applyBorder(type) {
+            var borderData = {
+                style: 'thin',
+                color: currentColor
+            };
+
+            switch (type) {
+                case 'top':
+                case 'left':
+                case 'bottom':
+                case 'right':
+                    btable.execCommand('border', type, borderData);
+                    break;
+
+                case 'none':
+                    btable.execCommand('border', null);
+                    break;
+
+                case 'all':
+                    btable.execCommand('border', {
+                        top: borderData,
+                        left: borderData,
+                        right: borderData,
+                        bottom: borderData
+                    });
+                    break;
+
+                case 'outer':
+                    alert('暂不支持');
+                    //btable.execCommand('border', {
+                    //    top: borderData,
+                    //    left: borderData,
+                    //    right: borderData,
+                    //    bottom: borderData
+                    //});
+                    //break;
+
+            }
+        }
     }
 
     function initSort(widgets, btable) {
