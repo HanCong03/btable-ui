@@ -288,6 +288,9 @@
         var defaultColor = '#000';
         var currentColor = defaultColor;
 
+        var styleSelected;
+        var currentStyle = 'thin';
+
         var selectWidget = widgets.borderSelect;
 
         selectWidget.getPanel().on("itemclick", function (evt) {
@@ -303,11 +306,24 @@
 
         widgets.borderColor.on("select", function (evt, color) {
             currentColor = color || defaultColor;
+            console.log(currentColor)
+        });
+
+        styleSelected = widgets.borderStyle.__widgets[0];
+        styleSelected.addClass('fui-selected');
+
+        widgets.borderStyle.getPanel().on('itemclick', function (evt) {
+            styleSelected.removeClass('fui-selected');
+            styleSelected = evt.widget;
+            styleSelected.addClass('fui-selected');
+            currentStyle = styleSelected.getValue();
+
+            widgets.borderStyle.close();
         });
 
         function applyBorder(type) {
             var borderData = {
-                style: 'thin',
+                style: currentStyle,
                 color: currentColor
             };
 

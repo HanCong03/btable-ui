@@ -193,7 +193,9 @@ var config = {
                     clazz: 'ColorPicker',
                     className: 'b-colorpicker b-border-color',
                     id: 'borderColor',
-                    text: '边框色',
+                    label: {
+                        'text': '边框色'
+                    },
                     layout: 'right',
                     defaultColor: '#000',
                     icon: {
@@ -202,6 +204,39 @@ var config = {
                     openIcon: {
                         className: 'b-open-icon'
                     }
+                }, {
+                    clazz: 'SubMenu',
+                    id: "borderStyle",
+                    className: 'b-border-style',
+                    button: {
+                        label: {
+                            text: '框线样式'
+                        },
+                        icon: [{
+                            className: 'b-border-style-icon'
+                        }, {
+                            className: 'b-border-style-open-icon'
+                        }]
+                    },
+                    panel: {
+                        className: 'b-border-style-panel',
+                        layout: 'right'
+                    },
+                    widgets: [
+                        {
+                            clazz: 'Item',
+                            className: 'b-border-style-solid',
+                            value: 'thin'
+                        }, {
+                            clazz: 'Item',
+                            className: 'b-border-style-dashed',
+                            value: 'dashed'
+                        }, {
+                            clazz: 'Item',
+                            className: 'b-border-style-dotted',
+                            value: 'dotted'
+                        }
+                    ]
                 }
             ]
         },
