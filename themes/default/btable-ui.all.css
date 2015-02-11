@@ -71,6 +71,22 @@
 .b-toolbar-panel > .fui-panel-content > .fui-button.b-inc-precision .fui-icon {
   background-position: -21px -1953px;
 }
+.b-shortcut-format > .fui-button.b-thousandth .fui-icon,
+.b-border-select > .fui-button.b-thousandth .fui-icon,
+.b-border-style > .fui-button.b-thousandth .fui-icon,
+.b-toolbar-panel > .fui-panel-content > .fui-button.b-thousandth .fui-icon {
+  display: none;
+}
+.b-shortcut-format > .fui-button.b-thousandth .fui-label,
+.b-border-select > .fui-button.b-thousandth .fui-label,
+.b-border-style > .fui-button.b-thousandth .fui-label,
+.b-toolbar-panel > .fui-panel-content > .fui-button.b-thousandth .fui-label {
+  width: 20px;
+  height: 20px;
+  font-size: 18px;
+  text-align: center;
+  line-height: 15px;
+}
 .b-shortcut-format > .fui-button .b-border-select-icon,
 .b-border-select > .fui-button .b-border-select-icon,
 .b-border-style > .fui-button .b-border-select-icon,

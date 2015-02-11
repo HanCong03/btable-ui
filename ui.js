@@ -27,6 +27,7 @@
         initBorder(widgets, btable);
         initShortcutFormat(widgets.shortcutFormat, btable);
         initPrecision(widgets, btable);
+        initThousandth(widgets.thousandth, btable);
     }
 
     /**
@@ -358,6 +359,13 @@
             return value;
         }
 
+    }
+
+    function initThousandth(widget, btable) {
+        widget.on('click', function () {
+            btable.execCommand('format', 'numeric');
+            btable.execCommand('thousandth', true);
+        });
     }
 
     function initBorder(widgets, btable) {

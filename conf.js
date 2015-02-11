@@ -17,6 +17,14 @@ var config = {
 
         {
             clazz: 'Button',
+            className: 'b-thousandth',
+            id: 'thousandth',
+            label: ',',
+            text: '千分位'
+        },
+
+        {
+            clazz: 'Button',
             className: 'b-dec-precision',
             id: 'decPrecision',
             text: '减少小数位数'
