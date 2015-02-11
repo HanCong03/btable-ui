@@ -25,6 +25,8 @@
         initFrontColor(widgets.frontcolor, btable);
         //initSort(widgets, btable);
         initBorder(widgets, btable);
+        initShortcutFormat(widgets.shortcutFormat, btable);
+        initPrecision(widgets, btable);
     }
 
     /**
@@ -281,6 +283,83 @@
         });
     }
 
+    function initShortcutFormat(widget, btable) {
+        var command = 'format';
+        var hold = false;
+
+        widget.getPanel().on("itemclick", function (evt) {
+            //if (hold) {
+            //    return;
+            //}
+            btable.execCommand(command, evt.widget.getValue());
+            widget.close();
+        });
+
+        //listen(function () {
+        //    var value = btable.queryCommandValue(command);
+        //
+        //    hold = true;
+        //    if (value) {
+        //        widget.selectByColor(value);
+        //    } else {
+        //        widget.resetColor();
+        //    }
+        //    hold = false;
+        //});
+    }
+
+    function initPrecision(widgets, btable) {
+        var command = 'precision';
+
+        widgets.decPrecision.on("click", function (evt) {
+            var value = getPrecision();
+
+            if (!value) {
+                return;
+            }
+
+            btable.execCommand('format', 'numeric');
+            btable.execCommand(command, value - 1);
+        });
+
+        widgets.incPrecision.on("click", function (evt) {
+            var value = getPrecision();
+
+            if (value === undefined || value >= 15) {
+                return;
+            }
+
+            btable.execCommand('format', 'numeric');
+            btable.execCommand(command, value + 1);
+        });
+
+
+        function getPrecision() {
+            var value = btable.queryCommandValue(command);
+            var content;
+
+            if (value === undefined) {
+                content = btable.execCommand('content');
+                content = parseFloat(content, 10);
+
+                if (isNaN(content)) {
+                    return;
+                }
+
+                content = (content + '').split('.');
+
+                if (content[1]) {
+                    return content[1].length;
+                } else {
+                    return 0;
+                }
+            }
+
+            return value;
+        }
+
+    }
+
     function initBorder(widgets, btable) {
         var command = 'color';
         var hold = false;
@@ -294,11 +373,6 @@
         var selectWidget = widgets.borderSelect;
 
         selectWidget.getPanel().on("itemclick", function (evt) {
-            //if (hold) {
-            //    return;
-            //}
-            //btable.execCommand(command, color);
-            //btable.execCommand('inputfocus');
             applyBorder(evt.widget.getValue());
 
             selectWidget.close();
@@ -306,7 +380,6 @@
 
         widgets.borderColor.on("select", function (evt, color) {
             currentColor = color || defaultColor;
-            console.log(currentColor)
         });
 
         styleSelected = widgets.borderStyle.__widgets[0];

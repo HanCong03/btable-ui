@@ -11,6 +11,61 @@ var config = {
             className: 'b-print',
             id: 'print',
             text: '打印'
+        }, {
+            clazz: 'Separator'
+        },
+
+        {
+            clazz: 'Button',
+            className: 'b-dec-precision',
+            id: 'decPrecision',
+            text: '减少小数位数'
+        },
+
+        {
+            clazz: 'Button',
+            className: 'b-inc-precision',
+            id: 'incPrecision',
+            text: '增加小数位数'
+        },
+
+        {
+            clazz: 'SubMenu',
+            id: "shortcutFormat",
+            className: 'b-shortcut-format',
+            button: {
+                label: '123',
+                icon: [{
+                    className: 'b-shortcut-format-open-icon'
+                }]
+            },
+            text: '数字格式',
+            panel: {
+                className: 'b-shortcut-format-panel'
+            },
+            widgets: [
+                {
+                    clazz: 'Item',
+                    label: '常规',
+                    value: 'default'
+                }, {
+                    clazz: 'Item',
+                    label: '数字',
+                    value: 'numeric'
+                }, {
+                    clazz: 'Item',
+                    label: '日期',
+                    value: 'date'
+                }, {
+                    clazz: 'Item',
+                    label: '时间',
+                    value: 'time'
+                }, {
+                    clazz: 'Item',
+                    label: '文本',
+                    value: 'text'
+                }
+            ]
         },
 
         {

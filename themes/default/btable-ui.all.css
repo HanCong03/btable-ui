@@ -1,3 +1,4 @@
+.b-shortcut-format > .fui-button,
 .b-border-select > .fui-button,
 .b-border-style > .fui-button,
 .b-toolbar-panel > .fui-panel-content > .fui-button {
@@ -8,6 +9,7 @@
   line-height: 0;
   /* ------------------  icon ------------------ */
 }
+.b-shortcut-format > .fui-button .fui-icon,
 .b-border-select > .fui-button .fui-icon,
 .b-border-style > .fui-button .fui-icon,
 .b-toolbar-panel > .fui-panel-content > .fui-button .fui-icon {
@@ -15,46 +17,67 @@
   height: 20px;
   background: url(icon.png) no-repeat 0 0;
 }
+.b-shortcut-format > .fui-button.b-column-asc .fui-icon,
 .b-border-select > .fui-button.b-column-asc .fui-icon,
 .b-border-style > .fui-button.b-column-asc .fui-icon,
 .b-toolbar-panel > .fui-panel-content > .fui-button.b-column-asc .fui-icon {
   background: url(asc.png) no-repeat 0 0;
 }
+.b-shortcut-format > .fui-button.b-column-desc .fui-icon,
 .b-border-select > .fui-button.b-column-desc .fui-icon,
 .b-border-style > .fui-button.b-column-desc .fui-icon,
 .b-toolbar-panel > .fui-panel-content > .fui-button.b-column-desc .fui-icon {
   background: url(desc.png) no-repeat 0 0;
 }
+.b-shortcut-format > .fui-button:HOVER,
 .b-border-select > .fui-button:HOVER,
 .b-border-style > .fui-button:HOVER,
 .b-toolbar-panel > .fui-panel-content > .fui-button:HOVER {
   border-color: #ccc;
 }
+.b-shortcut-format > .fui-button.b-print .fui-icon,
 .b-border-select > .fui-button.b-print .fui-icon,
 .b-border-style > .fui-button.b-print .fui-icon,
 .b-toolbar-panel > .fui-panel-content > .fui-button.b-print .fui-icon {
   background-position: 0 -1764px;
 }
+.b-shortcut-format > .fui-button.b-bold .fui-icon,
 .b-border-select > .fui-button.b-bold .fui-icon,
 .b-border-style > .fui-button.b-bold .fui-icon,
 .b-toolbar-panel > .fui-panel-content > .fui-button.b-bold .fui-icon {
   background-position: 0 -2709px;
 }
+.b-shortcut-format > .fui-button.b-italic .fui-icon,
 .b-border-select > .fui-button.b-italic .fui-icon,
 .b-border-style > .fui-button.b-italic .fui-icon,
 .b-toolbar-panel > .fui-panel-content > .fui-button.b-italic .fui-icon {
   background-position: 0 -2793px;
 }
+.b-shortcut-format > .fui-button.b-underline .fui-icon,
 .b-border-select > .fui-button.b-underline .fui-icon,
 .b-border-style > .fui-button.b-underline .fui-icon,
 .b-toolbar-panel > .fui-panel-content > .fui-button.b-underline .fui-icon {
   background-position: 0 -1387px;
 }
+.b-shortcut-format > .fui-button.b-dec-precision .fui-icon,
+.b-border-select > .fui-button.b-dec-precision .fui-icon,
+.b-border-style > .fui-button.b-dec-precision .fui-icon,
+.b-toolbar-panel > .fui-panel-content > .fui-button.b-dec-precision .fui-icon {
+  background-position: -21px -3192px;
+}
+.b-shortcut-format > .fui-button.b-inc-precision .fui-icon,
+.b-border-select > .fui-button.b-inc-precision .fui-icon,
+.b-border-style > .fui-button.b-inc-precision .fui-icon,
+.b-toolbar-panel > .fui-panel-content > .fui-button.b-inc-precision .fui-icon {
+  background-position: -21px -1953px;
+}
+.b-shortcut-format > .fui-button .b-border-select-icon,
 .b-border-select > .fui-button .b-border-select-icon,
 .b-border-style > .fui-button .b-border-select-icon,
 .b-toolbar-panel > .fui-panel-content > .fui-button .b-border-select-icon {
   background-position: -21px -2395px;
 }
+.b-shortcut-format > .fui-button .b-border-select-open-icon,
 .b-border-select > .fui-button .b-border-select-open-icon,
 .b-border-style > .fui-button .b-border-select-open-icon,
 .b-toolbar-panel > .fui-panel-content > .fui-button .b-border-select-open-icon {
@@ -63,11 +86,13 @@
   background: url(down.png) 0 0 no-repeat !important;
   margin: 8px 0 0 5px;
 }
+.b-shortcut-format > .fui-button .b-border-style-icon,
 .b-border-select > .fui-button .b-border-style-icon,
 .b-border-style > .fui-button .b-border-style-icon,
 .b-toolbar-panel > .fui-panel-content > .fui-button .b-border-style-icon {
   background-position: 0 -484px;
 }
+.b-shortcut-format > .fui-button .b-border-style-open-icon,
 .b-border-select > .fui-button .b-border-style-open-icon,
 .b-border-style > .fui-button .b-border-style-open-icon,
 .b-toolbar-panel > .fui-panel-content > .fui-button .b-border-style-open-icon {
@@ -77,6 +102,24 @@
   float: right;
   margin-top: 7px;
 }
+.b-shortcut-format > .fui-button .fui-label,
+.b-border-select > .fui-button .fui-label,
+.b-border-style > .fui-button .fui-label,
+.b-toolbar-panel > .fui-panel-content > .fui-button .fui-label {
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+.b-shortcut-format > .fui-button .b-shortcut-format-open-icon,
+.b-border-select > .fui-button .b-shortcut-format-open-icon,
+.b-border-style > .fui-button .b-shortcut-format-open-icon,
+.b-toolbar-panel > .fui-panel-content > .fui-button .b-shortcut-format-open-icon {
+  width: 5px;
+  height: 3px;
+  background: url(down.png) 0 0 no-repeat !important;
+  margin: 8px 0 0 5px;
+  float: right;
+}
+.b-shortcut-format > .fui-button.fui-button-presse,
 .b-border-select > .fui-button.fui-button-presse,
 .b-border-style > .fui-button.fui-button-presse,
 .b-toolbar-panel > .fui-panel-content > .fui-button.fui-button-presse {
@@ -85,6 +128,7 @@
   background-image: -webkit-linear-gradient(top, #eeeeee, #e0e0e0);
   border-color: #ccc;
 }
+.b-shortcut-format > .fui-button:ACTIVE,
 .b-border-select > .fui-button:ACTIVE,
 .b-border-style > .fui-button:ACTIVE,
 .b-toolbar-panel > .fui-panel-content > .fui-button:ACTIVE {
@@ -93,6 +137,7 @@
   background-image: -webkit-linear-gradient(top, #eeeeee, #e0e0e0);
   border-color: #ccc;
 }
+.b-shortcut-format > .fui-button.fui-disabled,
 .b-border-select > .fui-button.fui-disabled,
 .b-border-style > .fui-button.fui-disabled,
 .b-toolbar-panel > .fui-panel-content > .fui-button.fui-disabled {
@@ -124,6 +169,12 @@
   background-image: -webkit-linear-gradient(top, #eeeeee, #e0e0e0);
   border-color: #ccc;
 }
+.b-shortcut-format.fui-opened .fui-sub-menu-button {
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  background-color: #eee;
+  background-image: -webkit-linear-gradient(top, #eeeeee, #e0e0e0);
+  border-color: #ccc;
+}
 .b-border-style-panel.fui-sub-menu-panel {
   padding: 5px 0 10px 0;
 }
@@ -149,6 +200,12 @@
 }
 .b-border-style-panel.fui-sub-menu-panel .fui-item.b-border-style-dotted .fui-label {
   border-top-style: dotted;
+}
+.b-shortcut-format-panel {
+  min-width: 100px;
+}
+.b-shortcut-format-panel .fui-item .fui-icon {
+  display: none;
 }
 
 .fui-buttonset {
