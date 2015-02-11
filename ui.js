@@ -23,7 +23,7 @@
         initVAlign(widgets.vAlign, btable);
         initFillColor(widgets.fillcolor, btable);
         initFrontColor(widgets.frontcolor, btable);
-        //initSort(widgets, btable);
+        initSort(widgets, btable);
         initBorder(widgets, btable);
         initShortcutFormat(widgets.shortcutFormat, btable);
         initPrecision(widgets, btable);
@@ -286,27 +286,11 @@
 
     function initShortcutFormat(widget, btable) {
         var command = 'format';
-        var hold = false;
 
         widget.getPanel().on("itemclick", function (evt) {
-            //if (hold) {
-            //    return;
-            //}
             btable.execCommand(command, evt.widget.getValue());
             widget.close();
         });
-
-        //listen(function () {
-        //    var value = btable.queryCommandValue(command);
-        //
-        //    hold = true;
-        //    if (value) {
-        //        widget.selectByColor(value);
-        //    } else {
-        //        widget.resetColor();
-        //    }
-        //    hold = false;
-        //});
     }
 
     function initPrecision(widgets, btable) {
@@ -369,9 +353,6 @@
     }
 
     function initBorder(widgets, btable) {
-        var command = 'color';
-        var hold = false;
-
         var defaultColor = '#000';
         var currentColor = defaultColor;
 
