@@ -449,9 +449,6 @@
  */
 /*------------ var*/
 /*------------ mixin*/
-.fui-toggle-button.fui-button-pressed {
-  background-color: #aec5e6;
-}
 .fui-toggle-button.fui-button-pressed.fui-disabled {
   background-color: #aec5e6;
 }

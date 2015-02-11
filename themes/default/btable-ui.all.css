@@ -161,6 +161,15 @@
   background: none!important;
   border-color: transparent!important;
 }
+.b-shortcut-format > .fui-button.fui-button-pressed,
+.b-border-select > .fui-button.fui-button-pressed,
+.b-border-style > .fui-button.fui-button-pressed,
+.b-toolbar-panel > .fui-panel-content > .fui-button.fui-button-pressed {
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  background-color: #eee;
+  background-image: -webkit-linear-gradient(top, #eeeeee, #e0e0e0);
+  border-color: #ccc;
+}
 .b-border-select.fui-opened .fui-sub-menu-button {
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
   background-color: #eee;
