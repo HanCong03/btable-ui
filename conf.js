@@ -305,6 +305,42 @@ var config = {
         },
 
         {
+            clazz: 'ButtonMenu',
+            id: "merge",
+            className: 'b-merge',
+            layout: "right",
+            text: '合并单元格',
+            buttons: [ {
+                className: 'b-merge-and-center'
+            }, {
+                className: 'b-merge-open'
+            } ],
+            menu: {
+                className: 'b-merge-menu',
+                items: [{
+                    label: '合并后居中',
+                    value: 'center'
+                }, {
+                    label: '跨越合并',
+                    value: 'horizontal'
+                }, {
+                    label: '竖直合并',
+                    value: 'vertical'
+                }, {
+                    label: '合并单元格',
+                    value: 'merge'
+                }, {
+                    label: '取消单元格合并',
+                    value: 'unmerge'
+                }]
+            }
+        },
+
+        {
+            clazz: 'Separator'
+        },
+
+        {
             clazz: 'Buttonset',
             id: 'hAlign',
             buttons: [ {

@@ -19,6 +19,7 @@
         initFontSize(widgets.fontSize, btable);
         initBold(widgets.bold, btable);
         initItalic(widgets.italic, btable);
+        initUnderline(widgets.underline, btable);
         initHAlign(widgets.hAlign, btable);
         initVAlign(widgets.vAlign, btable);
         initFillColor(widgets.fillcolor, btable);
@@ -28,6 +29,7 @@
         initShortcutFormat(widgets.shortcutFormat, btable);
         initPrecision(widgets, btable);
         initThousandth(widgets.thousandth, btable);
+        initMerge(widgets.merge, btable);
     }
 
     /**
@@ -157,6 +159,32 @@
 
     function initItalic(widget, btable) {
         var command = 'italic';
+        var hold = false;
+
+        widget.on("change", function (evt, info) {
+            if (hold) {
+                return;
+            }
+            btable.execCommand(command);
+            btable.execCommand("inputfocus");
+        });
+
+
+        listen(function () {
+            var value = btable.queryCommandValue(command);
+
+            hold = true;
+            if (value) {
+                widget.press();
+            } else {
+                widget.bounce();
+            }
+            hold = false;
+        });
+    }
+
+    function initUnderline(widget, btable) {
+        var command = 'underline';
         var hold = false;
 
         widget.on("change", function (evt, info) {
@@ -352,6 +380,36 @@
         });
     }
 
+    function initMerge(widget, btable) {
+        widget.on("select", function () {
+            switch (this.getValue()) {
+                case 'center':
+                    btable.execCommand('centermerge');
+                    break;
+
+                case 'horizontal':
+                    btable.execCommand('horizontalmerge');
+                    break;
+
+                case 'vertical':
+                    btable.execCommand('verticalmerge');
+                    break;
+
+                case 'merge':
+                    btable.execCommand('merge');
+                    break;
+
+                case 'unmerge':
+                    btable.execCommand('unmerge');
+                    break;
+            }
+        });
+
+        widget.on("buttonclick", function () {
+            btable.execCommand('centermerge');
+        });
+    }
+
     function initBorder(widgets, btable) {
         var defaultColor = '#000';
         var currentColor = defaultColor;
@@ -398,7 +456,7 @@
                     break;
 
                 case 'none':
-                    btable.execCommand('border', null);
+                    btable.execCommand('clearborder');
                     break;
 
                 case 'all':
@@ -411,15 +469,13 @@
                     break;
 
                 case 'outer':
-                    alert('暂不支持');
-                    //btable.execCommand('border', {
-                    //    top: borderData,
-                    //    left: borderData,
-                    //    right: borderData,
-                    //    bottom: borderData
-                    //});
-                    //break;
-
+                    btable.execCommand('outerborder', {
+                        top: borderData,
+                        left: borderData,
+                        right: borderData,
+                        bottom: borderData
+                    });
+                    break;
             }
         }
     }
