@@ -32,6 +32,7 @@
     <script src="lib/fui.all.js"></script>
     <script src="conf.js"></script>
     <script src="ui.js"></script>
+    <script src="data.js"></script>
     <script>
         window.onload = function () {
             var btable = new BTable(document.getElementById("btable"));
@@ -41,7 +42,7 @@
             UI.bind(toolbar, FUI.widgets, btable);
 
             btable.execCommand("lockinput");
-            btable.execCommand("init");
+            btable.execCommand("init", BTable.ExcelAdapter.import(data));
             btable.execCommand("focus", 0, 0);
         };
     </script>
