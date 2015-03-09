@@ -114,6 +114,13 @@
 .b-merge > .b-merge-and-center.b-bold .fui-icon {
   background-position: 0 -2709px;
 }
+.b-shortcut-format > .fui-button.b-wraptext .fui-icon,
+.b-border-select > .fui-button.b-wraptext .fui-icon,
+.b-border-style > .fui-button.b-wraptext .fui-icon,
+.b-toolbar-panel > .fui-panel-content > .fui-button.b-wraptext .fui-icon,
+.b-merge > .b-merge-and-center.b-wraptext .fui-icon {
+  background: url(icon2.png) no-repeat 0 -2709px;
+}
 .b-shortcut-format > .fui-button.b-italic .fui-icon,
 .b-border-select > .fui-button.b-italic .fui-icon,
 .b-border-style > .fui-button.b-italic .fui-icon,

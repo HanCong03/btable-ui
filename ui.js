@@ -30,6 +30,7 @@
         initPrecision(widgets, btable);
         initThousandth(widgets.thousandth, btable);
         initMerge(widgets.merge, btable);
+        initWraptext(widgets.wraptext, btable);
     }
 
     /**
@@ -133,6 +134,32 @@
 
     function initBold(widget, btable) {
         var command = 'bold';
+        var hold = false;
+
+        widget.on("change", function (evt, info) {
+            if (hold) {
+                return;
+            }
+            btable.execCommand(command);
+            btable.execCommand("inputfocus");
+        });
+
+
+        listen(function () {
+            var value = btable.queryCommandValue(command);
+
+            hold = true;
+            if (value) {
+                widget.press();
+            } else {
+                widget.bounce();
+            }
+            hold = false;
+        });
+    }
+
+    function initWraptext(widget, btable) {
+        var command = 'wraptext';
         var hold = false;
 
         widget.on("change", function (evt, info) {

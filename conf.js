@@ -341,6 +341,17 @@ var config = {
         },
 
         {
+            clazz: 'ToggleButton',
+            className: 'b-wraptext',
+            id: 'wraptext',
+            text: '自动换行'
+        },
+
+        {
+            clazz: 'Separator'
+        },
+
+        {
             clazz: 'Buttonset',
             id: 'hAlign',
             buttons: [ {
