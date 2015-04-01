@@ -30,22 +30,75 @@
             background: #eee;
             border-top: 1px solid #999;
             z-index: 99999;
+            display: flex;
+        }
+
+        .bottom-control {
+            width: 150px;
+            height: 100%;
+            flex: none;
+        }
+
+        .bottom-control-right {
+            width: 300px;
+            height: 100%;
+            order: 9999;
+            flex: none;
+        }
+
+        .move-btn-wrap {
+            display: none;
+            margin-left: 50px;
+        }
+
+        .control-btn {
+            margin-top: 3px;
+            width: 25px;
+            height: 25px;
+            border-radius: 1px;
+            border: 1px solid transparent;
+        }
+
+        .control-btn:HOVER {
+            border: 1px solid #ccc;
+        }
+
+        .left-btn {
+            margin-right: 2px;
+        }
+
+        .control-btn-icon {
+            width: 0;
+            height: 0;
+            border: 5px solid black;
+        }
+
+        .left-move-icon {
+            border-color: transparent black transparent transparent;
+            margin-left: 5px;
+            margin-top: 7.5px;
+        }
+
+        .right-move-icon {
+            border-color: transparent transparent transparent black;
+            margin-left: 10px;
+            margin-top: 7.5px;
         }
 
         .bottom-wrap {
-            width: 80%;
-            margin: -1px 10%;
             height: 100%;
             overflow: hidden;
+            flex: auto;
+            margin-top: -1px;
         }
 
         .sheet-list {
-            white-space: nowrap;
+            display: flex;
         }
 
         .sheet-list .sheet-btn {
             display: inline-block;
-            padding: 7px 15px;
+            padding: 10px 15px;
             min-height: 27px;
             border: 1px solid #ccc;
             border-top: none;
@@ -53,6 +106,7 @@
             cursor: pointer;
             box-sizing: border-box;
             margin-top: 1px;
+            flex: none
         }
 
         .sheet-btn:HOVER {
@@ -106,12 +160,19 @@
             });
 
             updateSheetList();
+            initMove();
+
+            var offset = 0;
+            var lastRight;
 
             function updateSheetList() {
                 var sheetNames = btable.queryCommandValue('sheetnames');
                 var currentIndex = btable.queryCommandValue('sheetindex');
                 var tmp = [];
                 var className;
+
+                offset = 0;
+                $("#sheetList").css('transform', 'translate(0, 0)');
 
                 for (var i = 0, len = sheetNames.length; i < len; i++) {
                     if (i === currentIndex) {
@@ -124,6 +185,46 @@
                 }
 
                 $("#sheetList").html(tmp.join(''));
+
+                var btns = $(".sheet-btn");
+                lastRight = btns[btns.length - 1].getBoundingClientRect().right;
+
+                if (lastRight > $("#sheetList").width()) {
+                    $("#moveBtnWrap").css('display', 'flex');
+                } else {
+                    $("#moveBtnWrap").css('display', 'none');
+                }
+            }
+
+            function initMove() {
+                $("#moveBtnWrap").delegate('.control-btn', 'mousedown click', function (evt) {
+                    evt.preventDefault();
+
+                    if (evt.type === 'click') {
+                        moveSheetsBar(this.getAttribute('data-direction'));
+                    }
+                });
+            }
+
+            function moveSheetsBar(direction) {
+                var width = $("#sheetList").width();
+                var tmp;
+
+                if (direction === 'left') {
+                    tmp = offset + width;
+                } else {
+                    tmp = offset - width;
+                }
+
+                if (tmp > 0) {
+                    tmp = 0;
+                } else if (tmp < -lastRight) {
+                    return;
+                }
+
+                offset = tmp;
+
+                $("#sheetList").css('transform', 'translate(' + offset + 'px, 0)');
             }
         };
     </script>
@@ -143,6 +244,13 @@
 </div>
 <div id="btable" class="btable"></div>
 <div class="bottom-bar">
+    <div class="bottom-control"></div>
+    <div class="bottom-control-right">
+        <div id="moveBtnWrap" class="move-btn-wrap">
+            <div class="left-btn control-btn" data-direction="left"><div class="left-move-icon control-btn-icon"></div></div>
+            <div class="right-btn control-btn" data-direction="right"><div class="right-move-icon control-btn-icon"></div></div>
+        </div>
+    </div>
     <div class="bottom-wrap">
         <div id="sheetList" class="sheet-list"></div>
     </div>
