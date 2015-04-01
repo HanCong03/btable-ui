@@ -16,15 +16,61 @@
             top: 127px;
             left: 0;
             right: 0;
-            bottom: 50px;
-            border: 1px solid #ccc;
+            bottom: 40px;
             border-width: 1px 0;
+        }
+
+        .bottom-bar {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 40px;
+            box-sizing: border-box;
+            background: #eee;
+            border-top: 1px solid #999;
+            z-index: 99999;
+        }
+
+        .bottom-wrap {
+            width: 80%;
+            margin: -1px 10%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .sheet-list {
+            white-space: nowrap;
+        }
+
+        .sheet-list .sheet-btn {
+            display: inline-block;
+            padding: 7px 15px;
+            min-height: 27px;
+            border: 1px solid #ccc;
+            border-top: none;
+            font-size: 12px;
+            cursor: pointer;
+            box-sizing: border-box;
+            margin-top: 1px;
+        }
+
+        .sheet-btn:HOVER {
+            background: #fff;
+        }
+
+        .sheet-btn.selected {
+            background: #fff;
+            border-color: #999;
+            cursor: default;
+            transform: translate(0, -1px);
         }
     </style>
     <link rel="stylesheet" href="formula.css">
     <link rel="stylesheet" href="btable.css">
     <link rel="stylesheet" href="assets/fui.css">
     <link rel="stylesheet" href="themes/default/btable-ui.all.css">
+    <link rel="stylesheet" href="input.css">
     <script src="lib/jquery-1.11.1.js"></script>
     <script src="lib/jhtmls.min.js"></script>
     <script src="lib/btable.all.js"></script>
@@ -41,10 +87,44 @@
             toolbar.appendTo(document.getElementById("toolbar"));
             UI.bind(toolbar, FUI.widgets, btable);
 
-            btable.execCommand("init", BTable.ExcelAdapter.import(data));
+            btable.execCommand("init", BTable.ExcelAdapter.import(excelData));
 
 //            btable.execCommand("lockinput");
             btable.execCommand("focus", 0, 0);
+
+            btable.on('sheetschange', function () {
+                updateSheetList();
+            });
+
+            $(document).delegate('.sheet-btn', 'mousedown click', function (evt) {
+                evt.preventDefault();
+
+                if (evt.type !== 'click') {
+                    return;
+                }
+                btable.execCommand('switchsheet', this.getAttribute('data-index'));
+            });
+
+            updateSheetList();
+
+            function updateSheetList() {
+                var sheetNames = btable.queryCommandValue('sheetnames');
+                var currentIndex = btable.queryCommandValue('sheetindex');
+                var tmp = [];
+                var className;
+
+                for (var i = 0, len = sheetNames.length; i < len; i++) {
+                    if (i === currentIndex) {
+                        className = 'selected';
+                    } else {
+                        className = '';
+                    }
+
+                    tmp.push('<div class="sheet-btn ' + className + '" data-index="' + i + '">' + sheetNames[i] + '</div>');
+                }
+
+                $("#sheetList").html(tmp.join(''));
+            }
         };
     </script>
 </head>
@@ -62,5 +142,10 @@
     </div>
 </div>
 <div id="btable" class="btable"></div>
+<div class="bottom-bar">
+    <div class="bottom-wrap">
+        <div id="sheetList" class="sheet-list"></div>
+    </div>
+</div>
 </body>
 </html>

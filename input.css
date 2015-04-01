@@ -1,0 +1,69 @@
+.btb-s-input-wrap {
+    position: absolute;
+    top: -10000px;
+    left: -10000px;
+
+    width: 0;
+    height: 0;
+    background: none;
+    overflow: hidden;
+    padding: 2px;
+    border: 2px solid #4285f4;
+    box-sizing: border-box;
+    z-index: 9;
+    -webkit-transform: translateZ(0);
+}
+
+.btb-s-input {
+    width: 100%;
+    height: 100%;
+}
+
+.btb-s-input, .btb-s-input-size-panel {
+    outline: none;
+    background: none;
+    line-height: 1.2;
+    font-size: 13px;
+    opacity: 0;
+
+    -webkit-transform: translateZ(0);
+    -webkit-line-break: after-white-space;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break:break-all;
+}
+
+.btb-s-input-wrap.btb-input-active {
+    z-index: 999;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    background: #fff;
+    border-style: solid!important;
+}
+
+.btb-s-input-wrap.btb-input-active .btb-s-input {
+    opacity: 1;
+}
+
+.btb-s-input-size-panel {
+    position: absolute;
+    top: -100000px;
+    left: -100000px;
+    opacity: 0;
+    display: inline-block;
+    z-index: 999999999;
+}
+
+
+.btb-s-selection {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    background: rgba(160, 195, 255, 0.2);
+    box-sizing: border-box;
+    border: 1px solid #4285f4;
+}
+
+.btb-s-selection.btb-s-selection-unstable {
+    border-style: none!important;
+}

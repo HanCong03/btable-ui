@@ -604,6 +604,7 @@
   overflow: hidden;
   box-sizing: border-box;
   border-top: 1px solid #ccc;
+  border-bottom: 1px solid #999;
 }
 .outer-input-container .fx-icon {
   width: 50px;
