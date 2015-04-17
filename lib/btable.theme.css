@@ -50,6 +50,7 @@
     top: 0;
     left: 0;
     z-index: 99;
+    cursor: cell;
 }
 
 /*----------- input*/
@@ -105,7 +106,7 @@
     display: none;
     padding: 0 5px;
     height: 20px;
-    font: 12px/20px Arial;
+    font: 12px/20px Arial, sans-serif;
     background: #4589eb;
     box-shadow: 0px 1px 2px rgba(0,0,0,0.5);
     color: #fff;
@@ -198,13 +199,13 @@
 .btb-resize-column-btn {
     width: 5px;
     top: 0;
-    cursor: e-resize;
+    cursor: col-resize;
 }
 
 .btb-resize-row-btn {
     height: 5px;
     left: 0;
-    cursor: s-resize;
+    cursor: row-resize;
 }
 
 .btb-resize-column-line {
@@ -281,3 +282,121 @@
     border-color: transparent #E5E5E5 #E5E5E5 transparent;
 }
 
+/* --------------- comments ------------- */
+.btb-comments-tip {
+    max-width: 300px;
+    min-width: 100px;
+    max-height: 500px;
+    background: #fafafa;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font: 13px/1.5 Arial, sans-serif;
+    padding: 5px 10px;
+    border: 1px solid #cfcfcf;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+
+    z-index: 99;
+}
+.btb-s-input-wrap {
+    position: absolute;
+    top: -10000px;
+    left: -10000px;
+
+    width: 0;
+    height: 0;
+    background: none;
+    border: 2px solid #4285f4;
+    box-sizing: border-box;
+    z-index: 9;
+    -webkit-transform: translateZ(0);
+}
+
+.btb-s-input-box {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.btb-s-input-wrap.btb-input-failed, .btb-s-selection.btb-selection-failed {
+    border-color: #606269;
+}
+
+.btb-s-input {
+    width: 100%;
+    height: 100%;
+    padding: 2px;
+    box-sizing: border-box;
+}
+
+.btb-s-input, .btb-s-input-size-panel {
+    outline: none;
+    background: none;
+    line-height: 1.2;
+    font-size: 13px;
+    opacity: 0;
+
+    -webkit-transform: translateZ(0);
+    -webkit-line-break: after-white-space;
+    white-space: pre;
+    word-wrap: break-word;
+    word-break:break-all;
+}
+
+.btb-s-input {
+    overflow: scroll;
+}
+
+.btb-s-input-wrap.btb-input-active {
+    z-index: 999;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    background: #fff;
+    border-style: solid!important;
+}
+
+.btb-s-input-wrap.btb-input-active .btb-s-input {
+    opacity: 1;
+}
+
+.btb-s-input-size-panel {
+    position: absolute;
+    top: -100000px;
+    left: -100000px;
+    opacity: 0;
+    display: inline-block;
+}
+
+
+.btb-s-selection {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    background: rgba(160, 195, 255, 0.2);
+    box-sizing: border-box;
+    border: 1px solid #4285f4;
+}
+
+.btb-s-selection.btb-s-selection-unstable {
+    border-style: none!important;
+}
+
+.btb-s-selection.btb-selection-failed {
+    background: rgba(156, 156, 156, 0.2);
+}
+
+.btb-s-input-label {
+    position: absolute;
+    top: -26px;
+    left: -2px;
+    line-height: 14px;
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 7px;
+    background: #4589eb;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+    display: none;
+}
