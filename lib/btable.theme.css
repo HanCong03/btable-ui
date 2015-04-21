@@ -330,6 +330,7 @@
     height: 100%;
     padding: 2px;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .btb-s-input, .btb-s-input-size-panel {
@@ -344,10 +345,6 @@
     white-space: pre;
     word-wrap: break-word;
     word-break:break-all;
-}
-
-.btb-s-input {
-    overflow: scroll;
 }
 
 .btb-s-input-wrap.btb-input-active {
