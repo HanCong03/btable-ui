@@ -106,7 +106,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "        <!-- 粘贴按钮 -->\n" +
     "        <div class=\"b-drap-button\" ng-class=\"{'b-open': btnState.pasteOpen}\">\n" +
-    "            <a class=\"btn b-btn\" role=\"button\" ng-class=\"{'b-open': btnState.pasteOpen}\">\n" +
+    "            <a class=\"btn b-btn\" role=\"button\" data-name=\"paste\" ng-click=\"handler.btnclick($event);\" ng-class=\"{'b-open': btnState.pasteOpen}\">\n" +
     "                <span class=\"b-big-icon b-icon-paste\"></span>\n" +
     "            </a>\n" +
     "\n" +
@@ -127,12 +127,12 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "        <!-- 复制 剪切 -->\n" +
     "        <div class=\"b-toolbar-clipboard-right-wrap\">\n" +
-    "            <a class=\"btn b-btn\" role=\"button\">\n" +
+    "            <a class=\"btn b-btn\" role=\"button\" data-name=\"cut\" ng-click=\"handler.btnclick($event);\">\n" +
     "                <span class=\"b-icon b-icon-cut\"></span>\n" +
     "                {{'toolbar.buttonlabel.cut' | translate}}\n" +
     "            </a>\n" +
     "\n" +
-    "            <a class=\"btn b-btn\" role=\"button\">\n" +
+    "            <a class=\"btn b-btn\" role=\"button\" data-name=\"copy\" ng-click=\"handler.btnclick($event);\">\n" +
     "                <span class=\"b-icon b-icon-copy\"></span>\n" +
     "                {{'toolbar.buttonlabel.copy' | translate}}\n" +
     "            </a>\n" +
@@ -150,10 +150,10 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div>\n" +
     "        <div class=\"b-row\">\n" +
     "            <!-- font family -->\n" +
-    "            <b-inputselect classname=\"b-fontfamily-select\" select-value=\"'Arial'\" values=\"initValue.fontfamily\"></b-inputselect>\n" +
+    "            <b-inputselect classname=\"b-fontfamily-select\" onchange=\"handler.fontSelect(value);\" select-value=\"values.fontfamily\" values=\"initValue.fontfamily\"></b-inputselect>\n" +
     "\n" +
     "            <!-- font size -->\n" +
-    "            <b-inputselect classname=\"b-fontsize-select\" only-number=\"true\" select-value=\"10\" values=\"initValue.fontsize\"></b-inputselect>\n" +
+    "            <b-inputselect classname=\"b-fontsize-select\" onchange=\"handler.fontsizeSelect(value);\" only-number=\"true\" select-value=\"values.fontsize\" values=\"initValue.fontsize\"></b-inputselect>\n" +
     "        </div>\n" +
     "        <div class=\"b-toolbar-fonts-biu-wrap\">\n" +
     "\n" +

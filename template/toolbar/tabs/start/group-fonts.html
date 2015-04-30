@@ -2,10 +2,10 @@
     <div>
         <div class="b-row">
             <!-- font family -->
-            <b-inputselect classname="b-fontfamily-select" select-value="'Arial'" values="initValue.fontfamily"></b-inputselect>
+            <b-inputselect classname="b-fontfamily-select" onchange="handler.fontSelect(value);" select-value="values.fontfamily" values="initValue.fontfamily"></b-inputselect>
 
             <!-- font size -->
-            <b-inputselect classname="b-fontsize-select" only-number="true" select-value="10" values="initValue.fontsize"></b-inputselect>
+            <b-inputselect classname="b-fontsize-select" onchange="handler.fontsizeSelect(value);" only-number="true" select-value="values.fontsize" values="initValue.fontsize"></b-inputselect>
         </div>
         <div class="b-toolbar-fonts-biu-wrap">
 

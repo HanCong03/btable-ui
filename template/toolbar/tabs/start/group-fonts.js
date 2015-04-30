@@ -3,9 +3,9 @@ return '<div unselectable="on" class="toolbar-groups b-toolbar-fonts-groups">\n'
 '<div unselectable="on">\n' +
 '<div unselectable="on" class="b-row">\n' +
 '<!-- unselectable="on" font family -->\n' +
-'<b-inputselect unselectable="on" classname="b-fontfamily-select" select-value="\'Arial\'" values="initValue.fontfamily"></b-inputselect>\n' +
+'<b-inputselect unselectable="on" classname="b-fontfamily-select" onchange="handler.fontSelect(value);" select-value="values.fontfamily" values="initValue.fontfamily"></b-inputselect>\n' +
 '<!-- unselectable="on" font size -->\n' +
-'<b-inputselect unselectable="on" classname="b-fontsize-select" only-number="true" select-value="10" values="initValue.fontsize"></b-inputselect>\n' +
+'<b-inputselect unselectable="on" classname="b-fontsize-select" onchange="handler.fontsizeSelect(value);" only-number="true" select-value="values.fontsize" values="initValue.fontsize"></b-inputselect>\n' +
 '</div>\n' +
 '<div unselectable="on" class="b-toolbar-fonts-biu-wrap">\n' +
 '<!-- unselectable="on" BIU -->\n' +

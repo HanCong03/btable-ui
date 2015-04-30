@@ -3,7 +3,7 @@
 
         <!-- 粘贴按钮 -->
         <div class="b-drap-button" ng-class="{'b-open': btnState.pasteOpen}">
-            <a class="btn b-btn" role="button" ng-class="{'b-open': btnState.pasteOpen}">
+            <a class="btn b-btn" role="button" data-name="paste" ng-click="handler.btnclick($event);" ng-class="{'b-open': btnState.pasteOpen}">
                 <span class="b-big-icon b-icon-paste"></span>
             </a>
 
@@ -24,12 +24,12 @@
 
         <!-- 复制 剪切 -->
         <div class="b-toolbar-clipboard-right-wrap">
-            <a class="btn b-btn" role="button">
+            <a class="btn b-btn" role="button" data-name="cut" ng-click="handler.btnclick($event);">
                 <span class="b-icon b-icon-cut"></span>
                 {{'toolbar.buttonlabel.cut' | translate}}
             </a>
 
-            <a class="btn b-btn" role="button">
+            <a class="btn b-btn" role="button" data-name="copy" ng-click="handler.btnclick($event);">
                 <span class="b-icon b-icon-copy"></span>
                 {{'toolbar.buttonlabel.copy' | translate}}
             </a>

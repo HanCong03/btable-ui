@@ -3,7 +3,7 @@
  * @author hancong03@baiud.com
  */
 
-angular.module('app').directive('bInputselect', ['$translate', function ($translate) {
+angular.module('app').directive('bInputselect', ['$translate', '$parse', function ($translate, $parse) {
 
     return {
         restrict: 'E',
@@ -11,11 +11,13 @@ angular.module('app').directive('bInputselect', ['$translate', function ($transl
         scope: {
             values: '=',
             selectValue: '=',
-            onlyNumber: '='
+            onlyNumber: '=',
+            onchange: '&'
         },
         templateUrl: 'template/toolbar/tabs/start/inputselect.html',
         link: function ($scope, $ele, $attr) {
             var $input = $('.b-input-select-input', $ele);
+            var hook = $scope.onchange || angular.noop;
 
             $scope.isOpen = false;
             $scope.classname = $attr.classname || '';
@@ -26,6 +28,7 @@ angular.module('app').directive('bInputselect', ['$translate', function ($transl
 
             $scope.update = function (newValue) {
                 $scope.selectValue = newValue;
+                hook({value: newValue});
             };
 
             $('.dropdown-menu', $ele).delegate('.b-input-select-item', 'click', function () {
