@@ -1,258 +1,46 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
+<html ng-app="app">
+<head>
     <meta charset="UTF-8">
-    <title></title>
-    <style>
-        html, body {
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
-        }
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/spectrum/spectrum.css">
+    <link rel="stylesheet" href="dist/theme/default/btable-ui.css">
 
-        .btable {
-            position: absolute;
-            top: 127px;
-            left: 0;
-            right: 0;
-            bottom: 40px;
-            border-width: 1px 0;
-        }
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/spectrum/spectrum.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="bower_components/angular-spectrum-colorpicker/dist/angular-spectrum-colorpicker.js"></script>
 
-        .bottom-bar {
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 40px;
-            box-sizing: border-box;
-            background: #eee;
-            border-top: 1px solid #999;
-            z-index: 99999;
-            display: flex;
-        }
+    <script src="src/main.js"></script>
+    <script src="src/config.js"></script>
+    <script src="src/template.js"></script>
 
-        .bottom-control {
-            width: 150px;
-            height: 100%;
-            flex: none;
-        }
+    <!-- directives start -->
+    <script src="src/toolbar/directives/colorpicker.js"></script>
+    <script src="src/toolbar/directives/b-inputselect.js"></script>
+    <!-- directives end -->
 
-        .bottom-control-right {
-            width: 300px;
-            height: 100%;
-            order: 9999;
-            flex: none;
-        }
-
-        .move-btn-wrap {
-            display: none;
-            margin-left: 50px;
-        }
-
-        .control-btn {
-            margin-top: 3px;
-            width: 25px;
-            height: 25px;
-            border-radius: 1px;
-            border: 1px solid transparent;
-        }
-
-        .control-btn:HOVER {
-            border: 1px solid #ccc;
-        }
-
-        .left-btn {
-            margin-right: 2px;
-        }
-
-        .control-btn-icon {
-            width: 0;
-            height: 0;
-            border: 5px solid black;
-        }
-
-        .left-move-icon {
-            border-color: transparent black transparent transparent;
-            margin-left: 5px;
-            margin-top: 7.5px;
-        }
-
-        .right-move-icon {
-            border-color: transparent transparent transparent black;
-            margin-left: 10px;
-            margin-top: 7.5px;
-        }
-
-        .bottom-wrap {
-            height: 100%;
-            overflow: hidden;
-            flex: auto;
-            margin-top: -1px;
-        }
-
-        .sheet-list {
-            display: flex;
-        }
-
-        .sheet-list .sheet-btn {
-            display: inline-block;
-            padding: 10px 15px;
-            min-height: 27px;
-            border: 1px solid #ccc;
-            border-top: none;
-            font-size: 12px;
-            cursor: pointer;
-            box-sizing: border-box;
-            margin-top: 1px;
-            flex: none
-        }
-
-        .sheet-btn:HOVER {
-            background: #fff;
-        }
-
-        .sheet-btn.selected {
-            background: #fff;
-            border-color: #999;
-            cursor: default;
-            transform: translate(0, -1px);
-        }
-    </style>
-    <link rel="stylesheet" href="lib/btable.theme.min.css">
-    <link rel="stylesheet" href="assets/fui.css">
-    <link rel="stylesheet" href="themes/default/btable-ui.all.css">
-    <script src="lib/jquery-1.11.1.js"></script>
-    <script src="lib/jhtmls.min.js"></script>
-    <script src="lib/btable.all.js"></script>
-    <script src="btable.plugin.js"></script>
-    <script src="lib/fui.all.js"></script>
-    <script src="conf.js"></script>
-    <script src="ui.js"></script>
-    <script src="data.js"></script>
-    <script>
-        window.onload = function () {
-            var btable = new BTable(document.getElementById("btable"));
-
-            var toolbar = FUI.Creator.parse(config);
-            toolbar.appendTo(document.getElementById("toolbar"));
-            UI.bind(toolbar, FUI.widgets, btable);
-
-            btable.execCommand("init", BTable.ExcelAdapter.import(excelData));
-
-//            btable.execCommand("lockinput");
-            btable.execCommand("focus", 0, 0);
-            btable.execCommand("readonly", true);
-
-//            btable.on('sheetschange', function () {
-//                updateSheetList();
-//            });
-
-            $(document).delegate('.sheet-btn', 'mousedown click', function (evt) {
-                evt.preventDefault();
-
-                if (evt.type !== 'click') {
-                    return;
-                }
-                btable.execCommand('switchsheet', this.getAttribute('data-index'));
-            });
-
-            updateSheetList();
-            initMove();
-
-            var offset = 0;
-            var lastRight;
-
-            function updateSheetList() {
-                var sheetNames = btable.queryCommandValue('sheetnames');
-                var currentIndex = btable.queryCommandValue('sheetindex');
-                var tmp = [];
-                var className;
-
-                offset = 0;
-                $("#sheetList").css('transform', 'translate(0, 0)');
-
-                for (var i = 0, len = sheetNames.length; i < len; i++) {
-                    if (i === currentIndex) {
-                        className = 'selected';
-                    } else {
-                        className = '';
-                    }
-
-                    tmp.push('<div class="sheet-btn ' + className + '" data-index="' + i + '">' + sheetNames[i] + '</div>');
-                }
-
-                $("#sheetList").html(tmp.join(''));
-
-                var btns = $(".sheet-btn");
-                lastRight = btns[btns.length - 1].getBoundingClientRect().right;
-
-                if (lastRight > $("#sheetList").width()) {
-                    $("#moveBtnWrap").css('display', 'flex');
-                } else {
-                    $("#moveBtnWrap").css('display', 'none');
-                }
-            }
-
-            function initMove() {
-                $("#moveBtnWrap").delegate('.control-btn', 'mousedown click', function (evt) {
-                    evt.preventDefault();
-
-                    if (evt.type === 'click') {
-                        moveSheetsBar(this.getAttribute('data-direction'));
-                    }
-                });
-            }
-
-            function moveSheetsBar(direction) {
-                var width = $("#sheetList").width();
-                var tmp;
-
-                if (direction === 'left') {
-                    tmp = offset + width;
-                } else {
-                    tmp = offset - width;
-                }
-
-                if (tmp > 0) {
-                    tmp = 0;
-                } else if (tmp < -lastRight) {
-                    return;
-                }
-
-                offset = tmp;
-
-                $("#sheetList").css('transform', 'translate(' + offset + 'px, 0)');
-            }
-        };
-    </script>
+    <!-- controllers start -->
+    <script src="src/toolbar/controllers/basic.js"></script>
+    <!-- controllers end -->
+    <title>BTable 演示项目</title>
 </head>
 <body>
-<div style="height: 60px;"></div>
-<div class="toolbar-container">
-    <div class="toolbar-inner">
-        <div id="toolbar" class="toolbar"></div>
+<div class="header">
+    <div class="b-toolbar" ng-controller="ToolbarBasicController">
+        <tabset class="b-toolbar-tabs-head">
+            <tab class="b-toolbar-tabs-label" heading="{{'toolbar.tabs.file' | translate}}"></tab>
+            <tab class="b-toolbar-tabs-label" heading="{{'toolbar.tabs.start' | translate}}" active="true">
+                <ng-include src="'template/toolbar/tabs/start/index.html'"></ng-include>
+            </tab>
+        </tabset>
     </div>
 </div>
-<div class="outer-input-container">
-    <div class="fx-icon"><div class="icon-box"></div></div>
-    <div class="outer-input-wrapper">
-        <div id="outerInput" class="outer-input" contenteditable="true"></div>
-    </div>
+<div class="body">
 </div>
-<div id="btable" class="btable"></div>
-<div class="bottom-bar">
-    <div class="bottom-control"></div>
-    <div class="bottom-control-right">
-        <div id="moveBtnWrap" class="move-btn-wrap">
-            <div class="left-btn control-btn" data-direction="left"><div class="left-move-icon control-btn-icon"></div></div>
-            <div class="right-btn control-btn" data-direction="right"><div class="right-move-icon control-btn-icon"></div></div>
-        </div>
-    </div>
-    <div class="bottom-wrap">
-        <div id="sheetList" class="sheet-list"></div>
-    </div>
-</div>
+<div class="footer"></div>
 </body>
 </html>

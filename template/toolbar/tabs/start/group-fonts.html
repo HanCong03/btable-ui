@@ -1,0 +1,86 @@
+<div class="toolbar-groups b-toolbar-fonts-groups">
+    <div>
+        <div class="b-row">
+            <!-- font family -->
+            <b-inputselect classname="b-fontfamily-select" select-value="'Arial'" values="initValue.fontfamily"></b-inputselect>
+
+            <!-- font size -->
+            <b-inputselect classname="b-fontsize-select" only-number="true" select-value="10" values="initValue.fontsize"></b-inputselect>
+        </div>
+        <div class="b-toolbar-fonts-biu-wrap">
+
+            <!-- BIU -->
+            <button type="button" class="btn b-btn" ng-model="a" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+                <span class="b-icon b-icon-bold"></span>
+            </button>
+            <button type="button" class="btn b-btn" ng-model="b" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+                <span class="b-icon b-icon-italic"></span>
+            </button>
+            <button type="button" class="btn b-btn" ng-model="c" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+                <span class="b-icon b-icon-underline"></span>
+            </button>
+
+            <div class="b-toolbar-delimiter"></div>
+
+            <!-- border -->
+            <div class="btn-group" dropdown on-toggle="btnState.borderOpen=open;">
+                <button type="button" class="btn b-btn dropdown-toggle" dropdown-toggle ng-class="{'b-open': btnState.borderOpen}">
+                    <span class="b-icon b-icon-border"></span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a class="b-row">
+                            <span class="b-icon b-icon-border-bottom b-mr5"></span>
+                            {{'toolbar.items.border.bottom' | translate}}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="b-row">
+                            <span class="b-icon b-icon-border-top b-mr5"></span>
+                            {{'toolbar.items.border.top' | translate}}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="b-row">
+                            <span class="b-icon b-icon-border-left b-mr5"></span>
+                            {{'toolbar.items.border.left' | translate}}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="b-row">
+                            <span class="b-icon b-icon-border-right b-mr5"></span>
+                            {{'toolbar.items.border.right' | translate}}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="b-row">
+                            <span class="b-icon b-icon-border-none b-mr5"></span>
+                            {{'toolbar.items.border.none' | translate}}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="b-row">
+                            <span class="b-icon b-icon-border-all b-mr5"></span>
+                            {{'toolbar.items.border.all' | translate}}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="b-row">
+                            <span class="b-icon b-icon-border-outer b-mr5"></span>
+                            {{'toolbar.items.border.outer' | translate}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="b-toolbar-delimiter"></div>
+
+            <colorpicker colortype="bgcolor"></colorpicker>
+            <colorpicker colortype="color"></colorpicker>
+        </div>
+    </div>
+    <div>
+        {{'toolbar.grouplabel.fonts' | translate}}
+    </div>
+</div>

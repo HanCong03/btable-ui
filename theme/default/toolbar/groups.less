@@ -1,0 +1,21 @@
+@import "./toolbar-common";
+
+.toolbar-groups {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+
+  font-size: @labelfontsize;
+
+  .btn {
+    font-size: @labelfontsize;
+  }
+
+  * {
+    &:FOCUS {
+      outline: none!important;
+    }
+    outline: none!important;
+  }
+}

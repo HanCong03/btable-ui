@@ -1,0 +1,48 @@
+.b-input-select {
+  display: inline-flex;
+  
+  .btn-group {
+    display: inline-flex;
+  }
+
+  border: 1px solid #BEBEBE;
+
+  input {
+    border: none;
+  }
+
+  .b-btn {
+    border-left: 1px solid transparent;
+
+    &:HOVER {
+      border-left: 1px solid #BEBEBE;
+    }
+  }
+
+  &.b-fontfamily-select {
+    input {
+      width: 120px;
+    }
+
+    .dropdown-menu {
+      margin-left: -121px;
+    }
+  }
+
+  &.b-fontsize-select {
+    input {
+      width: 30px;
+    }
+
+    .dropdown-menu {
+      margin-left: -31px;
+      min-width: 45px;
+      text-align: right;
+
+      a {
+        cursor: default;
+        padding: 2px 10px;
+      }
+    }
+  }
+}

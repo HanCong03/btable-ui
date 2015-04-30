@@ -28,7 +28,15 @@
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-uglify": "~0.2.6",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-module-dependence": "~0.1.4",
+    "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-watch": "~0.6.1",
-    "grunt-contrib-less": "~0.11.3"
+    "grunt-contrib-less": "~0.11.3",
+    "grunt-contrib-cssmin": "~0.10.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-angular-templates": "~0.5.7"
   }
 }

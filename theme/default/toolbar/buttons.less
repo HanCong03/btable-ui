@@ -1,0 +1,63 @@
+@import "toolbar-common";
+
+.b-toolbar {
+  .b-btn {
+    padding: 2px;
+    border-radius: 0;
+    background: none;
+    border: none;
+    display: inline-flex;
+    align-content: center;
+    align-items: center;
+    border: 1px solid transparent;
+    color: black;
+
+    &:HOVER {
+      background: @button-hover-color;
+      border-color: @button-hover-color;
+    }
+
+    &.active {
+      border-color: @button-active-border-color;
+      background: @button-active-color;
+      box-shadow: none;
+    }
+  }
+
+  .b-open {
+    border-color: @button-active-border-color!important;
+    background: @button-active-color!important;
+  }
+
+  .open .btn{
+    box-shadow: none!important;
+  }
+
+  .b-drap-button {
+    border: 1px solid transparent;
+
+    &:HOVER {
+      border-color: @button-hover-color;
+    }
+  }
+
+  .b-drop-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .b-btn {
+      padding: 0;
+
+      &.b-drop-button-bottom {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        .caret {
+          margin: auto;
+        }
+      }
+    }
+  }
+}

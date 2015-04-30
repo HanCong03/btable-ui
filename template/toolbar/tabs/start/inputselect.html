@@ -1,0 +1,13 @@
+<div class="b-input-select {{classname}}" ng-class="{'b-open': isOpen}">
+    <input ng-model="selectValue" class="b-input-select-input">
+    <div class="btn-group" dropdown on-toggle="toggle(open)">
+        <button type="button" class="btn b-btn dropdown-toggle" dropdown-toggle ng-class="{'b-open': isOpen}">
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="font in values" data-value="{{font}}" class="b-input-select-item">
+                <a style='font-family: {{font}};'>{{font}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+@import "toolbar-common";
+
+.b-button-select {
+  display: flex;
+  align-items: stretch;
+
+  .btn-group {
+    display: flex;
+  }
+
+  border: 1px solid transparent;
+
+  &:HOVER {
+    border: 1px solid @button-hover-color;
+  }
+
+  &.b-mergecell-selector {
+    .dropdown-menu {
+      margin-left: -81px;
+    }
+
+    .b-mergeandcenter-button {
+      width: 80px;
+    }
+  }
+}

@@ -1,0 +1,83 @@
+<div class="toolbar-groups b-toolbar-fonts-groups">
+    <div class="b-row">
+        <div>
+            <div class="btn-group b-drop-button" dropdown on-toggle="btnState.numberOpen=open;">
+                <div type="button" class="btn b-drop-button-bottom b-btn dropdown-toggle" dropdown-toggle ng-class="{'b-open': btnState.numberOpen}">
+                    <span class="b-big-icon b-icon-number"></span>
+                    {{'toolbar.buttonlabel.numberformat' | translate}}
+                    <span class="caret"></span>
+                </div>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a class="b-row">
+                            <span class="b-big-icon b-icon-general b-mr5"></span>
+                            {{'toolbar.items.format.general' | translate}}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="b-row">
+                            <span class="b-big-icon b-icon-number b-mr5"></span>
+                            {{'toolbar.items.format.number' | translate}}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="b-row">
+                            <span class="b-big-icon b-icon-currency b-mr5"></span>
+                            {{'toolbar.items.format.currency' | translate}}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="b-row">
+                            <span class="b-big-icon b-icon-shortdate b-mr5"></span>
+                            {{'toolbar.items.format.shortdate' | translate}}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="b-row">
+                            <span class="b-big-icon b-icon-longdate b-mr5"></span>
+                            {{'toolbar.items.format.longdate' | translate}}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="b-row">
+                            <span class="b-big-icon b-icon-time b-mr5"></span>
+                            {{'toolbar.items.format.time' | translate}}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="b-row">
+                            <span class="b-big-icon b-icon-percentage b-mr5"></span>
+                            {{'toolbar.items.format.percentage' | translate}}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="b-row">
+                            <span class="b-big-icon b-icon-scientific b-mr5"></span>
+                            {{'toolbar.items.format.scientific' | translate}}
+                        </a>
+                    </li>
+                    <li>
+                        <a class="b-row">
+                            <span class="b-big-icon b-icon-text b-mr5"></span>
+                            {{'toolbar.items.format.text' | translate}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="b-column">
+            <a class="btn b-btn" role="button">
+                <span class="b-icon b-icon-floatleft"></span>
+            </a>
+            <a class="btn b-btn" role="button">
+                <span class="b-icon b-icon-floatright"></span>
+            </a>
+            <a class="btn b-btn" role="button">
+                <span class="b-icon b-icon-precision"></span>
+            </a>
+        </div>
+    </div>
+    <div>
+        {{'toolbar.grouplabel.number' | translate}}
+    </div>
+</div>
