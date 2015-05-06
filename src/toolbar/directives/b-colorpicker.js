@@ -3,14 +3,18 @@
  * @author hancong03@baiud.com
  */
 
-angular.module('app').directive('colorpicker', ['$translate', function ($translate) {
+angular.module('app').directive('bColorpicker', ['$translate', function ($translate) {
 
     return {
         restrict: 'E',
         replace: true,
-        scope: true,
+        scope: {
+            onchange: '&oncolorchange'
+        },
         templateUrl: 'template/toolbar/tabs/start/colorpicker.html',
         link: function ($scope, $ele, $attr, $controller) {
+            var hook = $scope.onchange || angular.noop;
+
             $scope.status = {
                 isOpen: false
             };
@@ -62,6 +66,12 @@ angular.module('app').directive('colorpicker', ['$translate', function ($transla
                 $btn.on('hide.spectrum', function(e, tinycolor) {
                     $scope.status.isOpen = false;
                     $scope.$apply();
+                });
+
+                $btn.on('change.spectrum', function(e, tinycolor) {
+                    hook({
+                        'color': tinycolor.toHexString()
+                    });
                 });
             });
         }

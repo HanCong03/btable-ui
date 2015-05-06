@@ -23,43 +23,43 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li>
+                    <li ng-click="handler.borderSelect('bottom');">
                         <a class="b-row">
                             <span class="b-icon b-icon-border-bottom b-mr5"></span>
                             {{'toolbar.items.border.bottom' | translate}}
                         </a>
                     </li>
-                    <li>
+                    <li ng-click="handler.borderSelect('top');">
                         <a class="b-row">
                             <span class="b-icon b-icon-border-top b-mr5"></span>
                             {{'toolbar.items.border.top' | translate}}
                         </a>
                     </li>
-                    <li>
+                    <li ng-click="handler.borderSelect('left');">
                         <a class="b-row">
                             <span class="b-icon b-icon-border-left b-mr5"></span>
                             {{'toolbar.items.border.left' | translate}}
                         </a>
                     </li>
-                    <li>
+                    <li ng-click="handler.borderSelect('right');">
                         <a class="b-row">
                             <span class="b-icon b-icon-border-right b-mr5"></span>
                             {{'toolbar.items.border.right' | translate}}
                         </a>
                     </li>
-                    <li>
+                    <li ng-click="handler.borderSelect('none');">
                         <a class="b-row">
                             <span class="b-icon b-icon-border-none b-mr5"></span>
                             {{'toolbar.items.border.none' | translate}}
                         </a>
                     </li>
-                    <li>
+                    <li ng-click="handler.borderSelect('all');">
                         <a class="b-row">
                             <span class="b-icon b-icon-border-all b-mr5"></span>
                             {{'toolbar.items.border.all' | translate}}
                         </a>
                     </li>
-                    <li>
+                    <li ng-click="handler.borderSelect('outer');">
                         <a class="b-row">
                             <span class="b-icon b-icon-border-outer b-mr5"></span>
                             {{'toolbar.items.border.outer' | translate}}
@@ -70,8 +70,8 @@
 
             <div class="b-toolbar-delimiter"></div>
 
-            <colorpicker colortype="bgcolor"></colorpicker>
-            <colorpicker colortype="color"></colorpicker>
+            <b-colorpicker oncolorchange="handler.colorChange('background', color);" colortype="bgcolor"></b-colorpicker>
+            <b-colorpicker oncolorchange="handler.colorChange('foreground', color);" colortype="color"></b-colorpicker>
         </div>
     </div>
     <div>

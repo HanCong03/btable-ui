@@ -143,43 +143,43 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                    <span class=\"caret\"></span>\n" +
     "                </button>\n" +
     "                <ul class=\"dropdown-menu\" role=\"menu\">\n" +
-    "                    <li>\n" +
+    "                    <li ng-click=\"handler.borderSelect('bottom');\">\n" +
     "                        <a class=\"b-row\">\n" +
     "                            <span class=\"b-icon b-icon-border-bottom b-mr5\"></span>\n" +
     "                            {{'toolbar.items.border.bottom' | translate}}\n" +
     "                        </a>\n" +
     "                    </li>\n" +
-    "                    <li>\n" +
+    "                    <li ng-click=\"handler.borderSelect('top');\">\n" +
     "                        <a class=\"b-row\">\n" +
     "                            <span class=\"b-icon b-icon-border-top b-mr5\"></span>\n" +
     "                            {{'toolbar.items.border.top' | translate}}\n" +
     "                        </a>\n" +
     "                    </li>\n" +
-    "                    <li>\n" +
+    "                    <li ng-click=\"handler.borderSelect('left');\">\n" +
     "                        <a class=\"b-row\">\n" +
     "                            <span class=\"b-icon b-icon-border-left b-mr5\"></span>\n" +
     "                            {{'toolbar.items.border.left' | translate}}\n" +
     "                        </a>\n" +
     "                    </li>\n" +
-    "                    <li>\n" +
+    "                    <li ng-click=\"handler.borderSelect('right');\">\n" +
     "                        <a class=\"b-row\">\n" +
     "                            <span class=\"b-icon b-icon-border-right b-mr5\"></span>\n" +
     "                            {{'toolbar.items.border.right' | translate}}\n" +
     "                        </a>\n" +
     "                    </li>\n" +
-    "                    <li>\n" +
+    "                    <li ng-click=\"handler.borderSelect('none');\">\n" +
     "                        <a class=\"b-row\">\n" +
     "                            <span class=\"b-icon b-icon-border-none b-mr5\"></span>\n" +
     "                            {{'toolbar.items.border.none' | translate}}\n" +
     "                        </a>\n" +
     "                    </li>\n" +
-    "                    <li>\n" +
+    "                    <li ng-click=\"handler.borderSelect('all');\">\n" +
     "                        <a class=\"b-row\">\n" +
     "                            <span class=\"b-icon b-icon-border-all b-mr5\"></span>\n" +
     "                            {{'toolbar.items.border.all' | translate}}\n" +
     "                        </a>\n" +
     "                    </li>\n" +
-    "                    <li>\n" +
+    "                    <li ng-click=\"handler.borderSelect('outer');\">\n" +
     "                        <a class=\"b-row\">\n" +
     "                            <span class=\"b-icon b-icon-border-outer b-mr5\"></span>\n" +
     "                            {{'toolbar.items.border.outer' | translate}}\n" +
@@ -190,8 +190,8 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "            <div class=\"b-toolbar-delimiter\"></div>\n" +
     "\n" +
-    "            <colorpicker colortype=\"bgcolor\"></colorpicker>\n" +
-    "            <colorpicker colortype=\"color\"></colorpicker>\n" +
+    "            <b-colorpicker oncolorchange=\"handler.colorChange('background', color);\" colortype=\"bgcolor\"></b-colorpicker>\n" +
+    "            <b-colorpicker oncolorchange=\"handler.colorChange('foreground', color);\" colortype=\"color\"></b-colorpicker>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "    <div>\n" +
@@ -205,69 +205,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "<div class=\"toolbar-groups b-toolbar-fonts-groups\">\n" +
     "    <div class=\"b-row\">\n" +
     "        <div>\n" +
-    "            <div class=\"btn-group b-drop-button\" dropdown on-toggle=\"btnState.numberOpen=open;\">\n" +
-    "                <div type=\"button\" class=\"btn b-drop-button-bottom b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': btnState.numberOpen}\">\n" +
-    "                    <span class=\"b-big-icon b-icon-number\"></span>\n" +
-    "                    {{'toolbar.buttonlabel.numberformat' | translate}}\n" +
-    "                    <span class=\"caret\"></span>\n" +
-    "                </div>\n" +
-    "                <ul class=\"dropdown-menu\" role=\"menu\">\n" +
-    "                    <li>\n" +
-    "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-big-icon b-icon-general b-mr5\"></span>\n" +
-    "                            {{'toolbar.items.format.general' | translate}}\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
-    "                    <li>\n" +
-    "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-big-icon b-icon-number b-mr5\"></span>\n" +
-    "                            {{'toolbar.items.format.number' | translate}}\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
-    "                    <li>\n" +
-    "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-big-icon b-icon-currency b-mr5\"></span>\n" +
-    "                            {{'toolbar.items.format.currency' | translate}}\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
-    "                    <li>\n" +
-    "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-big-icon b-icon-shortdate b-mr5\"></span>\n" +
-    "                            {{'toolbar.items.format.shortdate' | translate}}\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
-    "                    <li>\n" +
-    "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-big-icon b-icon-longdate b-mr5\"></span>\n" +
-    "                            {{'toolbar.items.format.longdate' | translate}}\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
-    "                    <li>\n" +
-    "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-big-icon b-icon-time b-mr5\"></span>\n" +
-    "                            {{'toolbar.items.format.time' | translate}}\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
-    "                    <li>\n" +
-    "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-big-icon b-icon-percentage b-mr5\"></span>\n" +
-    "                            {{'toolbar.items.format.percentage' | translate}}\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
-    "                    <li>\n" +
-    "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-big-icon b-icon-scientific b-mr5\"></span>\n" +
-    "                            {{'toolbar.items.format.scientific' | translate}}\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
-    "                    <li>\n" +
-    "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-big-icon b-icon-text b-mr5\"></span>\n" +
-    "                            {{'toolbar.items.format.text' | translate}}\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
-    "                </ul>\n" +
-    "            </div>\n" +
+    "            <b-numberformat onselect=\"handler.formatSelect(type);\"></b-numberformat>\n" +
     "        </div>\n" +
     "        <div class=\"b-column\">\n" +
     "            <a class=\"btn b-btn\" role=\"button\" data-name=\"inc-precision\" ng-click=\"handler.btnclick($event);\">\n" +
@@ -360,6 +298,25 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            </li>\n" +
     "        </ul>\n" +
     "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/tabs/start/numberformat.html',
+    "<div class=\"btn-group b-drop-button\" dropdown on-toggle=\"btnState.numberOpen=open;\">\n" +
+    "    <div type=\"button\" class=\"btn b-drop-button-bottom b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': btnState.numberOpen}\">\n" +
+    "        <span class=\"b-big-icon b-icon-number\"></span>\n" +
+    "        {{'toolbar.buttonlabel.numberformat' | translate}}\n" +
+    "        <span class=\"caret\"></span>\n" +
+    "    </div>\n" +
+    "    <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "        <li ng-repeat=\"type in types\" ng-click=\"select($index)\">\n" +
+    "            <a class=\"b-row\">\n" +
+    "                <span class=\"b-big-icon b-icon-{{type}} b-mr5\"></span>\n" +
+    "                {{'toolbar.items.format.' + type | translate}}\n" +
+    "            </a>\n" +
+    "        </li>\n" +
+    "    </ul>\n" +
     "</div>"
   );
 

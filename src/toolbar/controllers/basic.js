@@ -58,6 +58,18 @@ angular.module('app').controller('ToolbarBasicController', ['$scope', 'toolbarNo
 
         alignChange: function (status) {
             toolbarNotify.emit('horizontalalign', status);
+        },
+
+        colorChange: function (type, color) {
+            toolbarNotify.emit(type, color);
+        },
+
+        borderSelect: function (type) {
+            toolbarNotify.emit('border', type);
+        },
+
+        formatSelect: function (type) {
+            toolbarNotify.emit('numberformat', type);
         }
     };
 }]);
