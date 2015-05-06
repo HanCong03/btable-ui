@@ -1,34 +1,8 @@
 <div class="toolbar-groups b-toolbar-fonts-groups">
     <div class="b-row">
         <div class="b-column">
-            <div>
-                <!-- vertical alignments -->
-                <div class="btn-group">
-                    <label class="btn b-btn" ng-model="res.valignValue" btn-radio="'top'" ng-click="handler.valignChange('top');" uncheckable>
-                        <span class="b-icon b-icon-top"></span>
-                    </label>
-                    <label class="btn b-btn" ng-model="res.valignValue" btn-radio="'middle'" ng-click="handler.valignChange('middle');" uncheckable>
-                        <span class="b-icon b-icon-middle"></span>
-                    </label>
-                    <label class="btn b-btn" ng-model="res.valignValue" btn-radio="'bottom'" ng-click="handler.valignChange('bottom');" uncheckable>
-                        <span class="b-icon b-icon-bottom"></span>
-                    </label>
-                </div>
-            </div>
-            <div>
-                <!-- horizontal alignments -->
-                <div class="btn-group">
-                    <label class="btn b-btn" ng-model="res.alignValue" btn-radio="'left'" ng-click="handler.alignChange('left');" uncheckable>
-                        <span class="b-icon b-icon-left"></span>
-                    </label>
-                    <label class="btn b-btn" ng-model="res.alignValue" btn-radio="'center'" ng-click="handler.alignChange('center');" uncheckable>
-                        <span class="b-icon b-icon-center"></span>
-                    </label>
-                    <label class="btn b-btn" ng-model="res.alignValue" btn-radio="'right'" ng-click="handler.alignChange('right');" uncheckable>
-                        <span class="b-icon b-icon-right"></span>
-                    </label>
-                </div>
-            </div>
+            <b-verticalalign onchange="handler.valignChange(status);" value="middle"></b-verticalalign>
+            <b-horizontalalign onchange="handler.alignChange(status);" value="left"></b-horizontalalign>
         </div>
 
         <div class="b-column-left">

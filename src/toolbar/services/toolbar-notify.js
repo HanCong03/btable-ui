@@ -7,7 +7,7 @@ angular.module('app').factory('toolbarNotify', [function () {
 
     return {
         emit: function (type, args) {
-            console.log(type)
+            console.log(arguments)
         }
     };
 

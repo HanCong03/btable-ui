@@ -56,34 +56,8 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "<div class=\"toolbar-groups b-toolbar-fonts-groups\">\n" +
     "    <div class=\"b-row\">\n" +
     "        <div class=\"b-column\">\n" +
-    "            <div>\n" +
-    "                <!-- vertical alignments -->\n" +
-    "                <div class=\"btn-group\">\n" +
-    "                    <label class=\"btn b-btn\" ng-model=\"res.valignValue\" btn-radio=\"'top'\" ng-click=\"handler.valignChange('top');\" uncheckable>\n" +
-    "                        <span class=\"b-icon b-icon-top\"></span>\n" +
-    "                    </label>\n" +
-    "                    <label class=\"btn b-btn\" ng-model=\"res.valignValue\" btn-radio=\"'middle'\" ng-click=\"handler.valignChange('middle');\" uncheckable>\n" +
-    "                        <span class=\"b-icon b-icon-middle\"></span>\n" +
-    "                    </label>\n" +
-    "                    <label class=\"btn b-btn\" ng-model=\"res.valignValue\" btn-radio=\"'bottom'\" ng-click=\"handler.valignChange('bottom');\" uncheckable>\n" +
-    "                        <span class=\"b-icon b-icon-bottom\"></span>\n" +
-    "                    </label>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "            <div>\n" +
-    "                <!-- horizontal alignments -->\n" +
-    "                <div class=\"btn-group\">\n" +
-    "                    <label class=\"btn b-btn\" ng-model=\"res.alignValue\" btn-radio=\"'left'\" ng-click=\"handler.alignChange('left');\" uncheckable>\n" +
-    "                        <span class=\"b-icon b-icon-left\"></span>\n" +
-    "                    </label>\n" +
-    "                    <label class=\"btn b-btn\" ng-model=\"res.alignValue\" btn-radio=\"'center'\" ng-click=\"handler.alignChange('center');\" uncheckable>\n" +
-    "                        <span class=\"b-icon b-icon-center\"></span>\n" +
-    "                    </label>\n" +
-    "                    <label class=\"btn b-btn\" ng-model=\"res.alignValue\" btn-radio=\"'right'\" ng-click=\"handler.alignChange('right');\" uncheckable>\n" +
-    "                        <span class=\"b-icon b-icon-right\"></span>\n" +
-    "                    </label>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
+    "            <b-verticalalign onchange=\"handler.valignChange(status);\" value=\"middle\"></b-verticalalign>\n" +
+    "            <b-horizontalalign onchange=\"handler.alignChange(status);\" value=\"left\"></b-horizontalalign>\n" +
     "        </div>\n" +
     "\n" +
     "        <div class=\"b-column-left\">\n" +
@@ -335,6 +309,24 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/toolbar/tabs/start/horizontalalign.html',
+    "<div>\n" +
+    "    <!-- horizontal alignments -->\n" +
+    "    <div class=\"btn-group\">\n" +
+    "        <label class=\"btn b-btn\" ng-model=\"value\" btn-radio=\"'left'\" ng-click=\"alignChange('left');\" uncheckable>\n" +
+    "            <span class=\"b-icon b-icon-left\"></span>\n" +
+    "        </label>\n" +
+    "        <label class=\"btn b-btn\" ng-model=\"value\" btn-radio=\"'center'\" ng-click=\"alignChange('center');\" uncheckable>\n" +
+    "            <span class=\"b-icon b-icon-center\"></span>\n" +
+    "        </label>\n" +
+    "        <label class=\"btn b-btn\" ng-model=\"value\" btn-radio=\"'right'\" ng-click=\"alignChange('right');\" uncheckable>\n" +
+    "            <span class=\"b-icon b-icon-right\"></span>\n" +
+    "        </label>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/toolbar/tabs/start/index.html',
     "<div class=\"toolbar-tabs-content\">\n" +
     "    <ng-include class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-undo.html'\"></ng-include>\n" +
@@ -377,6 +369,24 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <span class=\"b-icon b-icon-{{type}}\"></span>\n" +
     "    {{text}}\n" +
     "</button>"
+  );
+
+
+  $templateCache.put('template/toolbar/tabs/start/verticalalign.html',
+    "<div>\n" +
+    "    <!-- vertical alignments -->\n" +
+    "    <div class=\"btn-group\">\n" +
+    "        <label class=\"btn b-btn\" ng-model=\"value\" btn-radio=\"'top'\" ng-click=\"alignChange('top');\" uncheckable>\n" +
+    "            <span class=\"b-icon b-icon-top\"></span>\n" +
+    "        </label>\n" +
+    "        <label class=\"btn b-btn\" ng-model=\"value\" btn-radio=\"'middle'\" ng-click=\"alignChange('middle');\" uncheckable>\n" +
+    "            <span class=\"b-icon b-icon-middle\"></span>\n" +
+    "        </label>\n" +
+    "        <label class=\"btn b-btn\" ng-model=\"value\" btn-radio=\"'bottom'\" ng-click=\"alignChange('bottom');\" uncheckable>\n" +
+    "            <span class=\"b-icon b-icon-bottom\"></span>\n" +
+    "        </label>\n" +
+    "    </div>\n" +
+    "</div>"
   );
 
 }]);

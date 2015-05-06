@@ -32,38 +32,32 @@ angular.module('app').controller('ToolbarBasicController', ['$scope', 'toolbarNo
 
     $scope.handler = {
         btnclick: function (evt) {
-            console.log(evt.delegateTarget.getAttribute('data-name'))
+            var buttonType = evt.delegateTarget.getAttribute('data-name');
+            toolbarNotify.emit('buttonclick', buttonType);
         },
+
         fontSelect: function (val) {
-            toolbarNotify.emit('font-family', val);
+            toolbarNotify.emit('fontfamily', val);
         },
 
         fontsizeSelect: function (val) {
-            toolbarNotify.emit('font-size', val);
+            toolbarNotify.emit('fontsize', val);
         },
 
-        mergechange: function (mode, value) {
-            console.log(mode, value)
+        mergechange: function (mode, status) {
+            toolbarNotify.emit('merge', mode, status);
         },
 
-        valignChange: function (mode) {
-            if (res.valignValue == mode) {
-                console.log('null')
-            } else {
-                console.log(mode)
-            }
+        pressChange: function (type, status) {
+            toolbarNotify.emit(type, status);
         },
 
-        pressChange: function () {
-            console.log(arguments)
+        valignChange: function (status) {
+            toolbarNotify.emit('verticalalign', status);
         },
 
-        alignChange: function (mode) {
-            if (res.alignValue == mode) {
-                console.log('null')
-            } else {
-                console.log(mode)
-            }
+        alignChange: function (status) {
+            toolbarNotify.emit('horizontalalign', status);
         }
     };
 }]);
