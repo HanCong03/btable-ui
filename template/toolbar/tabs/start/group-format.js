@@ -67,14 +67,14 @@ return '<div unselectable="on" class="toolbar-groups b-toolbar-fonts-groups">\n'
 '</div>\n' +
 '</div>\n' +
 '<div unselectable="on" class="b-column">\n' +
-'<a unselectable="on" class="btn b-btn" role="button">\n' +
-'<span unselectable="on" class="b-icon b-icon-floatleft"></span>\n' +
+'<a unselectable="on" class="btn b-btn" role="button" data-name="inc-precision" ng-click="handler.btnclick($event);">\n' +
+'<span unselectable="on" class="b-icon b-icon-inc-precision"></span>\n' +
 '</a>\n' +
-'<a unselectable="on" class="btn b-btn" role="button">\n' +
-'<span unselectable="on" class="b-icon b-icon-floatright"></span>\n' +
+'<a unselectable="on" class="btn b-btn" role="button" data-name="dec-precision" ng-click="handler.btnclick($event);">\n' +
+'<span unselectable="on" class="b-icon b-icon-dec-precision"></span>\n' +
 '</a>\n' +
-'<a unselectable="on" class="btn b-btn" role="button">\n' +
-'<span unselectable="on" class="b-icon b-icon-precision"></span>\n' +
+'<a unselectable="on" class="btn b-btn" role="button" data-name="thousands" ng-click="handler.btnclick($event);">\n' +
+'<span unselectable="on" class="b-icon b-icon-thousands"></span>\n' +
 '</a>\n' +
 '</div>\n' +
 '</div>\n' +

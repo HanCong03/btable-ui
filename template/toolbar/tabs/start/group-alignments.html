@@ -4,13 +4,13 @@
             <div>
                 <!-- vertical alignments -->
                 <div class="btn-group">
-                    <label class="btn b-btn" ng-model="a" btn-radio="'Left'" uncheckable>
+                    <label class="btn b-btn" ng-model="res.valignValue" btn-radio="'top'" ng-click="handler.valignChange('top');" uncheckable>
                         <span class="b-icon b-icon-top"></span>
                     </label>
-                    <label class="btn b-btn" ng-model="a" btn-radio="'Middle'" uncheckable>
+                    <label class="btn b-btn" ng-model="res.valignValue" btn-radio="'middle'" ng-click="handler.valignChange('middle');" uncheckable>
                         <span class="b-icon b-icon-middle"></span>
                     </label>
-                    <label class="btn b-btn" ng-model="a" btn-radio="'Right'" uncheckable>
+                    <label class="btn b-btn" ng-model="res.valignValue" btn-radio="'bottom'" ng-click="handler.valignChange('bottom');" uncheckable>
                         <span class="b-icon b-icon-bottom"></span>
                     </label>
                 </div>
@@ -18,13 +18,13 @@
             <div>
                 <!-- horizontal alignments -->
                 <div class="btn-group">
-                    <label class="btn b-btn" ng-model="radioModel" btn-radio="'Left'" uncheckable>
+                    <label class="btn b-btn" ng-model="res.alignValue" btn-radio="'left'" ng-click="handler.alignChange('left');" uncheckable>
                         <span class="b-icon b-icon-left"></span>
                     </label>
-                    <label class="btn b-btn" ng-model="radioModel" btn-radio="'Middle'" uncheckable>
+                    <label class="btn b-btn" ng-model="res.alignValue" btn-radio="'center'" ng-click="handler.alignChange('center');" uncheckable>
                         <span class="b-icon b-icon-center"></span>
                     </label>
-                    <label class="btn b-btn" ng-model="radioModel" btn-radio="'Right'" uncheckable>
+                    <label class="btn b-btn" ng-model="res.alignValue" btn-radio="'right'" ng-click="handler.alignChange('right');" uncheckable>
                         <span class="b-icon b-icon-right"></span>
                     </label>
                 </div>
@@ -32,51 +32,8 @@
         </div>
 
         <div class="b-column-left">
-
-            <!-- wrap text -->
-            <a class="btn b-btn" role="button">
-                <span class="b-icon b-icon-wraptext"></span>
-                {{'toolbar.buttonlabel.wraptext' | translate}}
-            </a>
-
-            <!-- merge cell -->
-            <div class="b-button-select b-mergecell-selector" ng-class="{'b-open': btnState.mergeOpen}">
-                <a class="btn b-btn b-mergeandcenter-button" role="button" ng-class="{'b-open': btnState.mergeOpen}">
-                    <span class="b-icon b-icon-merge"></span>
-                    {{'toolbar.buttonlabel.merge' | translate}}
-                </a>
-                <div class="btn-group" dropdown on-toggle="btnState.mergeOpen=open;">
-                    <button type="button" class="btn b-btn dropdown-toggle" dropdown-toggle ng-class="{'b-open': btnState.mergeOpen}">
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a class="b-row">
-                                <span class="b-icon b-icon-merge b-mr5"></span>
-                                {{'toolbar.items.merge.center' | translate}}
-                            </a>
-                        </li>
-                        <li>
-                            <a class="b-row">
-                                <span class="b-icon b-icon-merge b-mr5"></span>
-                                {{'toolbar.items.merge.across' | translate}}
-                            </a>
-                        </li>
-                        <li>
-                            <a class="b-row">
-                                <span class="b-icon b-icon-merge b-mr5"></span>
-                                {{'toolbar.items.merge.merge' | translate}}
-                            </a>
-                        </li>
-                        <li>
-                            <a class="b-row">
-                                <span class="b-icon b-icon-merge b-mr5"></span>
-                                {{'toolbar.items.merge.cancel' | translate}}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <b-pressbutton buttontype="wraptext" text="{{'toolbar.buttonlabel.wraptext' | translate}}" onchange="handler.pressChange('wraptext', status)" pressed="false"></b-pressbutton>
+            <b-mergeselect merge="true" onchange="handler.mergechange(mode, value);"></b-mergeselect>
         </div>
     </div>
     <div>

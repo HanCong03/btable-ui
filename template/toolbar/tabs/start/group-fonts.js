@@ -9,15 +9,9 @@ return '<div unselectable="on" class="toolbar-groups b-toolbar-fonts-groups">\n'
 '</div>\n' +
 '<div unselectable="on" class="b-toolbar-fonts-biu-wrap">\n' +
 '<!-- unselectable="on" BIU -->\n' +
-'<button unselectable="on" type="button" class="btn b-btn" ng-model="a" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">\n' +
-'<span unselectable="on" class="b-icon b-icon-bold"></span>\n' +
-'</button>\n' +
-'<button unselectable="on" type="button" class="btn b-btn" ng-model="b" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">\n' +
-'<span unselectable="on" class="b-icon b-icon-italic"></span>\n' +
-'</button>\n' +
-'<button unselectable="on" type="button" class="btn b-btn" ng-model="c" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">\n' +
-'<span unselectable="on" class="b-icon b-icon-underline"></span>\n' +
-'</button>\n' +
+'<b-pressbutton unselectable="on" buttontype="bold" onchange="handler.pressChange(\'bold\', status)" pressed="false"></b-pressbutton>\n' +
+'<b-pressbutton unselectable="on" buttontype="italic" onchange="handler.pressChange(\'italic\', status)" pressed="false"></b-pressbutton>\n' +
+'<b-pressbutton unselectable="on" buttontype="underline" onchange="handler.pressChange(\'underline\', status)" pressed="false"></b-pressbutton>\n' +
 '<div unselectable="on" class="b-toolbar-delimiter"></div>\n' +
 '<!-- unselectable="on" border -->\n' +
 '<div unselectable="on" class="btn-group" dropdown on-toggle="btnState.borderOpen=open;">\n' +

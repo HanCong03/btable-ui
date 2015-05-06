@@ -1,6 +1,47 @@
 angular.module('app').run(['$templateCache', function($templateCache) {
   'use strict';
 
+  $templateCache.put('template/toolbar/tabs/start/buttonselect.html',
+    "<div class=\"b-button-select b-mergecell-selector\" ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
+    "    <a class=\"btn b-btn b-mergeandcenter-button\" role=\"button\" ng-class=\"{'b-open': isOpen || isSelected}\" ng-click=\"changeModel('center');\">\n" +
+    "        <span class=\"b-icon b-icon-merge\"></span>\n" +
+    "        {{'toolbar.buttonlabel.merge' | translate}}\n" +
+    "    </a>\n" +
+    "    <div class=\"btn-group\" dropdown on-toggle=\"isOpen=open;\">\n" +
+    "        <button type=\"button\" class=\"btn b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
+    "            <span class=\"caret\"></span>\n" +
+    "        </button>\n" +
+    "        <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "            <li>\n" +
+    "                <a class=\"b-row\" ng-click=\"changeModel('center');\">\n" +
+    "                    <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
+    "                    {{'toolbar.items.merge.center' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "                <a class=\"b-row\" ng-click=\"changeModel('across');\">\n" +
+    "                    <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
+    "                    {{'toolbar.items.merge.across' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "                <a class=\"b-row\" ng-click=\"changeModel('merge');\">\n" +
+    "                    <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
+    "                    {{'toolbar.items.merge.merge' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "                <a class=\"b-row\" ng-click=\"changeModel('cancel');\">\n" +
+    "                    <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
+    "                    {{'toolbar.items.merge.cancel' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/toolbar/tabs/start/colorpicker.html',
     "<div class=\"btn-group\" dropdown on-toggle=\"toggle(open);\" is-open=\"status.isOpen\">\n" +
     "    <button type=\"button\" class=\"btn b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': status.isOpen}\">\n" +
@@ -18,13 +59,13 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            <div>\n" +
     "                <!-- vertical alignments -->\n" +
     "                <div class=\"btn-group\">\n" +
-    "                    <label class=\"btn b-btn\" ng-model=\"a\" btn-radio=\"'Left'\" uncheckable>\n" +
+    "                    <label class=\"btn b-btn\" ng-model=\"res.valignValue\" btn-radio=\"'top'\" ng-click=\"handler.valignChange('top');\" uncheckable>\n" +
     "                        <span class=\"b-icon b-icon-top\"></span>\n" +
     "                    </label>\n" +
-    "                    <label class=\"btn b-btn\" ng-model=\"a\" btn-radio=\"'Middle'\" uncheckable>\n" +
+    "                    <label class=\"btn b-btn\" ng-model=\"res.valignValue\" btn-radio=\"'middle'\" ng-click=\"handler.valignChange('middle');\" uncheckable>\n" +
     "                        <span class=\"b-icon b-icon-middle\"></span>\n" +
     "                    </label>\n" +
-    "                    <label class=\"btn b-btn\" ng-model=\"a\" btn-radio=\"'Right'\" uncheckable>\n" +
+    "                    <label class=\"btn b-btn\" ng-model=\"res.valignValue\" btn-radio=\"'bottom'\" ng-click=\"handler.valignChange('bottom');\" uncheckable>\n" +
     "                        <span class=\"b-icon b-icon-bottom\"></span>\n" +
     "                    </label>\n" +
     "                </div>\n" +
@@ -32,13 +73,13 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            <div>\n" +
     "                <!-- horizontal alignments -->\n" +
     "                <div class=\"btn-group\">\n" +
-    "                    <label class=\"btn b-btn\" ng-model=\"radioModel\" btn-radio=\"'Left'\" uncheckable>\n" +
+    "                    <label class=\"btn b-btn\" ng-model=\"res.alignValue\" btn-radio=\"'left'\" ng-click=\"handler.alignChange('left');\" uncheckable>\n" +
     "                        <span class=\"b-icon b-icon-left\"></span>\n" +
     "                    </label>\n" +
-    "                    <label class=\"btn b-btn\" ng-model=\"radioModel\" btn-radio=\"'Middle'\" uncheckable>\n" +
+    "                    <label class=\"btn b-btn\" ng-model=\"res.alignValue\" btn-radio=\"'center'\" ng-click=\"handler.alignChange('center');\" uncheckable>\n" +
     "                        <span class=\"b-icon b-icon-center\"></span>\n" +
     "                    </label>\n" +
-    "                    <label class=\"btn b-btn\" ng-model=\"radioModel\" btn-radio=\"'Right'\" uncheckable>\n" +
+    "                    <label class=\"btn b-btn\" ng-model=\"res.alignValue\" btn-radio=\"'right'\" ng-click=\"handler.alignChange('right');\" uncheckable>\n" +
     "                        <span class=\"b-icon b-icon-right\"></span>\n" +
     "                    </label>\n" +
     "                </div>\n" +
@@ -46,51 +87,8 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        </div>\n" +
     "\n" +
     "        <div class=\"b-column-left\">\n" +
-    "\n" +
-    "            <!-- wrap text -->\n" +
-    "            <a class=\"btn b-btn\" role=\"button\">\n" +
-    "                <span class=\"b-icon b-icon-wraptext\"></span>\n" +
-    "                {{'toolbar.buttonlabel.wraptext' | translate}}\n" +
-    "            </a>\n" +
-    "\n" +
-    "            <!-- merge cell -->\n" +
-    "            <div class=\"b-button-select b-mergecell-selector\" ng-class=\"{'b-open': btnState.mergeOpen}\">\n" +
-    "                <a class=\"btn b-btn b-mergeandcenter-button\" role=\"button\" ng-class=\"{'b-open': btnState.mergeOpen}\">\n" +
-    "                    <span class=\"b-icon b-icon-merge\"></span>\n" +
-    "                    {{'toolbar.buttonlabel.merge' | translate}}\n" +
-    "                </a>\n" +
-    "                <div class=\"btn-group\" dropdown on-toggle=\"btnState.mergeOpen=open;\">\n" +
-    "                    <button type=\"button\" class=\"btn b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': btnState.mergeOpen}\">\n" +
-    "                        <span class=\"caret\"></span>\n" +
-    "                    </button>\n" +
-    "                    <ul class=\"dropdown-menu\" role=\"menu\">\n" +
-    "                        <li>\n" +
-    "                            <a class=\"b-row\">\n" +
-    "                                <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
-    "                                {{'toolbar.items.merge.center' | translate}}\n" +
-    "                            </a>\n" +
-    "                        </li>\n" +
-    "                        <li>\n" +
-    "                            <a class=\"b-row\">\n" +
-    "                                <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
-    "                                {{'toolbar.items.merge.across' | translate}}\n" +
-    "                            </a>\n" +
-    "                        </li>\n" +
-    "                        <li>\n" +
-    "                            <a class=\"b-row\">\n" +
-    "                                <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
-    "                                {{'toolbar.items.merge.merge' | translate}}\n" +
-    "                            </a>\n" +
-    "                        </li>\n" +
-    "                        <li>\n" +
-    "                            <a class=\"b-row\">\n" +
-    "                                <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
-    "                                {{'toolbar.items.merge.cancel' | translate}}\n" +
-    "                            </a>\n" +
-    "                        </li>\n" +
-    "                    </ul>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
+    "            <b-pressbutton buttontype=\"wraptext\" text=\"{{'toolbar.buttonlabel.wraptext' | translate}}\" onchange=\"handler.pressChange('wraptext', status)\" pressed=\"false\"></b-pressbutton>\n" +
+    "            <b-mergeselect merge=\"true\" onchange=\"handler.mergechange(mode, value);\"></b-mergeselect>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "    <div>\n" +
@@ -158,15 +156,9 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        <div class=\"b-toolbar-fonts-biu-wrap\">\n" +
     "\n" +
     "            <!-- BIU -->\n" +
-    "            <button type=\"button\" class=\"btn b-btn\" ng-model=\"a\" btn-checkbox btn-checkbox-true=\"1\" btn-checkbox-false=\"0\">\n" +
-    "                <span class=\"b-icon b-icon-bold\"></span>\n" +
-    "            </button>\n" +
-    "            <button type=\"button\" class=\"btn b-btn\" ng-model=\"b\" btn-checkbox btn-checkbox-true=\"1\" btn-checkbox-false=\"0\">\n" +
-    "                <span class=\"b-icon b-icon-italic\"></span>\n" +
-    "            </button>\n" +
-    "            <button type=\"button\" class=\"btn b-btn\" ng-model=\"c\" btn-checkbox btn-checkbox-true=\"1\" btn-checkbox-false=\"0\">\n" +
-    "                <span class=\"b-icon b-icon-underline\"></span>\n" +
-    "            </button>\n" +
+    "            <b-pressbutton buttontype=\"bold\" onchange=\"handler.pressChange('bold', status)\" pressed=\"false\"></b-pressbutton>\n" +
+    "            <b-pressbutton buttontype=\"italic\" onchange=\"handler.pressChange('italic', status)\" pressed=\"false\"></b-pressbutton>\n" +
+    "            <b-pressbutton buttontype=\"underline\" onchange=\"handler.pressChange('underline', status)\" pressed=\"false\"></b-pressbutton>\n" +
     "\n" +
     "            <div class=\"b-toolbar-delimiter\"></div>\n" +
     "\n" +
@@ -304,14 +296,14 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            </div>\n" +
     "        </div>\n" +
     "        <div class=\"b-column\">\n" +
-    "            <a class=\"btn b-btn\" role=\"button\">\n" +
-    "                <span class=\"b-icon b-icon-floatleft\"></span>\n" +
+    "            <a class=\"btn b-btn\" role=\"button\" data-name=\"inc-precision\" ng-click=\"handler.btnclick($event);\">\n" +
+    "                <span class=\"b-icon b-icon-inc-precision\"></span>\n" +
     "            </a>\n" +
-    "            <a class=\"btn b-btn\" role=\"button\">\n" +
-    "                <span class=\"b-icon b-icon-floatright\"></span>\n" +
+    "            <a class=\"btn b-btn\" role=\"button\" data-name=\"dec-precision\" ng-click=\"handler.btnclick($event);\">\n" +
+    "                <span class=\"b-icon b-icon-dec-precision\"></span>\n" +
     "            </a>\n" +
-    "            <a class=\"btn b-btn\" role=\"button\">\n" +
-    "                <span class=\"b-icon b-icon-precision\"></span>\n" +
+    "            <a class=\"btn b-btn\" role=\"button\" data-name=\"thousands\" ng-click=\"handler.btnclick($event);\">\n" +
+    "                <span class=\"b-icon b-icon-thousands\"></span>\n" +
     "            </a>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -326,12 +318,12 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "<div class=\"toolbar-groups\">\n" +
     "    <div>\n" +
     "        <div>\n" +
-    "            <a class=\"btn b-btn\" role=\"button\">\n" +
+    "            <a class=\"btn b-btn\" role=\"button\" data-name=\"undo\" ng-click=\"handler.btnclick($event);\">\n" +
     "                <span class=\"b-icon b-icon-undo\"></span>\n" +
     "            </a>\n" +
     "        </div>\n" +
     "        <div>\n" +
-    "            <a class=\"btn b-btn\" role=\"button\">\n" +
+    "            <a class=\"btn b-btn\" role=\"button\" data-name=\"redo\" ng-click=\"handler.btnclick($event);\">\n" +
     "                <span class=\"b-icon b-icon-redo\"></span>\n" +
     "            </a>\n" +
     "        </div>\n" +
@@ -377,6 +369,14 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        </ul>\n" +
     "    </div>\n" +
     "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/tabs/start/pressbutton.html',
+    "<button type=\"button\" class=\"btn b-btn\" ng-model=\"status\" ng-click=\"toggle();\" btn-checkbox>\n" +
+    "    <span class=\"b-icon b-icon-{{type}}\"></span>\n" +
+    "    {{text}}\n" +
+    "</button>"
   );
 
 }]);

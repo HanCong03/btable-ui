@@ -236,7 +236,7 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.registerTask( 'default', [ 'jshint' ] );
-    grunt.registerTask( 'dev', [ 'less', 'tpl', 'watch' ] );
+    grunt.registerTask( 'dev', [ 'less', 'ngtemplates', 'tpl', 'watch' ] );
     grunt.registerTask( 'build', [ 'jshint', 'dependence:replace', 'concat:full', 'uglify:minimize', 'less:build', 'cssmin', 'copy', 'clean' ] );
 
 };

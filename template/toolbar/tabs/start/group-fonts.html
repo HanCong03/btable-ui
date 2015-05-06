@@ -10,15 +10,9 @@
         <div class="b-toolbar-fonts-biu-wrap">
 
             <!-- BIU -->
-            <button type="button" class="btn b-btn" ng-model="a" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
-                <span class="b-icon b-icon-bold"></span>
-            </button>
-            <button type="button" class="btn b-btn" ng-model="b" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
-                <span class="b-icon b-icon-italic"></span>
-            </button>
-            <button type="button" class="btn b-btn" ng-model="c" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
-                <span class="b-icon b-icon-underline"></span>
-            </button>
+            <b-pressbutton buttontype="bold" onchange="handler.pressChange('bold', status)" pressed="false"></b-pressbutton>
+            <b-pressbutton buttontype="italic" onchange="handler.pressChange('italic', status)" pressed="false"></b-pressbutton>
+            <b-pressbutton buttontype="underline" onchange="handler.pressChange('underline', status)" pressed="false"></b-pressbutton>
 
             <div class="b-toolbar-delimiter"></div>
 

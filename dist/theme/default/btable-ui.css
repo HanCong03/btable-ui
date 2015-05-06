@@ -62,6 +62,7 @@ body {
 .b-toolbar .b-open {
   border-color: #86bfa0 !important;
   background: #86bfa0 !important;
+  color: black;
 }
 .b-toolbar .open .btn {
   box-shadow: none!important;
@@ -218,13 +219,13 @@ body {
 .b-toolbar .b-icon-number {
   background-position: -35px -201px;
 }
-.b-toolbar .b-icon-floatleft {
+.b-toolbar .b-icon-inc-precision {
   background-position: -174px -237px;
 }
-.b-toolbar .b-icon-floatright {
+.b-toolbar .b-icon-dec-precision {
   background-position: -189px -201px;
 }
-.b-toolbar .b-icon-precision {
+.b-toolbar .b-icon-thousands {
   background-position: -189px -219px;
 }
 .b-toolbar .b-icon-border-bottom {

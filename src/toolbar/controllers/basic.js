@@ -13,6 +13,13 @@ angular.module('app').controller('ToolbarBasicController', ['$scope', 'toolbarNo
         mergeOpen: false
     };
 
+    var res = {
+        valignValue: null,
+        alignValue: null
+    };
+
+    $scope.res = res;
+
     $scope.values = {
         fontsize: 12,
         fontfamily: 'Arial'
@@ -33,6 +40,30 @@ angular.module('app').controller('ToolbarBasicController', ['$scope', 'toolbarNo
 
         fontsizeSelect: function (val) {
             toolbarNotify.emit('font-size', val);
+        },
+
+        mergechange: function (mode, value) {
+            console.log(mode, value)
+        },
+
+        valignChange: function (mode) {
+            if (res.valignValue == mode) {
+                console.log('null')
+            } else {
+                console.log(mode)
+            }
+        },
+
+        pressChange: function () {
+            console.log(arguments)
+        },
+
+        alignChange: function (mode) {
+            if (res.alignValue == mode) {
+                console.log('null')
+            } else {
+                console.log(mode)
+            }
         }
     };
 }]);
