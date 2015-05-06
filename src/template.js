@@ -230,12 +230,12 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "<div class=\"toolbar-groups\">\n" +
     "    <div>\n" +
     "        <div>\n" +
-    "            <a class=\"btn b-btn\" role=\"button\" data-name=\"undo\" ng-click=\"handler.btnclick($event);\">\n" +
+    "            <a b-tooltip=\"toolbar.tooltip.undo\" class=\"btn b-btn\" role=\"button\" data-name=\"undo\" ng-click=\"handler.btnclick($event);\">\n" +
     "                <span class=\"b-icon b-icon-undo\"></span>\n" +
     "            </a>\n" +
     "        </div>\n" +
     "        <div>\n" +
-    "            <a class=\"btn b-btn\" role=\"button\" data-name=\"redo\" ng-click=\"handler.btnclick($event);\">\n" +
+    "            <a b-tooltip=\"toolbar.tooltip.redo\" class=\"btn b-btn\" role=\"button\" data-name=\"redo\" ng-click=\"handler.btnclick($event);\">\n" +
     "                <span class=\"b-icon b-icon-redo\"></span>\n" +
     "            </a>\n" +
     "        </div>\n" +

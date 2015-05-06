@@ -53,6 +53,11 @@
       "less": "收起",
       "cancel": "取消",
       "choose": "选择"
+    },
+
+    "tooltip": {
+      "undo": "撤销",
+      "redo": "重做"
     }
   }
 }
