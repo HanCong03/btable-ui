@@ -9,7 +9,8 @@
       "clipboard": "剪贴板",
       "fonts": "字体",
       "alignments": "对齐方式",
-      "number": "数字"
+      "number": "数字",
+      "style": "样式"
     },
     "buttonlabel": {
       "paste": "粘贴",

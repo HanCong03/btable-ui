@@ -1,0 +1,155 @@
+@import "toolbar-common";
+@border-color: #cdcdcd;
+
+.b-toolbar {
+  .b-drappanel-wrap {
+    border: 1px solid @border-color;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+
+  .b-drappanel-box {
+    width: 324px;
+    height: 66px;
+    overflow: hidden;
+    margin: 2px;
+  }
+
+  .b-drappanel-content {
+    align-items: flex-start!important;
+  }
+
+  .b-drappanel-item {
+    cursor: default;
+    display: flex;
+    width: 108px;
+    height: 33px;
+
+    &:HOVER {
+      background: @button-hover-color;
+    }
+  }
+
+  .b-drappanel-item-inside {
+    margin: auto;
+    width: 100px;
+    height: 25px;
+    padding: 2px;
+    line-height: 1;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: white;
+  }
+
+  .b-ctrl-button-group {
+    align-self: stretch;
+
+    button {
+      width: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      border: 1px solid @border-color;
+      border-width: 0 0 1px 1px;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:HOVER {
+        border-color: @border-color;
+      }
+
+      &.disabled {
+        opacity: 0.4;
+      }
+    }
+  }
+
+  .b-arrow-up {
+    margin-top: -3px;
+    width: 0;
+    height: 0;
+    border: 3px solid transparent;
+    border-bottom-color: black;
+  }
+
+  .b-arrow-down {
+    margin-top: 3px;
+    width: 0;
+    height: 0;
+    border: 3px solid transparent;
+    border-top-color: black;
+  }
+
+  .b-arrow-open {
+    margin-top: 3px;
+    &::before {
+      content: "";
+      display: block;
+      width: 8px;
+      height: 1px;
+      background: black;
+      transform: translate(-4px, -6px);
+    }
+    width: 0;
+    height: 0;
+    border: 3px solid transparent;
+    border-top-color: black;
+  }
+
+
+
+  /* ---------------- menu start ------------ */
+
+  .b-drappanel-menu {
+    width: 658px; // 108 * 6 + 2 * 2 + 2 * 2 + 1 * 2
+    max-height: none!important;
+    top: -2px;
+    left: -2px;
+    padding: 2px;
+
+    .b-drappanel-menu-bed {
+      background: #cfcfcf;
+    }
+
+    .b-cellstyle-category-label {
+      display: block;
+      height: 20px;
+      line-height: 25px;
+      font-size: 14px;
+      font-weight: bold;
+      padding-left: 0.5em;
+    }
+
+    .b-droppanel-menu-item-wrap {
+      background: #fff;
+      flex-wrap: wrap;
+    }
+
+    .b-drappanel-menu-item {
+      width: 108px;
+      height: 33px;
+      display: flex;
+      cursor: default;
+
+      &:HOVER {
+        background-color: @button-hover-color;
+      }
+    }
+
+    .b-drappanel-menu-item-inside {
+      width: 100px;
+      height: 25px;
+      margin: auto;
+      padding: 2px;
+      overflow: hidden;
+      background: #fff;
+      text-overflow: ellipsis;
+    }
+  }
+}

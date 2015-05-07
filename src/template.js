@@ -72,6 +72,18 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/toolbar/tabs/start/group-cellstyles.html',
+    "<div class=\"toolbar-groups b-toolbar-fonts-groups\">\n" +
+    "    <div class=\"b-row\">\n" +
+    "        <b-cellstyles onselect=\"handler.selectCellstyle(id, isBuiltin);\"></b-cellstyles>\n" +
+    "    </div>\n" +
+    "    <div>\n" +
+    "        {{'toolbar.grouplabel.style' | translate}}\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/toolbar/tabs/start/group-clipboard.html',
     "<div class=\"toolbar-groups b-toolbar-clipboard-groups\">\n" +
     "    <div class=\"b-toolbar-clipboard-button-wrap\">\n" +
@@ -281,6 +293,9 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "    <ng-include class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-format.html'\"></ng-include>\n" +
     "    <div class=\"b-toolbar-delimiter\"></div>\n" +
+    "\n" +
+    "    <ng-include class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-cellstyles.html'\"></ng-include>\n" +
+    "    <div class=\"b-toolbar-delimiter\"></div>\n" +
     "</div>"
   );
 
@@ -342,6 +357,50 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        <label class=\"btn b-btn\" ng-model=\"value\" btn-radio=\"'bottom'\" ng-click=\"alignChange('bottom');\" uncheckable>\n" +
     "            <span class=\"b-icon b-icon-bottom\"></span>\n" +
     "        </label>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/widget/cellstyles.html',
+    "<div class=\"b-drappanel-wrap\">\n" +
+    "    <div class=\"b-drappanel b-row\">\n" +
+    "        <div class=\"b-drappanel-box\">\n" +
+    "            <div class=\"b-drappanel-content b-row b-row-left b-wrap\">\n" +
+    "                <div ng-click=\"select(style.id, style.builtin);\" ng-repeat=\"style in uncategoryBuiltinStyles\" class=\"b-drappanel-item\">\n" +
+    "                    <div class=\"b-drappanel-item-inside\" style=\"{{style.styleText}}\">\n" +
+    "                        {{style.name}}\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <div class=\"b-ctrl-button-group b-column\">\n" +
+    "            <button type=\"button\" class=\"btn b-btn\" ng-class=\"{disabled: !allowUp}\" ng-click=\"pageUp();\">\n" +
+    "                <span class=\"b-arrow-up\"></span>\n" +
+    "            </button>\n" +
+    "            <button type=\"button\" class=\"btn b-btn\" ng-class=\"{disabled: !allowDown}\" ng-click=\"pageDown();\">\n" +
+    "                <span class=\"b-arrow-down\"></span>\n" +
+    "            </button>\n" +
+    "            <button type=\"button\" class=\"btn b-btn\" ng-click=\"openPanel($event);\">\n" +
+    "                <span class=\"b-arrow-open\"></span>\n" +
+    "            </button>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"dropdown-menu b-drappanel-menu\" role=\"menu\">\n" +
+    "        <div class=\"b-drappanel-menu-bed\">\n" +
+    "            <div ng-repeat=\"categoryStyle in builtinStyles\" class=\"b-drappanel-menu-box\">\n" +
+    "                <label class=\"b-cellstyle-category-label\">\n" +
+    "                    {{categoryStyle[0].categoryName}}\n" +
+    "                </label>\n" +
+    "                <div class=\"b-droppanel-menu-item-wrap b-row\">\n" +
+    "                    <div ng-click=\"select(style.id, style.builtin);\" ng-repeat=\"style in categoryStyle\" class=\"b-drappanel-menu-item\">\n" +
+    "                        <div class=\"b-drappanel-menu-item-inside\" style=\"{{style.styleText}}\">\n" +
+    "                            {{style.name}}\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
     "    </div>\n" +
     "</div>"
   );

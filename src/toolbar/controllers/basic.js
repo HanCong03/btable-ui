@@ -70,6 +70,10 @@ angular.module('app').controller('ToolbarBasicController', ['$scope', 'toolbarNo
 
         formatSelect: function (type) {
             toolbarNotify.emit('numberformat', type);
+        },
+
+        selectCellstyle: function (id, isBuiltin) {
+            toolbarNotify.emit('cellstyle', id, isBuiltin);
         }
     };
 }]);

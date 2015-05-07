@@ -10,5 +10,7 @@ return '<div unselectable="on" class="toolbar-tabs-content">\n' +
 '<div unselectable="on" class="b-toolbar-delimiter"></div>\n' +
 '<ng-include unselectable="on" class="b-tabs-page" src="\'template/toolbar/tabs/start/group-format.html\'"></ng-include>\n' +
 '<div unselectable="on" class="b-toolbar-delimiter"></div>\n' +
+'<ng-include unselectable="on" class="b-tabs-page" src="\'template/toolbar/tabs/start/group-cellstyles.html\'"></ng-include>\n' +
+'<div unselectable="on" class="b-toolbar-delimiter"></div>\n' +
 '</div>\n';
 } );
