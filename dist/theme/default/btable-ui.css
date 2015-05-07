@@ -1,3 +1,35 @@
+.modal {
+  display: flex;
+}
+.modal-dialog {
+  width: auto;
+  height: auto;
+}
+.modal-content {
+  margin: auto;
+}
+.b-row {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.b-wrap {
+  flex-wrap: wrap;
+}
+.b-row-left {
+  align-content: flex-start;
+  text-align: left;
+}
+.b-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.b-column-left {
+  display: flex;
+  flex-direction: column;
+}
+
 html,
 body {
   width: 100%;
@@ -72,6 +104,11 @@ body {
 }
 .b-toolbar .b-drap-button:HOVER {
   border-color: #d3f0e0;
+}
+.b-toolbar .b-cellformat-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 .b-toolbar .b-drop-button {
   display: flex;
@@ -250,6 +287,77 @@ body {
   background: rgba(0, 0, 0, 0.11);
 }
 
+.b-cell-format-box {
+  width: 800px;
+  height: 500px;
+}
+
+.b-numberformat-box {
+  border: 1px solid #cfcfcf;
+  border-top: none;
+  padding: 10px;
+}
+.b-numberformat-box .b-numberformat-tabs {
+  display: flex;
+  height: 400px;
+  align-items: stretch;
+  /* -------------- content -------- */
+}
+.b-numberformat-box .b-numberformat-tabs .nav-tabs {
+  border: 1px solid #cfcfcf;
+  padding: 2px;
+  min-width: 150px;
+  margin-right: 10px;
+}
+.b-numberformat-box .b-numberformat-tabs .nav-tabs li,
+.b-numberformat-box .b-numberformat-tabs .nav-tabs a,
+.b-numberformat-box .b-numberformat-tabs .nav-tabs .active {
+  height: 20px;
+  font-size: 14px;
+  line-height: 20px;
+  border: none!important;
+  background: none;
+  padding: 0;
+  color: #000000;
+  cursor: default;
+}
+.b-numberformat-box .b-numberformat-tabs .nav-tabs li:HOVER,
+.b-numberformat-box .b-numberformat-tabs .nav-tabs a:HOVER,
+.b-numberformat-box .b-numberformat-tabs .nav-tabs .active:HOVER,
+.b-numberformat-box .b-numberformat-tabs .nav-tabs li:ACTIVE,
+.b-numberformat-box .b-numberformat-tabs .nav-tabs a:ACTIVE,
+.b-numberformat-box .b-numberformat-tabs .nav-tabs .active:ACTIVE {
+  border: none;
+  font-weight: normal;
+}
+.b-numberformat-box .b-numberformat-tabs .nav-tabs .active,
+.b-numberformat-box .b-numberformat-tabs .nav-tabs .active a {
+  color: #ffffff;
+  background: blue!important;
+}
+.b-numberformat-box .b-numberformat-tabs .tab-content {
+  color: #000000;
+  margin-right: auto;
+  flex: 1;
+}
+.b-numberformat-box .b-numberformat-tabs .b-numberformat-tabs-content {
+  align-items: flex-start;
+}
+.b-numberformat-box .b-numberformat-tabs .b-numberformat-preview {
+  align-self: stretch;
+  align-items: stretch;
+}
+.b-numberformat-box .b-numberformat-tabs .b-cellformat-list {
+  min-height: 200px;
+  border: 1px solid #cfcfcf;
+  padding: 2px 4px;
+  margin: 0;
+  list-style: none;
+}
+.b-numberformat-box .b-numberformat-tabs .b-nubmerformat-preview-active {
+  background: blue;
+}
+
 .b-toolbar-fonts-groups .b-toolbar-fonts-biu-wrap {
   display: flex;
   align-items: center;
@@ -262,6 +370,9 @@ body {
   margin-right: 5px;
 }
 .toolbar-groups {
+  position: relative;
+  top: 0;
+  left: 0;
   display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
@@ -433,27 +544,6 @@ body {
   height: 30px;
   padding: 0 20px;
   line-height: 30px;
-}
-.b-toolbar .b-row {
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-}
-.b-toolbar .b-wrap {
-  flex-wrap: wrap;
-}
-.b-toolbar .b-row-left {
-  align-content: flex-start;
-  text-align: left;
-}
-.b-toolbar .b-column {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.b-toolbar .b-column-left {
-  display: flex;
-  flex-direction: column;
 }
 
 .b-mr5 {

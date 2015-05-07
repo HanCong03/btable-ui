@@ -23,14 +23,14 @@ return '<div unselectable="on" class="b-drappanel-wrap">\n' +
 '</div>\n' +
 '</div>\n' +
 '<div unselectable="on" class="dropdown-menu b-drappanel-menu" role="menu">\n' +
-'<div unselectable="on" class="b-drappanel-menu-bed">\n' +
+'<div unselectable="on" class="b-drappanel-menu-bed" ng-click="checkPop($event);">\n' +
 '<div unselectable="on" ng-repeat="categoryStyle in builtinStyles" class="b-drappanel-menu-box">\n' +
 '<label unselectable="on" class="b-cellstyle-category-label">\n' +
 '{{categoryStyle[0].categoryName}}\n' +
 '</label>\n' +
 '<div unselectable="on" class="b-droppanel-menu-item-wrap b-row">\n' +
-'<div unselectable="on" ng-click="select(style.id, style.builtin);" ng-repeat="style in categoryStyle" class="b-drappanel-menu-item">\n' +
-'<div unselectable="on" class="b-drappanel-menu-item-inside" style="{{style.styleText}}">\n' +
+'<div unselectable="on" ng-click="select(style.id, style.builtin);" isitem ng-repeat="style in categoryStyle" class="b-drappanel-menu-item">\n' +
+'<div unselectable="on" class="b-drappanel-menu-item-inside" isitem style="{{style.styleText}}">\n' +
 '{{style.name}}\n' +
 '</div>\n' +
 '</div>\n' +

@@ -1,0 +1,17 @@
+<div class="b-numberformat-tabs-content b-column">
+    <label>
+        小数位数：<input type="number" value="2" min="0" max="30">
+    </label>
+    <label class="i-checks">
+        <input type="checkbox" id="t" ng-model="status.thousandth"><i></i> 使用千分位分隔符
+    </label>
+    <label class="b-column b-numberformat-preview">
+        负数：
+        <ul class="b-cellformat-list">
+            <li ng-repeat="format in numberformatValues[0]" style="{{format.style}}" ng-class="{'b-nubmerformat-preview-active': status.numericalSelected === $index}" ng-click="status.numericalSelected=$index;">{{format.text}}</li>
+        </ul>
+    </label>
+    <div class="b-numberformat-desc">
+        阿斯顿发斯蒂芬即可垃圾的收付款了；按时交地方
+    </div>
+</div>

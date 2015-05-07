@@ -1,0 +1,68 @@
+.b-numberformat-box {
+  border: 1px solid #cfcfcf;
+  border-top: none;
+  padding: 10px;
+
+  .b-numberformat-tabs {
+    display: flex;
+    height: 400px;
+    align-items: stretch;
+
+    .nav-tabs {
+      border: 1px solid #cfcfcf;
+      padding: 2px;
+      min-width: 150px;
+      margin-right: 10px;
+
+      li, a, .active {
+        height: 20px;
+        font-size: 14px;
+        line-height: 20px;
+        border: none!important;
+        background: none;
+        padding: 0;
+        color: #000000;
+        cursor: default;
+
+        &:HOVER, &:ACTIVE {
+          border: none;
+          font-weight: normal;
+        }
+      }
+
+      .active, .active a {
+        color: #ffffff;
+        background: blue!important;
+      }
+    }
+
+
+    /* -------------- content -------- */
+    .tab-content {
+      color: #000000;
+      margin-right: auto;
+      flex: 1;
+    }
+
+    .b-numberformat-tabs-content {
+      align-items: flex-start;
+    }
+
+    .b-numberformat-preview {
+      align-self: stretch;
+      align-items: stretch;
+    }
+
+    .b-cellformat-list {
+      min-height: 200px;
+      border: 1px solid #cfcfcf;
+      padding: 2px 4px;
+      margin: 0;
+      list-style: none;
+    }
+
+    .b-nubmerformat-preview-active {
+      background: blue;
+    }
+  }
+}

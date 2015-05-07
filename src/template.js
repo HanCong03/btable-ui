@@ -1,6 +1,27 @@
 angular.module('app').run(['$templateCache', function($templateCache) {
   'use strict';
 
+  $templateCache.put('template/dialogs/cell-format.html',
+    "<!-- Modal -->\n" +
+    "<div class=\"modal\" id=\"cellFormatModal\" style=\"display: none;\" ng-controller=\"CellForamtModalController\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+    "    <div class=\"modal-dialog\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "            <div class=\"modal-header\">\n" +
+    "                <h4 class=\"modal-title\">Modal title</h4>\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-body\">\n" +
+    "                <ng-include src=\"'template/toolbar/tabs/start/cell-format/index.html'\"></ng-include>\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-footer\">\n" +
+    "                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
+    "                <button type=\"button\" class=\"btn btn-primary\">Save changes</button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/toolbar/tabs/start/buttonselect.html',
     "<div class=\"b-button-select b-mergecell-selector\" ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
     "    <a class=\"btn b-btn b-mergeandcenter-button\" role=\"button\" ng-class=\"{'b-open': isOpen || isSelected}\" ng-click=\"changeModel('center');\">\n" +
@@ -42,6 +63,63 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/toolbar/tabs/start/cell-format/index.html',
+    "<div class=\"b-cell-format-box\">\n" +
+    "    <tabset>\n" +
+    "        <tab heading=\"{{'dialog.cellformat.number' | translate}}\">\n" +
+    "            <ng-include src=\"'template/toolbar/tabs/start/cell-format/number/index.html'\"></ng-include>\n" +
+    "        </tab>\n" +
+    "        <tab heading=\"Static title\">Static content</tab>\n" +
+    "        <tab heading=\"Static title\">Static content</tab>\n" +
+    "        <tab heading=\"Static title\">Static content</tab>\n" +
+    "        <tab heading=\"Static title\">Static content</tab>\n" +
+    "    </tabset>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/tabs/start/cell-format/number/index.html',
+    "<div class=\"b-numberformat-box\">\n" +
+    "    <label>分类：</label>\n" +
+    "    <tabset vertical=\"true\" class=\"b-numberformat-tabs b-row\">\n" +
+    "        <tab heading=\"常规\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
+    "        <tab heading=\"数值\">\n" +
+    "            <ng-include b-include-replace src=\"'template/toolbar/tabs/start/cell-format/number/numerical.html'\"></ng-include>\n" +
+    "        </tab>\n" +
+    "        <tab heading=\"货币\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
+    "        <tab heading=\"会计专用\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
+    "        <tab heading=\"日期\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
+    "        <tab heading=\"时间\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
+    "        <tab heading=\"百分比\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
+    "        <tab heading=\"分数\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
+    "        <tab heading=\"科学计数法\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
+    "        <tab heading=\"文本\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
+    "    </tabset>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/tabs/start/cell-format/number/numerical.html',
+    "<div class=\"b-numberformat-tabs-content b-column\">\n" +
+    "    <label>\n" +
+    "        小数位数：<input type=\"number\" value=\"2\" min=\"0\" max=\"30\">\n" +
+    "    </label>\n" +
+    "    <label class=\"i-checks\">\n" +
+    "        <input type=\"checkbox\" id=\"t\" ng-model=\"status.thousandth\"><i></i> 使用千分位分隔符\n" +
+    "    </label>\n" +
+    "    <label class=\"b-column b-numberformat-preview\">\n" +
+    "        负数：\n" +
+    "        <ul class=\"b-cellformat-list\">\n" +
+    "            <li ng-repeat=\"format in numberformatValues[0]\" style=\"{{format.style}}\" ng-class=\"{'b-nubmerformat-preview-active': status.numericalSelected === $index}\" ng-click=\"status.numericalSelected=$index;\">{{format.text}}</li>\n" +
+    "        </ul>\n" +
+    "    </label>\n" +
+    "    <div class=\"b-numberformat-desc\">\n" +
+    "        阿斯顿发斯蒂芬即可垃圾的收付款了；按时交地方\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/toolbar/tabs/start/colorpicker.html',
     "<div class=\"btn-group\" dropdown on-toggle=\"toggle(open);\" is-open=\"status.isOpen\">\n" +
     "    <button type=\"button\" class=\"btn b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': status.isOpen}\">\n" +
@@ -77,6 +155,10 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"b-row\">\n" +
     "        <b-cellstyles onselect=\"handler.selectCellstyle(id, isBuiltin);\"></b-cellstyles>\n" +
     "    </div>\n" +
+    "    <!-- Button trigger modal -->\n" +
+    "    <button type=\"button\" class=\"btn btn-lg b-cellformat-btn\" data-toggle=\"modal\" data-target=\"#cellFormatModal\">\n" +
+    "        a\n" +
+    "    </button>\n" +
     "    <div>\n" +
     "        {{'toolbar.grouplabel.style' | translate}}\n" +
     "    </div>\n" +
@@ -387,14 +469,14 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        </div>\n" +
     "    </div>\n" +
     "    <div class=\"dropdown-menu b-drappanel-menu\" role=\"menu\">\n" +
-    "        <div class=\"b-drappanel-menu-bed\">\n" +
+    "        <div class=\"b-drappanel-menu-bed\" ng-click=\"checkPop($event);\">\n" +
     "            <div ng-repeat=\"categoryStyle in builtinStyles\" class=\"b-drappanel-menu-box\">\n" +
     "                <label class=\"b-cellstyle-category-label\">\n" +
     "                    {{categoryStyle[0].categoryName}}\n" +
     "                </label>\n" +
     "                <div class=\"b-droppanel-menu-item-wrap b-row\">\n" +
-    "                    <div ng-click=\"select(style.id, style.builtin);\" ng-repeat=\"style in categoryStyle\" class=\"b-drappanel-menu-item\">\n" +
-    "                        <div class=\"b-drappanel-menu-item-inside\" style=\"{{style.styleText}}\">\n" +
+    "                    <div ng-click=\"select(style.id, style.builtin);\" isitem ng-repeat=\"style in categoryStyle\" class=\"b-drappanel-menu-item\">\n" +
+    "                        <div class=\"b-drappanel-menu-item-inside\" isitem style=\"{{style.styleText}}\">\n" +
     "                            {{style.name}}\n" +
     "                        </div>\n" +
     "                    </div>\n" +

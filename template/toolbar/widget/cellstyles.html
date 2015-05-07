@@ -22,14 +22,14 @@
         </div>
     </div>
     <div class="dropdown-menu b-drappanel-menu" role="menu">
-        <div class="b-drappanel-menu-bed">
+        <div class="b-drappanel-menu-bed" ng-click="checkPop($event);">
             <div ng-repeat="categoryStyle in builtinStyles" class="b-drappanel-menu-box">
                 <label class="b-cellstyle-category-label">
                     {{categoryStyle[0].categoryName}}
                 </label>
                 <div class="b-droppanel-menu-item-wrap b-row">
-                    <div ng-click="select(style.id, style.builtin);" ng-repeat="style in categoryStyle" class="b-drappanel-menu-item">
-                        <div class="b-drappanel-menu-item-inside" style="{{style.styleText}}">
+                    <div ng-click="select(style.id, style.builtin);" isitem ng-repeat="style in categoryStyle" class="b-drappanel-menu-item">
+                        <div class="b-drappanel-menu-item-inside" isitem style="{{style.styleText}}">
                             {{style.name}}
                         </div>
                     </div>

@@ -107,6 +107,12 @@ angular.module('app').directive('bCellstyles', ['$window', function ($window) {
                 });
             };
 
+            $scope.checkPop = function (evt) {
+                if (evt.target.getAttribute('isitem') === null) {
+                    evt.stopPropagation();
+                }
+            };
+
             $(document).on("click", $scope.closePanel);
 
             function scroll() {

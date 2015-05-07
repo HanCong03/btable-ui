@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="bower_components/spectrum/spectrum.css">
     <link rel="stylesheet" href="dist/theme/default/btable-ui.css">
 
+    <link rel="stylesheet" href="css/app.css" type="text/css" />
+
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="t.js"></script>
 
@@ -23,6 +25,7 @@
     <script src="src/template.js"></script>
 
     <!-- directives start -->
+    <script src="src/toolbar/directives/b-include-replace.js"></script>
     <script src="src/toolbar/directives/b-colorpicker.js"></script>
     <script src="src/toolbar/directives/b-pressbutton.js"></script>
     <script src="src/toolbar/directives/b-inputselect.js"></script>
@@ -41,6 +44,7 @@
 
     <!-- controllers start -->
     <script src="src/toolbar/controllers/basic.js"></script>
+    <script src="src/toolbar/controllers/cellformat-modal.js"></script>
     <!-- controllers end -->
     <title>BTable 演示项目</title>
 </head>
@@ -58,5 +62,6 @@
 <div class="body">
 </div>
 <div class="footer"></div>
+<ng-include src="'template/dialogs/cell-format.html '"></ng-include>
 </body>
 </html>

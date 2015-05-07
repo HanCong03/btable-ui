@@ -60,5 +60,10 @@
       "undo": "撤销",
       "redo": "重做"
     }
+  },
+  "dialog": {
+    "cellformat": {
+      "number": "数字"
+    }
   }
 }
