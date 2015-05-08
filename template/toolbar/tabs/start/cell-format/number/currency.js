@@ -3,13 +3,16 @@ return '<div unselectable="on" class="b-numberformat-tabs-content b-column">\n' 
 '<label unselectable="on">\n' +
 '小数位数：<input unselectable="on" type="number" value="2" min="0" max="30">\n' +
 '</label>\n' +
-'<label unselectable="on" class="i-checks">\n' +
-'<input unselectable="on" type="checkbox" id="t" ng-model="status.thousandth"><i unselectable="on"></i> 使用千分位分隔符\n' +
+'<label unselectable="on">\n' +
+'货币符号(国家/地区)：\n' +
+'<select unselectable="on" ng-model="status.currencySymbol">\n' +
+'<option unselectable="on" ng-repeat="symbol in config.currency" value="{{$index}}">{{symbol}}</option>\n' +
+'</select>\n' +
 '</label>\n' +
 '<label unselectable="on" class="b-column b-numberformat-preview">\n' +
 '负数：\n' +
 '<ul unselectable="on" class="b-cellformat-list">\n' +
-'<li unselectable="on" ng-repeat="format in numberformatValues[0]" style="{{format.style}}" ng-class="{\'b-nubmerformat-preview-active\': status.numericalSelected === $index}" ng-click="status.numericalSelected=$index;">{{format.text}}</li>\n' +
+'<li unselectable="on" ng-repeat="format in numberformatValues[1]" style="{{format.style}}" ng-class="{\'b-nubmerformat-preview-active\': status.currencySelected === $index}" ng-click="status.currencySelected=$index;">{{format.text | bCurrency:config.currency[status.currencySymbol]}}</li>\n' +
 '</ul>\n' +
 '</label>\n' +
 '<div unselectable="on" class="b-numberformat-desc">\n' +

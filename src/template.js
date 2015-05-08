@@ -78,6 +78,56 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/toolbar/tabs/start/cell-format/number/currency.html',
+    "<div class=\"b-numberformat-tabs-content b-column\">\n" +
+    "    <label>\n" +
+    "        小数位数：<input type=\"number\" value=\"2\" min=\"0\" max=\"30\">\n" +
+    "    </label>\n" +
+    "    <label>\n" +
+    "        货币符号(国家/地区)：\n" +
+    "        <select ng-model=\"status.currencySymbol\">\n" +
+    "            <option ng-repeat=\"symbol in config.currency\" value=\"{{$index}}\">{{symbol}}</option>\n" +
+    "        </select>\n" +
+    "    </label>\n" +
+    "    <label class=\"b-column b-numberformat-preview\">\n" +
+    "        负数：\n" +
+    "        <ul class=\"b-cellformat-list\">\n" +
+    "            <li ng-repeat=\"format in numberformatValues[1]\" style=\"{{format.style}}\" ng-class=\"{'b-nubmerformat-preview-active': status.currencySelected === $index}\" ng-click=\"status.currencySelected=$index;\">{{format.text | bCurrency:config.currency[status.currencySymbol]}}</li>\n" +
+    "        </ul>\n" +
+    "    </label>\n" +
+    "    <div class=\"b-numberformat-desc\">\n" +
+    "        数值格式用于一般数字的表示。货币和会计格式则提供货币值计算的专用格式。\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/tabs/start/cell-format/number/date.html',
+    "<div class=\"b-numberformat-tabs-content b-column\">\n" +
+    "    <label>\n" +
+    "        类型：\n" +
+    "    </label>\n" +
+    "    <label class=\"b-column b-numberformat-preview\">\n" +
+    "        <ul class=\"b-cellformat-list\">\n" +
+    "            <li ng-repeat=\"format in numberformatValues[3]\" ng-class=\"{'b-nubmerformat-preview-active': status.dateSelected === $index}\" ng-click=\"status.dateSelected=$index;\">{{format.text}}</li>\n" +
+    "        </ul>\n" +
+    "    </label>\n" +
+    "    <div class=\"b-numberformat-desc\">\n" +
+    "        数值格式用于一般数字的表示。货币和会计格式则提供货币值计算的专用格式。\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/tabs/start/cell-format/number/fraction.html',
+    "<div class=\"b-numberformat-tabs-content b-column\">\n" +
+    "    <label>\n" +
+    "        暂不支持\n" +
+    "    </label>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/toolbar/tabs/start/cell-format/number/index.html',
     "<div class=\"b-numberformat-box\">\n" +
     "    <label>分类：</label>\n" +
@@ -86,14 +136,28 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        <tab heading=\"数值\">\n" +
     "            <ng-include b-include-replace src=\"'template/toolbar/tabs/start/cell-format/number/numerical.html'\"></ng-include>\n" +
     "        </tab>\n" +
-    "        <tab heading=\"货币\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
+    "        <tab heading=\"货币\">\n" +
+    "            <ng-include b-include-replace src=\"'template/toolbar/tabs/start/cell-format/number/currency.html'\"></ng-include>\n" +
+    "        </tab>\n" +
     "        <tab heading=\"会计专用\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
-    "        <tab heading=\"日期\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
-    "        <tab heading=\"时间\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
-    "        <tab heading=\"百分比\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
-    "        <tab heading=\"分数\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
-    "        <tab heading=\"科学计数法\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
-    "        <tab heading=\"文本\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
+    "        <tab heading=\"日期\">\n" +
+    "            <ng-include b-include-replace src=\"'template/toolbar/tabs/start/cell-format/number/date.html'\"></ng-include>\n" +
+    "        </tab>\n" +
+    "        <tab heading=\"时间\">\n" +
+    "            <ng-include b-include-replace src=\"'template/toolbar/tabs/start/cell-format/number/time.html'\"></ng-include>\n" +
+    "        </tab>\n" +
+    "        <tab heading=\"百分比\">\n" +
+    "            <ng-include b-include-replace src=\"'template/toolbar/tabs/start/cell-format/number/percentage.html'\"></ng-include>\n" +
+    "        </tab>\n" +
+    "        <tab heading=\"分数\">\n" +
+    "            <ng-include b-include-replace src=\"'template/toolbar/tabs/start/cell-format/number/fraction.html'\"></ng-include>\n" +
+    "        </tab>\n" +
+    "        <tab heading=\"科学计数法\">\n" +
+    "            <ng-include b-include-replace src=\"'template/toolbar/tabs/start/cell-format/number/scientific.html'\"></ng-include>\n" +
+    "        </tab>\n" +
+    "        <tab heading=\"文本\">\n" +
+    "            <ng-include b-include-replace src=\"'template/toolbar/tabs/start/cell-format/number/text.html'\"></ng-include>\n" +
+    "        </tab>\n" +
     "    </tabset>\n" +
     "</div>"
   );
@@ -114,7 +178,51 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        </ul>\n" +
     "    </label>\n" +
     "    <div class=\"b-numberformat-desc\">\n" +
-    "        阿斯顿发斯蒂芬即可垃圾的收付款了；按时交地方\n" +
+    "        数值格式用于一般数字的表示。货币和会计格式则提供货币值计算的专用格式。\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/tabs/start/cell-format/number/percentage.html',
+    "<div class=\"b-numberformat-tabs-content b-column\">\n" +
+    "    <label>\n" +
+    "        小数位数：<input type=\"number\" value=\"2\" min=\"0\" max=\"30\">\n" +
+    "    </label>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/tabs/start/cell-format/number/scientific.html',
+    "<div class=\"b-numberformat-tabs-content b-column\">\n" +
+    "    <label>\n" +
+    "        小数位数：<input type=\"number\" value=\"2\" min=\"0\" max=\"30\">\n" +
+    "    </label>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/tabs/start/cell-format/number/text.html',
+    "<div class=\"b-numberformat-tabs-content b-column\">\n" +
+    "    <label>\n" +
+    "         文本单元格格式中，数字作为文本处理。单元格显示的内容与输入的内容完全一致。\n" +
+    "    </label>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/tabs/start/cell-format/number/time.html',
+    "<div class=\"b-numberformat-tabs-content b-column\">\n" +
+    "    <label>\n" +
+    "        类型：\n" +
+    "    </label>\n" +
+    "    <label class=\"b-column b-numberformat-preview\">\n" +
+    "        <ul class=\"b-cellformat-list\">\n" +
+    "            <li ng-repeat=\"format in numberformatValues[4]\" ng-class=\"{'b-nubmerformat-preview-active': status.timeSelected === $index}\" ng-click=\"status.timeSelected=$index;\">{{format.text}}</li>\n" +
+    "        </ul>\n" +
+    "    </label>\n" +
+    "    <div class=\"b-numberformat-desc\">\n" +
+    "        数值格式用于一般数字的表示。货币和会计格式则提供货币值计算的专用格式。\n" +
     "    </div>\n" +
     "</div>"
   );

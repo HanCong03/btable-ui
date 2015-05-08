@@ -333,7 +333,7 @@ body {
 .b-numberformat-box .b-numberformat-tabs .nav-tabs .active,
 .b-numberformat-box .b-numberformat-tabs .nav-tabs .active a {
   color: #ffffff;
-  background: blue!important;
+  background: #3399ff!important;
 }
 .b-numberformat-box .b-numberformat-tabs .tab-content {
   color: #000000;
@@ -355,7 +355,7 @@ body {
   list-style: none;
 }
 .b-numberformat-box .b-numberformat-tabs .b-nubmerformat-preview-active {
-  background: blue;
+  background: #3399ff;
 }
 
 .b-toolbar-fonts-groups .b-toolbar-fonts-biu-wrap {
@@ -379,7 +379,11 @@ body {
   text-align: center;
   font-size: 12px;
 }
+.toolbar-groups > *:first-child {
+  min-height: 70px;
+}
 .toolbar-groups .btn {
+  font-weight: normal;
   font-size: 12px;
 }
 .toolbar-groups * {

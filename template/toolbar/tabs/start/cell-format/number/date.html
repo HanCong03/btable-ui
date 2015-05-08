@@ -1,0 +1,13 @@
+<div class="b-numberformat-tabs-content b-column">
+    <label>
+        类型：
+    </label>
+    <label class="b-column b-numberformat-preview">
+        <ul class="b-cellformat-list">
+            <li ng-repeat="format in numberformatValues[3]" ng-class="{'b-nubmerformat-preview-active': status.dateSelected === $index}" ng-click="status.dateSelected=$index;">{{format.text}}</li>
+        </ul>
+    </label>
+    <div class="b-numberformat-desc">
+        数值格式用于一般数字的表示。货币和会计格式则提供货币值计算的专用格式。
+    </div>
+</div>
