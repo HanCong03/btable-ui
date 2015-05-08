@@ -1,0 +1,31 @@
+<div class="b-numberformat-box">
+    <fieldset>
+        <legend>文本对齐方式</legend>
+        <div>
+            <label for="modalHAlign">水平对齐：</label>
+            <select ng-model="status.hAlignSelected">
+                <option ng-repeat="align in horizontalAlign" ng-selected="{{status.hAlignSelected === $index;}}" value="{{$index}}">{{align.text}}</option>
+            </select>
+        </div>
+        <div>
+            <label for="modalHAlign">垂直对齐：</label>
+            <select ng-model="status.vAlignSelected">
+                <option ng-repeat="align in varticalAlign" ng-selected="{{status.vAlignSelected === $index;}}" value="{{$index}}">{{align.text}}</option>
+            </select>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>文本控制</legend>
+        <div>
+            <label class="i-checks">
+                <input type="checkbox" ng-model="status.autowrap"><i></i> 自动换行
+            </label>
+        </div>
+        <div>
+            <label class="i-checks">
+                <input type="checkbox" ng-model="status.merge"><i></i> 合并单元格
+            </label>
+        </div>
+    </fieldset>
+</div>

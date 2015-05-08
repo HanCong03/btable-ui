@@ -1,0 +1,71 @@
+@import "common";
+@border-color: #cfcfcf;
+
+.b-font-tabs {
+  color: black;
+  padding: 0!important;
+
+  .b-font-tabs-layout {
+    table-layout: fixed;
+    margin: 0 auto;
+    border: none;
+
+    td {
+      border: 20px solid transparent;
+      border-collapse: collapse;
+    }
+  }
+
+  /* font-family*/
+  .b-fontfamily-panel {
+    width: 400px;
+    height: 170px;
+  }
+
+  .b-fontstyle-panel, .b-fontsize-panel {
+    width: 150px;
+    height: 170px;
+  }
+
+  .b-select-box {
+    border: 1px solid @border-color;
+    overflow: hidden;
+
+    input {
+      height: 25px;
+      line-height: 25px;
+      padding: 2px;
+      width: 100%;
+      display: block;
+      border: none;
+      border-bottom: 1px solid @border-color;
+    }
+
+    select {
+      border: none;
+      width: 100%;
+      max-height: 145px;
+      padding: 2px;
+
+      option {
+        height: 20px;
+        line-height: 20px;
+      }
+    }
+  }
+
+  .b-font-preview-box {
+    width: 300px;
+    border: 1px solid black;
+    height: 100px;
+    line-height: 100px;
+    overflow: hidden;
+    font-size: 14px;
+    text-align: center;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    -webkit-text-size-adjust: none;
+  }
+
+  .colorBtn();
+}

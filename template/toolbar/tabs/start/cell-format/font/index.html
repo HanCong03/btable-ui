@@ -1,0 +1,77 @@
+<div class="b-numberformat-box b-font-tabs">
+    <table class="b-font-tabs-layout">
+        <tbody>
+        <tr>
+            <td>
+                字体：
+                <div class="b-fontfamily-panel b-select-box">
+                    <input ng-model="status.font">
+                    <select size="100" ng-model="status.font">
+                        <option ng-repeat="font in fonts" value="{{font.name}}">{{font.name}}</option>
+                    </select>
+                </div>
+            </td>
+            <td>
+                字形：
+                <div class="b-fontstyle-panel b-select-box">
+                    <input ng-model="fontStyle[status.fontstyle].name">
+                    <select ng-model="status.fontstyle" size="100">
+                        <option ng-repeat="style in fontStyle" value="{{$index}}">{{style.name}}</option>
+                    </select>
+                </div>
+            </td>
+            <td>
+                字号：
+                <div class="b-fontsize-panel b-select-box">
+                    <input ng-model="status.fontsize">
+                    <select ng-model="status.fontsize" size="100">
+                        <option ng-repeat="size in fontSize" value="{{size}}">{{size}}</option>
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                下划线：
+                <div>
+                    <select ng-model="status.underline">
+                        <option ng-repeat="line in underline" value="{{$index}}">{{line.text}}</option>
+                    </select>
+                </div>
+            </td>
+            <td>
+                颜色：
+                <div>
+                    <button b-attr-colorpicker ng-model="status.color" type="button" class="btn b-color-btn b-row">
+                        <div class="b-color-panel">
+                            <div ng-style="{backgroundColor: status.color}"></div>
+                        </div>
+                        <div class="b-caret-wrap">
+                            <span class="caret"></span>
+                        </div>
+                    </button>
+                </div>
+            </td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                特殊效果：
+                <div>
+                    <label class="i-checks">
+                        <input type="checkbox" ng-model="status.throughline"><i></i> 删除线
+                    </label>
+                </div>
+            </td>
+            <td colspan="2">
+                预览：
+                <div class="b-font-preview-box b-column">
+                    <span ng-style="{'font-family': status.font, color: status.color, 'font-size': status.fontsize + 'px', 'font-style': (status.fontstyle == 1 || status.fontstyle == 3)? 'italic' : 'normal', 'font-weight': (status.fontstyle == 2 || status.fontstyle == 3)? '900' : 'normal', 'text-decoration': status.underline != 1 ? (status.throughline ? 'line-through' : 'none') : 'underline'}">微软卓越 AaBbCc</span>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

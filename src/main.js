@@ -1,1 +1,1 @@
-angular.module('app', ['ui.bootstrap', 'pascalprecht.translate', 'angularSpectrumColorpicker']);
+angular.module('app', ['ui.bootstrap', 'pascalprecht.translate']);

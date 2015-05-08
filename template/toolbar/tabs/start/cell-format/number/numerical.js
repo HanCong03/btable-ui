@@ -4,7 +4,7 @@ return '<div unselectable="on" class="b-numberformat-tabs-content b-column">\n' 
 '小数位数：<input unselectable="on" type="number" value="2" min="0" max="30">\n' +
 '</label>\n' +
 '<label unselectable="on" class="i-checks">\n' +
-'<input unselectable="on" type="checkbox" id="t" ng-model="status.thousandth"><i unselectable="on"></i> 使用千分位分隔符\n' +
+'<input unselectable="on" type="checkbox" ng-model="status.thousandth"><i unselectable="on"></i> 使用千分位分隔符\n' +
 '</label>\n' +
 '<label unselectable="on" class="b-column b-numberformat-preview">\n' +
 '负数：\n' +

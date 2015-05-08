@@ -63,16 +63,229 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/toolbar/tabs/start/cell-format/alignment/index.html',
+    "<div class=\"b-numberformat-box\">\n" +
+    "    <fieldset>\n" +
+    "        <legend>文本对齐方式</legend>\n" +
+    "        <div>\n" +
+    "            <label for=\"modalHAlign\">水平对齐：</label>\n" +
+    "            <select ng-model=\"status.hAlignSelected\">\n" +
+    "                <option ng-repeat=\"align in horizontalAlign\" ng-selected=\"{{status.hAlignSelected === $index;}}\" value=\"{{$index}}\">{{align.text}}</option>\n" +
+    "            </select>\n" +
+    "        </div>\n" +
+    "        <div>\n" +
+    "            <label for=\"modalHAlign\">垂直对齐：</label>\n" +
+    "            <select ng-model=\"status.vAlignSelected\">\n" +
+    "                <option ng-repeat=\"align in varticalAlign\" ng-selected=\"{{status.vAlignSelected === $index;}}\" value=\"{{$index}}\">{{align.text}}</option>\n" +
+    "            </select>\n" +
+    "        </div>\n" +
+    "    </fieldset>\n" +
+    "\n" +
+    "    <fieldset>\n" +
+    "        <legend>文本控制</legend>\n" +
+    "        <div>\n" +
+    "            <label class=\"i-checks\">\n" +
+    "                <input type=\"checkbox\" ng-model=\"status.autowrap\"><i></i> 自动换行\n" +
+    "            </label>\n" +
+    "        </div>\n" +
+    "        <div>\n" +
+    "            <label class=\"i-checks\">\n" +
+    "                <input type=\"checkbox\" ng-model=\"status.merge\"><i></i> 合并单元格\n" +
+    "            </label>\n" +
+    "        </div>\n" +
+    "    </fieldset>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/tabs/start/cell-format/border/index.html',
+    "<div class=\"b-numberformat-box b-border-box-tabs b-row\">\n" +
+    "    <div>\n" +
+    "        <fieldset class=\"b-border-line-box\">\n" +
+    "            <legend>线条</legend>\n" +
+    "            <ul class=\"b-border-style-list\">\n" +
+    "                <li ng-repeat=\"border in borderStyle\" ng-click=\"status.borderType = $index;\" ng-class=\"{'b-selected': status.borderType === $index}\">\n" +
+    "                    <span style=\"border-bottom-width: {{border.width}}px; border-bottom-style: {{border.type}}; border-bottom-color: {{status.borderColor}}\">{{border.text}}</span>\n" +
+    "                </li>\n" +
+    "            </ul>\n" +
+    "            <div>\n" +
+    "                颜色：\n" +
+    "                <div>\n" +
+    "                    <button ng-model=\"status.borderColor\" b-attr-colorpicker type=\"button\" class=\"btn b-color-btn b-row\">\n" +
+    "                        <div class=\"b-color-panel\">\n" +
+    "                            <div ng-style=\"{backgroundColor: status.borderColor}\"></div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"b-caret-wrap\">\n" +
+    "                            <span class=\"caret\"></span>\n" +
+    "                        </div>\n" +
+    "                    </button>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </fieldset>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"b-column b-border-type-box\">\n" +
+    "        <fieldset class=\"b-border-builtin-box\">\n" +
+    "            <legend>预置</legend>\n" +
+    "            <button ng-click=\"clearBorder('all');\">无</button>\n" +
+    "            <button ng-click=\"builtinBorderChange('outer');\">外边框</button>\n" +
+    "            <button ng-click=\"builtinBorderChange('inner');\">内部</button>\n" +
+    "        </fieldset>\n" +
+    "\n" +
+    "        <fieldset class=\"b-border-ctrl-box\">\n" +
+    "            <legend>边框</legend>\n" +
+    "            <table>\n" +
+    "                <tbody>\n" +
+    "                    <tr>\n" +
+    "                        <td valign=\"top\" align=\"right\">\n" +
+    "                            <button class=\"btn b-border-line-btn\" ng-class=\"{'b-active': status.borders.top != null}\" ng-click=\"borderChange('top');\">上</button>\n" +
+    "                        </td>\n" +
+    "                        <td colspan=\"3\" rowspan=\"3\" valign=\"middle\" align=\"center\">\n" +
+    "                            <div class=\"b-border-preview\">\n" +
+    "                                <div class=\"b-border-preview-cell b-row\">\n" +
+    "                                    <div>文本</div>\n" +
+    "                                    <div>文本</div>\n" +
+    "                                    <div>文本</div>\n" +
+    "                                    <div>文本</div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"b-border-preview-line b-preview-line-top\" ng-style=\"status.borders.top\"></div>\n" +
+    "                                <div class=\"b-border-preview-line b-preview-line-middle\" ng-style=\"status.borders.middle\"></div>\n" +
+    "                                <div class=\"b-border-preview-line b-preview-line-bottom\" ng-style=\"status.borders.bottom\"></div>\n" +
+    "                                <div class=\"b-border-preview-line b-preview-line-left\" ng-style=\"status.borders.left\"></div>\n" +
+    "                                <div class=\"b-border-preview-line b-preview-line-center\" ng-style=\"status.borders.center\"></div>\n" +
+    "                                <div class=\"b-border-preview-line b-preview-line-right\" ng-style=\"status.borders.right\"></div>\n" +
+    "                            </div>\n" +
+    "                        </td>\n" +
+    "                    </tr>\n" +
+    "                    <tr>\n" +
+    "                        <td valign=\"middle\" align=\"right\">\n" +
+    "                            <button class=\"btn b-border-line-btn\" ng-class=\"{'b-active': status.borders.middle != null}\" ng-click=\"borderChange('middle');\">内</button>\n" +
+    "                        </td>\n" +
+    "                    </tr>\n" +
+    "                    <tr>\n" +
+    "                        <td valign=\"bottom\" align=\"right\">\n" +
+    "                            <button class=\"btn b-border-line-btn\" ng-class=\"{'b-active': status.borders.bottom != null}\" ng-click=\"borderChange('bottom');\">下</button>\n" +
+    "                        </td>\n" +
+    "                    </tr>\n" +
+    "                    <tr>\n" +
+    "                        <td></td>\n" +
+    "                        <td valign=\"top\" align=\"left\">\n" +
+    "                            <button class=\"btn b-border-line-btn\" ng-class=\"{'b-active': status.borders.left != null}\" ng-click=\"borderChange('left');\">左</button>\n" +
+    "                        </td>\n" +
+    "                        <td valign=\"top\" align=\"center\">\n" +
+    "                            <button class=\"btn b-border-line-btn\" ng-class=\"{'b-active': status.borders.center != null}\" ng-click=\"borderChange('center');\">内</button>\n" +
+    "                        </td>\n" +
+    "                        <td valign=\"top\" align=\"right\">\n" +
+    "                            <button class=\"btn b-border-line-btn\" ng-class=\"{'b-active': status.borders.right != null}\" ng-click=\"borderChange('right');\">右</button>\n" +
+    "                        </td>\n" +
+    "                    </tr>\n" +
+    "                </tbody>\n" +
+    "            </table>\n" +
+    "        </fieldset>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/tabs/start/cell-format/font/index.html',
+    "<div class=\"b-numberformat-box b-font-tabs\">\n" +
+    "    <table class=\"b-font-tabs-layout\">\n" +
+    "        <tbody>\n" +
+    "        <tr>\n" +
+    "            <td>\n" +
+    "                字体：\n" +
+    "                <div class=\"b-fontfamily-panel b-select-box\">\n" +
+    "                    <input ng-model=\"status.font\">\n" +
+    "                    <select size=\"100\" ng-model=\"status.font\">\n" +
+    "                        <option ng-repeat=\"font in fonts\" value=\"{{font.name}}\">{{font.name}}</option>\n" +
+    "                    </select>\n" +
+    "                </div>\n" +
+    "            </td>\n" +
+    "            <td>\n" +
+    "                字形：\n" +
+    "                <div class=\"b-fontstyle-panel b-select-box\">\n" +
+    "                    <input ng-model=\"fontStyle[status.fontstyle].name\">\n" +
+    "                    <select ng-model=\"status.fontstyle\" size=\"100\">\n" +
+    "                        <option ng-repeat=\"style in fontStyle\" value=\"{{$index}}\">{{style.name}}</option>\n" +
+    "                    </select>\n" +
+    "                </div>\n" +
+    "            </td>\n" +
+    "            <td>\n" +
+    "                字号：\n" +
+    "                <div class=\"b-fontsize-panel b-select-box\">\n" +
+    "                    <input ng-model=\"status.fontsize\">\n" +
+    "                    <select ng-model=\"status.fontsize\" size=\"100\">\n" +
+    "                        <option ng-repeat=\"size in fontSize\" value=\"{{size}}\">{{size}}</option>\n" +
+    "                    </select>\n" +
+    "                </div>\n" +
+    "            </td>\n" +
+    "        </tr>\n" +
+    "        <tr>\n" +
+    "            <td>\n" +
+    "                下划线：\n" +
+    "                <div>\n" +
+    "                    <select ng-model=\"status.underline\">\n" +
+    "                        <option ng-repeat=\"line in underline\" value=\"{{$index}}\">{{line.text}}</option>\n" +
+    "                    </select>\n" +
+    "                </div>\n" +
+    "            </td>\n" +
+    "            <td>\n" +
+    "                颜色：\n" +
+    "                <div>\n" +
+    "                    <button b-attr-colorpicker ng-model=\"status.color\" type=\"button\" class=\"btn b-color-btn b-row\">\n" +
+    "                        <div class=\"b-color-panel\">\n" +
+    "                            <div ng-style=\"{backgroundColor: status.color}\"></div>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"b-caret-wrap\">\n" +
+    "                            <span class=\"caret\"></span>\n" +
+    "                        </div>\n" +
+    "                    </button>\n" +
+    "                </div>\n" +
+    "            </td>\n" +
+    "            <td>\n" +
+    "\n" +
+    "            </td>\n" +
+    "        </tr>\n" +
+    "        <tr>\n" +
+    "            <td>\n" +
+    "                特殊效果：\n" +
+    "                <div>\n" +
+    "                    <label class=\"i-checks\">\n" +
+    "                        <input type=\"checkbox\" ng-model=\"status.throughline\"><i></i> 删除线\n" +
+    "                    </label>\n" +
+    "                </div>\n" +
+    "            </td>\n" +
+    "            <td colspan=\"2\">\n" +
+    "                预览：\n" +
+    "                <div class=\"b-font-preview-box b-column\">\n" +
+    "                    <span ng-style=\"{'font-family': status.font, color: status.color, 'font-size': status.fontsize + 'px', 'font-style': (status.fontstyle == 1 || status.fontstyle == 3)? 'italic' : 'normal', 'font-weight': (status.fontstyle == 2 || status.fontstyle == 3)? '900' : 'normal', 'text-decoration': status.underline != 1 ? (status.throughline ? 'line-through' : 'none') : 'underline'}\">微软卓越 AaBbCc</span>\n" +
+    "                </div>\n" +
+    "            </td>\n" +
+    "        </tr>\n" +
+    "        </tbody>\n" +
+    "    </table>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/toolbar/tabs/start/cell-format/index.html',
     "<div class=\"b-cell-format-box\">\n" +
     "    <tabset>\n" +
     "        <tab heading=\"{{'dialog.cellformat.number' | translate}}\">\n" +
     "            <ng-include src=\"'template/toolbar/tabs/start/cell-format/number/index.html'\"></ng-include>\n" +
     "        </tab>\n" +
-    "        <tab heading=\"Static title\">Static content</tab>\n" +
-    "        <tab heading=\"Static title\">Static content</tab>\n" +
-    "        <tab heading=\"Static title\">Static content</tab>\n" +
-    "        <tab heading=\"Static title\">Static content</tab>\n" +
+    "        <tab heading=\"对齐\">\n" +
+    "            <ng-include src=\"'template/toolbar/tabs/start/cell-format/alignment/index.html'\"></ng-include>\n" +
+    "        </tab>\n" +
+    "        <tab heading=\"字体\">\n" +
+    "            <ng-include src=\"'template/toolbar/tabs/start/cell-format/font/index.html'\"></ng-include>\n" +
+    "        </tab>\n" +
+    "        <tab heading=\"边框\">\n" +
+    "            <ng-include src=\"'template/toolbar/tabs/start/cell-format/border/index.html'\"></ng-include>\n" +
+    "        </tab>\n" +
+    "        <tab heading=\"填充\">\n" +
+    "            <ng-include src=\"'template/toolbar/tabs/start/cell-format/number/index.html'\"></ng-include>\n" +
+    "        </tab>\n" +
     "    </tabset>\n" +
     "</div>"
   );
@@ -169,7 +382,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        小数位数：<input type=\"number\" value=\"2\" min=\"0\" max=\"30\">\n" +
     "    </label>\n" +
     "    <label class=\"i-checks\">\n" +
-    "        <input type=\"checkbox\" id=\"t\" ng-model=\"status.thousandth\"><i></i> 使用千分位分隔符\n" +
+    "        <input type=\"checkbox\" ng-model=\"status.thousandth\"><i></i> 使用千分位分隔符\n" +
     "    </label>\n" +
     "    <label class=\"b-column b-numberformat-preview\">\n" +
     "        负数：\n" +
