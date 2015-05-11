@@ -433,14 +433,20 @@ angular.module('app').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('template/toolbar/tabs/start/group-alignments.html',
     "<div class=\"toolbar-groups b-toolbar-fonts-groups\">\n" +
-    "    <div class=\"b-row\">\n" +
-    "        <div class=\"b-column\">\n" +
+    "    <div class=\"b-column-left b-aligngroup-layout\">\n" +
+    "        <div class=\"b-row-stretch\">\n" +
     "            <b-verticalalign onchange=\"handler.valignChange(status);\" value=\"res.valignValue\"></b-verticalalign>\n" +
-    "            <b-horizontalalign onchange=\"handler.alignChange(status);\" value=\"res.alignValue\"></b-horizontalalign>\n" +
+    "\n" +
+    "            <div class=\"b-toolbar-delimiter\"></div>\n" +
+    "\n" +
+    "            <b-pressbutton buttontype=\"wraptext\" text=\"{{'toolbar.buttonlabel.wraptext' | translate}}\" onchange=\"handler.pressChange('wraptext', status)\" pressed=\"false\"></b-pressbutton>\n" +
     "        </div>\n" +
     "\n" +
-    "        <div class=\"b-column-left\">\n" +
-    "            <b-pressbutton buttontype=\"wraptext\" text=\"{{'toolbar.buttonlabel.wraptext' | translate}}\" onchange=\"handler.pressChange('wraptext', status)\" pressed=\"false\"></b-pressbutton>\n" +
+    "        <div class=\"b-row-stretch\">\n" +
+    "            <b-horizontalalign onchange=\"handler.alignChange(status);\" value=\"res.alignValue\"></b-horizontalalign>\n" +
+    "\n" +
+    "            <div class=\"b-toolbar-delimiter\"></div>\n" +
+    "\n" +
     "            <b-mergeselect merge=\"res.merge\" onchange=\"handler.mergechange(mode, value);\"></b-mergeselect>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -636,7 +642,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('template/toolbar/tabs/start/group-undo.html',
     "<div class=\"toolbar-groups\">\n" +
-    "    <div>\n" +
+    "    <div class=\"b-column b-undogroup-layout\">\n" +
     "        <div>\n" +
     "            <a b-tooltip=\"toolbar.tooltip.undo\" class=\"btn b-btn\" role=\"button\" data-name=\"undo\" ng-click=\"handler.btnclick($event);\">\n" +
     "                <span class=\"b-icon b-icon-undo\"></span>\n" +

@@ -21,42 +21,37 @@ angular.module('app').directive('bCellstyles', ['$window', function ($window) {
             // 和css中对应
             var itemHeight = 33;
 
+            var cellstyleOrder = [
+                [0, 27, 26, 28],
+                [22, 23, 53, 11, 24, 21, 20, 10],
+                [15, 16, 17, 18, 19, 25],
+                [
+                    30, 34, 38, 42, 46, 50,
+                    31, 35, 39, 43, 47, 51,
+                    32, 36, 40, 44, 48, 52,
+                    29, 33, 37, 41, 45, 49
+                ],
+                [5, 4, 7, 3, 6]
+            ];
+
             var builtinStyles = [];
-            var category;
-
-            for (var key in originalBuiltinStyles) {
-                current = originalBuiltinStyles[key];
-                category = current.category;
-
-                current.styleText = toStyleText(current.style);
-
-                if (!builtinStyles[category]) {
-                    builtinStyles[category] = [];
-                }
-
-                builtinStyles[category].push(current);
-            }
-
-
             var uncategoryBuiltinStyles = [];
 
-            for (var i = 0, len = builtinStyles.length; i < len; i++) {
+            for (var i = 0, len = cellstyleOrder.length; i < len; i++) {
+
                 if (!builtinStyles[i]) {
-                    continue;
+                    builtinStyles[i] = [];
                 }
 
-                uncategoryBuiltinStyles = uncategoryBuiltinStyles.concat(builtinStyles[i]);
-            }
+                for (var j = 0, jlen = cellstyleOrder[i].length; j < jlen; j++) {
+                    current = originalBuiltinStyles[cellstyleOrder[i][j]];
+                    current.styleText = toStyleText(current.style);
 
-            var tmp = [];
-
-            for (var i = 0, len = builtinStyles.length; i < len; i++) {
-                if (builtinStyles[i]) {
-                    tmp.push(builtinStyles[i]);
+                    builtinStyles[i].push(current);
+                    uncategoryBuiltinStyles.push(current);
                 }
             }
 
-            builtinStyles = tmp;
 
             // 未分类内建样式
             $scope.uncategoryBuiltinStyles = uncategoryBuiltinStyles;
@@ -173,7 +168,7 @@ angular.module('app').directive('bCellstyles', ['$window', function ($window) {
                         break;
 
                     case 'size':
-                        result.push('font-size: ' + val +'px');
+                        result.push('font-size: ' + val + 'px');
                         break;
 
                     default:

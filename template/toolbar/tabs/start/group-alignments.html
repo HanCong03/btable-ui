@@ -1,12 +1,18 @@
 <div class="toolbar-groups b-toolbar-fonts-groups">
-    <div class="b-row">
-        <div class="b-column">
+    <div class="b-column-left b-aligngroup-layout">
+        <div class="b-row-stretch">
             <b-verticalalign onchange="handler.valignChange(status);" value="res.valignValue"></b-verticalalign>
-            <b-horizontalalign onchange="handler.alignChange(status);" value="res.alignValue"></b-horizontalalign>
+
+            <div class="b-toolbar-delimiter"></div>
+
+            <b-pressbutton buttontype="wraptext" text="{{'toolbar.buttonlabel.wraptext' | translate}}" onchange="handler.pressChange('wraptext', status)" pressed="false"></b-pressbutton>
         </div>
 
-        <div class="b-column-left">
-            <b-pressbutton buttontype="wraptext" text="{{'toolbar.buttonlabel.wraptext' | translate}}" onchange="handler.pressChange('wraptext', status)" pressed="false"></b-pressbutton>
+        <div class="b-row-stretch">
+            <b-horizontalalign onchange="handler.alignChange(status);" value="res.alignValue"></b-horizontalalign>
+
+            <div class="b-toolbar-delimiter"></div>
+
             <b-mergeselect merge="res.merge" onchange="handler.mergechange(mode, value);"></b-mergeselect>
         </div>
     </div>

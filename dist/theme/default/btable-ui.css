@@ -13,6 +13,11 @@
   align-items: center;
   flex-direction: row;
 }
+.b-row-stretch {
+  display: flex;
+  align-items: stretch;
+  flex-direction: row;
+}
 .b-wrap {
   flex-wrap: wrap;
 }
@@ -639,6 +644,9 @@ body {
   background: #3399ff;
 }
 
+.b-toolbar-fonts-groups .b-aligngroup-layout {
+  justify-content: space-around;
+}
 .b-toolbar-fonts-groups .b-toolbar-fonts-biu-wrap {
   display: flex;
   align-items: center;
@@ -856,6 +864,10 @@ body {
 
 .b-mr5 {
   margin-right: 5px;
+}
+
+.b-toolbar .b-undogroup-layout {
+  justify-content: space-around;
 }
 
 .b-mr5 {
