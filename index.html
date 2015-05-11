@@ -13,6 +13,8 @@
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="t.js"></script>
 
+    <script src="l10n/zh-CN.js"></script>
+
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/spectrum/spectrum.js"></script>
     <script src="bower_components/angular/angular.js"></script>
@@ -24,7 +26,6 @@
     <script src="src/main.js"></script>
     <script src="src/config.js"></script>
     <script src="src/template.js"></script>
-    <script src="src/btable.js"></script>
 
     <!-- directives start -->
     <script src="src/toolbar/directives/b-include-replace.js"></script>
@@ -38,12 +39,14 @@
     <script src="src/toolbar/directives/b-numberformat.js"></script>
     <script src="src/toolbar/directives/b-tooltip.js"></script>
     <script src="src/toolbar/directives/b-cellstyles.js"></script>
+    <script src="src/toolbar/directives/btable.js"></script>
     <!-- directives end -->
 
 
     <!-- services start -->
     <script src="src/toolbar/services/toolbar-notify.js"></script>
     <script src="src/toolbar/services/cellformat-modal-notify.js"></script>
+    <script src="src/toolbar/services/btable-notify.js"></script>
     <!-- services end -->
 
     <!-- controllers start -->
@@ -69,7 +72,7 @@
     </div>
 </div>
 <div class="body">
-    <div id="btableContainer" class="btable-container"></div>
+    <div btable class="btable-container"></div>
 </div>
 <div class="footer"></div>
 <ng-include src="'template/dialogs/cell-format.html '"></ng-include>

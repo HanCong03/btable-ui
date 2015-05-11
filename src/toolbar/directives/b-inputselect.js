@@ -12,9 +12,9 @@ angular.module('app').directive('bInputselect', ['$translate', '$parse', functio
             values: '=',
             selectValue: '=',
             onlyNumber: '=',
-            onchange: '&'
+            onchange: '&change'
         },
-        templateUrl: 'template/toolbar/tabs/start/inputselect.html',
+        templateUrl: 'template/toolbar/widget/inputselect.html',
         link: function ($scope, $ele, $attr) {
             var $input = $('.b-input-select-input', $ele);
             var hook = $scope.onchange || angular.noop;
@@ -43,11 +43,12 @@ angular.module('app').directive('bInputselect', ['$translate', '$parse', functio
                 }
 
                 if ($scope.onlyNumber && $.isNumeric(value) && parseInt(value, 10) === parseFloat(value)) {
-                    $scope.update(+value);
+                    value = +value;
                 } else {
-                    console.log(this.value)
-                    this.value = $scope.selectValue;
+                    value = $scope.selectValue;
                 }
+
+                $scope.update(value);
             });
         }
     };

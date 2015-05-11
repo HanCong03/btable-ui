@@ -1,8 +1,5 @@
 angular.module('app').config(function($translateProvider) {
-    $translateProvider.useStaticFilesLoader({
-        prefix: 'l10n/',
-        suffix: '.json'
-    });
+    $translateProvider.translations('zh-CN', _zhCN);
 
     $translateProvider.preferredLanguage('zh-CN');
 });

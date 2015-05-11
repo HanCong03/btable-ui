@@ -520,10 +520,10 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div>\n" +
     "        <div class=\"b-row\">\n" +
     "            <!-- font family -->\n" +
-    "            <b-inputselect classname=\"b-fontfamily-select\" onchange=\"handler.fontSelect(value);\" select-value=\"values.fontfamily\" values=\"initValue.fontfamily\"></b-inputselect>\n" +
+    "            <b-inputselect classname=\"b-fontfamily-select\" change=\"handler.fontSelect(value);\" select-value=\"values.fontfamily\" values=\"initValue.fontfamily\"></b-inputselect>\n" +
     "\n" +
     "            <!-- font size -->\n" +
-    "            <b-inputselect classname=\"b-fontsize-select\" onchange=\"handler.fontsizeSelect(value);\" only-number=\"true\" select-value=\"values.fontsize\" values=\"initValue.fontsize\"></b-inputselect>\n" +
+    "            <b-inputselect classname=\"b-fontsize-select\" change=\"handler.fontsizeSelect(value);\" only-number=\"true\" select-value=\"values.fontsize\" values=\"initValue.fontsize\"></b-inputselect>\n" +
     "        </div>\n" +
     "        <div class=\"b-toolbar-fonts-biu-wrap\">\n" +
     "\n" +
@@ -696,23 +696,6 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('template/toolbar/tabs/start/inputselect.html',
-    "<div class=\"b-input-select {{classname}}\" ng-class=\"{'b-open': isOpen}\">\n" +
-    "    <input ng-model=\"selectValue\" class=\"b-input-select-input\">\n" +
-    "    <div class=\"btn-group\" dropdown on-toggle=\"toggle(open)\">\n" +
-    "        <button type=\"button\" class=\"btn b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': isOpen}\">\n" +
-    "            <span class=\"caret\"></span>\n" +
-    "        </button>\n" +
-    "        <ul class=\"dropdown-menu\" role=\"menu\">\n" +
-    "            <li ng-repeat=\"font in values\" data-value=\"{{font}}\" class=\"b-input-select-item\">\n" +
-    "                <a style='font-family: {{font}};'>{{font}}</a>\n" +
-    "            </li>\n" +
-    "        </ul>\n" +
-    "    </div>\n" +
-    "</div>"
-  );
-
-
   $templateCache.put('template/toolbar/tabs/start/numberformat.html',
     "<div class=\"btn-group b-drop-button\" dropdown on-toggle=\"btnState.numberOpen=open;\">\n" +
     "    <div type=\"button\" class=\"btn b-drop-button-bottom b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': btnState.numberOpen}\">\n" +
@@ -838,6 +821,23 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/widget/inputselect.html',
+    "<div class=\"b-input-select {{classname}}\" ng-class=\"{'b-open': isOpen}\">\n" +
+    "    <input ng-model=\"selectValue\" class=\"b-input-select-input\">\n" +
+    "    <div class=\"btn-group\" dropdown on-toggle=\"toggle(open)\">\n" +
+    "        <button type=\"button\" class=\"btn b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': isOpen}\">\n" +
+    "            <span class=\"caret\"></span>\n" +
+    "        </button>\n" +
+    "        <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "            <li ng-repeat=\"font in values\" data-value=\"{{font}}\" class=\"b-input-select-item\">\n" +
+    "                <a style='font-family: {{font}};'>{{font}}</a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
     "    </div>\n" +
     "</div>"
   );

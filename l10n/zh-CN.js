@@ -1,0 +1,81 @@
+var _zhCN = {
+    "toolbar": {
+        "tabs": {
+            "file": "文件",
+            "start": "开始"
+        },
+        "grouplabel" : {
+            "undo": "撤销",
+            "clipboard": "剪贴板",
+            "fonts": "字体",
+            "alignments": "对齐方式",
+            "number": "数字",
+            "style": "样式"
+        },
+        "buttonlabel": {
+            "paste": "粘贴",
+            "cut": "剪切",
+            "copy": "复制",
+            "wraptext": "自动换行",
+            "merge": "合并后居中",
+            "numberformat": "数字格式"
+        },
+        "items": {
+            "border": {
+                "top": "上框线",
+                "bottom": "下框线",
+                "left": "左框线",
+                "right": "右框线",
+                "none": "无框线",
+                "all": "所有框线",
+                "outer": "外侧框线"
+            },
+            "merge": {
+                "center": "合并后居中",
+                "across": "跨越合并",
+                "merge": "合并单元格",
+                "cancel": "取消单元格合并"
+            },
+            "format": {
+                "general": "常规",
+                "number": "数字",
+                "currency": "货币",
+                "shortdate": "短日期",
+                "longdate": "长日期",
+                "time": "时间",
+                "percentage": "百分比",
+                "scientific": "科学记数",
+                "text": "文本"
+            }
+        },
+
+        "colorpicker": {
+            "more": "更多",
+            "less": "收起",
+            "cancel": "取消",
+            "choose": "选择"
+        },
+
+        "tooltip": {
+            "undo": "撤销",
+            "redo": "重做"
+        }
+    },
+    "dialog": {
+        "cellformat": {
+            "number": "数字",
+            "alignment": "对齐",
+            "font": "字体",
+            "border": "边框",
+            "fill": "填充"
+        },
+        "title": {
+            "cellformat": "设置单元格格式"
+        }
+    },
+
+    "common": {
+        "ok": "确认",
+        "cancel": "取消"
+    }
+};

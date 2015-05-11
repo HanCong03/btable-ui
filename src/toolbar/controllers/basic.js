@@ -38,7 +38,7 @@ angular.module('app').controller('ToolbarBasicController', ['$scope', 'toolbarNo
         },
 
         fontSelect: function (val) {
-            toolbarNotify.emit('fontfamily', val);
+            toolbarNotify.emit('font', val);
         },
 
         fontsizeSelect: function (val) {
@@ -50,19 +50,23 @@ angular.module('app').controller('ToolbarBasicController', ['$scope', 'toolbarNo
         },
 
         pressChange: function (type, status) {
-            toolbarNotify.emit(type, status);
+            toolbarNotify.emit(type);
         },
 
         valignChange: function (status) {
-            toolbarNotify.emit('verticalalign', status);
+            toolbarNotify.emit('vertical', status);
         },
 
         alignChange: function (status) {
-            toolbarNotify.emit('horizontalalign', status);
+            toolbarNotify.emit('horizontal', status);
         },
 
         colorChange: function (type, color) {
-            toolbarNotify.emit(type, color);
+            if (type === 'foreground') {
+                toolbarNotify.emit('color', color);
+            } else {
+                toolbarNotify.emit('fill', color);
+            }
         },
 
         borderSelect: function (type) {
