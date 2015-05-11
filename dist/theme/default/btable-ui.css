@@ -60,6 +60,9 @@ body {
   background: #008000;
 }
 
+.b-toolbar {
+  color: #000000;
+}
 .b-toolbar .b-toolbar-tabs-head {
   background: #aaa;
 }
@@ -436,6 +439,38 @@ body {
 }
 
 
+.b-fill-box-tabs {
+  color: #000000;
+}
+.b-fill-box-tabs .b-color-btn {
+  background: #ffffff;
+  border: 1px solid #cfcfcf;
+  padding: 0;
+  border-radius: 0;
+  align-items: stretch;
+}
+.b-fill-box-tabs .b-color-btn .b-color-panel {
+  width: 100px;
+  height: 25px;
+}
+.b-fill-box-tabs .b-color-btn .b-color-panel div {
+  width: 96px;
+  height: 21px;
+  margin: 2px;
+  background: red;
+}
+.b-fill-box-tabs .b-color-btn .b-caret-wrap {
+  padding: 0px 3px;
+  border-left: 1px solid #cfcfcf;
+}
+.b-fill-box-tabs .b-fill-preview-box {
+  width: 500px;
+  height: 200px;
+  font-size: 28px;
+  text-align: center;
+  line-height: 200px;
+}
+
 .b-font-tabs {
   color: black;
   padding: 0!important;
@@ -523,7 +558,7 @@ body {
 
 .b-numberformat-box {
   height: 450px;
-  border: 1px solid #cfcfcf;
+  border: 1px solid #dee5e7;
   border-top: none;
   padding: 10px;
 }

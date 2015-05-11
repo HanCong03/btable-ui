@@ -7,14 +7,14 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"modal-dialog\">\n" +
     "        <div class=\"modal-content\">\n" +
     "            <div class=\"modal-header\">\n" +
-    "                <h4 class=\"modal-title\">Modal title</h4>\n" +
+    "                <h4 class=\"modal-title\">{{'dialog.title.cellformat' | translate}}</h4>\n" +
     "            </div>\n" +
     "            <div class=\"modal-body\">\n" +
     "                <ng-include src=\"'template/toolbar/tabs/start/cell-format/index.html'\"></ng-include>\n" +
     "            </div>\n" +
     "            <div class=\"modal-footer\">\n" +
-    "                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n" +
-    "                <button type=\"button\" class=\"btn btn-primary\">Save changes</button>\n" +
+    "                <button type=\"button\" class=\"btn btn-primary\">{{'common.ok' | translate}}</button>\n" +
+    "                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">{{'common.cancel' | translate}}</button>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -187,6 +187,27 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/toolbar/tabs/start/cell-format/fill/index.html',
+    "<div class=\"b-numberformat-box b-fill-box-tabs\">\n" +
+    "    背景色：\n" +
+    "    <div>\n" +
+    "        <button b-attr-colorpicker ng-model=\"status.fillColor\" type=\"button\" class=\"btn b-color-btn b-row\">\n" +
+    "            <div class=\"b-color-panel\">\n" +
+    "                <div ng-style=\"{backgroundColor: status.fillColor}\"></div>\n" +
+    "            </div>\n" +
+    "            <div class=\"b-caret-wrap\">\n" +
+    "                <span class=\"caret\"></span>\n" +
+    "            </div>\n" +
+    "        </button>\n" +
+    "    </div>\n" +
+    "    预览：\n" +
+    "    <div class=\"b-fill-preview-box\" ng-style=\"{backgroundColor: status.fillColor}\">\n" +
+    "        微软卓越 AaBbCc\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/toolbar/tabs/start/cell-format/font/index.html',
     "<div class=\"b-numberformat-box b-font-tabs\">\n" +
     "    <table class=\"b-font-tabs-layout\">\n" +
@@ -284,7 +305,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            <ng-include src=\"'template/toolbar/tabs/start/cell-format/border/index.html'\"></ng-include>\n" +
     "        </tab>\n" +
     "        <tab heading=\"填充\">\n" +
-    "            <ng-include src=\"'template/toolbar/tabs/start/cell-format/number/index.html'\"></ng-include>\n" +
+    "            <ng-include src=\"'template/toolbar/tabs/start/cell-format/fill/index.html'\"></ng-include>\n" +
     "        </tab>\n" +
     "    </tabset>\n" +
     "</div>"

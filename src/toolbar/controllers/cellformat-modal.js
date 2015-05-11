@@ -254,7 +254,10 @@ angular.module('app').controller('CellForamtModalController', ['$scope', 'toolba
             top: null,
             middle: null,
             bottom: null
-        }
+        },
+
+        // fill color
+        fillColor: '#000000'
     };
 
     $scope.status = status;

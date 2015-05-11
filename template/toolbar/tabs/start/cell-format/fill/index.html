@@ -1,0 +1,17 @@
+<div class="b-numberformat-box b-fill-box-tabs">
+    背景色：
+    <div>
+        <button b-attr-colorpicker ng-model="status.fillColor" type="button" class="btn b-color-btn b-row">
+            <div class="b-color-panel">
+                <div ng-style="{backgroundColor: status.fillColor}"></div>
+            </div>
+            <div class="b-caret-wrap">
+                <span class="caret"></span>
+            </div>
+        </button>
+    </div>
+    预览：
+    <div class="b-fill-preview-box" ng-style="{backgroundColor: status.fillColor}">
+        微软卓越 AaBbCc
+    </div>
+</div>

@@ -64,6 +64,14 @@
   "dialog": {
     "cellformat": {
       "number": "数字"
+    },
+    "title": {
+      "cellformat": "设置单元格格式"
     }
+  },
+
+  "common": {
+    "ok": "确认",
+    "cancel": "取消"
   }
 }
