@@ -34,7 +34,7 @@ angular.module('app').controller('ToolbarBasicController', ['$scope', 'toolbarNo
     $scope.handler = {
         btnclick: function (evt) {
             var buttonType = evt.delegateTarget.getAttribute('data-name');
-            toolbarNotify.emit('buttonclick', buttonType);
+            toolbarNotify.emit(buttonType);
         },
 
         fontSelect: function (val) {

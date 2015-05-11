@@ -646,6 +646,12 @@ body {
 .b-toolbar-fonts-groups .b-toolbar-fonts-biu-wrap .b-toolbar-delimiter {
   align-self: stretch;
 }
+.b-toolbar-fonts-groups .b-fontsgroup-layout {
+  justify-content: space-around;
+}
+.b-toolbar-fonts-groups .b-fontfamily-select {
+  margin-right: 10px;
+}
 
 .b-mr5 {
   margin-right: 5px;

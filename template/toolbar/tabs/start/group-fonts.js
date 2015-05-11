@@ -1,6 +1,6 @@
 define( function () {
 return '<div unselectable="on" class="toolbar-groups b-toolbar-fonts-groups">\n' +
-'<div unselectable="on">\n' +
+'<div unselectable="on" class="b-column b-fontsgroup-layout">\n' +
 '<div unselectable="on" class="b-row">\n' +
 '<!-- unselectable="on" font family -->\n' +
 '<b-inputselect unselectable="on" classname="b-fontfamily-select" change="handler.fontSelect(value);" select-value="values.fontfamily" values="initValue.fontfamily"></b-inputselect>\n' +

@@ -26,6 +26,19 @@ angular.module('app').factory('toolbarNotify', ['btableNotify', function (btable
                 case 'wraptext':
                     btableNotify.execCommand(arguments);
                     break;
+
+                case 'thousandth':
+                    btableNotify.execCommand(['format', '_ * #,##0.00_ ;_ * -#,##0.00_ ;_ * “-“??_ ;_ @_']);
+                    break;
+
+                case 'cellstyle':
+                    if (arguments[2]) {
+                        btableNotify.execCommand(['builtincellstyle', arguments[1]]);
+                    } else {
+                        alert(3)
+                        //btableNotify.execCommand(['cellstyle', arguments[1]]);
+                    }
+
             }
         }
     };

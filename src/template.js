@@ -517,7 +517,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('template/toolbar/tabs/start/group-fonts.html',
     "<div class=\"toolbar-groups b-toolbar-fonts-groups\">\n" +
-    "    <div>\n" +
+    "    <div class=\"b-column b-fontsgroup-layout\">\n" +
     "        <div class=\"b-row\">\n" +
     "            <!-- font family -->\n" +
     "            <b-inputselect classname=\"b-fontfamily-select\" change=\"handler.fontSelect(value);\" select-value=\"values.fontfamily\" values=\"initValue.fontfamily\"></b-inputselect>\n" +
@@ -617,7 +617,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            <a class=\"btn b-btn\" role=\"button\" data-name=\"dec-precision\" ng-click=\"handler.btnclick($event);\">\n" +
     "                <span class=\"b-icon b-icon-dec-precision\"></span>\n" +
     "            </a>\n" +
-    "            <a class=\"btn b-btn\" role=\"button\" data-name=\"thousands\" ng-click=\"handler.btnclick($event);\">\n" +
+    "            <a class=\"btn b-btn\" role=\"button\" data-name=\"thousandth\" ng-click=\"handler.btnclick($event);\">\n" +
     "                <span class=\"b-icon b-icon-thousands\"></span>\n" +
     "            </a>\n" +
     "        </div>\n" +
