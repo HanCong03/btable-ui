@@ -1,13 +1,13 @@
 <div class="toolbar-groups b-toolbar-fonts-groups">
     <div class="b-row">
         <div class="b-column">
-            <b-verticalalign onchange="handler.valignChange(status);" value="middle"></b-verticalalign>
-            <b-horizontalalign onchange="handler.alignChange(status);" value="left"></b-horizontalalign>
+            <b-verticalalign onchange="handler.valignChange(status);" value="res.valignValue"></b-verticalalign>
+            <b-horizontalalign onchange="handler.alignChange(status);" value="res.alignValue"></b-horizontalalign>
         </div>
 
         <div class="b-column-left">
             <b-pressbutton buttontype="wraptext" text="{{'toolbar.buttonlabel.wraptext' | translate}}" onchange="handler.pressChange('wraptext', status)" pressed="false"></b-pressbutton>
-            <b-mergeselect merge="true" onchange="handler.mergechange(mode, value);"></b-mergeselect>
+            <b-mergeselect merge="res.merge" onchange="handler.mergechange(mode, value);"></b-mergeselect>
         </div>
     </div>
 

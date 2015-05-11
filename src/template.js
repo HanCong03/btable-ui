@@ -22,47 +22,6 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('template/toolbar/tabs/start/buttonselect.html',
-    "<div class=\"b-button-select b-mergecell-selector\" ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
-    "    <a class=\"btn b-btn b-mergeandcenter-button\" role=\"button\" ng-class=\"{'b-open': isOpen || isSelected}\" ng-click=\"changeModel('center');\">\n" +
-    "        <span class=\"b-icon b-icon-merge\"></span>\n" +
-    "        {{'toolbar.buttonlabel.merge' | translate}}\n" +
-    "    </a>\n" +
-    "    <div class=\"btn-group\" dropdown on-toggle=\"isOpen=open;\">\n" +
-    "        <button type=\"button\" class=\"btn b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
-    "            <span class=\"caret\"></span>\n" +
-    "        </button>\n" +
-    "        <ul class=\"dropdown-menu\" role=\"menu\">\n" +
-    "            <li>\n" +
-    "                <a class=\"b-row\" ng-click=\"changeModel('center');\">\n" +
-    "                    <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
-    "                    {{'toolbar.items.merge.center' | translate}}\n" +
-    "                </a>\n" +
-    "            </li>\n" +
-    "            <li>\n" +
-    "                <a class=\"b-row\" ng-click=\"changeModel('across');\">\n" +
-    "                    <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
-    "                    {{'toolbar.items.merge.across' | translate}}\n" +
-    "                </a>\n" +
-    "            </li>\n" +
-    "            <li>\n" +
-    "                <a class=\"b-row\" ng-click=\"changeModel('merge');\">\n" +
-    "                    <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
-    "                    {{'toolbar.items.merge.merge' | translate}}\n" +
-    "                </a>\n" +
-    "            </li>\n" +
-    "            <li>\n" +
-    "                <a class=\"b-row\" ng-click=\"changeModel('cancel');\">\n" +
-    "                    <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
-    "                    {{'toolbar.items.merge.cancel' | translate}}\n" +
-    "                </a>\n" +
-    "            </li>\n" +
-    "        </ul>\n" +
-    "    </div>\n" +
-    "</div>"
-  );
-
-
   $templateCache.put('template/toolbar/tabs/start/cell-format/alignment/index.html',
     "<div class=\"b-numberformat-box\">\n" +
     "    <fieldset>\n" +
@@ -476,13 +435,13 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "<div class=\"toolbar-groups b-toolbar-fonts-groups\">\n" +
     "    <div class=\"b-row\">\n" +
     "        <div class=\"b-column\">\n" +
-    "            <b-verticalalign onchange=\"handler.valignChange(status);\" value=\"middle\"></b-verticalalign>\n" +
-    "            <b-horizontalalign onchange=\"handler.alignChange(status);\" value=\"left\"></b-horizontalalign>\n" +
+    "            <b-verticalalign onchange=\"handler.valignChange(status);\" value=\"res.valignValue\"></b-verticalalign>\n" +
+    "            <b-horizontalalign onchange=\"handler.alignChange(status);\" value=\"res.alignValue\"></b-horizontalalign>\n" +
     "        </div>\n" +
     "\n" +
     "        <div class=\"b-column-left\">\n" +
     "            <b-pressbutton buttontype=\"wraptext\" text=\"{{'toolbar.buttonlabel.wraptext' | translate}}\" onchange=\"handler.pressChange('wraptext', status)\" pressed=\"false\"></b-pressbutton>\n" +
-    "            <b-mergeselect merge=\"true\" onchange=\"handler.mergechange(mode, value);\"></b-mergeselect>\n" +
+    "            <b-mergeselect merge=\"res.merge\" onchange=\"handler.mergechange(mode, value);\"></b-mergeselect>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
@@ -794,6 +753,47 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        <label class=\"btn b-btn\" ng-model=\"value\" btn-radio=\"'bottom'\" ng-click=\"alignChange('bottom');\" uncheckable>\n" +
     "            <span class=\"b-icon b-icon-bottom\"></span>\n" +
     "        </label>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/widget/buttonselect.html',
+    "<div class=\"b-button-select b-mergecell-selector\" ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
+    "    <a class=\"btn b-btn b-mergeandcenter-button\" role=\"button\" ng-class=\"{'b-open': isOpen || isSelected}\" ng-click=\"changeModel('center');\">\n" +
+    "        <span class=\"b-icon b-icon-merge\"></span>\n" +
+    "        {{'toolbar.buttonlabel.merge' | translate}}\n" +
+    "    </a>\n" +
+    "    <div class=\"btn-group\" dropdown on-toggle=\"isOpen=open;\">\n" +
+    "        <button type=\"button\" class=\"btn b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
+    "            <span class=\"caret\"></span>\n" +
+    "        </button>\n" +
+    "        <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "            <li>\n" +
+    "                <a class=\"b-row\" ng-click=\"changeModel('center');\">\n" +
+    "                    <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
+    "                    {{'toolbar.items.merge.center' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "                <a class=\"b-row\" ng-click=\"changeModel('across');\">\n" +
+    "                    <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
+    "                    {{'toolbar.items.merge.across' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "                <a class=\"b-row\" ng-click=\"changeModel('merge');\">\n" +
+    "                    <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
+    "                    {{'toolbar.items.merge.merge' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "                <a class=\"b-row\" ng-click=\"changeModel('cancel');\">\n" +
+    "                    <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
+    "                    {{'toolbar.items.merge.cancel' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
     "    </div>\n" +
     "</div>"
   );

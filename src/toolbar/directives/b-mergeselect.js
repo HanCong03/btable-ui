@@ -11,11 +11,12 @@ angular.module('app').directive('bMergeselect', [function () {
         scope: {
             onchange: '&'
         },
-        templateUrl: 'template/toolbar/tabs/start/buttonselect.html',
+        templateUrl: 'template/toolbar/widget/buttonselect.html',
         link: function ($scope, $ele, $attr) {
             var hook = $scope.onchange || angular.noop();
+            var merge = $scope.$eval($attr.merge);
 
-            $scope.isSelected = !!$attr.merge;
+            $scope.isSelected = angular.isDefined(merge) ? merge : false;
             $scope.isOpen = false;
 
             $scope.toggle = function (isOpen) {

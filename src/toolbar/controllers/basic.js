@@ -15,7 +15,8 @@ angular.module('app').controller('ToolbarBasicController', ['$scope', 'toolbarNo
 
     var res = {
         valignValue: null,
-        alignValue: null
+        alignValue: null,
+        merge: false
     };
 
     $scope.res = res;
