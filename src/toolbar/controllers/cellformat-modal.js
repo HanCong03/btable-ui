@@ -3,7 +3,7 @@
  * @author hancong03@baiud.com
  */
 
-angular.module('app').controller('CellForamtModalController', ['$scope', 'toolbarNotify', function ($scope, toolbarNotify) {
+angular.module('app').controller('CellForamtModalController', ['$scope', 'cellformatModalNotify', function ($scope, cellformatModalNotify) {
     var numberformatValues = [
         // 数值
         [{
@@ -205,8 +205,11 @@ angular.module('app').controller('CellForamtModalController', ['$scope', 'toolba
     }];
 
     /* ---------- scope 挂载 ---------- */
-
     var status = {
+        tabs: ['numberformat', 'alignment', 'font', 'border', 'fill'],
+        tabSelected: [
+            true, false, false, false, false
+        ],
         // 千分位选中状态
         thousandth: false,
         // 数值code选中位
@@ -274,6 +277,27 @@ angular.module('app').controller('CellForamtModalController', ['$scope', 'toolba
     $scope.fontSize = fontSize;
     $scope.underline = underline;
     $scope.borderStyle = borderStyle;
+
+    /* ---------- 监听通知消息 --------- */
+    cellformatModalNotify.onMessage('open', function (type) {
+        var index = status.tabs.indexOf(type)
+
+        if (index === -1) {
+            index = 0;
+        }
+
+        status.tabSelected[index] = true;
+
+        $("#cellFormatModal").modal({
+            'show': true
+        });
+    });
+
+    $("#cellFormatModal").on('hidden.bs.modal', function () {
+        status.tabSelected = [true, false, false, false, false];
+        $scope.$apply();
+    });
+
 
     $scope.builtinBorderChange = function (type) {
         if (status.borderType === 0) {

@@ -69,6 +69,9 @@ return '<div unselectable="on" class="toolbar-groups b-toolbar-fonts-groups">\n'
 '<b-colorpicker unselectable="on" oncolorchange="handler.colorChange(\'foreground\', color);" colortype="color"></b-colorpicker>\n' +
 '</div>\n' +
 '</div>\n' +
+'<button unselectable="on" type="button" class="btn b-btn b-open-cellformat-btn" ng-click="handler.openCellFormat(\'font\')">\n' +
+'<span unselectable="on" class="b-icon"></span>\n' +
+'</button>\n' +
 '<div unselectable="on">\n' +
 '{{\'toolbar.grouplabel.fonts\' | translate}}\n' +
 '</div>\n' +

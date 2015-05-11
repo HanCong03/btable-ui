@@ -129,6 +129,19 @@ body {
 .b-toolbar .b-drop-button .b-btn.b-drop-button-bottom .caret {
   margin: auto;
 }
+.b-toolbar .b-open-cellformat-btn {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 3px;
+}
+.b-toolbar .b-open-cellformat-btn .b-icon {
+  width: 8px;
+  height: 8px;
+  background: url("open.png") 0 0 no-repeat transparent;
+}
 
 .b-mr5 {
   margin-right: 5px;

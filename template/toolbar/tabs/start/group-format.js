@@ -16,6 +16,9 @@ return '<div unselectable="on" class="toolbar-groups b-toolbar-fonts-groups">\n'
 '</a>\n' +
 '</div>\n' +
 '</div>\n' +
+'<button unselectable="on" type="button" class="btn b-btn b-open-cellformat-btn" ng-click="handler.openCellFormat(\'numberformat\')">\n' +
+'<span unselectable="on" class="b-icon"></span>\n' +
+'</button>\n' +
 '<div unselectable="on">\n' +
 '{{\'toolbar.grouplabel.number\' | translate}}\n' +
 '</div>\n' +

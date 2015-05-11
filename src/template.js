@@ -292,19 +292,19 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   $templateCache.put('template/toolbar/tabs/start/cell-format/index.html',
     "<div class=\"b-cell-format-box\">\n" +
     "    <tabset>\n" +
-    "        <tab heading=\"{{'dialog.cellformat.number' | translate}}\">\n" +
+    "        <tab heading=\"{{'dialog.cellformat.number' | translate}}\" active=\"status.tabSelected[0]\">\n" +
     "            <ng-include src=\"'template/toolbar/tabs/start/cell-format/number/index.html'\"></ng-include>\n" +
     "        </tab>\n" +
-    "        <tab heading=\"对齐\">\n" +
+    "        <tab heading=\"{{'dialog.cellformat.alignment' | translate}}\" active=\"status.tabSelected[1]\">\n" +
     "            <ng-include src=\"'template/toolbar/tabs/start/cell-format/alignment/index.html'\"></ng-include>\n" +
     "        </tab>\n" +
-    "        <tab heading=\"字体\">\n" +
+    "        <tab heading=\"{{'dialog.cellformat.font' | translate}}\" active=\"status.tabSelected[2]\">\n" +
     "            <ng-include src=\"'template/toolbar/tabs/start/cell-format/font/index.html'\"></ng-include>\n" +
     "        </tab>\n" +
-    "        <tab heading=\"边框\">\n" +
+    "        <tab heading=\"{{'dialog.cellformat.border' | translate}}\" active=\"status.tabSelected[3]\">\n" +
     "            <ng-include src=\"'template/toolbar/tabs/start/cell-format/border/index.html'\"></ng-include>\n" +
     "        </tab>\n" +
-    "        <tab heading=\"填充\">\n" +
+    "        <tab heading=\"{{'dialog.cellformat.fill' | translate}}\" active=\"status.tabSelected[4]\">\n" +
     "            <ng-include src=\"'template/toolbar/tabs/start/cell-format/fill/index.html'\"></ng-include>\n" +
     "        </tab>\n" +
     "    </tabset>\n" +
@@ -485,6 +485,11 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            <b-mergeselect merge=\"true\" onchange=\"handler.mergechange(mode, value);\"></b-mergeselect>\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "\n" +
+    "    <button type=\"button\" class=\"btn b-btn b-open-cellformat-btn\" ng-click=\"handler.openCellFormat('alignment')\">\n" +
+    "        <span class=\"b-icon\"></span>\n" +
+    "    </button>\n" +
+    "\n" +
     "    <div>\n" +
     "        {{'toolbar.grouplabel.alignments' | translate}}\n" +
     "    </div>\n" +
@@ -497,10 +502,6 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"b-row\">\n" +
     "        <b-cellstyles onselect=\"handler.selectCellstyle(id, isBuiltin);\"></b-cellstyles>\n" +
     "    </div>\n" +
-    "    <!-- Button trigger modal -->\n" +
-    "    <button type=\"button\" class=\"btn btn-lg b-cellformat-btn\" data-toggle=\"modal\" data-target=\"#cellFormatModal\">\n" +
-    "        a\n" +
-    "    </button>\n" +
     "    <div>\n" +
     "        {{'toolbar.grouplabel.style' | translate}}\n" +
     "    </div>\n" +
@@ -512,24 +513,26 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "<div class=\"toolbar-groups b-toolbar-clipboard-groups\">\n" +
     "    <div class=\"b-toolbar-clipboard-button-wrap\">\n" +
     "\n" +
-    "        <!-- 粘贴按钮 -->\n" +
-    "        <div class=\"b-drap-button\" ng-class=\"{'b-open': btnState.pasteOpen}\">\n" +
-    "            <a class=\"btn b-btn\" role=\"button\" data-name=\"paste\" ng-click=\"handler.btnclick($event);\" ng-class=\"{'b-open': btnState.pasteOpen}\">\n" +
-    "                <span class=\"b-big-icon b-icon-paste\"></span>\n" +
-    "            </a>\n" +
+    "        <div>\n" +
+    "            <!-- 粘贴按钮 -->\n" +
+    "            <div class=\"b-drap-button\" ng-class=\"{'b-open': btnState.pasteOpen}\">\n" +
+    "                <a class=\"btn b-btn\" role=\"button\" data-name=\"paste\" ng-click=\"handler.btnclick($event);\" ng-class=\"{'b-open': btnState.pasteOpen}\">\n" +
+    "                    <span class=\"b-big-icon b-icon-paste\"></span>\n" +
+    "                </a>\n" +
     "\n" +
-    "            <div class=\"btn-group b-drop-button\" dropdown on-toggle=\"btnState.pasteOpen=open;\">\n" +
-    "                <div type=\"button\" class=\"btn b-drop-button-bottom b-btn dropdown-toggle\" ng-class=\"{'b-open': btnState.pasteOpen}\" dropdown-toggle>\n" +
-    "                    {{'toolbar.buttonlabel.paste' | translate}}\n" +
-    "                    <span class=\"caret\"></span>\n" +
+    "                <div class=\"btn-group b-drop-button\" dropdown on-toggle=\"btnState.pasteOpen=open;\">\n" +
+    "                    <div type=\"button\" class=\"btn b-drop-button-bottom b-btn dropdown-toggle\" ng-class=\"{'b-open': btnState.pasteOpen}\" dropdown-toggle>\n" +
+    "                        {{'toolbar.buttonlabel.paste' | translate}}\n" +
+    "                        <span class=\"caret\"></span>\n" +
+    "                    </div>\n" +
+    "                    <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "                        <li><a href=\"#\">Action</a></li>\n" +
+    "                        <li><a href=\"#\">Another action</a></li>\n" +
+    "                        <li><a href=\"#\">Something else here</a></li>\n" +
+    "                        <li class=\"divider\"></li>\n" +
+    "                        <li><a href=\"#\">Separated link</a></li>\n" +
+    "                    </ul>\n" +
     "                </div>\n" +
-    "                <ul class=\"dropdown-menu\" role=\"menu\">\n" +
-    "                    <li><a href=\"#\">Action</a></li>\n" +
-    "                    <li><a href=\"#\">Another action</a></li>\n" +
-    "                    <li><a href=\"#\">Something else here</a></li>\n" +
-    "                    <li class=\"divider\"></li>\n" +
-    "                    <li><a href=\"#\">Separated link</a></li>\n" +
-    "                </ul>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "\n" +
@@ -630,6 +633,11 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            <b-colorpicker oncolorchange=\"handler.colorChange('foreground', color);\" colortype=\"color\"></b-colorpicker>\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "\n" +
+    "    <button type=\"button\" class=\"btn b-btn b-open-cellformat-btn\" ng-click=\"handler.openCellFormat('font')\">\n" +
+    "        <span class=\"b-icon\"></span>\n" +
+    "    </button>\n" +
+    "\n" +
     "    <div>\n" +
     "        {{'toolbar.grouplabel.fonts' | translate}}\n" +
     "    </div>\n" +
@@ -655,6 +663,11 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            </a>\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "\n" +
+    "    <button type=\"button\" class=\"btn b-btn b-open-cellformat-btn\" ng-click=\"handler.openCellFormat('numberformat')\">\n" +
+    "        <span class=\"b-icon\"></span>\n" +
+    "    </button>\n" +
+    "\n" +
     "    <div>\n" +
     "        {{'toolbar.grouplabel.number' | translate}}\n" +
     "    </div>\n" +

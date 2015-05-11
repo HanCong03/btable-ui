@@ -10,6 +10,11 @@
             <b-mergeselect merge="true" onchange="handler.mergechange(mode, value);"></b-mergeselect>
         </div>
     </div>
+
+    <button type="button" class="btn b-btn b-open-cellformat-btn" ng-click="handler.openCellFormat('alignment')">
+        <span class="b-icon"></span>
+    </button>
+
     <div>
         {{'toolbar.grouplabel.alignments' | translate}}
     </div>

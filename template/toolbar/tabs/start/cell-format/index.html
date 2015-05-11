@@ -1,18 +1,18 @@
 <div class="b-cell-format-box">
     <tabset>
-        <tab heading="{{'dialog.cellformat.number' | translate}}">
+        <tab heading="{{'dialog.cellformat.number' | translate}}" active="status.tabSelected[0]">
             <ng-include src="'template/toolbar/tabs/start/cell-format/number/index.html'"></ng-include>
         </tab>
-        <tab heading="对齐">
+        <tab heading="{{'dialog.cellformat.alignment' | translate}}" active="status.tabSelected[1]">
             <ng-include src="'template/toolbar/tabs/start/cell-format/alignment/index.html'"></ng-include>
         </tab>
-        <tab heading="字体">
+        <tab heading="{{'dialog.cellformat.font' | translate}}" active="status.tabSelected[2]">
             <ng-include src="'template/toolbar/tabs/start/cell-format/font/index.html'"></ng-include>
         </tab>
-        <tab heading="边框">
+        <tab heading="{{'dialog.cellformat.border' | translate}}" active="status.tabSelected[3]">
             <ng-include src="'template/toolbar/tabs/start/cell-format/border/index.html'"></ng-include>
         </tab>
-        <tab heading="填充">
+        <tab heading="{{'dialog.cellformat.fill' | translate}}" active="status.tabSelected[4]">
             <ng-include src="'template/toolbar/tabs/start/cell-format/fill/index.html'"></ng-include>
         </tab>
     </tabset>

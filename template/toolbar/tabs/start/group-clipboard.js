@@ -1,6 +1,7 @@
 define( function () {
 return '<div unselectable="on" class="toolbar-groups b-toolbar-clipboard-groups">\n' +
 '<div unselectable="on" class="b-toolbar-clipboard-button-wrap">\n' +
+'<div unselectable="on">\n' +
 '<!-- unselectable="on" 粘贴按钮 -->\n' +
 '<div unselectable="on" class="b-drap-button" ng-class="{\'b-open\': btnState.pasteOpen}">\n' +
 '<a unselectable="on" class="btn b-btn" role="button" data-name="paste" ng-click="handler.btnclick($event);" ng-class="{\'b-open\': btnState.pasteOpen}">\n' +
@@ -18,6 +19,7 @@ return '<div unselectable="on" class="toolbar-groups b-toolbar-clipboard-groups"
 '<li unselectable="on" class="divider"></li>\n' +
 '<li unselectable="on"><a unselectable="on" href="#">Separated link</a></li>\n' +
 '</ul>\n' +
+'</div>\n' +
 '</div>\n' +
 '</div>\n' +
 '<!-- unselectable="on" 复制 剪切 -->\n' +

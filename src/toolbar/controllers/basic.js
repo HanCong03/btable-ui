@@ -3,7 +3,7 @@
  * @author hancong03@baiud.com
  */
 
-angular.module('app').controller('ToolbarBasicController', ['$scope', 'toolbarNotify', function ($scope, toolbarNotify) {
+angular.module('app').controller('ToolbarBasicController', ['$scope', 'toolbarNotify', 'cellformatModalNotify', function ($scope, toolbarNotify, cellformatModalNotify) {
     $scope.btnState = {
         pasteOpen: false,
         fontfamilyOpen: false,
@@ -74,6 +74,10 @@ angular.module('app').controller('ToolbarBasicController', ['$scope', 'toolbarNo
 
         selectCellstyle: function (id, isBuiltin) {
             toolbarNotify.emit('cellstyle', id, isBuiltin);
+        },
+
+        openCellFormat: function (type) {
+            cellformatModalNotify.notify('open', type);
         }
     };
 }]);
