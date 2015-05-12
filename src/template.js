@@ -35,7 +35,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        <div>\n" +
     "            <label for=\"modalHAlign\">垂直对齐：</label>\n" +
     "            <select ng-model=\"status.vAlignSelected\">\n" +
-    "                <option ng-repeat=\"align in varticalAlign\" ng-selected=\"{{status.vAlignSelected === $index;}}\" value=\"{{$index}}\">{{align.text}}</option>\n" +
+    "                <option ng-repeat=\"align in verticalAlign\" ng-selected=\"{{status.vAlignSelected === $index;}}\" value=\"{{$index}}\">{{align.text}}</option>\n" +
     "            </select>\n" +
     "        </div>\n" +
     "    </fieldset>\n" +
@@ -176,26 +176,43 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                字体：\n" +
     "                <div class=\"b-fontfamily-panel b-select-box\">\n" +
     "                    <input ng-model=\"status.font\">\n" +
+    "\n" +
     "                    <select size=\"100\" ng-model=\"status.font\">\n" +
-    "                        <option ng-repeat=\"font in fonts\" value=\"{{font.name}}\">{{font.name}}</option>\n" +
+    "                        <option ng-repeat=\"font in fonts\"\n" +
+    "                                ng-selected=\"font === status.font\"\n" +
+    "                                value=\"{{font}}\">\n" +
+    "                            {{font}}\n" +
+    "                        </option>\n" +
     "                    </select>\n" +
     "                </div>\n" +
     "            </td>\n" +
+    "\n" +
     "            <td>\n" +
     "                字形：\n" +
     "                <div class=\"b-fontstyle-panel b-select-box\">\n" +
-    "                    <input ng-model=\"fontStyle[status.fontstyle].name\">\n" +
+    "                    <input ng-model=\"fontStyle[status.fontstyle].text\">\n" +
+    "\n" +
     "                    <select ng-model=\"status.fontstyle\" size=\"100\">\n" +
-    "                        <option ng-repeat=\"style in fontStyle\" value=\"{{$index}}\">{{style.name}}</option>\n" +
+    "                        <option ng-repeat=\"style in fontStyle\"\n" +
+    "                                ng-selected=\"status.fontstyle === $index\"\n" +
+    "                                value=\"{{$index}}\">\n" +
+    "                            {{style.text}}\n" +
+    "                        </option>\n" +
     "                    </select>\n" +
     "                </div>\n" +
     "            </td>\n" +
+    "\n" +
     "            <td>\n" +
     "                字号：\n" +
     "                <div class=\"b-fontsize-panel b-select-box\">\n" +
-    "                    <input ng-model=\"status.fontsize\">\n" +
+    "                    <input ng-model=\"fontSize[status.fontsize]\">\n" +
+    "\n" +
     "                    <select ng-model=\"status.fontsize\" size=\"100\">\n" +
-    "                        <option ng-repeat=\"size in fontSize\" value=\"{{size}}\">{{size}}</option>\n" +
+    "                        <option ng-repeat=\"size in fontSize\"\n" +
+    "                                ng-selected=\"$index === status.fontsize\"\n" +
+    "                                value=\"{{$index}}\">\n" +
+    "                            {{size}}\n" +
+    "                        </option>\n" +
     "                    </select>\n" +
     "                </div>\n" +
     "            </td>\n" +
@@ -205,14 +222,21 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                下划线：\n" +
     "                <div>\n" +
     "                    <select ng-model=\"status.underline\">\n" +
-    "                        <option ng-repeat=\"line in underline\" value=\"{{$index}}\">{{line.text}}</option>\n" +
+    "                        <option ng-repeat=\"line in underline\"\n" +
+    "                                value=\"{{$index}}\">\n" +
+    "                            {{line.text}}\n" +
+    "                        </option>\n" +
     "                    </select>\n" +
     "                </div>\n" +
     "            </td>\n" +
+    "\n" +
     "            <td>\n" +
     "                颜色：\n" +
     "                <div>\n" +
-    "                    <button b-attr-colorpicker ng-model=\"status.color\" type=\"button\" class=\"btn b-color-btn b-row\">\n" +
+    "                    <button b-attr-colorpicker\n" +
+    "                            ng-model=\"status.color\"\n" +
+    "                            type=\"button\"\n" +
+    "                            class=\"btn b-color-btn b-row\">\n" +
     "                        <div class=\"b-color-panel\">\n" +
     "                            <div ng-style=\"{backgroundColor: status.color}\"></div>\n" +
     "                        </div>\n" +
@@ -222,8 +246,8 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                    </button>\n" +
     "                </div>\n" +
     "            </td>\n" +
-    "            <td>\n" +
     "\n" +
+    "            <td>\n" +
     "            </td>\n" +
     "        </tr>\n" +
     "        <tr>\n" +
@@ -231,14 +255,27 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                特殊效果：\n" +
     "                <div>\n" +
     "                    <label class=\"i-checks\">\n" +
-    "                        <input type=\"checkbox\" ng-model=\"status.throughline\"><i></i> 删除线\n" +
+    "                        <input type=\"checkbox\"\n" +
+    "                               ng-model=\"status.throughline\">\n" +
+    "                        <i></i>\n" +
+    "                        删除线\n" +
     "                    </label>\n" +
     "                </div>\n" +
     "            </td>\n" +
+    "\n" +
     "            <td colspan=\"2\">\n" +
     "                预览：\n" +
     "                <div class=\"b-font-preview-box b-column\">\n" +
-    "                    <span ng-style=\"{'font-family': status.font, color: status.color, 'font-size': status.fontsize + 'px', 'font-style': (status.fontstyle == 1 || status.fontstyle == 3)? 'italic' : 'normal', 'font-weight': (status.fontstyle == 2 || status.fontstyle == 3)? '900' : 'normal', 'text-decoration': status.underline != 1 ? (status.throughline ? 'line-through' : 'none') : 'underline'}\">微软卓越 AaBbCc</span>\n" +
+    "                    <span ng-style=\"\n" +
+    "                        {\n" +
+    "                            'font-family': status.font,\n" +
+    "                            'color': status.color,\n" +
+    "                            'font-size': fontSize[status.fontsize] + 'px',\n" +
+    "                            'font-style': (status.fontstyle == 1 || status.fontstyle == 3)? 'italic' : 'normal',\n" +
+    "                            'font-weight': (status.fontstyle == 2 || status.fontstyle == 3)? '900' : 'normal',\n" +
+    "                            'text-decoration': status.underline != 1 ? (status.throughline ? 'line-through' : 'none') : 'underline'\n" +
+    "                        }\n" +
+    "                    \">微软卓越 AaBbCc</span>\n" +
     "                </div>\n" +
     "            </td>\n" +
     "        </tr>\n" +
@@ -278,8 +315,8 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    </label>\n" +
     "    <label>\n" +
     "        货币符号(国家/地区)：\n" +
-    "        <select ng-model=\"status.currencySymbol\">\n" +
-    "            <option ng-repeat=\"symbol in config.currency\" value=\"{{$index}}\">{{symbol}}</option>\n" +
+    "        <select ng-model=\"status.currency\">\n" +
+    "            <option ng-repeat=\"symbol in currencyList\" value=\"{{$index}}\">{{symbol.text}}</option>\n" +
     "        </select>\n" +
     "    </label>\n" +
     "    <label class=\"b-column b-numberformat-preview\">\n" +

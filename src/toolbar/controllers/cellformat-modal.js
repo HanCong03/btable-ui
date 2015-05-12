@@ -9,68 +9,26 @@ angular.module('app').controller('CellForamtModalController', [
     'numberformat',
     '$filter',
     'NUMBER_FORMAT',
+    'FONT_LIST',
+    'FONT_STYLE',
+    'FONT_SIZE',
+    'HORIZONTAL_ALIGNMENT',
+    'VERTICAL_ALIGNMENT',
+    'CURRENCY',
 
     function ($scope,
               cellformatModalNotify,
               numberformat,
               $filter,
-              NUMBER_FORMAT) {
+              NUMBER_FORMAT,
+              FONT_LIST,
+              FONT_STYLE,
+              FONT_SIZE,
+              HORIZONTAL_ALIGNMENT,
+              VERTICAL_ALIGNMENT,
+              CURRENCY) {
 
         var numberformatTypes = ['normal', 'number', 'currency', 'accounting', 'date', 'time', 'percentage', 'fraction', 'scientific', 'text'];
-
-        var horizontalAlign = [{
-            text: '常规',
-            value: 'none'
-        }, {
-            text: '左对齐',
-            value: 'left'
-        }, {
-            text: '右对齐',
-            value: 'right'
-        }, {
-            text: '居中',
-            value: 'center'
-        }];
-
-        var varticalAlign = [{
-            text: '靠上',
-            value: 'top'
-        }, {
-            text: '靠下',
-            value: 'bottom'
-        }, {
-            text: '居中',
-            value: 'middle'
-        }];
-
-        var fonts = [{
-            name: '宋体',
-            value: '宋体'
-        }, {
-            name: 'Arial',
-            value: 'Arial'
-        }, {
-            name: '微软雅黑',
-            value: '微软雅黑'
-        }];
-
-        var fontStyle = [{
-            name: '常规',
-            value: 0
-        }, {
-            name: '倾斜',
-            value: 1
-        }, {
-            name: '加粗',
-            value: 2
-        }, {
-            name: '加粗倾斜',
-            value: 3
-        }];
-
-        var fontSize = [
-            6, 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72
-        ];
 
         var underline = [{
             text: '无',
@@ -121,9 +79,7 @@ angular.module('app').controller('CellForamtModalController', [
             // 数值code选中位
             numericalSelected: 0,
             // 货币符号
-            currencySymbol: 0,
-            // 货币code选中位
-            currencySelected: 0,
+            currency: 0,
             // 日期code选中
             dateSelected: 0,
             // 时间code选中
@@ -139,11 +95,11 @@ angular.module('app').controller('CellForamtModalController', [
             merge: false,
 
             // 字体
-            font: fonts[0].name,
+            font: FONT_LIST[0],
             // 字形
             fontstyle: 0,
             // 字号
-            fontsize: fontSize[6],
+            fontsize: 6,
             // 字体颜色
             color: '#000000',
             // 下划线
@@ -173,17 +129,14 @@ angular.module('app').controller('CellForamtModalController', [
 
         $scope.status = status;
 
-        $scope.config = {
-            currency: ['￥', '$', 'US$']
-        };
-
-        $scope.horizontalAlign = horizontalAlign;
-        $scope.varticalAlign = varticalAlign;
-        $scope.fonts = fonts;
-        $scope.fontStyle = fontStyle;
-        $scope.fontSize = fontSize;
+        $scope.horizontalAlign = HORIZONTAL_ALIGNMENT;
+        $scope.verticalAlign = VERTICAL_ALIGNMENT;
+        $scope.fontStyle = FONT_STYLE;
+        $scope.fontSize = FONT_SIZE;
         $scope.underline = underline;
         $scope.borderStyle = borderStyle;
+        $scope.fonts = FONT_LIST;
+        $scope.currencyList = CURRENCY;
 
         /* filter */
         var numberFormatFilter = $filter('bNumberformatNumber');
@@ -193,8 +146,8 @@ angular.module('app').controller('CellForamtModalController', [
             $scope.status.format.number = numberFormatFilter(NUMBER_FORMAT.number, status.precision, status.thousandth);
         });
 
-        $scope.$watchGroup(['status.precision', 'status.currencySymbol'], function () {
-            $scope.status.format.currency = currencyFormatFilter(NUMBER_FORMAT.currency, status.precision, $scope.config.currency[status.currencySymbol]);
+        $scope.$watchGroup(['status.precision', 'status.currency'], function () {
+            $scope.status.format.currency = currencyFormatFilter(NUMBER_FORMAT.currency, status.precision, CURRENCY[status.currency].value);
         });
 
         /* ---------- 监听通知消息 --------- */

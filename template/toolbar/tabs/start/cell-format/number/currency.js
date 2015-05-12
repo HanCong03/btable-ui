@@ -5,8 +5,8 @@ return '<div unselectable="on" class="b-numberformat-tabs-content b-column">\n' 
 '</label>\n' +
 '<label unselectable="on">\n' +
 '货币符号(国家/地区)：\n' +
-'<select unselectable="on" ng-model="status.currencySymbol">\n' +
-'<option unselectable="on" ng-repeat="symbol in config.currency" value="{{$index}}">{{symbol}}</option>\n' +
+'<select unselectable="on" ng-model="status.currency">\n' +
+'<option unselectable="on" ng-repeat="symbol in currencyList" value="{{$index}}">{{symbol.text}}</option>\n' +
 '</select>\n' +
 '</label>\n' +
 '<label unselectable="on" class="b-column b-numberformat-preview">\n' +

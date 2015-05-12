@@ -11,7 +11,7 @@ return '<div unselectable="on" class="b-numberformat-box">\n' +
 '<div unselectable="on">\n' +
 '<label unselectable="on" for="modalHAlign">垂直对齐：</label>\n' +
 '<select unselectable="on" ng-model="status.vAlignSelected">\n' +
-'<option unselectable="on" ng-repeat="align in varticalAlign" ng-selected="{{status.vAlignSelected === $index;}}" value="{{$index}}">{{align.text}}</option>\n' +
+'<option unselectable="on" ng-repeat="align in verticalAlign" ng-selected="{{status.vAlignSelected === $index;}}" value="{{$index}}">{{align.text}}</option>\n' +
 '</select>\n' +
 '</div>\n' +
 '</fieldset>\n' +

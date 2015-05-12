@@ -4,8 +4,8 @@
     </label>
     <label>
         货币符号(国家/地区)：
-        <select ng-model="status.currencySymbol">
-            <option ng-repeat="symbol in config.currency" value="{{$index}}">{{symbol}}</option>
+        <select ng-model="status.currency">
+            <option ng-repeat="symbol in currencyList" value="{{$index}}">{{symbol.text}}</option>
         </select>
     </label>
     <label class="b-column b-numberformat-preview">
