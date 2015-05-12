@@ -1,30 +1,30 @@
 <div class="b-numberformat-box">
     <label>分类：</label>
     <tabset vertical="true" class="b-numberformat-tabs b-row">
-        <tab heading="常规">常规单元格格式不包含任何特定的数字格式。</tab>
-        <tab heading="数值">
+        <tab heading="常规" active="status.formatSelected[0]">常规单元格格式不包含任何特定的数字格式。</tab>
+        <tab heading="数值" active="status.formatSelected[1]">
             <ng-include b-include-replace src="'template/toolbar/tabs/start/cell-format/number/numerical.html'"></ng-include>
         </tab>
-        <tab heading="货币">
+        <tab heading="货币" active="status.formatSelected[2]">
             <ng-include b-include-replace src="'template/toolbar/tabs/start/cell-format/number/currency.html'"></ng-include>
         </tab>
-        <tab heading="会计专用">常规单元格格式不包含任何特定的数字格式。</tab>
-        <tab heading="日期">
+        <tab heading="会计专用" active="status.formatSelected[3]">常规单元格格式不包含任何特定的数字格式。</tab>
+        <tab heading="日期" active="status.formatSelected[4]">
             <ng-include b-include-replace src="'template/toolbar/tabs/start/cell-format/number/date.html'"></ng-include>
         </tab>
-        <tab heading="时间">
+        <tab heading="时间" active="status.formatSelected[5]">
             <ng-include b-include-replace src="'template/toolbar/tabs/start/cell-format/number/time.html'"></ng-include>
         </tab>
-        <tab heading="百分比">
+        <tab heading="百分比" active="status.formatSelected[6]">
             <ng-include b-include-replace src="'template/toolbar/tabs/start/cell-format/number/percentage.html'"></ng-include>
         </tab>
-        <tab heading="分数">
+        <tab heading="分数" active="status.formatSelected[7]">
             <ng-include b-include-replace src="'template/toolbar/tabs/start/cell-format/number/fraction.html'"></ng-include>
         </tab>
-        <tab heading="科学计数法">
+        <tab heading="科学计数法" active="status.formatSelected[8]">
             <ng-include b-include-replace src="'template/toolbar/tabs/start/cell-format/number/scientific.html'"></ng-include>
         </tab>
-        <tab heading="文本">
+        <tab heading="文本" active="status.formatSelected[9]">
             <ng-include b-include-replace src="'template/toolbar/tabs/start/cell-format/number/text.html'"></ng-include>
         </tab>
     </tabset>

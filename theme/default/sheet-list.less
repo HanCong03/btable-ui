@@ -1,0 +1,145 @@
+@import "var";
+
+.b-sheet-list {
+  padding: 0 10px;
+  height: 41px;
+  margin-top: -1px;
+
+  .b-sl-scrollbtn-wrap {
+    width: 80px;
+    margin-left: 30px;
+    justify-content: space-around;
+
+    .b-arrow-icon {
+      border-width: 5px;
+    }
+
+    /* ---- 滚动控制按钮 ---- */
+    .b-sl-scrollbtn {
+      cursor: default;
+      border: none;
+      background: none;
+
+      &.b-disabled {
+        .b-arrow-left {
+          border-right-color: #cfcfcf!important;
+        }
+
+        .b-arrow-right {
+          border-left-color: #cfcfcf!important;
+        }
+      }
+
+      &:HOVER {
+        .b-arrow-left {
+          border-right-color: @green-color;
+        }
+
+        .b-arrow-right {
+          border-left-color: @green-color;
+        }
+      }
+    }
+  }
+
+  .b-sl-sheets{
+    /* ---- more按钮 ----  */
+    .b-sl-more-button {
+      width: 50px;
+      border: none;
+      background: none;
+
+      &.b-disabled {
+        opacity: 0;
+      }
+
+      &:HOVER {
+        color: @green-color;
+      }
+    }
+
+    /* --- add 按钮 --- */
+    .b-sl-add-btn {
+      cursor: default;
+      width: 16px;
+      height: 16px;
+      border: 1px solid #797979;
+      color: #797979;
+      border-radius: 16px;
+      font: 14px/14px Arial, sans-serif;
+      text-align: center;
+      margin-left: 50px;
+
+      &:HOVER {
+        color: @green-color;
+        border-color: @green-color;
+      }
+    }
+
+    /* --- sheet list ---- */
+    .b-sl-list-wrap {
+      padding-left: 1px;
+      max-width: 800px;
+      overflow: hidden;
+
+      .b-sl-list {
+        transform: translate(0, 0);
+        width: 100000px;
+        font-size: 14px;
+        display: flex;
+        justify-content: flex-start;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        >li {
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          overflow: hidden;
+          margin-left: -1px;
+          cursor: default;
+
+          &:last-child {
+            .b-sl-item-label {
+              border-right: 1px solid #ccc;
+            }
+          }
+
+          &::before {
+            content: "";
+            display: block;
+            height: 5px;
+            background: transparent;
+          }
+
+          .b-sl-item-label {
+            border-left: 1px solid #ccc;
+            padding: 0 20px 5px 20px;
+          }
+
+          &.b-active {
+            background: #ffffff;
+            color: @green-color;
+
+            &::before {
+              content: "";
+              display: block;
+              height: 5px;
+              background: transparent;
+              border: 1px solid #ccc;
+              border-width: 0 1px;
+            }
+
+            &::after {
+              content: "";
+              display: block;
+              height: 2px;
+              background: @green-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -274,7 +274,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   $templateCache.put('template/toolbar/tabs/start/cell-format/number/currency.html',
     "<div class=\"b-numberformat-tabs-content b-column\">\n" +
     "    <label>\n" +
-    "        小数位数：<input type=\"number\" value=\"2\" min=\"0\" max=\"30\">\n" +
+    "        小数位数：<input type=\"number\" ng-model=\"status.precision\" min=\"0\" max=\"30\">\n" +
     "    </label>\n" +
     "    <label>\n" +
     "        货币符号(国家/地区)：\n" +
@@ -285,7 +285,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <label class=\"b-column b-numberformat-preview\">\n" +
     "        负数：\n" +
     "        <ul class=\"b-cellformat-list\">\n" +
-    "            <li ng-repeat=\"format in numberformatValues[1]\" style=\"{{format.style}}\" ng-class=\"{'b-nubmerformat-preview-active': status.currencySelected === $index}\" ng-click=\"status.currencySelected=$index;\">{{format.text | bCurrency:config.currency[status.currencySymbol]}}</li>\n" +
+    "            <li ng-repeat=\"format in status.format.currency\" ng-style=\"{'color': format.color}\" ng-class=\"{'b-nubmerformat-preview-active': status.currencySelected === $index}\" ng-click=\"status.currencySelected=$index;\">{{format.text}}</li>\n" +
     "        </ul>\n" +
     "    </label>\n" +
     "    <div class=\"b-numberformat-desc\">\n" +
@@ -325,30 +325,30 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "<div class=\"b-numberformat-box\">\n" +
     "    <label>分类：</label>\n" +
     "    <tabset vertical=\"true\" class=\"b-numberformat-tabs b-row\">\n" +
-    "        <tab heading=\"常规\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
-    "        <tab heading=\"数值\">\n" +
+    "        <tab heading=\"常规\" active=\"status.formatSelected[0]\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
+    "        <tab heading=\"数值\" active=\"status.formatSelected[1]\">\n" +
     "            <ng-include b-include-replace src=\"'template/toolbar/tabs/start/cell-format/number/numerical.html'\"></ng-include>\n" +
     "        </tab>\n" +
-    "        <tab heading=\"货币\">\n" +
+    "        <tab heading=\"货币\" active=\"status.formatSelected[2]\">\n" +
     "            <ng-include b-include-replace src=\"'template/toolbar/tabs/start/cell-format/number/currency.html'\"></ng-include>\n" +
     "        </tab>\n" +
-    "        <tab heading=\"会计专用\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
-    "        <tab heading=\"日期\">\n" +
+    "        <tab heading=\"会计专用\" active=\"status.formatSelected[3]\">常规单元格格式不包含任何特定的数字格式。</tab>\n" +
+    "        <tab heading=\"日期\" active=\"status.formatSelected[4]\">\n" +
     "            <ng-include b-include-replace src=\"'template/toolbar/tabs/start/cell-format/number/date.html'\"></ng-include>\n" +
     "        </tab>\n" +
-    "        <tab heading=\"时间\">\n" +
+    "        <tab heading=\"时间\" active=\"status.formatSelected[5]\">\n" +
     "            <ng-include b-include-replace src=\"'template/toolbar/tabs/start/cell-format/number/time.html'\"></ng-include>\n" +
     "        </tab>\n" +
-    "        <tab heading=\"百分比\">\n" +
+    "        <tab heading=\"百分比\" active=\"status.formatSelected[6]\">\n" +
     "            <ng-include b-include-replace src=\"'template/toolbar/tabs/start/cell-format/number/percentage.html'\"></ng-include>\n" +
     "        </tab>\n" +
-    "        <tab heading=\"分数\">\n" +
+    "        <tab heading=\"分数\" active=\"status.formatSelected[7]\">\n" +
     "            <ng-include b-include-replace src=\"'template/toolbar/tabs/start/cell-format/number/fraction.html'\"></ng-include>\n" +
     "        </tab>\n" +
-    "        <tab heading=\"科学计数法\">\n" +
+    "        <tab heading=\"科学计数法\" active=\"status.formatSelected[8]\">\n" +
     "            <ng-include b-include-replace src=\"'template/toolbar/tabs/start/cell-format/number/scientific.html'\"></ng-include>\n" +
     "        </tab>\n" +
-    "        <tab heading=\"文本\">\n" +
+    "        <tab heading=\"文本\" active=\"status.formatSelected[9]\">\n" +
     "            <ng-include b-include-replace src=\"'template/toolbar/tabs/start/cell-format/number/text.html'\"></ng-include>\n" +
     "        </tab>\n" +
     "    </tabset>\n" +
@@ -359,7 +359,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   $templateCache.put('template/toolbar/tabs/start/cell-format/number/numerical.html',
     "<div class=\"b-numberformat-tabs-content b-column\">\n" +
     "    <label>\n" +
-    "        小数位数：<input type=\"number\" value=\"2\" min=\"0\" max=\"30\">\n" +
+    "        小数位数：<input type=\"number\" ng-model=\"status.precision\" min=\"0\" max=\"30\">\n" +
     "    </label>\n" +
     "    <label class=\"i-checks\">\n" +
     "        <input type=\"checkbox\" ng-model=\"status.thousandth\"><i></i> 使用千分位分隔符\n" +
@@ -367,7 +367,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <label class=\"b-column b-numberformat-preview\">\n" +
     "        负数：\n" +
     "        <ul class=\"b-cellformat-list\">\n" +
-    "            <li ng-repeat=\"format in numberformatValues[0]\" style=\"{{format.style}}\" ng-class=\"{'b-nubmerformat-preview-active': status.numericalSelected === $index}\" ng-click=\"status.numericalSelected=$index;\">{{format.text}}</li>\n" +
+    "            <li ng-repeat=\"format in status.format.number\" ng-style=\"{'color': format.color}\" ng-class=\"{'b-nubmerformat-preview-active': status.numericalSelected === $index}\" ng-click=\"status.numericalSelected=$index;\">{{format.text}}</li>\n" +
     "        </ul>\n" +
     "    </label>\n" +
     "    <div class=\"b-numberformat-desc\">\n" +
@@ -380,7 +380,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   $templateCache.put('template/toolbar/tabs/start/cell-format/number/percentage.html',
     "<div class=\"b-numberformat-tabs-content b-column\">\n" +
     "    <label>\n" +
-    "        小数位数：<input type=\"number\" value=\"2\" min=\"0\" max=\"30\">\n" +
+    "        小数位数：<input type=\"number\" ng-model=\"status.precision\" min=\"0\" max=\"30\">\n" +
     "    </label>\n" +
     "</div>"
   );
@@ -389,7 +389,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   $templateCache.put('template/toolbar/tabs/start/cell-format/number/scientific.html',
     "<div class=\"b-numberformat-tabs-content b-column\">\n" +
     "    <label>\n" +
-    "        小数位数：<input type=\"number\" value=\"2\" min=\"0\" max=\"30\">\n" +
+    "        小数位数：<input type=\"number\" ng-model=\"status.precision\" min=\"0\" max=\"30\">\n" +
     "    </label>\n" +
     "</div>"
   );
@@ -455,7 +455,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        <span class=\"b-icon\"></span>\n" +
     "    </button>\n" +
     "\n" +
-    "    <div>\n" +
+    "    <div class=\"b-group-label\">\n" +
     "        {{'toolbar.grouplabel.alignments' | translate}}\n" +
     "    </div>\n" +
     "</div>"
@@ -467,7 +467,8 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"b-row\">\n" +
     "        <b-cellstyles onselect=\"handler.selectCellstyle(id, isBuiltin);\"></b-cellstyles>\n" +
     "    </div>\n" +
-    "    <div>\n" +
+    "\n" +
+    "    <div class=\"b-group-label\">\n" +
     "        {{'toolbar.grouplabel.style' | translate}}\n" +
     "    </div>\n" +
     "</div>"
@@ -514,7 +515,8 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            </a>\n" +
     "        </div>\n" +
     "    </div>\n" +
-    "    <div>\n" +
+    "\n" +
+    "    <div class=\"b-group-label\">\n" +
     "        {{'toolbar.grouplabel.clipboard' | translate}}\n" +
     "    </div>\n" +
     "</div>"
@@ -603,7 +605,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        <span class=\"b-icon\"></span>\n" +
     "    </button>\n" +
     "\n" +
-    "    <div>\n" +
+    "    <div class=\"b-group-label\">\n" +
     "        {{'toolbar.grouplabel.fonts' | translate}}\n" +
     "    </div>\n" +
     "</div>"
@@ -633,7 +635,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        <span class=\"b-icon\"></span>\n" +
     "    </button>\n" +
     "\n" +
-    "    <div>\n" +
+    "    <div class=\"b-group-label\">\n" +
     "        {{'toolbar.grouplabel.number' | translate}}\n" +
     "    </div>\n" +
     "</div>"
@@ -654,7 +656,8 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            </a>\n" +
     "        </div>\n" +
     "    </div>\n" +
-    "    <div>\n" +
+    "\n" +
+    "    <div class=\"b-group-label\">\n" +
     "        {{'toolbar.grouplabel.undo' | translate}}\n" +
     "    </div>\n" +
     "</div>"
@@ -681,22 +684,22 @@ angular.module('app').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('template/toolbar/tabs/start/index.html',
     "<div class=\"toolbar-tabs-content\">\n" +
-    "    <ng-include class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-undo.html'\"></ng-include>\n" +
+    "    <ng-include b-include-replace class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-undo.html'\"></ng-include>\n" +
     "    <div class=\"b-toolbar-delimiter\"></div>\n" +
     "\n" +
-    "    <ng-include class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-clipboard.html'\"></ng-include>\n" +
+    "    <ng-include b-include-replace class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-clipboard.html'\"></ng-include>\n" +
     "    <div class=\"b-toolbar-delimiter\"></div>\n" +
     "\n" +
-    "    <ng-include class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-fonts.html'\"></ng-include>\n" +
+    "    <ng-include b-include-replace class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-fonts.html'\"></ng-include>\n" +
     "    <div class=\"b-toolbar-delimiter\"></div>\n" +
     "\n" +
-    "    <ng-include class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-alignments.html'\"></ng-include>\n" +
+    "    <ng-include b-include-replace class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-alignments.html'\"></ng-include>\n" +
     "    <div class=\"b-toolbar-delimiter\"></div>\n" +
     "\n" +
-    "    <ng-include class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-format.html'\"></ng-include>\n" +
+    "    <ng-include b-include-replace class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-format.html'\"></ng-include>\n" +
     "    <div class=\"b-toolbar-delimiter\"></div>\n" +
     "\n" +
-    "    <ng-include class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-cellstyles.html'\"></ng-include>\n" +
+    "    <ng-include b-include-replace class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-cellstyles.html'\"></ng-include>\n" +
     "    <div class=\"b-toolbar-delimiter\"></div>\n" +
     "</div>"
   );
@@ -844,6 +847,57 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                <a style='font-family: {{font}};'>{{font}}</a>\n" +
     "            </li>\n" +
     "        </ul>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/widget/sheetlist.html',
+    "<div class=\"b-row\">\n" +
+    "    <div class=\"b-sl-scrollbtn-wrap b-row\">\n" +
+    "        <button class=\"b-sl-scrollbtn\"\n" +
+    "                ng-click=\"moveRight();\"\n" +
+    "                ng-class=\"{'b-disabled': !status.leftMore}\"\n" +
+    "                ng-disabled=\"!status.leftMore\">\n" +
+    "            <span class=\"b-arrow-icon b-arrow-left\"></span>\n" +
+    "        </button>\n" +
+    "\n" +
+    "        <button class=\"b-sl-scrollbtn\"\n" +
+    "                ng-class=\"{'b-disabled': !status.rightMore}\"\n" +
+    "                ng-click=\"moveLeft();\"\n" +
+    "                ng-disabled=\"!status.rightMore\">\n" +
+    "            <span class=\"b-arrow-icon b-arrow-right\"></span>\n" +
+    "        </button>\n" +
+    "    </div>\n" +
+    "    <div class=\"b-sl-sheets b-row\">\n" +
+    "        <button class=\"b-sl-more-button\"\n" +
+    "                ng-click=\"moveRight();\"\n" +
+    "                ng-class=\"{'b-disabled': !status.leftMore}\"\n" +
+    "                ng-disabled=\"!status.leftMore\">\n" +
+    "            ...\n" +
+    "        </button>\n" +
+    "\n" +
+    "        <div class=\"b-sl-list-wrap\">\n" +
+    "            <ul class=\"b-sl-list\"\n" +
+    "                style=\"transform: translateX({{status.translate}}px);\">\n" +
+    "                <li ng-repeat=\"sheet in sheets\"\n" +
+    "                    ng-click=\"itemChange($index);\"\n" +
+    "                    ng-class=\"{'b-active': $index === status.selected}\">\n" +
+    "\n" +
+    "                    <span class=\"b-sl-item-label\">{{sheet}}</span>\n" +
+    "\n" +
+    "                </li>\n" +
+    "            </ul>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <button class=\"b-sl-more-button\"\n" +
+    "                ng-class=\"{'b-disabled': !status.rightMore}\"\n" +
+    "                ng-click=\"moveLeft();\"\n" +
+    "                ng-disabled=\"!status.rightMore\">\n" +
+    "            ...\n" +
+    "        </button>\n" +
+    "\n" +
+    "        <div class=\"b-sl-add-btn\">+</div>\n" +
     "    </div>\n" +
     "</div>"
   );

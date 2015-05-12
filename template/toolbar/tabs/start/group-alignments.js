@@ -15,7 +15,7 @@ return '<div unselectable="on" class="toolbar-groups b-toolbar-fonts-groups">\n'
 '<button unselectable="on" type="button" class="btn b-btn b-open-cellformat-btn" ng-click="handler.openCellFormat(\'alignment\')">\n' +
 '<span unselectable="on" class="b-icon"></span>\n' +
 '</button>\n' +
-'<div unselectable="on">\n' +
+'<div unselectable="on" class="b-group-label">\n' +
 '{{\'toolbar.grouplabel.alignments\' | translate}}\n' +
 '</div>\n' +
 '</div>\n';

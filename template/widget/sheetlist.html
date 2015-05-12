@@ -1,0 +1,47 @@
+<div class="b-row">
+    <div class="b-sl-scrollbtn-wrap b-row">
+        <button class="b-sl-scrollbtn"
+                ng-click="moveRight();"
+                ng-class="{'b-disabled': !status.leftMore}"
+                ng-disabled="!status.leftMore">
+            <span class="b-arrow-icon b-arrow-left"></span>
+        </button>
+
+        <button class="b-sl-scrollbtn"
+                ng-class="{'b-disabled': !status.rightMore}"
+                ng-click="moveLeft();"
+                ng-disabled="!status.rightMore">
+            <span class="b-arrow-icon b-arrow-right"></span>
+        </button>
+    </div>
+    <div class="b-sl-sheets b-row">
+        <button class="b-sl-more-button"
+                ng-click="moveRight();"
+                ng-class="{'b-disabled': !status.leftMore}"
+                ng-disabled="!status.leftMore">
+            ...
+        </button>
+
+        <div class="b-sl-list-wrap">
+            <ul class="b-sl-list"
+                style="transform: translateX({{status.translate}}px);">
+                <li ng-repeat="sheet in sheets"
+                    ng-click="itemChange($index);"
+                    ng-class="{'b-active': $index === status.selected}">
+
+                    <span class="b-sl-item-label">{{sheet}}</span>
+
+                </li>
+            </ul>
+        </div>
+
+        <button class="b-sl-more-button"
+                ng-class="{'b-disabled': !status.rightMore}"
+                ng-click="moveLeft();"
+                ng-disabled="!status.rightMore">
+            ...
+        </button>
+
+        <div class="b-sl-add-btn">+</div>
+    </div>
+</div>

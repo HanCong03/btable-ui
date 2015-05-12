@@ -2,7 +2,13 @@ var _zhCN = {
     "toolbar": {
         "tabs": {
             "file": "文件",
-            "start": "开始"
+            "start": "开始",
+            "insert": "插入",
+            "layout": "页面布局",
+            "formula": "公式",
+            "data": "数据",
+            "review": "审阅",
+            "view": "视图"
         },
         "grouplabel" : {
             "undo": "撤销",

@@ -34,7 +34,7 @@ return '<div unselectable="on" class="toolbar-groups b-toolbar-clipboard-groups"
 '</a>\n' +
 '</div>\n' +
 '</div>\n' +
-'<div unselectable="on">\n' +
+'<div unselectable="on" class="b-group-label">\n' +
 '{{\'toolbar.grouplabel.clipboard\' | translate}}\n' +
 '</div>\n' +
 '</div>\n';

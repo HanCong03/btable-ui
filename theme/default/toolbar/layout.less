@@ -1,6 +1,48 @@
+@green-color: #217346;
+.file-tab-style() {
+  color: #ffffff;
+  border-color: @green-color;
+  background: @green-color;
+}
+
 .b-toolbar {
   width: 100%;
-  height: 100%;
+  height: 141px;
+  border-bottom: 1px solid #d5d5d5;
+
+  .b-toolbar-file-tab {
+    &:HOVER {
+      .file-tab-style();
+      background: none;
+
+      a {
+        .file-tab-style();
+      }
+    }
+
+    a {
+      .file-tab-style();
+    }
+  }
+
+  .b-toolbar-tabs-head {
+    background: #ffffff;
+  }
+
+  .b-toolbar-tabs-label {
+    font-size: 15px;
+    margin-right: 3px;
+
+    &.active a {
+      color: @green-color;
+
+      &:HOVER {
+        color: @green-color;
+      }
+    }
+  }
+
+  color: #000000;
 
   * {
     box-sizing: border-box;

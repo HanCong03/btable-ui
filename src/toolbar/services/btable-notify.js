@@ -40,6 +40,10 @@ angular.module('app').factory('btableNotify', [function () {
 
         on: function (cb) {
             callbacks.push(cb);
+        },
+
+        sheetchange: function () {
+
         }
     };
 

@@ -1,6 +1,6 @@
 <div class="b-numberformat-tabs-content b-column">
     <label>
-        小数位数：<input type="number" value="2" min="0" max="30">
+        小数位数：<input type="number" ng-model="status.precision" min="0" max="30">
     </label>
     <label>
         货币符号(国家/地区)：
@@ -11,7 +11,7 @@
     <label class="b-column b-numberformat-preview">
         负数：
         <ul class="b-cellformat-list">
-            <li ng-repeat="format in numberformatValues[1]" style="{{format.style}}" ng-class="{'b-nubmerformat-preview-active': status.currencySelected === $index}" ng-click="status.currencySelected=$index;">{{format.text | bCurrency:config.currency[status.currencySymbol]}}</li>
+            <li ng-repeat="format in status.format.currency" ng-style="{'color': format.color}" ng-class="{'b-nubmerformat-preview-active': status.currencySelected === $index}" ng-click="status.currencySelected=$index;">{{format.text}}</li>
         </ul>
     </label>
     <div class="b-numberformat-desc">

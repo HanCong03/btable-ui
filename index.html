@@ -23,6 +23,8 @@
     <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
     <script src="bower_components/btable/dist/btable.all.js"></script>
 
+    <script src="src/const.js"></script>
+
     <script src="src/main.js"></script>
     <script src="src/config.js"></script>
     <script src="src/template.js"></script>
@@ -40,13 +42,15 @@
     <script src="src/toolbar/directives/b-tooltip.js"></script>
     <script src="src/toolbar/directives/b-cellstyles.js"></script>
     <script src="src/toolbar/directives/btable.js"></script>
-    <!-- directives end -->
 
+    <script src="src/toolbar/directives/b-sheetlist.js"></script>
+    <!-- directives end -->
 
     <!-- services start -->
     <script src="src/toolbar/services/toolbar-notify.js"></script>
     <script src="src/toolbar/services/cellformat-modal-notify.js"></script>
     <script src="src/toolbar/services/btable-notify.js"></script>
+    <script src="src/toolbar/services/numberformat.js"></script>
     <!-- services end -->
 
     <!-- controllers start -->
@@ -56,6 +60,9 @@
 
     <!-- filter start -->
     <script src="src/toolbar/filter/b-currency.js"></script>
+
+    <script src="src/toolbar/filter/numberformat/number.js"></script>
+    <script src="src/toolbar/filter/numberformat/currency.js"></script>
     <!-- filter end -->
 
     <title>BTable 演示项目</title>
@@ -64,17 +71,34 @@
 <div class="header">
     <div class="b-toolbar" ng-controller="ToolbarBasicController">
         <tabset class="b-toolbar-tabs-head">
-            <tab class="b-toolbar-tabs-label" heading="{{'toolbar.tabs.file' | translate}}"></tab>
+            <tab class="b-toolbar-tabs-label b-toolbar-file-tab" heading="{{'toolbar.tabs.file' | translate}}"></tab>
             <tab class="b-toolbar-tabs-label" heading="{{'toolbar.tabs.start' | translate}}" active="true">
-                <ng-include src="'template/toolbar/tabs/start/index.html'"></ng-include>
+                <ng-include b-include-replace src="'template/toolbar/tabs/start/index.html'"></ng-include>
             </tab>
+            <tab class="b-toolbar-tabs-label" heading="{{'toolbar.tabs.insert' | translate}}"></tab>
+            <tab class="b-toolbar-tabs-label" heading="{{'toolbar.tabs.layout' | translate}}"></tab>
+            <tab class="b-toolbar-tabs-label" heading="{{'toolbar.tabs.formula' | translate}}"></tab>
+            <tab class="b-toolbar-tabs-label" heading="{{'toolbar.tabs.data' | translate}}"></tab>
+            <tab class="b-toolbar-tabs-label" heading="{{'toolbar.tabs.review' | translate}}"></tab>
+            <tab class="b-toolbar-tabs-label" heading="{{'toolbar.tabs.view' | translate}}"></tab>
         </tabset>
+    </div>
+    <div class="b-row b-input-area">
+        <div class="b-btable-ctrl-btns"></div>
+        <input id="btableInput" class="btable-input">
     </div>
 </div>
 <div class="body">
     <div btable class="btable-container"></div>
 </div>
-<div class="footer"></div>
+<div class="footer">
+    <div class="b-sheet-list">
+        <div b-sheetlist></div>
+    </div>
+    <div class="b-status-bar">
+        就绪
+    </div>
+</div>
 <ng-include src="'template/dialogs/cell-format.html '"></ng-include>
 </body>
 </html>

@@ -1,7 +1,7 @@
 define( function () {
 return '<div unselectable="on" class="b-numberformat-tabs-content b-column">\n' +
 '<label unselectable="on">\n' +
-'小数位数：<input unselectable="on" type="number" value="2" min="0" max="30">\n' +
+'小数位数：<input unselectable="on" type="number" ng-model="status.precision" min="0" max="30">\n' +
 '</label>\n' +
 '<label unselectable="on">\n' +
 '货币符号(国家/地区)：\n' +
@@ -12,7 +12,7 @@ return '<div unselectable="on" class="b-numberformat-tabs-content b-column">\n' 
 '<label unselectable="on" class="b-column b-numberformat-preview">\n' +
 '负数：\n' +
 '<ul unselectable="on" class="b-cellformat-list">\n' +
-'<li unselectable="on" ng-repeat="format in numberformatValues[1]" style="{{format.style}}" ng-class="{\'b-nubmerformat-preview-active\': status.currencySelected === $index}" ng-click="status.currencySelected=$index;">{{format.text | bCurrency:config.currency[status.currencySymbol]}}</li>\n' +
+'<li unselectable="on" ng-repeat="format in status.format.currency" ng-style="{\'color\': format.color}" ng-class="{\'b-nubmerformat-preview-active\': status.currencySelected === $index}" ng-click="status.currencySelected=$index;">{{format.text}}</li>\n' +
 '</ul>\n' +
 '</label>\n' +
 '<div unselectable="on" class="b-numberformat-desc">\n' +

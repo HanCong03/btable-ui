@@ -1,3 +1,14 @@
+.footer {
+  background: #f6f6f6;
+}
+.footer .b-status-bar {
+  padding: 0 10px;
+  height: 30px;
+  line-height: 30px;
+  color: #ffffff;
+  background: #217346;
+}
+
 .modal {
   display: flex;
 }
@@ -34,6 +45,71 @@
   display: flex;
   flex-direction: column;
 }
+/* --- arrow start --- */
+.b-arrow-up {
+  display: block;
+  margin-top: -3px;
+  width: 0;
+  height: 0;
+  border: 3px solid transparent;
+  border-bottom-color: black;
+}
+.b-arrow-down {
+  display: block;
+  margin-top: 3px;
+  width: 0;
+  height: 0;
+  border: 3px solid transparent;
+  border-top-color: black;
+}
+.b-arrow-left {
+  display: block;
+  margin-left: -3px;
+  width: 0;
+  height: 0;
+  border: 3px solid transparent;
+  border-right-color: black;
+}
+.b-arrow-right {
+  display: block;
+  margin-right: -3px;
+  width: 0;
+  height: 0;
+  border: 3px solid transparent;
+  border-left-color: black;
+}
+.b-arrow-open {
+  display: block;
+  margin-top: 3px;
+  width: 0;
+  height: 0;
+  border: 3px solid transparent;
+  border-top-color: black;
+}
+.b-arrow-open::before {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 1px;
+  background: black;
+  transform: translate(-4px, -6px);
+}
+/* --- arrow end --- */
+
+.header .b-input-area {
+  align-items: flex-start;
+  padding: 10px;
+}
+.header .b-input-area .b-btable-ctrl-btns {
+  width: 300px;
+  height: 25px;
+  margin-right: 5px;
+}
+.header .b-input-area .btable-input {
+  height: 25px;
+  flex: 1;
+  overflow: hidden;
+}
 
 html,
 body {
@@ -45,16 +121,16 @@ body {
 }
 .header {
   width: 100%;
-  height: 140px;
+  height: 195px;
+  background: #ffffff;
+  border-bottom: 1px solid #ccc;
 }
 .body {
   position: absolute;
-  top: 140px;
-  bottom: 50px;
+  top: 195px;
+  bottom: 70px;
   left: 0;
   right: 0;
-  border: 1px solid #ccc;
-  border-width: 1px 0;
 }
 .body .btable-container {
   width: 100%;
@@ -62,21 +138,132 @@ body {
 }
 .footer {
   width: 100%;
-  height: 50px;
+  height: 70px;
   position: absolute;
   left: 0;
   bottom: 0;
+  border-top: 1px solid #ccc;
+}
+.dropdown-menu {
+  overflow-x: hidden!important;
+  overflow-y: auto!important;
 }
 
-.b-toolbar {
-  color: #000000;
+.b-sheet-list {
+  padding: 0 10px;
+  height: 41px;
+  margin-top: -1px;
 }
-.b-toolbar .b-toolbar-tabs-head {
-  background: #aaa;
+.b-sheet-list .b-sl-scrollbtn-wrap {
+  width: 80px;
+  margin-left: 30px;
+  justify-content: space-around;
+  /* ---- 滚动控制按钮 ---- */
 }
-.b-toolbar .b-toolbar-tabs-label a {
-  border: none!important;
-  font-size: 13px;
+.b-sheet-list .b-sl-scrollbtn-wrap .b-arrow-icon {
+  border-width: 5px;
+}
+.b-sheet-list .b-sl-scrollbtn-wrap .b-sl-scrollbtn {
+  cursor: default;
+  border: none;
+  background: none;
+}
+.b-sheet-list .b-sl-scrollbtn-wrap .b-sl-scrollbtn.b-disabled .b-arrow-left {
+  border-right-color: #cfcfcf!important;
+}
+.b-sheet-list .b-sl-scrollbtn-wrap .b-sl-scrollbtn.b-disabled .b-arrow-right {
+  border-left-color: #cfcfcf!important;
+}
+.b-sheet-list .b-sl-scrollbtn-wrap .b-sl-scrollbtn:HOVER .b-arrow-left {
+  border-right-color: #217346;
+}
+.b-sheet-list .b-sl-scrollbtn-wrap .b-sl-scrollbtn:HOVER .b-arrow-right {
+  border-left-color: #217346;
+}
+.b-sheet-list .b-sl-sheets {
+  /* ---- more按钮 ----  */
+  /* --- add 按钮 --- */
+  /* --- sheet list ---- */
+}
+.b-sheet-list .b-sl-sheets .b-sl-more-button {
+  width: 50px;
+  border: none;
+  background: none;
+}
+.b-sheet-list .b-sl-sheets .b-sl-more-button.b-disabled {
+  opacity: 0;
+}
+.b-sheet-list .b-sl-sheets .b-sl-more-button:HOVER {
+  color: #217346;
+}
+.b-sheet-list .b-sl-sheets .b-sl-add-btn {
+  cursor: default;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #797979;
+  color: #797979;
+  border-radius: 16px;
+  font: 14px/14px Arial, sans-serif;
+  text-align: center;
+  margin-left: 50px;
+}
+.b-sheet-list .b-sl-sheets .b-sl-add-btn:HOVER {
+  color: #217346;
+  border-color: #217346;
+}
+.b-sheet-list .b-sl-sheets .b-sl-list-wrap {
+  padding-left: 1px;
+  max-width: 800px;
+  overflow: hidden;
+}
+.b-sheet-list .b-sl-sheets .b-sl-list-wrap .b-sl-list {
+  transform: translate(0, 0);
+  width: 100000px;
+  font-size: 14px;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.b-sheet-list .b-sl-sheets .b-sl-list-wrap .b-sl-list > li {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  margin-left: -1px;
+  cursor: default;
+}
+.b-sheet-list .b-sl-sheets .b-sl-list-wrap .b-sl-list > li:last-child .b-sl-item-label {
+  border-right: 1px solid #ccc;
+}
+.b-sheet-list .b-sl-sheets .b-sl-list-wrap .b-sl-list > li::before {
+  content: "";
+  display: block;
+  height: 5px;
+  background: transparent;
+}
+.b-sheet-list .b-sl-sheets .b-sl-list-wrap .b-sl-list > li .b-sl-item-label {
+  border-left: 1px solid #ccc;
+  padding: 0 20px 5px 20px;
+}
+.b-sheet-list .b-sl-sheets .b-sl-list-wrap .b-sl-list > li.b-active {
+  background: #ffffff;
+  color: #217346;
+}
+.b-sheet-list .b-sl-sheets .b-sl-list-wrap .b-sl-list > li.b-active::before {
+  content: "";
+  display: block;
+  height: 5px;
+  background: transparent;
+  border: 1px solid #ccc;
+  border-width: 0 1px;
+}
+.b-sheet-list .b-sl-sheets .b-sl-list-wrap .b-sl-list > li.b-active::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background: #217346;
 }
 
 .b-mr5 {
@@ -213,35 +400,6 @@ body {
 }
 .b-toolbar .b-ctrl-button-group button.disabled {
   opacity: 0.4;
-}
-.b-toolbar .b-arrow-up {
-  margin-top: -3px;
-  width: 0;
-  height: 0;
-  border: 3px solid transparent;
-  border-bottom-color: black;
-}
-.b-toolbar .b-arrow-down {
-  margin-top: 3px;
-  width: 0;
-  height: 0;
-  border: 3px solid transparent;
-  border-top-color: black;
-}
-.b-toolbar .b-arrow-open {
-  margin-top: 3px;
-  width: 0;
-  height: 0;
-  border: 3px solid transparent;
-  border-top-color: black;
-}
-.b-toolbar .b-arrow-open::before {
-  content: "";
-  display: block;
-  width: 8px;
-  height: 1px;
-  background: black;
-  transform: translate(-4px, -6px);
 }
 .b-toolbar .b-drappanel-menu {
   width: 658px;
@@ -690,6 +848,9 @@ body {
 .toolbar-groups *:FOCUS {
   outline: none!important;
 }
+.toolbar-groups .b-group-label {
+  font-size: 14px;
+}
 
 .b-toolbar .b-icon {
   width: 16px;
@@ -825,7 +986,38 @@ body {
 
 .b-toolbar {
   width: 100%;
-  height: 100%;
+  height: 141px;
+  border-bottom: 1px solid #d5d5d5;
+  color: #000000;
+}
+.b-toolbar .b-toolbar-file-tab:HOVER {
+  color: #ffffff;
+  border-color: #217346;
+  background: #217346;
+  background: none;
+}
+.b-toolbar .b-toolbar-file-tab:HOVER a {
+  color: #ffffff;
+  border-color: #217346;
+  background: #217346;
+}
+.b-toolbar .b-toolbar-file-tab a {
+  color: #ffffff;
+  border-color: #217346;
+  background: #217346;
+}
+.b-toolbar .b-toolbar-tabs-head {
+  background: #ffffff;
+}
+.b-toolbar .b-toolbar-tabs-label {
+  font-size: 15px;
+  margin-right: 3px;
+}
+.b-toolbar .b-toolbar-tabs-label.active a {
+  color: #217346;
+}
+.b-toolbar .b-toolbar-tabs-label.active a:HOVER {
+  color: #217346;
 }
 .b-toolbar * {
   box-sizing: border-box;
@@ -925,3 +1117,4 @@ body {
   cursor: default;
   padding: 2px 10px;
 }
+

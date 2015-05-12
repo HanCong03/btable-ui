@@ -19,6 +19,10 @@ angular.module('app').directive('btable', ['btableNotify', function (btableNotif
                     btableNotify.emit(btable);
                 });
 
+                btable.on('sheetschange', function () {
+
+                });
+
                 btableNotify.oncommand(function (args) {
                     btable.execCommand.apply(btable, args);
                 });

@@ -1,1 +1,1 @@
-angular.module('app', ['ui.bootstrap', 'pascalprecht.translate']);
+angular.module('app', ['ui.bootstrap', 'pascalprecht.translate', 'b.const']);
