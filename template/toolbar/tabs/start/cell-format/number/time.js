@@ -5,7 +5,7 @@ return '<div unselectable="on" class="b-numberformat-tabs-content b-column">\n' 
 '</label>\n' +
 '<label unselectable="on" class="b-column b-numberformat-preview">\n' +
 '<ul unselectable="on" class="b-cellformat-list">\n' +
-'<li unselectable="on" ng-repeat="format in numberformatValues[4]" ng-class="{\'b-nubmerformat-preview-active\': status.timeSelected === $index}" ng-click="status.timeSelected=$index;">{{format.text}}</li>\n' +
+'<li unselectable="on" ng-repeat="format in status.format.time" ng-class="{\'b-nubmerformat-preview-active\': status.timeSelected === $index}" ng-click="status.timeSelected=$index;">{{format.text}}</li>\n' +
 '</ul>\n' +
 '</label>\n' +
 '<div unselectable="on" class="b-numberformat-desc">\n' +

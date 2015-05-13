@@ -138,6 +138,9 @@ angular.module('app').controller('CellForamtModalController', [
         $scope.fonts = FONT_LIST;
         $scope.currencyList = CURRENCY;
 
+        status.format.date = NUMBER_FORMAT.date;
+        status.format.time = NUMBER_FORMAT.time;
+
         /* filter */
         var numberFormatFilter = $filter('bNumberformatNumber');
         var currencyFormatFilter = $filter('bNumberformatCurrency');

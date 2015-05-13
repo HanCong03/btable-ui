@@ -1,19 +1,34 @@
 <div class="b-numberformat-tabs-content b-column">
     <label>
-        小数位数：<input type="number" ng-model="status.precision" min="0" max="30">
-    </label>
+        小数位数：
+        <input type="number"
+            ng-model="status.precision"
+            min="0"
+            max="30">
+    </label
+            >
     <label>
         货币符号(国家/地区)：
         <select ng-model="status.currency">
-            <option ng-repeat="symbol in currencyList" value="{{$index}}">{{symbol.text}}</option>
+            <option ng-repeat="symbol in currencyList"
+                    value="{{$index}}">
+                {{symbol.text}}
+            </option>
         </select>
     </label>
+
     <label class="b-column b-numberformat-preview">
         负数：
         <ul class="b-cellformat-list">
-            <li ng-repeat="format in status.format.currency" ng-style="{'color': format.color}" ng-class="{'b-nubmerformat-preview-active': status.currencySelected === $index}" ng-click="status.currencySelected=$index;">{{format.text}}</li>
+            <li ng-repeat="format in status.format.currency"
+                ng-style="{'color': format.color}"
+                ng-class="{'b-nubmerformat-preview-active': status.currencySelected === $index}"
+                ng-click="status.currencySelected=$index;">
+                {{format.text}}
+            </li>
         </ul>
     </label>
+
     <div class="b-numberformat-desc">
         数值格式用于一般数字的表示。货币和会计格式则提供货币值计算的专用格式。
     </div>

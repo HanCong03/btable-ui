@@ -774,6 +774,9 @@ body {
   border: none;
   font-weight: normal;
 }
+.b-numberformat-box .b-numberformat-tabs .nav-tabs li a {
+  padding-left: 5px;
+}
 .b-numberformat-box .b-numberformat-tabs .nav-tabs .active,
 .b-numberformat-box .b-numberformat-tabs .nav-tabs .active a {
   color: #ffffff;
@@ -793,6 +796,8 @@ body {
 }
 .b-numberformat-box .b-numberformat-tabs .b-cellformat-list {
   min-height: 200px;
+  max-height: 300px;
+  overflow: scroll;
   border: 1px solid #cfcfcf;
   padding: 2px 4px;
   margin: 0;

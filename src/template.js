@@ -311,20 +311,35 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   $templateCache.put('template/toolbar/tabs/start/cell-format/number/currency.html',
     "<div class=\"b-numberformat-tabs-content b-column\">\n" +
     "    <label>\n" +
-    "        小数位数：<input type=\"number\" ng-model=\"status.precision\" min=\"0\" max=\"30\">\n" +
-    "    </label>\n" +
+    "        小数位数：\n" +
+    "        <input type=\"number\"\n" +
+    "            ng-model=\"status.precision\"\n" +
+    "            min=\"0\"\n" +
+    "            max=\"30\">\n" +
+    "    </label\n" +
+    "            >\n" +
     "    <label>\n" +
     "        货币符号(国家/地区)：\n" +
     "        <select ng-model=\"status.currency\">\n" +
-    "            <option ng-repeat=\"symbol in currencyList\" value=\"{{$index}}\">{{symbol.text}}</option>\n" +
+    "            <option ng-repeat=\"symbol in currencyList\"\n" +
+    "                    value=\"{{$index}}\">\n" +
+    "                {{symbol.text}}\n" +
+    "            </option>\n" +
     "        </select>\n" +
     "    </label>\n" +
+    "\n" +
     "    <label class=\"b-column b-numberformat-preview\">\n" +
     "        负数：\n" +
     "        <ul class=\"b-cellformat-list\">\n" +
-    "            <li ng-repeat=\"format in status.format.currency\" ng-style=\"{'color': format.color}\" ng-class=\"{'b-nubmerformat-preview-active': status.currencySelected === $index}\" ng-click=\"status.currencySelected=$index;\">{{format.text}}</li>\n" +
+    "            <li ng-repeat=\"format in status.format.currency\"\n" +
+    "                ng-style=\"{'color': format.color}\"\n" +
+    "                ng-class=\"{'b-nubmerformat-preview-active': status.currencySelected === $index}\"\n" +
+    "                ng-click=\"status.currencySelected=$index;\">\n" +
+    "                {{format.text}}\n" +
+    "            </li>\n" +
     "        </ul>\n" +
     "    </label>\n" +
+    "\n" +
     "    <div class=\"b-numberformat-desc\">\n" +
     "        数值格式用于一般数字的表示。货币和会计格式则提供货币值计算的专用格式。\n" +
     "    </div>\n" +
@@ -339,7 +354,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    </label>\n" +
     "    <label class=\"b-column b-numberformat-preview\">\n" +
     "        <ul class=\"b-cellformat-list\">\n" +
-    "            <li ng-repeat=\"format in numberformatValues[3]\" ng-class=\"{'b-nubmerformat-preview-active': status.dateSelected === $index}\" ng-click=\"status.dateSelected=$index;\">{{format.text}}</li>\n" +
+    "            <li ng-repeat=\"format in status.format.date\" ng-class=\"{'b-nubmerformat-preview-active': status.dateSelected === $index}\" ng-click=\"status.dateSelected=$index;\">{{format.text}}</li>\n" +
     "        </ul>\n" +
     "    </label>\n" +
     "    <div class=\"b-numberformat-desc\">\n" +
@@ -448,7 +463,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    </label>\n" +
     "    <label class=\"b-column b-numberformat-preview\">\n" +
     "        <ul class=\"b-cellformat-list\">\n" +
-    "            <li ng-repeat=\"format in numberformatValues[4]\" ng-class=\"{'b-nubmerformat-preview-active': status.timeSelected === $index}\" ng-click=\"status.timeSelected=$index;\">{{format.text}}</li>\n" +
+    "            <li ng-repeat=\"format in status.format.time\" ng-class=\"{'b-nubmerformat-preview-active': status.timeSelected === $index}\" ng-click=\"status.timeSelected=$index;\">{{format.text}}</li>\n" +
     "        </ul>\n" +
     "    </label>\n" +
     "    <div class=\"b-numberformat-desc\">\n" +

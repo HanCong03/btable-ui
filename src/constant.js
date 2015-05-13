@@ -53,27 +53,190 @@ angular.module('b.const', []).constant('NUMBER_FORMAT', (function () {
             }]
         },
 
-        'currency': [{
-            code: '"%$" #,##0%p_);[Red]("%$" #,##0%p)',
-            text: '(%$ 1,234%p)',
-            color: '#ff0000'
-        }, {
-            code: '"%$" #,##0%p_);("%$" #,##0%p)',
-            text: '(%$ 1,234%p)',
-            color: ''
-        }, {
-            code: '"%$" #,##0%p;[Red]"%$" #,##0%p',
-            text: '%$ 1,234%p',
-            color: '#ff0000'
-        }, {
-            code: '"%$" #,##0%p',
-            text: '%$ 1,234%p',
-            color: ''
-        }, {
-            code: '"%$" #,##0%p;[Red]-"%$" #,##0%p',
-            text: '-%$ 1,234%p',
-            color: '#ff0000'
-        }]
+        'currency': [
+            {
+                code: '"%$"#,##0%p_);("%$"#,##0%p)',
+                text: '(%$1,234%p)',
+                color: '#ff0000'
+            }, {
+                code: '"%$"#,##0%p_);("%$"#,##0%p)',
+                text: '(%$1,234%p)',
+                color: ''
+            }, {
+                code: '"%$"#,##0%p;[Red]"%$"#,##0%p',
+                text: '%$1,234%p',
+                color: '#ff0000'
+            }, {
+                code: '"%$"#,##0%p;-"%$"#,##0%p',
+                text: '-%$1,234%p',
+                color: ''
+            }, {
+                code: '"%$"#,##0%p;[Red]-"%$"#,##0%p',
+                text: '-%$1,234%p',
+                color: '#ff0000'
+            }
+        ],
+        
+        'date': [
+            {
+                code: '[DBNum1][$-804]yyyy\'年\'m\'月\'d\'日\';@',
+                text: '二O一二年三月十四日',
+                color: ''
+            },
+            {
+                code: '[DBNum1][$-804]yyyy\'年\'m\'月\';@',
+                text: '二O一二年三月',
+                color: ''
+            },
+            {
+                code: '[DBNum1][$-804]m\'月\'d\'日\';@',
+                text: '三月十四日',
+                color: ''
+            },
+            {
+                code: 'yyyy\'年\'m\'月\'dquot;日\';@',
+                text: '2012年3月14日',
+                color: ''
+            },
+            {
+                code: 'yyyy\'年\'m\'月\';@',
+                text: '2012年3月',
+                color: ''
+            },
+            {
+                code: 'm\'月\'d\'日\';@',
+                text: '3月14日',
+                color: ''
+            },
+            {
+                code: '[$-804]aaaa;@',
+                text: '星期三',
+                color: ''
+            },
+            {
+                code: '[$-804]aaa;@',
+                text: '周三',
+                color: ''
+            },
+            {
+                code: '[$-409]yyyy/m/d h:mm AM/PM;@',
+                text: '2012/3/14 1:30 PM',
+                color: ''
+            },
+            {
+                code: 'yyyy/m/d h:mm;@',
+                text: '2012/3/14 13:30',
+                color: ''
+            },
+            {
+                code: 'yy/m/d;@',
+                text: '2012/3/14',
+                color: ''
+            },
+            {
+                code: 'm/d;@',
+                text: '3/14',
+                color: ''
+            },
+            {
+                code: 'm/d/yy;@',
+                text: '3/14/12',
+                color: ''
+            },
+            {
+                code: 'mm/dd/yy;@',
+                text: '03/14/12',
+                color: ''
+            },
+            {
+                code: '[$-409]d-mmm;@',
+                text: '14-Mar',
+                color: ''
+            },
+            {
+                code: '[$-409]d-mmm-yy;@',
+                text: '14-Mar-12',
+                color: ''
+            },
+            {
+                code: '[$-409]dd-mmm-yy;@',
+                text: '14-Mar-12',
+                color: ''
+            },
+            {
+                code: '[$-409]mmm-yy;@',
+                text: 'Mar-12',
+                color: ''
+            },
+            {
+                code: '[$-409]mmmm-yy;@',
+                text: 'March-12',
+                color: ''
+            },
+            {
+                code: '[$-409]mmmmm;@',
+                text: 'M',
+                color: ''
+            },
+            {
+                code: '[$-409]mmmmm-yy;@',
+                text: 'M-12',
+                color: ''
+            }
+        ],
+
+        'time': [
+            {
+                code: 'h:mm;@',
+                text: '13:30',
+                color: ''
+            },
+            {
+                code: '[$-409]h:mm AM/PM;@',
+                text: '1:30 PM',
+                color: ''
+            },
+            {
+                code: 'h:mm:ss;@',
+                text: '13:30:55',
+                color: ''
+            },
+            {
+                code: '[$-409]h:mm:ss AM/PM;@',
+                text: '1:30:55 PM',
+                color: ''
+            },
+            {
+                code: 'h"时"mm"分";@',
+                text: '13时30分',
+                color: ''
+            },
+            {
+                code: 'h"时"mm"分"ss"秒";@',
+                text: '13时30分55秒',
+                color: ''
+            },
+            {
+                code: '上午/下午h"时"mm"分";@',
+                text: '下午1时30分',
+                color: ''
+            },
+            {
+                code: '上午/下午h"时"mm"分"ss"秒";@',
+                text: '下午1时30分55秒',
+                color: ''
+            },
+            {
+                code: '[DBNum1][$-804]h"时"mm"分";@',
+                text: '十三时三十分',
+                color: ''
+            },
+            {
+                code: '[DBNum1][$-804]上午/下午h"时"mm"分";@',
+                text: '下午一时三十分',
+                color: ''
+            }
+        ]
     };
 })()).constant('FONT_LIST', [
     "Angsana New",
@@ -161,6 +324,9 @@ angular.module('b.const', []).constant('NUMBER_FORMAT', (function () {
     text: '居中',
     value: 'middle'
 }]).constant('CURRENCY', [{
+    text: '无',
+    value: ''
+}, {
     text: '$',
     value: '$'
 }, {
