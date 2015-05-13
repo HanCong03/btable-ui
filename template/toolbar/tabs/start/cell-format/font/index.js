@@ -35,11 +35,11 @@ return '<div unselectable="on" class="b-numberformat-box b-font-tabs">\n' +
 '字号：\n' +
 '<div unselectable="on" class="b-fontsize-panel b-select-box">\n' +
 '<input unselectable="on" disabled\n' +
-'ng-model="fontSize[status._default.fontsize]">\n' +
+'ng-model="status._default.fontsize">\n' +
 '<select unselectable="on" ng-model="status._default.fontsize" size="100">\n' +
 '<option unselectable="on" ng-repeat="size in fontSize"\n' +
-'ng-selected="$index === status._default.fontsize"\n' +
-'value="{{$index}}">\n' +
+'ng-selected="size === status._default.fontsize"\n' +
+'value="{{size}}">\n' +
 '{{size}}\n' +
 '</option>\n' +
 '</select>\n' +
@@ -96,7 +96,7 @@ return '<div unselectable="on" class="b-numberformat-box b-font-tabs">\n' +
 '{\n' +
 '\'font-family\': status._default.font,\n' +
 '\'color\': status._default.color,\n' +
-'\'font-size\': fontSize[status._default.fontsize] + \'px\',\n' +
+'\'font-size\': status._default.fontsize + \'px\',\n' +
 '\'font-style\': (status._default.fontstyle == 1 || status._default.fontstyle == 3)? \'italic\' : \'normal\',\n' +
 '\'font-weight\': (status._default.fontstyle == 2 || status._default.fontstyle == 3)? \'900\' : \'normal\',\n' +
 '\'text-decoration\': status._default.underline != 1 ? (status._default.throughline ? \'line-through\' : \'none\') : \'underline\'\n' +

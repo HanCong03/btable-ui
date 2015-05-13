@@ -32,7 +32,7 @@ return '<div unselectable="on" class="b-numberformat-box">\n' +
 '<div unselectable="on">\n' +
 '<label unselectable="on" class="i-checks">\n' +
 '<input unselectable="on" type="checkbox"\n' +
-'ng-model="status._default.autowrap">\n' +
+'ng-model="status._default.wraptext">\n' +
 '<i unselectable="on"></i>\n' +
 '自动换行\n' +
 '</label>\n' +

@@ -38,12 +38,12 @@
                 字号：
                 <div class="b-fontsize-panel b-select-box">
                     <input disabled
-                           ng-model="fontSize[status._default.fontsize]">
+                           ng-model="status._default.fontsize">
 
                     <select ng-model="status._default.fontsize" size="100">
                         <option ng-repeat="size in fontSize"
-                                ng-selected="$index === status._default.fontsize"
-                                value="{{$index}}">
+                                ng-selected="size === status._default.fontsize"
+                                value="{{size}}">
                             {{size}}
                         </option>
                     </select>
@@ -103,7 +103,7 @@
                         {
                             'font-family': status._default.font,
                             'color': status._default.color,
-                            'font-size': fontSize[status._default.fontsize] + 'px',
+                            'font-size': status._default.fontsize + 'px',
                             'font-style': (status._default.fontstyle == 1 || status._default.fontstyle == 3)? 'italic' : 'normal',
                             'font-weight': (status._default.fontstyle == 2 || status._default.fontstyle == 3)? '900' : 'normal',
                             'text-decoration': status._default.underline != 1 ? (status._default.throughline ? 'line-through' : 'none') : 'underline'

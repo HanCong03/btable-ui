@@ -62,7 +62,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        <div>\n" +
     "            <label class=\"i-checks\">\n" +
     "                <input type=\"checkbox\"\n" +
-    "                       ng-model=\"status._default.autowrap\">\n" +
+    "                       ng-model=\"status._default.wraptext\">\n" +
     "                <i></i>\n" +
     "                自动换行\n" +
     "            </label>\n" +
@@ -238,12 +238,12 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                字号：\n" +
     "                <div class=\"b-fontsize-panel b-select-box\">\n" +
     "                    <input disabled\n" +
-    "                           ng-model=\"fontSize[status._default.fontsize]\">\n" +
+    "                           ng-model=\"status._default.fontsize\">\n" +
     "\n" +
     "                    <select ng-model=\"status._default.fontsize\" size=\"100\">\n" +
     "                        <option ng-repeat=\"size in fontSize\"\n" +
-    "                                ng-selected=\"$index === status._default.fontsize\"\n" +
-    "                                value=\"{{$index}}\">\n" +
+    "                                ng-selected=\"size === status._default.fontsize\"\n" +
+    "                                value=\"{{size}}\">\n" +
     "                            {{size}}\n" +
     "                        </option>\n" +
     "                    </select>\n" +
@@ -303,7 +303,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                        {\n" +
     "                            'font-family': status._default.font,\n" +
     "                            'color': status._default.color,\n" +
-    "                            'font-size': fontSize[status._default.fontsize] + 'px',\n" +
+    "                            'font-size': status._default.fontsize + 'px',\n" +
     "                            'font-style': (status._default.fontstyle == 1 || status._default.fontstyle == 3)? 'italic' : 'normal',\n" +
     "                            'font-weight': (status._default.fontstyle == 2 || status._default.fontstyle == 3)? '900' : 'normal',\n" +
     "                            'text-decoration': status._default.underline != 1 ? (status._default.throughline ? 'line-through' : 'none') : 'underline'\n" +
