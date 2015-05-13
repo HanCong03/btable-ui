@@ -28,10 +28,10 @@ angular.module('app').factory('btableNotify', [function () {
 
             timer = setTimeout(function () {
                 timer = null;
-                var state = reflect(btable);
+                var status = reflect(btable);
 
                 for (var i = 0, len = callbacks.length; i < len; i++) {
-                    callbacks[i](state);
+                    callbacks[i](status);
                 }
 
             }, DELAY_TIME);
@@ -48,12 +48,19 @@ angular.module('app').factory('btableNotify', [function () {
     };
 
     function reflect(btable) {
-        var state = {
-            font: btable.queryCommandValue('font'),
-            fontSize: btable.queryCommandValue('fontsize'),
-            color: btable.queryCommandValue('color')
-        };
-        //console.log(state)
+        return btable.queryCommandValue([
+            'font',
+            'fontsize',
+            'color',
+            'bold',
+            'italic',
+            'fill',
+            'horizontal',
+            'vertical',
+            'underline',
+            'throughline',
+            'wraptext'
+        ]);
     }
 
 }]);
