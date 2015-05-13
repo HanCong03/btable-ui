@@ -3,14 +3,14 @@ return '<div unselectable="on" class="b-numberformat-tabs-content b-column">\n' 
 '<label unselectable="on">\n' +
 '小数位数：\n' +
 '<input unselectable="on" type="number"\n' +
-'ng-model="status.precision"\n' +
+'ng-model="status._default.precision"\n' +
 'min="0"\n' +
 'max="30">\n' +
 '</label\n' +
 '>\n' +
 '<label unselectable="on">\n' +
 '货币符号(国家/地区)：\n' +
-'<select unselectable="on" ng-model="status.currency">\n' +
+'<select unselectable="on" ng-model="status._default.currency">\n' +
 '<option unselectable="on" ng-repeat="symbol in currencyList"\n' +
 'value="{{$index}}">\n' +
 '{{symbol.text}}\n' +
@@ -22,8 +22,8 @@ return '<div unselectable="on" class="b-numberformat-tabs-content b-column">\n' 
 '<ul unselectable="on" class="b-cellformat-list">\n' +
 '<li unselectable="on" ng-repeat="format in status.format.currency"\n' +
 'ng-style="{\'color\': format.color}"\n' +
-'ng-class="{\'b-nubmerformat-preview-active\': status.currencySelected === $index}"\n' +
-'ng-click="status.currencySelected=$index;">\n' +
+'ng-class="{\'b-nubmerformat-preview-active\': status._default.code.currency === $index}"\n' +
+'ng-click="status._default.code.currency=$index;">\n' +
 '{{format.text}}\n' +
 '</li>\n' +
 '</ul>\n' +

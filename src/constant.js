@@ -335,4 +335,29 @@ angular.module('b.const', []).constant('NUMBER_FORMAT', (function () {
 }, {
     text: 'US$',
     value: 'US$'
+}]).constant('BORDERS', [{
+    text: '无',
+    width: 0,
+    type: 'none',
+    value: 'none'
+}, {
+    text: '',
+    width: 1,
+    type: 'solid',
+    value: 'thin'
+}, {
+    text: '',
+    width: 1,
+    type: 'dashed',
+    value: 'dashed'
+}, {
+    text: '',
+    width: 1,
+    type: 'dotted',
+    value: 'dotted'
+}, {
+    text: '',
+    width: 2,
+    type: 'solid',
+    value: 'medium'
 }]);

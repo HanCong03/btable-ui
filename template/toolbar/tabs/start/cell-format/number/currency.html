@@ -2,14 +2,14 @@
     <label>
         小数位数：
         <input type="number"
-            ng-model="status.precision"
+            ng-model="status._default.precision"
             min="0"
             max="30">
     </label
             >
     <label>
         货币符号(国家/地区)：
-        <select ng-model="status.currency">
+        <select ng-model="status._default.currency">
             <option ng-repeat="symbol in currencyList"
                     value="{{$index}}">
                 {{symbol.text}}
@@ -22,8 +22,8 @@
         <ul class="b-cellformat-list">
             <li ng-repeat="format in status.format.currency"
                 ng-style="{'color': format.color}"
-                ng-class="{'b-nubmerformat-preview-active': status.currencySelected === $index}"
-                ng-click="status.currencySelected=$index;">
+                ng-class="{'b-nubmerformat-preview-active': status._default.code.currency === $index}"
+                ng-click="status._default.code.currency=$index;">
                 {{format.text}}
             </li>
         </ul>

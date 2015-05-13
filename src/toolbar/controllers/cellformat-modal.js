@@ -15,6 +15,7 @@ angular.module('app').controller('CellForamtModalController', [
     'HORIZONTAL_ALIGNMENT',
     'VERTICAL_ALIGNMENT',
     'CURRENCY',
+    'BORDERS',
 
     function ($scope,
               cellformatModalNotify,
@@ -26,9 +27,11 @@ angular.module('app').controller('CellForamtModalController', [
               FONT_SIZE,
               HORIZONTAL_ALIGNMENT,
               VERTICAL_ALIGNMENT,
-              CURRENCY) {
+              CURRENCY,
+              BORDERS) {
 
         var numberformatTypes = ['normal', 'number', 'currency', 'accounting', 'date', 'time', 'percentage', 'fraction', 'scientific', 'text'];
+        var tabs = ['numberformat', 'alignment', 'font', 'border', 'fill'];
 
         var underline = [{
             text: '无',
@@ -38,70 +41,39 @@ angular.module('app').controller('CellForamtModalController', [
             value: 'single'
         }];
 
-        var borderStyle = [{
-            text: '无',
-            width: 0,
-            type: 'none',
-            value: 'none'
-        }, {
-            text: '',
-            width: 1,
-            type: 'solid',
-            value: 'thin'
-        }, {
-            text: '',
-            width: 1,
-            type: 'dashed',
-            value: 'dashed'
-        }, {
-            text: '',
-            width: 1,
-            type: 'dotted',
-            value: 'dotted'
-        }, {
-            text: '',
-            width: 2,
-            type: 'solid',
-            value: 'medium'
-        }];
+        var _defaultStatus = {
+            // code选中索引
+            code: {
+                number: 3,
+                currency: 3,
+                date: 0,
+                time: 0
+            },
 
-        /* ---------- scope 挂载 ---------- */
-        var status = {
-            tabs: ['numberformat', 'alignment', 'font', 'border', 'fill'],
-            tabSelected: [
-                true, false, false, false, false
-            ],
-            formatSelected: [true],
-            // 精度
+            // 默认精度
             precision: 2,
-            // 千分位选中状态
+            // 千分位符开启状态
             thousandth: false,
-            // 数值code选中位
-            numericalSelected: 0,
             // 货币符号
-            currency: 0,
-            // 日期code选中
-            dateSelected: 0,
-            // 时间code选中
-            timeSelected: 0,
+            currency: 2,
 
-            // 水平对齐选中
-            hAlignSelected: 0,
-            // 垂直对齐选中
-            vAlignSelected: 1,
+            // 水平对齐
+            hAlign: 0,
+            // 垂直对齐
+            vAlign: 1,
             // 自动换行
             autowrap: false,
-            // 合并单元格
+            // 单元格禁用
             merge: false,
 
-            // 字体
+            // 默认字体: value
             font: FONT_LIST[0],
-            // 字形
+            // 默认字形: index
             fontstyle: 0,
-            // 字号
+            // 字号: index
             fontsize: 6,
             // 字体颜色
-            color: '#000000',
+            color: null,
             // 下划线
             underline: 0,
             // 贯穿线
@@ -110,7 +82,7 @@ angular.module('app').controller('CellForamtModalController', [
             // border type
             borderType: 0,
             // border color
-            borderColor: '#000000',
+            borderColor: null,
             // 边框应用记录
             borders: {
                 left: null,
@@ -122,9 +94,23 @@ angular.module('app').controller('CellForamtModalController', [
             },
 
             // fill color
-            fillColor: '#000000',
+            fillColor: null
+        };
 
-            format: {}
+        /* ---------- scope 挂载 ---------- */
+        var status = {
+            tabSelected: [true],
+
+            formatSelected: [true],
+
+            // 格式code信息
+            format: {
+                date: NUMBER_FORMAT.date,
+                time: NUMBER_FORMAT.time
+            },
+
+            // 各种类别的默认选中索引
+            _default: $.extend(true, {}, _defaultStatus)
         };
 
         $scope.status = status;
@@ -134,7 +120,7 @@ angular.module('app').controller('CellForamtModalController', [
         $scope.fontStyle = FONT_STYLE;
         $scope.fontSize = FONT_SIZE;
         $scope.underline = underline;
-        $scope.borderStyle = borderStyle;
+        $scope.borderStyle = BORDERS;
         $scope.fonts = FONT_LIST;
         $scope.currencyList = CURRENCY;
 
@@ -145,17 +131,17 @@ angular.module('app').controller('CellForamtModalController', [
         var numberFormatFilter = $filter('bNumberformatNumber');
         var currencyFormatFilter = $filter('bNumberformatCurrency');
 
-        $scope.$watchGroup(['status.precision', 'status.thousandth'], function () {
-            $scope.status.format.number = numberFormatFilter(NUMBER_FORMAT.number, status.precision, status.thousandth);
+        $scope.$watchGroup(['status._default.precision', 'status._default.thousandth'], function () {
+            $scope.status.format.number = numberFormatFilter(NUMBER_FORMAT.number, status._default.precision, !!status._default.thousandth);
         });
 
-        $scope.$watchGroup(['status.precision', 'status.currency'], function () {
-            $scope.status.format.currency = currencyFormatFilter(NUMBER_FORMAT.currency, status.precision, CURRENCY[status.currency].value);
+        $scope.$watchGroup(['status._default.precision', 'status._default.currency'], function () {
+            $scope.status.format.currency = currencyFormatFilter(NUMBER_FORMAT.currency, status._default.precision, CURRENCY[status._default.currency].value);
         });
 
-        /* ---------- 监听通知消息 --------- */
+        /* ---------- 监听open消息 --------- */
         cellformatModalNotify.onMessage('open', function (type) {
-            var index = status.tabs.indexOf(type)
+            var index = tabs.indexOf(type)
 
             if (index === -1) {
                 index = 0;
@@ -177,8 +163,9 @@ angular.module('app').controller('CellForamtModalController', [
         });
 
 
+        /* ----- 边框控制 ----- */
         $scope.builtinBorderChange = function (type) {
-            if (status.borderType === 0) {
+            if (status._default.borderType === 0) {
                 $scope.clearBorder(type);
             } else {
                 addBorder(type, getCurrentBorderStyels());
@@ -187,24 +174,26 @@ angular.module('app').controller('CellForamtModalController', [
             function addBorder(type, styles) {
                 switch (type) {
                     case 'all':
-                        status.borders.left = styles;
-                        status.borders.center = styles;
-                        status.borders.right = styles;
-                        status.borders.top = styles;
-                        status.borders.middle = styles;
-                        status.borders.bottom = styles;
+                        status._default.borders.left = {
+                            left: styles,
+                            center: styles,
+                            right: styles,
+                            top: styles,
+                            middle: styles,
+                            bottom: styles
+                        };
                         break;
 
                     case 'outer':
-                        status.borders.left = styles;
-                        status.borders.right = styles;
-                        status.borders.top = styles;
-                        status.borders.bottom = styles;
+                        status._default.borders.left = styles;
+                        status._default.borders.right = styles;
+                        status._default.borders.top = styles;
+                        status._default.borders.bottom = styles;
                         break;
 
                     case 'inner':
-                        status.borders.center = styles;
-                        status.borders.middle = styles;
+                        status._default.borders.center = styles;
+                        status._default.borders.middle = styles;
                         break;
                 }
             }
@@ -213,68 +202,86 @@ angular.module('app').controller('CellForamtModalController', [
         $scope.clearBorder = function (type) {
             switch (type) {
                 case 'all':
-                    status.borders.left = null;
-                    status.borders.center = null;
-                    status.borders.right = null;
-                    status.borders.top = null;
-                    status.borders.middle = null;
-                    status.borders.bottom = null;
+                    status._default.borders = {
+                        left: null,
+                        center: null,
+                        right: null,
+                        top: null,
+                        middle: null,
+                        bottom: null
+                    };
                     break;
 
                 case 'outer':
-                    status.borders.left = null;
-                    status.borders.right = null;
-                    status.borders.top = null;
-                    status.borders.bottom = null;
+                    status._default.borders.left = null;
+                    status._default.borders.right = null;
+                    status._default.borders.top = null;
+                    status._default.borders.bottom = null;
                     break;
 
                 case 'inner':
-                    status.borders.center = null;
-                    status.borders.middle = null;
+                    status._default.borders.center = null;
+                    status._default.borders.middle = null;
                     break;
             }
         }
 
         $scope.borderChange = function (type) {
-            if (status.borderType === 0) {
-                status.borders[type] = null;
+            if (status._default.borderType === 0) {
+                status._default.borders[type] = null;
                 return;
             }
 
             var styles = getCurrentBorderStyels();
 
-            if (!status.borders[type]) {
-                status.borders[type] = styles;
+            if (!status._default.borders[type]) {
+                status._default.borders[type] = styles;
                 return;
             }
 
-            if (JSON.stringify(status.borders[type]) === JSON.stringify(styles)) {
-                status.borders[type] = null;
+            if (JSON.stringify(status._default.borders[type]) === JSON.stringify(styles)) {
+                status._default.borders[type] = null;
             } else {
-                status.borders[type] = styles;
+                status._default.borders[type] = styles;
             }
         };
 
+        /**
+         * 重置初始状态
+         */
         function resetCurrentStatus() {
-            var formatCodeInfo = numberformat.match('#,##0.000_);[Red](#,##0.000)');
+            status._default = $.extend(true, {}, _defaultStatus);
 
-            if (formatCodeInfo) {
-                status.thousandth = formatCodeInfo.info.thousandth;
-                status.formatSelected = [];
-                status.formatSelected[numberformatTypes.indexOf(formatCodeInfo.info.type)] = true;
-                status.precision = formatCodeInfo.precision;
-            } else {
-                status.formatSelected = [true];
-                status.thousandth = false;
-                status.precision = 2;
+            var _default = status._default;
+
+            resetNumberformat();
+            resetAlignment();
+
+
+            // 重置数字格式
+            function resetNumberformat() {
+                var formatCodeInfo = numberformat.match('#,##0.000_);[Red](#,##0.000)');
+
+                if (formatCodeInfo) {
+                    status.formatSelected = [];
+                    status.formatSelected[numberformatTypes.indexOf(formatCodeInfo.info.type)] = true;
+
+                    _default.thousandth = formatCodeInfo.info.thousandth;
+                    _default.precision = formatCodeInfo.precision;
+                    _default.code[formatCodeInfo.info.type] = formatCodeInfo.info.index;
+                }
+            }
+
+            // 重置对齐
+            function resetAlignment() {
             }
         }
 
         function getCurrentBorderStyels() {
             return {
-                'border-width': borderStyle[status.borderType].width + 'px',
-                'border-style': borderStyle[status.borderType].type,
-                'border-color': status.borderColor
+                'border-width': BORDERS[status._default.borderType].width + 'px',
+                'border-style': BORDERS[status._default.borderType].type,
+                'border-color': status._default.borderColor
             };
         }
     }

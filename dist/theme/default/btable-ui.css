@@ -610,7 +610,6 @@ body {
   width: 96px;
   height: 21px;
   margin: 2px;
-  background: red;
 }
 .b-border-box-tabs .b-color-btn .b-caret-wrap {
   padding: 0px 3px;
@@ -636,7 +635,6 @@ body {
   width: 96px;
   height: 21px;
   margin: 2px;
-  background: red;
 }
 .b-fill-box-tabs .b-color-btn .b-caret-wrap {
   padding: 0px 3px;
@@ -678,6 +676,8 @@ body {
   overflow: hidden;
 }
 .b-font-tabs .b-select-box input {
+  color: #999;
+  background: #fcfcfc;
   height: 25px;
   line-height: 25px;
   padding: 2px;
@@ -723,7 +723,6 @@ body {
   width: 96px;
   height: 21px;
   margin: 2px;
-  background: red;
 }
 .b-font-tabs .b-color-btn .b-caret-wrap {
   padding: 0px 3px;

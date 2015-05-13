@@ -3,16 +3,16 @@
         <fieldset class="b-border-line-box">
             <legend>线条</legend>
             <ul class="b-border-style-list">
-                <li ng-repeat="border in borderStyle" ng-click="status.borderType = $index;" ng-class="{'b-selected': status.borderType === $index}">
-                    <span style="border-bottom-width: {{border.width}}px; border-bottom-style: {{border.type}}; border-bottom-color: {{status.borderColor}}">{{border.text}}</span>
+                <li ng-repeat="border in borderStyle" ng-click="status._default.borderType = $index;" ng-class="{'b-selected': status._default.borderType === $index}">
+                    <span style="border-bottom-width: {{border.width}}px; border-bottom-style: {{border.type}}; border-bottom-color: {{status._default._default.borderColor}}">{{border.text}}</span>
                 </li>
             </ul>
             <div>
                 颜色：
                 <div>
-                    <button ng-model="status.borderColor" b-attr-colorpicker type="button" class="btn b-color-btn b-row">
+                    <button ng-model="status._default.borderColor" b-attr-colorpicker type="button" class="btn b-color-btn b-row">
                         <div class="b-color-panel">
-                            <div ng-style="{backgroundColor: status.borderColor}"></div>
+                            <div ng-style="{backgroundColor: status._default.borderColor}"></div>
                         </div>
                         <div class="b-caret-wrap">
                             <span class="caret"></span>
@@ -37,7 +37,7 @@
                 <tbody>
                     <tr>
                         <td valign="top" align="right">
-                            <button class="btn b-border-line-btn" ng-class="{'b-active': status.borders.top != null}" ng-click="borderChange('top');">上</button>
+                            <button class="btn b-border-line-btn" ng-class="{'b-active': status._default.borders.top != null}" ng-click="borderChange('top');">上</button>
                         </td>
                         <td colspan="3" rowspan="3" valign="middle" align="center">
                             <div class="b-border-preview">
@@ -47,35 +47,35 @@
                                     <div>文本</div>
                                     <div>文本</div>
                                 </div>
-                                <div class="b-border-preview-line b-preview-line-top" ng-style="status.borders.top"></div>
-                                <div class="b-border-preview-line b-preview-line-middle" ng-style="status.borders.middle"></div>
-                                <div class="b-border-preview-line b-preview-line-bottom" ng-style="status.borders.bottom"></div>
-                                <div class="b-border-preview-line b-preview-line-left" ng-style="status.borders.left"></div>
-                                <div class="b-border-preview-line b-preview-line-center" ng-style="status.borders.center"></div>
-                                <div class="b-border-preview-line b-preview-line-right" ng-style="status.borders.right"></div>
+                                <div class="b-border-preview-line b-preview-line-top" ng-style="status._default.borders.top"></div>
+                                <div class="b-border-preview-line b-preview-line-middle" ng-style="status._default.borders.middle"></div>
+                                <div class="b-border-preview-line b-preview-line-bottom" ng-style="status._default.borders.bottom"></div>
+                                <div class="b-border-preview-line b-preview-line-left" ng-style="status._default.borders.left"></div>
+                                <div class="b-border-preview-line b-preview-line-center" ng-style="status._default.borders.center"></div>
+                                <div class="b-border-preview-line b-preview-line-right" ng-style="status._default.borders.right"></div>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td valign="middle" align="right">
-                            <button class="btn b-border-line-btn" ng-class="{'b-active': status.borders.middle != null}" ng-click="borderChange('middle');">内</button>
+                            <button class="btn b-border-line-btn" ng-class="{'b-active': status._default.borders.middle != null}" ng-click="borderChange('middle');">内</button>
                         </td>
                     </tr>
                     <tr>
                         <td valign="bottom" align="right">
-                            <button class="btn b-border-line-btn" ng-class="{'b-active': status.borders.bottom != null}" ng-click="borderChange('bottom');">下</button>
+                            <button class="btn b-border-line-btn" ng-class="{'b-active': status._default.borders.bottom != null}" ng-click="borderChange('bottom');">下</button>
                         </td>
                     </tr>
                     <tr>
                         <td></td>
                         <td valign="top" align="left">
-                            <button class="btn b-border-line-btn" ng-class="{'b-active': status.borders.left != null}" ng-click="borderChange('left');">左</button>
+                            <button class="btn b-border-line-btn" ng-class="{'b-active': status._default.borders.left != null}" ng-click="borderChange('left');">左</button>
                         </td>
                         <td valign="top" align="center">
-                            <button class="btn b-border-line-btn" ng-class="{'b-active': status.borders.center != null}" ng-click="borderChange('center');">内</button>
+                            <button class="btn b-border-line-btn" ng-class="{'b-active': status._default.borders.center != null}" ng-click="borderChange('center');">内</button>
                         </td>
                         <td valign="top" align="right">
-                            <button class="btn b-border-line-btn" ng-class="{'b-active': status.borders.right != null}" ng-click="borderChange('right');">右</button>
+                            <button class="btn b-border-line-btn" ng-class="{'b-active': status._default.borders.right != null}" ng-click="borderChange('right');">右</button>
                         </td>
                     </tr>
                 </tbody>

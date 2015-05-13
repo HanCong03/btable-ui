@@ -5,11 +5,12 @@
             <td>
                 字体：
                 <div class="b-fontfamily-panel b-select-box">
-                    <input ng-model="status.font">
+                    <input disabled
+                           ng-model="status._default.font">
 
-                    <select size="100" ng-model="status.font">
+                    <select size="100" ng-model="status._default.font">
                         <option ng-repeat="font in fonts"
-                                ng-selected="font === status.font"
+                                ng-selected="font === status._default.font"
                                 value="{{font}}">
                             {{font}}
                         </option>
@@ -20,11 +21,12 @@
             <td>
                 字形：
                 <div class="b-fontstyle-panel b-select-box">
-                    <input ng-model="fontStyle[status.fontstyle].text">
+                    <input disabled
+                           ng-model="fontStyle[status._default.fontstyle].text">
 
-                    <select ng-model="status.fontstyle" size="100">
+                    <select ng-model="status._default.fontstyle" size="100">
                         <option ng-repeat="style in fontStyle"
-                                ng-selected="status.fontstyle === $index"
+                                ng-selected="status._default.fontstyle === $index"
                                 value="{{$index}}">
                             {{style.text}}
                         </option>
@@ -35,11 +37,12 @@
             <td>
                 字号：
                 <div class="b-fontsize-panel b-select-box">
-                    <input ng-model="fontSize[status.fontsize]">
+                    <input disabled
+                           ng-model="fontSize[status._default.fontsize]">
 
-                    <select ng-model="status.fontsize" size="100">
+                    <select ng-model="status._default.fontsize" size="100">
                         <option ng-repeat="size in fontSize"
-                                ng-selected="$index === status.fontsize"
+                                ng-selected="$index === status._default.fontsize"
                                 value="{{$index}}">
                             {{size}}
                         </option>
@@ -51,7 +54,7 @@
             <td>
                 下划线：
                 <div>
-                    <select ng-model="status.underline">
+                    <select ng-model="status._default.underline">
                         <option ng-repeat="line in underline"
                                 value="{{$index}}">
                             {{line.text}}
@@ -64,11 +67,11 @@
                 颜色：
                 <div>
                     <button b-attr-colorpicker
-                            ng-model="status.color"
+                            ng-model="status._default.color"
                             type="button"
                             class="btn b-color-btn b-row">
                         <div class="b-color-panel">
-                            <div ng-style="{backgroundColor: status.color}"></div>
+                            <div ng-style="{backgroundColor: status._default.color}"></div>
                         </div>
                         <div class="b-caret-wrap">
                             <span class="caret"></span>
@@ -86,7 +89,7 @@
                 <div>
                     <label class="i-checks">
                         <input type="checkbox"
-                               ng-model="status.throughline">
+                               ng-model="status._default.throughline">
                         <i></i>
                         删除线
                     </label>
@@ -98,12 +101,12 @@
                 <div class="b-font-preview-box b-column">
                     <span ng-style="
                         {
-                            'font-family': status.font,
-                            'color': status.color,
-                            'font-size': fontSize[status.fontsize] + 'px',
-                            'font-style': (status.fontstyle == 1 || status.fontstyle == 3)? 'italic' : 'normal',
-                            'font-weight': (status.fontstyle == 2 || status.fontstyle == 3)? '900' : 'normal',
-                            'text-decoration': status.underline != 1 ? (status.throughline ? 'line-through' : 'none') : 'underline'
+                            'font-family': status._default.font,
+                            'color': status._default.color,
+                            'font-size': fontSize[status._default.fontsize] + 'px',
+                            'font-style': (status._default.fontstyle == 1 || status._default.fontstyle == 3)? 'italic' : 'normal',
+                            'font-weight': (status._default.fontstyle == 2 || status._default.fontstyle == 3)? '900' : 'normal',
+                            'text-decoration': status._default.underline != 1 ? (status._default.throughline ? 'line-through' : 'none') : 'underline'
                         }
                     ">微软卓越 AaBbCc</span>
                 </div>

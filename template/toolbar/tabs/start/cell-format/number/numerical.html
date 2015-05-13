@@ -1,16 +1,31 @@
 <div class="b-numberformat-tabs-content b-column">
     <label>
-        小数位数：<input type="number" ng-model="status.precision" min="0" max="30">
+        小数位数：
+        <input type="number"
+               ng-model="status._default.precision"
+               min="0"
+               max="30">
     </label>
+
     <label class="i-checks">
-        <input type="checkbox" ng-model="status.thousandth"><i></i> 使用千分位分隔符
+        <input type="checkbox"
+               ng-model="status._default.thousandth">
+        <i></i>
+        使用千分位分隔符
     </label>
+
     <label class="b-column b-numberformat-preview">
         负数：
         <ul class="b-cellformat-list">
-            <li ng-repeat="format in status.format.number" ng-style="{'color': format.color}" ng-class="{'b-nubmerformat-preview-active': status.numericalSelected === $index}" ng-click="status.numericalSelected=$index;">{{format.text}}</li>
+            <li ng-repeat="format in status.format.number"
+                ng-style="{'color': format.color}"
+                ng-class="{'b-nubmerformat-preview-active': status._default.code.number === $index}"
+                ng-click="status._default.code.number=$index;">
+                {{format.text}}
+            </li>
         </ul>
     </label>
+
     <div class="b-numberformat-desc">
         数值格式用于一般数字的表示。货币和会计格式则提供货币值计算的专用格式。
     </div>
