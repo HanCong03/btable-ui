@@ -9,29 +9,31 @@ angular.module('app').directive('bVerticalalign', [function () {
         restrict: 'E',
         replace: true,
         scope: {
-            onchange: '&'
+            onchange: '&',
+            value: '@?'
         },
-        templateUrl: 'template/toolbar/tabs/start/verticalalign.html',
+        templateUrl: 'template/toolbar/widget/verticalalign.html',
         link: function ($scope, $ele, $attr) {
             var hook = $scope.onchange || angular.noop;
 
             $scope.top = "top";
             $scope.middle = "middle";
             $scope.bottom = "bottom";
+            $scope.__initValue = null;
 
-            var value = $scope.$eval($attr.value);
-            $scope.alignValue = angular.isDefined(value) ? value : null;
-            $scope.value = $scope.alignValue;
+            $scope.$watch('value', function (newValue) {
+                $scope.__initValue = newValue;
+            });
 
             $scope.alignChange = function (mode) {
-                if ($scope.alignValue === mode) {
-                    $scope.alignValue = null;
+                if ($scope.__initValue === mode) {
+                    $scope.__initValue = null;
                 } else {
-                    $scope.alignValue = mode;
+                    $scope.__initValue = mode;
                 }
 
                 hook({
-                    status: $scope.alignValue
+                    status: $scope.__initValue
                 });
             };
         }

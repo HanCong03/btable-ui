@@ -180,10 +180,8 @@
             });
 
             $("#cellFormatModal").on('hidden.bs.modal', function () {
-                checkChange();
-
-                status.tabSelected = [true, false, false, false, false];
-                $scope.$apply();
+                var commands = checkChange();
+                btableNotify.execCommand([commands]);
             });
 
             /* ----- 边框控制 ----- */
@@ -303,7 +301,6 @@
                     _default.vAlign = getIndex('vAlign', btableStatus.vertical, _defaultStatus.vAlign);
                     _default.autowrap = !!btableStatus.wraptext;
                     _default.merge = !!btableStatus.merge;
-
                     //
                     //    // 默认字体: value
                     //    font: FONT_LIST[0],
@@ -357,16 +354,29 @@
 
             /* --- 检查更新值 --- */
             function checkChange() {
+                var commands = [];
 
+                var code = checkNumberformat();
 
-                // 检查numberformat是否有change
+                commands.push({
+                    command: 'format',
+                    args: [code]
+                });
+
+                return commands;
+                //if (code === )
+
                 function checkNumberformat() {
-                    var index;
+                    var index = 0;
 
                     for (var i = 0, len = status.formatSelected.length; i < len; i++) {
-                        
+                        if (status.formatSelected[i]) {
+                            index = i;
+                            break;
+                        }
                     }
-                    //var type =
+
+                    return numberformat.getNumberformatCode(index, status);
                 }
             }
         }

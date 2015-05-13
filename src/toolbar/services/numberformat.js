@@ -3,7 +3,9 @@
  * @author hancong03@baiud.com
  */
 
-angular.module('app').factory('numberformat', ['NUMBER_FORMAT', function (NUMBER_FORMAT) {
+angular.module('app').factory('numberformat', ['NUMBER_FORMAT', 'CURRENCY', function (NUMBER_FORMAT, CURRENCY) {
+
+    var FORMAT_TYPES = ['normal', 'number', 'currency', 'accounting', 'date', 'time', 'percentage', 'fraction', 'scientific', 'text'];
 
     /* ---- 初始化内置code start ---- */
     /*
@@ -77,7 +79,69 @@ angular.module('app').factory('numberformat', ['NUMBER_FORMAT', function (NUMBER
                 // 精度信息
                 precision: precision
             };
+        },
+
+        getNumberformatCode: function (typeId, status) {
+            var currencySymbol = CURRENCY[status._default.currency].value;
+            var precision = status._default.precision;
+            var codeSelected = status._default.code;
+
+            switch (FORMAT_TYPES[typeId]) {
+                case 'normal':
+                    return NUMBER_FORMAT.normal;
+
+                case 'number':
+                    if (status._default.thousandth) {
+                        return getFormatCode(NUMBER_FORMAT.number.thousandth[codeSelected.number].code, precision, '');
+                    } else {
+                        return getFormatCode(NUMBER_FORMAT.number.normal[codeSelected.number].code, precision, '');
+                    }
+
+                case 'currency':
+                    return getFormatCode(NUMBER_FORMAT.currency[codeSelected.currency].code, precision, currencySymbol);
+
+                case 'accounting':
+                    console.log('Notice: 会计code未实现');
+                    return NUMBER_FORMAT.normal;
+
+                case 'date':
+                    return getFormatCode(NUMBER_FORMAT.date[codeSelected.date].code, '', '');
+
+                case 'time':
+                    return getFormatCode(NUMBER_FORMAT.time[codeSelected.time].code, '', '');
+
+                case 'percentage':
+                    return getFormatCode(NUMBER_FORMAT.percentage, precision, '');
+
+                case 'fraction':
+                    console.log('Notice: 分数code未实现');
+                    return NUMBER_FORMAT.normal;
+
+                case 'scientific':
+                    return getFormatCode(NUMBER_FORMAT.scientific, precision, '');
+
+                case 'text':
+                    return NUMBER_FORMAT.text;
+            }
         }
     };
 
+    function getFormatCode(code, precision, currencySymbol) {
+        // 构造精度字符串
+        var precisionBuffer = [];
+
+        precision -= 1;
+        while (precision >= 0) {
+            precisionBuffer.push(precision % 10);
+            precision--;
+        }
+
+        precisionBuffer = precisionBuffer.join('');
+
+        if (precisionBuffer.length) {
+            precisionBuffer = '.' + precisionBuffer;
+        }
+
+        return code.replace(/%p/g, precisionBuffer).replace(/%\$/g, currencySymbol);
+    }
 }]);

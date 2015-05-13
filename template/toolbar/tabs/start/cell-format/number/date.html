@@ -4,7 +4,7 @@
     </label>
     <label class="b-column b-numberformat-preview">
         <ul class="b-cellformat-list">
-            <li ng-repeat="format in status.format.date" ng-class="{'b-nubmerformat-preview-active': status.dateSelected === $index}" ng-click="status.dateSelected=$index;">{{format.text}}</li>
+            <li ng-repeat="format in status.format.date" ng-class="{'b-nubmerformat-preview-active': status._default.code.date === $index}" ng-click="status._default.code.date=$index;">{{format.text}}</li>
         </ul>
     </label>
     <div class="b-numberformat-desc">

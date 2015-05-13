@@ -3,15 +3,15 @@ return '<div unselectable="on" class="toolbar-groups b-toolbar-fonts-groups">\n'
 '<div unselectable="on" class="b-column b-fontsgroup-layout">\n' +
 '<div unselectable="on" class="b-row">\n' +
 '<!-- unselectable="on" font family -->\n' +
-'<b-inputselect unselectable="on" classname="b-fontfamily-select" change="handler.fontSelect(value);" select-value="values.fontfamily" values="initValue.fontfamily"></b-inputselect>\n' +
+'<b-inputselect unselectable="on" classname="b-fontfamily-select" change="handler.fontSelect(value);" select-value="status.font" values="initValue.fontfamily"></b-inputselect>\n' +
 '<!-- unselectable="on" font size -->\n' +
-'<b-inputselect unselectable="on" classname="b-fontsize-select" change="handler.fontsizeSelect(value);" only-number="true" select-value="values.fontsize" values="initValue.fontsize"></b-inputselect>\n' +
+'<b-inputselect unselectable="on" classname="b-fontsize-select" change="handler.fontsizeSelect(value);" only-number="true" select-value="status.fontsize" values="initValue.fontsize"></b-inputselect>\n' +
 '</div>\n' +
 '<div unselectable="on" class="b-toolbar-fonts-biu-wrap">\n' +
 '<!-- unselectable="on" BIU -->\n' +
-'<b-pressbutton unselectable="on" buttontype="bold" onchange="handler.pressChange(\'bold\', status)" pressed="false"></b-pressbutton>\n' +
-'<b-pressbutton unselectable="on" buttontype="italic" onchange="handler.pressChange(\'italic\', status)" pressed="false"></b-pressbutton>\n' +
-'<b-pressbutton unselectable="on" buttontype="underline" onchange="handler.pressChange(\'underline\', status)" pressed="false"></b-pressbutton>\n' +
+'<b-pressbutton unselectable="on" buttontype="bold" onchange="handler.pressChange(\'bold\', status)" pressed="status.bold"></b-pressbutton>\n' +
+'<b-pressbutton unselectable="on" buttontype="italic" onchange="handler.pressChange(\'italic\', status)" pressed="status.italic"></b-pressbutton>\n' +
+'<b-pressbutton unselectable="on" buttontype="underline" onchange="handler.pressChange(\'underline\', status)" pressed="status.underline"></b-pressbutton>\n' +
 '<div unselectable="on" class="b-toolbar-delimiter"></div>\n' +
 '<!-- unselectable="on" border -->\n' +
 '<div unselectable="on" class="btn-group" dropdown on-toggle="btnState.borderOpen=open;">\n' +

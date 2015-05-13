@@ -5,6 +5,8 @@
 
 angular.module('b.const', []).constant('NUMBER_FORMAT', (function () {
     return {
+        'normal': 'General',
+
         'number': {
             // 无千分位符
             'normal': [{
@@ -236,7 +238,13 @@ angular.module('b.const', []).constant('NUMBER_FORMAT', (function () {
                 text: '下午一时三十分',
                 color: ''
             }
-        ]
+        ],
+
+        'percentage': '0%p%',
+
+        'scientific': '0%pE+00',
+
+        'text': '@'
     };
 })()).constant('FONT_LIST', [
     "Angsana New",

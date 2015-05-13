@@ -3,7 +3,7 @@
  * @author hancong03@baiud.com
  */
 
-angular.module('app').controller('ToolbarBasicController', ['$scope', 'toolbarNotify', 'cellformatModalNotify', function ($scope, toolbarNotify, cellformatModalNotify) {
+angular.module('app').controller('ToolbarBasicController', ['$scope', 'toolbarNotify', 'cellformatModalNotify', 'btableNotify', function ($scope, toolbarNotify, cellformatModalNotify, btableNotify) {
     $scope.btnState = {
         pasteOpen: false,
         fontfamilyOpen: false,
@@ -18,6 +18,38 @@ angular.module('app').controller('ToolbarBasicController', ['$scope', 'toolbarNo
         alignValue: null,
         merge: false
     };
+
+    var status = {
+        bold: false,
+        italic: false,
+        underline: false,
+        throughline: false,
+
+        font: '宋体',
+        fontsize: 13,
+        color: null,
+        fill: null,
+        horizontal: null,
+        vertical: null,
+        wraptext: false
+    };
+
+    btableNotify.on(function (btableStatus) {
+        status.bold = btableStatus.bold;
+        status.italic = btableStatus.italic;
+        status.underline = btableStatus.underline;
+
+        status.vertical = btableStatus.vertical;
+        status.horizontal = btableStatus.horizontal;
+        status.wraptext = btableStatus.wraptext;
+        // TODO 对默认值的处理需要优化
+        status.font = btableStatus.font || '宋体';
+        status.fontsize = btableStatus.fontsize || 13;
+
+        $scope.$apply();
+    });
+
+    $scope.status = status;
 
     $scope.res = res;
 

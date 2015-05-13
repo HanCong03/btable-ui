@@ -387,7 +387,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    </label>\n" +
     "    <label class=\"b-column b-numberformat-preview\">\n" +
     "        <ul class=\"b-cellformat-list\">\n" +
-    "            <li ng-repeat=\"format in status.format.date\" ng-class=\"{'b-nubmerformat-preview-active': status.dateSelected === $index}\" ng-click=\"status.dateSelected=$index;\">{{format.text}}</li>\n" +
+    "            <li ng-repeat=\"format in status.format.date\" ng-class=\"{'b-nubmerformat-preview-active': status._default.code.date === $index}\" ng-click=\"status._default.code.date=$index;\">{{format.text}}</li>\n" +
     "        </ul>\n" +
     "    </label>\n" +
     "    <div class=\"b-numberformat-desc\">\n" +
@@ -550,7 +550,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    </label>\n" +
     "    <label class=\"b-column b-numberformat-preview\">\n" +
     "        <ul class=\"b-cellformat-list\">\n" +
-    "            <li ng-repeat=\"format in status.format.time\" ng-class=\"{'b-nubmerformat-preview-active': status.timeSelected === $index}\" ng-click=\"status.timeSelected=$index;\">{{format.text}}</li>\n" +
+    "            <li ng-repeat=\"format in status.format.time\" ng-class=\"{'b-nubmerformat-preview-active': status._default.code.time === $index}\" ng-click=\"status._default.code.time=$index;\">{{format.text}}</li>\n" +
     "        </ul>\n" +
     "    </label>\n" +
     "    <div class=\"b-numberformat-desc\">\n" +
@@ -574,15 +574,15 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "<div class=\"toolbar-groups b-toolbar-fonts-groups\">\n" +
     "    <div class=\"b-column-left b-aligngroup-layout\">\n" +
     "        <div class=\"b-row-stretch\">\n" +
-    "            <b-verticalalign onchange=\"handler.valignChange(status);\" value=\"res.valignValue\"></b-verticalalign>\n" +
+    "            <b-verticalalign onchange=\"handler.valignChange(status);\" value=\"{{status.vertical}}\"></b-verticalalign>\n" +
     "\n" +
     "            <div class=\"b-toolbar-delimiter\"></div>\n" +
     "\n" +
-    "            <b-pressbutton buttontype=\"wraptext\" text=\"{{'toolbar.buttonlabel.wraptext' | translate}}\" onchange=\"handler.pressChange('wraptext', status)\" pressed=\"false\"></b-pressbutton>\n" +
+    "            <b-pressbutton buttontype=\"wraptext\" text=\"{{'toolbar.buttonlabel.wraptext' | translate}}\" onchange=\"handler.pressChange('wraptext', status)\" pressed=\"status.wraptext\"></b-pressbutton>\n" +
     "        </div>\n" +
     "\n" +
     "        <div class=\"b-row-stretch\">\n" +
-    "            <b-horizontalalign onchange=\"handler.alignChange(status);\" value=\"res.alignValue\"></b-horizontalalign>\n" +
+    "            <b-horizontalalign onchange=\"handler.alignChange(status);\" value=\"{{status.horizontal}}\"></b-horizontalalign>\n" +
     "\n" +
     "            <div class=\"b-toolbar-delimiter\"></div>\n" +
     "\n" +
@@ -667,17 +667,16 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"b-column b-fontsgroup-layout\">\n" +
     "        <div class=\"b-row\">\n" +
     "            <!-- font family -->\n" +
-    "            <b-inputselect classname=\"b-fontfamily-select\" change=\"handler.fontSelect(value);\" select-value=\"values.fontfamily\" values=\"initValue.fontfamily\"></b-inputselect>\n" +
+    "            <b-inputselect classname=\"b-fontfamily-select\" change=\"handler.fontSelect(value);\" select-value=\"status.font\" values=\"initValue.fontfamily\"></b-inputselect>\n" +
     "\n" +
     "            <!-- font size -->\n" +
-    "            <b-inputselect classname=\"b-fontsize-select\" change=\"handler.fontsizeSelect(value);\" only-number=\"true\" select-value=\"values.fontsize\" values=\"initValue.fontsize\"></b-inputselect>\n" +
+    "            <b-inputselect classname=\"b-fontsize-select\" change=\"handler.fontsizeSelect(value);\" only-number=\"true\" select-value=\"status.fontsize\" values=\"initValue.fontsize\"></b-inputselect>\n" +
     "        </div>\n" +
     "        <div class=\"b-toolbar-fonts-biu-wrap\">\n" +
-    "\n" +
     "            <!-- BIU -->\n" +
-    "            <b-pressbutton buttontype=\"bold\" onchange=\"handler.pressChange('bold', status)\" pressed=\"false\"></b-pressbutton>\n" +
-    "            <b-pressbutton buttontype=\"italic\" onchange=\"handler.pressChange('italic', status)\" pressed=\"false\"></b-pressbutton>\n" +
-    "            <b-pressbutton buttontype=\"underline\" onchange=\"handler.pressChange('underline', status)\" pressed=\"false\"></b-pressbutton>\n" +
+    "            <b-pressbutton buttontype=\"bold\" onchange=\"handler.pressChange('bold', status)\" pressed=\"status.bold\"></b-pressbutton>\n" +
+    "            <b-pressbutton buttontype=\"italic\" onchange=\"handler.pressChange('italic', status)\" pressed=\"status.italic\"></b-pressbutton>\n" +
+    "            <b-pressbutton buttontype=\"underline\" onchange=\"handler.pressChange('underline', status)\" pressed=\"status.underline\"></b-pressbutton>\n" +
     "\n" +
     "            <div class=\"b-toolbar-delimiter\"></div>\n" +
     "\n" +
@@ -803,24 +802,6 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('template/toolbar/tabs/start/horizontalalign.html',
-    "<div>\n" +
-    "    <!-- horizontal alignments -->\n" +
-    "    <div class=\"btn-group\">\n" +
-    "        <label class=\"btn b-btn\" ng-model=\"value\" btn-radio=\"'left'\" ng-click=\"alignChange('left');\" uncheckable>\n" +
-    "            <span class=\"b-icon b-icon-left\"></span>\n" +
-    "        </label>\n" +
-    "        <label class=\"btn b-btn\" ng-model=\"value\" btn-radio=\"'center'\" ng-click=\"alignChange('center');\" uncheckable>\n" +
-    "            <span class=\"b-icon b-icon-center\"></span>\n" +
-    "        </label>\n" +
-    "        <label class=\"btn b-btn\" ng-model=\"value\" btn-radio=\"'right'\" ng-click=\"alignChange('right');\" uncheckable>\n" +
-    "            <span class=\"b-icon b-icon-right\"></span>\n" +
-    "        </label>\n" +
-    "    </div>\n" +
-    "</div>"
-  );
-
-
   $templateCache.put('template/toolbar/tabs/start/index.html',
     "<div class=\"toolbar-tabs-content\">\n" +
     "    <ng-include b-include-replace class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-undo.html'\"></ng-include>\n" +
@@ -859,32 +840,6 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            </a>\n" +
     "        </li>\n" +
     "    </ul>\n" +
-    "</div>"
-  );
-
-
-  $templateCache.put('template/toolbar/tabs/start/pressbutton.html',
-    "<button type=\"button\" class=\"btn b-btn\" ng-model=\"status\" ng-click=\"toggle();\" btn-checkbox>\n" +
-    "    <span class=\"b-icon b-icon-{{type}}\"></span>\n" +
-    "    {{text}}\n" +
-    "</button>"
-  );
-
-
-  $templateCache.put('template/toolbar/tabs/start/verticalalign.html',
-    "<div>\n" +
-    "    <!-- vertical alignments -->\n" +
-    "    <div class=\"btn-group\">\n" +
-    "        <label class=\"btn b-btn\" ng-model=\"value\" btn-radio=\"'top'\" ng-click=\"alignChange('top');\" uncheckable>\n" +
-    "            <span class=\"b-icon b-icon-top\"></span>\n" +
-    "        </label>\n" +
-    "        <label class=\"btn b-btn\" ng-model=\"value\" btn-radio=\"'middle'\" ng-click=\"alignChange('middle');\" uncheckable>\n" +
-    "            <span class=\"b-icon b-icon-middle\"></span>\n" +
-    "        </label>\n" +
-    "        <label class=\"btn b-btn\" ng-model=\"value\" btn-radio=\"'bottom'\" ng-click=\"alignChange('bottom');\" uncheckable>\n" +
-    "            <span class=\"b-icon b-icon-bottom\"></span>\n" +
-    "        </label>\n" +
-    "    </div>\n" +
     "</div>"
   );
 
@@ -974,6 +929,24 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/toolbar/widget/horizontalalign.html',
+    "<div>\n" +
+    "    <!-- horizontal alignments -->\n" +
+    "    <div class=\"btn-group\">\n" +
+    "        <label class=\"btn b-btn\" ng-model=\"value\" btn-radio=\"'left'\" ng-click=\"alignChange('left');\" uncheckable>\n" +
+    "            <span class=\"b-icon b-icon-left\"></span>\n" +
+    "        </label>\n" +
+    "        <label class=\"btn b-btn\" ng-model=\"value\" btn-radio=\"'center'\" ng-click=\"alignChange('center');\" uncheckable>\n" +
+    "            <span class=\"b-icon b-icon-center\"></span>\n" +
+    "        </label>\n" +
+    "        <label class=\"btn b-btn\" ng-model=\"value\" btn-radio=\"'right'\" ng-click=\"alignChange('right');\" uncheckable>\n" +
+    "            <span class=\"b-icon b-icon-right\"></span>\n" +
+    "        </label>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/toolbar/widget/inputselect.html',
     "<div class=\"b-input-select {{classname}}\" ng-class=\"{'b-open': isOpen}\">\n" +
     "    <input ng-model=\"selectValue\" class=\"b-input-select-input\">\n" +
@@ -986,6 +959,32 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                <a style='font-family: {{font}};'>{{font}}</a>\n" +
     "            </li>\n" +
     "        </ul>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/widget/pressbutton.html',
+    "<button type=\"button\" class=\"btn b-btn\" ng-model=\"pressed\" ng-click=\"toggle();\" btn-checkbox>\n" +
+    "    <span class=\"b-icon b-icon-{{type}}\"></span>\n" +
+    "    {{text}}\n" +
+    "</button>"
+  );
+
+
+  $templateCache.put('template/toolbar/widget/verticalalign.html',
+    "<div>\n" +
+    "    <!-- vertical alignments -->\n" +
+    "    <div class=\"btn-group\">\n" +
+    "        <label class=\"btn b-btn\" ng-model=\"__initValue\" btn-radio=\"'top'\" ng-click=\"alignChange('top');\" uncheckable>\n" +
+    "            <span class=\"b-icon b-icon-top\"></span>\n" +
+    "        </label>\n" +
+    "        <label class=\"btn b-btn\" ng-model=\"__initValue\" btn-radio=\"'middle'\" ng-click=\"alignChange('middle');\" uncheckable>\n" +
+    "            <span class=\"b-icon b-icon-middle\"></span>\n" +
+    "        </label>\n" +
+    "        <label class=\"btn b-btn\" ng-model=\"__initValue\" btn-radio=\"'bottom'\" ng-click=\"alignChange('bottom');\" uncheckable>\n" +
+    "            <span class=\"b-icon b-icon-bottom\"></span>\n" +
+    "        </label>\n" +
     "    </div>\n" +
     "</div>"
   );

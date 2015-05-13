@@ -1,15 +1,15 @@
 <div class="toolbar-groups b-toolbar-fonts-groups">
     <div class="b-column-left b-aligngroup-layout">
         <div class="b-row-stretch">
-            <b-verticalalign onchange="handler.valignChange(status);" value="res.valignValue"></b-verticalalign>
+            <b-verticalalign onchange="handler.valignChange(status);" value="{{status.vertical}}"></b-verticalalign>
 
             <div class="b-toolbar-delimiter"></div>
 
-            <b-pressbutton buttontype="wraptext" text="{{'toolbar.buttonlabel.wraptext' | translate}}" onchange="handler.pressChange('wraptext', status)" pressed="false"></b-pressbutton>
+            <b-pressbutton buttontype="wraptext" text="{{'toolbar.buttonlabel.wraptext' | translate}}" onchange="handler.pressChange('wraptext', status)" pressed="status.wraptext"></b-pressbutton>
         </div>
 
         <div class="b-row-stretch">
-            <b-horizontalalign onchange="handler.alignChange(status);" value="res.alignValue"></b-horizontalalign>
+            <b-horizontalalign onchange="handler.alignChange(status);" value="{{status.horizontal}}"></b-horizontalalign>
 
             <div class="b-toolbar-delimiter"></div>
 

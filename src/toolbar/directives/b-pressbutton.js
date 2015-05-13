@@ -11,15 +11,13 @@ angular.module('app').directive('bPressbutton', ['$parse', function ($parse) {
         scope: {
             onchange: '&',
             text: '@text',
-            type: '@buttontype'
+            type: '@buttontype',
+            pressed: '=?'
         },
-        templateUrl: 'template/toolbar/tabs/start/pressbutton.html',
+        templateUrl: 'template/toolbar/widget/pressbutton.html',
         link: function ($scope, $ele, $attr) {
             var hook = $scope.onchange || angular.noop;
-
-            var pressed = $scope.$eval($attr.pressed);
-            $scope.isPressed = angular.isDefined(pressed) ? pressed : false;
-            $scope.status = $scope.isPressed;
+            $scope.isPressed = !!$scope.pressed;
 
             $scope.toggle = function () {
                 $scope.isPressed = !$scope.isPressed;
