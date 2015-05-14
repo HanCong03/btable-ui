@@ -7,8 +7,6 @@ angular.module('app').factory('toolbarNotify', ['btableNotify', function (btable
 
     return {
         emit: function (type, args) {
-            console.log(arguments)
-
             switch (type) {
                 case 'bold':
                 case 'italic':
@@ -35,7 +33,7 @@ angular.module('app').factory('toolbarNotify', ['btableNotify', function (btable
                     if (arguments[2]) {
                         btableNotify.execCommand(['builtincellstyle', arguments[1]]);
                     } else {
-                        alert(3)
+                        console.error('未处理自定义cellstyle的问题');
                         //btableNotify.execCommand(['cellstyle', arguments[1]]);
                     }
 

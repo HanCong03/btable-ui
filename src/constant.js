@@ -81,32 +81,32 @@ angular.module('b.const', []).constant('NUMBER_FORMAT', (function () {
         
         'date': [
             {
-                code: '[DBNum1][$-804]yyyy\'年\'m\'月\'d\'日\';@',
+                code: '[DBNum1][$-804]yyyy"年"m"月"d"日";@',
                 text: '二O一二年三月十四日',
                 color: ''
             },
             {
-                code: '[DBNum1][$-804]yyyy\'年\'m\'月\';@',
+                code: '[DBNum1][$-804]yyyy"年"m"月";@',
                 text: '二O一二年三月',
                 color: ''
             },
             {
-                code: '[DBNum1][$-804]m\'月\'d\'日\';@',
+                code: '[DBNum1][$-804]m"月"d"日";@',
                 text: '三月十四日',
                 color: ''
             },
             {
-                code: 'yyyy\'年\'m\'月\'dquot;日\';@',
+                code: 'yyyy"年"m"月"d"日";@',
                 text: '2012年3月14日',
                 color: ''
             },
             {
-                code: 'yyyy\'年\'m\'月\';@',
+                code: 'yyyy"年"m"月";@',
                 text: '2012年3月',
                 color: ''
             },
             {
-                code: 'm\'月\'d\'日\';@',
+                code: 'm"月"d"日";@',
                 text: '3月14日',
                 color: ''
             },
@@ -238,13 +238,7 @@ angular.module('b.const', []).constant('NUMBER_FORMAT', (function () {
                 text: '下午一时三十分',
                 color: ''
             }
-        ],
-
-        'percentage': '0%p%',
-
-        'scientific': '0%pE+00',
-
-        'text': '@'
+        ]
     };
 })()).constant('FONT_LIST', [
     "Angsana New",

@@ -285,7 +285,11 @@
 
                 // 重置数字格式
                 function resetNumberformat() {
-                    var formatCodeInfo = numberformat.match('#,##0.000_);[Red](#,##0.000)');
+                    if (!btableStatus.numberformat) {
+                        return;
+                    }
+
+                    var formatCodeInfo = numberformat.match(btableStatus.numberformat);
 
                     if (formatCodeInfo) {
                         status.formatSelected = [];
@@ -383,10 +387,19 @@
 
                     var code = numberformat.getNumberformatCode(index, status);
 
-                    commands.push({
-                        command: 'format',
-                        args: [code]
-                    });
+                    if (btableStatus.numberformat !== code) {
+                        if (code) {
+                            commands.push({
+                                command: 'numberformat',
+                                args: [code]
+                            });
+                        } else {
+                            commands.push({
+                                command: 'clearnumberformat',
+                                args: []
+                            });
+                        }
+                    }
                 }
 
                 /**

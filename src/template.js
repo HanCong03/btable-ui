@@ -734,7 +734,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "            <div class=\"b-toolbar-delimiter\"></div>\n" +
     "\n" +
-    "            <b-colorpicker oncolorchange=\"handler.colorChange('background', color);\" colortype=\"bgcolor\"></b-colorpicker>\n" +
+    "            <b-colorpicker oncolorchange=\"handler.colorChange('background', color);\" value=\"{{}}\" colortype=\"bgcolor\"></b-colorpicker>\n" +
     "            <b-colorpicker oncolorchange=\"handler.colorChange('foreground', color);\" colortype=\"color\"></b-colorpicker>\n" +
     "        </div>\n" +
     "    </div>\n" +

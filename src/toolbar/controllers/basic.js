@@ -45,6 +45,8 @@ angular.module('app').controller('ToolbarBasicController', ['$scope', 'toolbarNo
         // TODO 对默认值的处理需要优化
         status.font = btableStatus.font || '宋体';
         status.fontsize = btableStatus.fontsize || 13;
+        status.color = btableStatus.color || null;
+        status.fill = btableStatus.fill || null;
 
         $scope.$apply();
     });

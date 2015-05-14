@@ -63,7 +63,7 @@ angular.module('app').factory('numberformat', ['NUMBER_FORMAT', 'CURRENCY', func
          * @param code
          */
         match: function (code) {
-            // 移除所有小数位后进行比较
+            // 移除小数位后进行比较
             var newCode = code.replace(/\.(0+)/g, '%p');
             var index = CODE_MAP[newCode];
 
@@ -132,7 +132,7 @@ angular.module('app').factory('numberformat', ['NUMBER_FORMAT', 'CURRENCY', func
 
         precision -= 1;
         while (precision >= 0) {
-            precisionBuffer.push(precision % 10);
+            precisionBuffer.push(0);
             precision--;
         }
 

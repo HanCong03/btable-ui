@@ -59,7 +59,8 @@ angular.module('app').factory('btableNotify', [function () {
             'vertical',
             'underline',
             'throughline',
-            'wraptext'
+            'wraptext',
+            'numberformat'
         ]);
     }
 

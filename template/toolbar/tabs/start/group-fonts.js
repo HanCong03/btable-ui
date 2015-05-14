@@ -65,7 +65,7 @@ return '<div unselectable="on" class="toolbar-groups b-toolbar-fonts-groups">\n'
 '</ul>\n' +
 '</div>\n' +
 '<div unselectable="on" class="b-toolbar-delimiter"></div>\n' +
-'<b-colorpicker unselectable="on" oncolorchange="handler.colorChange(\'background\', color);" colortype="bgcolor"></b-colorpicker>\n' +
+'<b-colorpicker unselectable="on" oncolorchange="handler.colorChange(\'background\', color);" value="{{}}" colortype="bgcolor"></b-colorpicker>\n' +
 '<b-colorpicker unselectable="on" oncolorchange="handler.colorChange(\'foreground\', color);" colortype="color"></b-colorpicker>\n' +
 '</div>\n' +
 '</div>\n' +
