@@ -5,7 +5,7 @@
 
 angular.module('app').factory('numberformat', ['NUMBER_FORMAT', 'CURRENCY', function (NUMBER_FORMAT, CURRENCY) {
 
-    var FORMAT_TYPES = ['normal', 'number', 'currency', 'accounting', 'date', 'time', 'percentage', 'fraction', 'scientific', 'text'];
+    var FORMAT_TYPES = ['normal', 'number', 'currency', 'accountant', 'date', 'time', 'percentage', 'fraction', 'scientific', 'text'];
 
     /* ---- 初始化内置code start ---- */
     /*
@@ -13,12 +13,22 @@ angular.module('app').factory('numberformat', ['NUMBER_FORMAT', 'CURRENCY', func
      * */
     var CODES = NUMBER_FORMAT;
 
+    // 货币符号列表
+    var CURRENCY_SYMBOL = [];
+
     // code表
     var CODE_TABLE = [];
     // code结构，方便获取信息
     var CODE_MAP = {};
 
     /* --- 初始化表 start --- */
+
+    // 初始化货币符号列表
+    (function () {
+        for (var i = 0, len = CURRENCY.length; i < len; i++) {
+            CURRENCY_SYMBOL.push(CURRENCY[i].value);
+        }
+    })();
 
     // 初始化 数值类code
     (function () {
@@ -53,6 +63,70 @@ angular.module('app').factory('numberformat', ['NUMBER_FORMAT', 'CURRENCY', func
             });
         }
     })();
+
+    // 初始化 货币类code
+    (function () {
+        var current = CODES.currency;
+        var item;
+
+        for (var i = 0, len = current.length; i < len; i++) {
+            item = current[i];
+
+            CODE_MAP[item.code] = CODE_TABLE.length;
+            CODE_TABLE.push({
+                type: 'currency',
+                index: i,
+                thousandth: false,
+                code: item.code,
+                color: item.color
+            });
+        }
+    })();
+
+    // 初始化 会计code
+    (function () {
+        CODE_MAP[CODES.accountant] = CODE_TABLE.length;
+        CODE_TABLE.push({
+            type: 'accountant',
+            index: 0,
+            thousandth: false,
+            code: CODES.accountant,
+            color: ''
+        });
+    })();
+
+    // 初始化 科学计数法 code
+    (function () {
+        // scientific
+        CODE_MAP[CODES.scientific] = CODE_TABLE.length;
+        CODE_TABLE.push({
+            type: 'scientific',
+            index: 0,
+            thousandth: false,
+            code: CODES.scientific,
+            color: ''
+        });
+    })();
+
+    // 初始化 分数类code
+    (function () {
+        var current = CODES.fraction;
+        var item;
+
+        for (var i = 0, len = current.length; i < len; i++) {
+            item = current[i];
+
+            CODE_MAP[item.code] = CODE_TABLE.length;
+            CODE_TABLE.push({
+                type: 'fraction',
+                index: i,
+                thousandth: false,
+                code: item.code,
+                color: item.color
+            });
+        }
+    })();
+
     /* --- 初始化表 end --- */
 
     /* ---- 初始化内置code end ---- */
@@ -64,20 +138,21 @@ angular.module('app').factory('numberformat', ['NUMBER_FORMAT', 'CURRENCY', func
          */
         match: function (code) {
             // 移除小数位后进行比较
-            var newCode = code.replace(/\.(0+)/g, '%p');
-            var index = CODE_MAP[newCode];
+            var newCode = format(code);
+            var index = CODE_MAP[newCode.code];
 
             if (index === undefined) {
                 return null;
             }
 
-            var precision = /\.(0+)/.test(code) && RegExp['$1'].length;
+            var precision = /\.(0+)/.test(code) ? RegExp.$1.length : -1;
 
             return {
                 // code 结构信息
                 info: CODE_TABLE[index],
                 // 精度信息
-                precision: precision
+                precision: precision,
+                currency: newCode.currency
             };
         },
 
@@ -100,9 +175,8 @@ angular.module('app').factory('numberformat', ['NUMBER_FORMAT', 'CURRENCY', func
                 case 'currency':
                     return getFormatCode(NUMBER_FORMAT.currency[codeSelected.currency].code, precision, currencySymbol);
 
-                case 'accounting':
-                    console.log('Notice: 会计code未实现');
-                    return NUMBER_FORMAT.normal;
+                case 'accountant':
+                    return getFormatCode(NUMBER_FORMAT.accountant, precision, currencySymbol);
 
                 case 'date':
                     return getFormatCode(NUMBER_FORMAT.date[codeSelected.date].code, '', '');
@@ -142,5 +216,25 @@ angular.module('app').factory('numberformat', ['NUMBER_FORMAT', 'CURRENCY', func
         }
 
         return code.replace(/%p/g, precisionBuffer).replace(/%\$/g, currencySymbol);
+    }
+
+    function format(code) {
+        var symbolIndex = -1;
+
+        code = code.replace(/\.(0+)/g, '%p').replace(/"([^"]+)"/g, function (match, symbol) {
+            var tmp = CURRENCY_SYMBOL.indexOf(symbol);
+
+            if (tmp !== -1) {
+                symbolIndex = tmp;
+                return '"%$"';
+            }
+
+            return match;
+        });
+
+        return {
+            code: code,
+            currency: symbolIndex
+        };
     }
 }]);

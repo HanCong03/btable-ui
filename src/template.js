@@ -13,7 +13,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                <ng-include src=\"'template/toolbar/tabs/start/cell-format/index.html'\"></ng-include>\n" +
     "            </div>\n" +
     "            <div class=\"modal-footer\">\n" +
-    "                <button type=\"button\" class=\"btn btn-primary\">{{'common.ok' | translate}}</button>\n" +
+    "                <button type=\"button\" class=\"btn btn-primary\" ng-mousedown=\"modalOkClick($event);\">{{'common.ok' | translate}}</button>\n" +
     "                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">{{'common.cancel' | translate}}</button>\n" +
     "            </div>\n" +
     "        </div>\n" +
@@ -341,6 +341,33 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/toolbar/tabs/start/cell-format/number/accountant.html',
+    "<div class=\"b-numberformat-tabs-content b-column\">\n" +
+    "    <label>\n" +
+    "        小数位数：\n" +
+    "        <input type=\"number\"\n" +
+    "            ng-model=\"status._default.precision\"\n" +
+    "            min=\"0\"\n" +
+    "            max=\"30\">\n" +
+    "    </label\n" +
+    "            >\n" +
+    "    <label>\n" +
+    "        货币符号(国家/地区)：\n" +
+    "        <select ng-model=\"status._default.currency\">\n" +
+    "            <option ng-repeat=\"symbol in currencyList\"\n" +
+    "                    value=\"{{$index}}\" ng-selected=\"{{$index === status._default.currency}}\">\n" +
+    "                {{symbol.text}}\n" +
+    "            </option>\n" +
+    "        </select>\n" +
+    "    </label>\n" +
+    "\n" +
+    "    <div class=\"b-numberformat-desc\">\n" +
+    "        会计格式可对一列数值进行货币符号和小数点对齐。\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/toolbar/tabs/start/cell-format/number/currency.html',
     "<div class=\"b-numberformat-tabs-content b-column\">\n" +
     "    <label>\n" +
@@ -355,7 +382,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        货币符号(国家/地区)：\n" +
     "        <select ng-model=\"status._default.currency\">\n" +
     "            <option ng-repeat=\"symbol in currencyList\"\n" +
-    "                    value=\"{{$index}}\">\n" +
+    "                    value=\"{{$index}}\" ng-selected=\"{{$index === status._default.currency}}\">\n" +
     "                {{symbol.text}}\n" +
     "            </option>\n" +
     "        </select>\n" +
@@ -436,7 +463,9 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "        <tab heading=\"会计专用\"\n" +
     "             active=\"status.formatSelected[3]\">\n" +
-    "            常规单元格格式不包含任何特定的数字格式。\n" +
+    "            <ng-include b-include-replace\n" +
+    "                        src=\"'template/toolbar/tabs/start/cell-format/number/accountant.html'\">\n" +
+    "            </ng-include>\n" +
     "        </tab>\n" +
     "\n" +
     "        <tab heading=\"日期\"\n" +

@@ -22,7 +22,9 @@
 
         <tab heading="会计专用"
              active="status.formatSelected[3]">
-            常规单元格格式不包含任何特定的数字格式。
+            <ng-include b-include-replace
+                        src="'template/toolbar/tabs/start/cell-format/number/accountant.html'">
+            </ng-include>
         </tab>
 
         <tab heading="日期"

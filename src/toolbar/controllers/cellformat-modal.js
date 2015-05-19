@@ -34,7 +34,7 @@
                   BORDERS,
                   btableNotify) {
 
-            var numberformatTypes = ['normal', 'number', 'currency', 'accounting', 'date', 'time', 'percentage', 'fraction', 'scientific', 'text'];
+            var numberformatTypes = ['normal', 'number', 'currency', 'accountant', 'date', 'time', 'percentage', 'fraction', 'scientific', 'text'];
             var tabs = ['numberformat', 'alignment', 'font', 'border', 'fill'];
 
             /* --- 初始化索引，用于从btable的状态反查UI索引 start --- */
@@ -68,7 +68,6 @@
                 thousandth: false,
                 // 货币符号
                 currency: 2,
-
 
                 // 水平对齐
                 hAlign: 0,
@@ -119,8 +118,12 @@
                 btableStatus = status;
             });
 
+            /* filter */
+            var numberFormatFilter = $filter('bNumberformatNumber');
+            var currencyFormatFilter = $filter('bNumberformatCurrency');
+
             /* ---------- scope 挂载 ---------- */
-            var status = {
+            var _status = {
                 tabSelected: [true],
 
                 formatSelected: [true],
@@ -129,12 +132,16 @@
                 format: {
                     date: NUMBER_FORMAT.date,
                     time: NUMBER_FORMAT.time,
-                    fraction: NUMBER_FORMAT.fraction
+                    fraction: NUMBER_FORMAT.fraction,
+                    number: numberFormatFilter(NUMBER_FORMAT.number, _defaultStatus.precision, !!_defaultStatus.thousandth),
+                    currency: currencyFormatFilter(NUMBER_FORMAT.currency, _defaultStatus.precision, CURRENCY[_defaultStatus.currency].value)
                 },
 
                 // 各种类别的默认选中索引
-                _default: $.extend(true, {}, _defaultStatus)
+                _default: _defaultStatus
             };
+
+            var status = $.extend(true, {}, _status);
 
             $scope.status = status;
 
@@ -147,10 +154,6 @@
             $scope.fonts = FONT_LIST;
             $scope.currencyList = CURRENCY;
 
-            /* filter */
-            var numberFormatFilter = $filter('bNumberformatNumber');
-            var currencyFormatFilter = $filter('bNumberformatCurrency');
-
             $scope.$watchGroup(['status._default.precision', 'status._default.thousandth'], function () {
                 $scope.status.format.number = numberFormatFilter(NUMBER_FORMAT.number, status._default.precision, !!status._default.thousandth);
             });
@@ -158,6 +161,15 @@
             $scope.$watchGroup(['status._default.precision', 'status._default.currency'], function () {
                 $scope.status.format.currency = currencyFormatFilter(NUMBER_FORMAT.currency, status._default.precision, CURRENCY[status._default.currency].value);
             });
+
+            $scope.modalOkClick = function (evt) {
+                evt.preventDefault();
+
+                var commands = checkChange();
+                btableNotify.execCommand([commands]);
+
+                $("#cellFormatModal").modal('hide');
+            };
 
             /* ---------- 监听open消息 --------- */
             cellformatModalNotify.onMessage('open', function (type) {
@@ -167,19 +179,17 @@
                     index = 0;
                 }
 
-                status.tabSelected[index] = true;
-
                 // 在打开前根据当前的单元格信息重置状态
                 resetCurrentStatus();
 
-                $("#cellFormatModal").modal({
-                    'show': true
-                });
+                status.tabSelected = [];
+                status.tabSelected[index] = true;
+                $("#cellFormatModal").modal('show');
             });
 
             $("#cellFormatModal").on('hidden.bs.modal', function () {
-                var commands = checkChange();
-                btableNotify.execCommand([commands]);
+                //var commands = checkChange();
+                //btableNotify.execCommand([commands]);
             });
 
             /* ----- 边框控制 ----- */
@@ -269,11 +279,13 @@
              * 重置初始状态
              */
             function resetCurrentStatus() {
-                status._default = $.extend(true, {}, _defaultStatus);
+                // 用默认配置覆盖现有配置
+                $.extend(status, $.extend(true, {}, _status));
 
                 var _default = status._default;
 
                 resetNumberformat();
+
                 resetAlignment();
                 resetFont();
                 resetBorder();
@@ -295,8 +307,18 @@
                         status.formatSelected[numberformatTypes.indexOf(formatCodeInfo.info.type)] = true;
 
                         _default.thousandth = formatCodeInfo.info.thousandth;
-                        _default.precision = formatCodeInfo.precision;
                         _default.code[formatCodeInfo.info.type] = formatCodeInfo.info.index;
+
+                        if (formatCodeInfo.precision !== -1) {
+                            _default.precision = formatCodeInfo.precision;
+                        }
+
+                        if (formatCodeInfo.currency !== -1) {
+                            _default.currency = formatCodeInfo.currency;
+                        }
+
+                        status.format.number = numberFormatFilter(NUMBER_FORMAT.number, _default.precision, !!_default.thousandth);
+                        status.format.currency = currencyFormatFilter(NUMBER_FORMAT.currency, _default.precision, CURRENCY[_default.currency].value);
                     }
                 }
 

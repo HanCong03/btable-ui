@@ -1,6 +1,6 @@
 /*!
  * ====================================================
- * BTable Number Format - v1.0.0 - 2015-05-18
+ * BTable Number Format - v1.0.0 - 2015-05-19
  * https://github.com/kitygraph/formula
  * GitHub: https://github.com/kitygraph/formula.git 
  * Copyright (c) 2015 Baidu Kity Group; Licensed MIT
@@ -1194,6 +1194,18 @@ _p[21] = {
                     processFraction(group, c);
                     break;
 
+                  case "1":
+                  case "2":
+                  case "3":
+                  case "4":
+                  case "5":
+                  case "6":
+                  case "7":
+                  case "8":
+                  case "9":
+                    parseNumber(group, c);
+                    break;
+
                   case ";":
                     // 结束对当前part的处理
                     group = createNewGroup(result);
@@ -1217,15 +1229,6 @@ _p[21] = {
                   case "}":
                   case ">":
                   case " ":
-                  case "1":
-                  case "2":
-                  case "3":
-                  case "4":
-                  case "5":
-                  case "6":
-                  case "7":
-                  case "8":
-                  case "9":
                     processLiteral(group, c);
                     break;
 
@@ -1278,6 +1281,12 @@ _p[21] = {
                     value: str
                 });
             }
+        }
+        function parseNumber(group, c) {
+            group.push({
+                type: TOKEN_TYPE.STRING,
+                value: c
+            });
         }
         function processLiteral(group, c) {
             var prevElement = group[group.length - 1];
@@ -2064,9 +2073,6 @@ _p[26] = {
                     value: []
                 };
                 var tokens = analyzeTokens(group.tokens, info);
-                if (info.value.length > 0 && (info.denominator !== 0 || +info.value.join("") === 0)) {
-                    throw new Error("Illegal code");
-                }
                 var result;
                 // 无整数部分
                 if (info.integer === 0) {
@@ -2104,23 +2110,29 @@ _p[26] = {
         function applyCode(value, tokens, info) {
             var numerator;
             var denominator;
+            var integer;
             var tmp;
             // 整数可直接确定分子和分母
             if (Number.isInteger(value)) {
+                integer = value;
                 numerator = value;
                 denominator = 1;
             } else {
                 if (info.value.length) {
                     denominator = +info.value.join("");
-                    numerator = Math.round(value * denominator);
+                    integer = Math.floor(value);
+                    numerator = Math.round((value - integer) * denominator);
                 } else {
                     tmp = StandardFraction.getFraction(value, info.denominator);
-                    denominator = tmp[2];
+                    integer = tmp[0];
                     numerator = tmp[1];
+                    denominator = tmp[2];
                 }
             }
-            console.log(tmp[0]);
-            return replace(tokens, [ tmp[0] + "", numerator + "", denominator + "" ]);
+            if (integer === 0) {
+                integer = "";
+            }
+            return replace(tokens, [ integer + "", numerator + "", denominator + "" ]);
         }
         /* ------- code替换 ------- */
         function replace(tokens, values) {
@@ -2149,31 +2161,42 @@ _p[26] = {
                 numerator: [],
                 denominator: []
             };
-            tokens.reverse();
+            //tokens.reverse();
             /* ---- 分析分母部分 --- */
-            analyzeDenominator(newTokens.denominator, tokens, info);
+            analyzeDenominator(newTokens, tokens, info);
             /* ---- 分析分子部分 --- */
-            analyzeNumerator(newTokens.numerator, tokens, info);
-            /* ---- 分析整数部分 --- */
-            analyzerInteger(newTokens.integer, tokens, info);
-            info.value.reverse();
-            newTokens.integer.reverse();
-            newTokens.numerator.reverse();
-            newTokens.denominator.reverse();
+            analyzeNumerator(newTokens, tokens, info);
+            ///* ---- 分析整数部分 --- */
+            analyzerInteger(newTokens, tokens, info);
             return newTokens;
         }
-        function analyzeDenominator(currentTokens, tokens, info) {
+        function analyzeDenominator(newTokens, tokens, info) {
+            for (var i = 0, len = tokens.length; i < len; i++) {
+                if (tokens[i].value === "/") {
+                    break;
+                }
+            }
+            tokens = tokens.splice(i);
+            var checked = false;
+            var currentTokens = newTokens.denominator;
+            var isContinue = true;
             var token;
-            while (token = tokens.shift()) {
+            var denominators = [];
+            // 获取分母
+            while (isContinue && (token = tokens.shift())) {
                 switch (token.type) {
                   case TOKEN_TYPE.STRING:
+                    if ("123456789".indexOf(token.value) !== -1) {
+                        denominators.push(token.value);
+                        break;
+                    }
+                    if (denominators.length > 0) {
+                        isContinue = false;
+                        checkDenominator();
+                        currentTokens.push(token);
+                        break;
+                    }
                     currentTokens.push(token);
-                    if (token.value === "/") {
-                        return;
-                    }
-                    if ("0123456789".indexOf(token.value) !== -1) {
-                        info.value.push(token.value);
-                    }
                     break;
 
                   case TOKEN_TYPE.THOUSANDTH:
@@ -2181,8 +2204,7 @@ _p[26] = {
                     break;
 
                   case TOKEN_TYPE.NUMBER:
-                    info.denominator++;
-                    currentTokens.push(token);
+                    denominators.push(token.value);
                     break;
 
                   case TOKEN_TYPE.SYMBOL_SPACE:
@@ -2192,24 +2214,82 @@ _p[26] = {
                     });
                     break;
 
-                  case TOKEN_TYPE.REPEAT:
-                    // ingore
+                  default:
+                    throw new Error("Illegal token: " + token.value);
+                }
+            }
+            // 获取剩余的字符串：所有token都看做字符串
+            for (var i = 0, len = tokens.length; i < len; i++) {
+                token = tokens[i];
+                switch (token.type) {
+                  case TOKEN_TYPE.STRING:
+                  case TOKEN_TYPE.NUMBER:
+                    currentTokens.push({
+                        type: TOKEN_TYPE.STRING,
+                        value: token.value
+                    });
+                    break;
+
+                  case TOKEN_TYPE.THOUSANDTH:
+                    // ignore
+                    break;
+
+                  case TOKEN_TYPE.SYMBOL_SPACE:
+                    currentTokens.push({
+                        type: TOKEN_TYPE.STRING,
+                        value: " "
+                    });
                     break;
 
                   default:
                     throw new Error("Illegal token: " + token.value);
                 }
             }
+            if (!checked) {
+                checkDenominator();
+            }
+            function checkDenominator() {
+                checked = true;
+                var v = +denominators.join("");
+                // 视为占位符
+                if (isNaN(v) || v === 0) {
+                    info.denominator = denominators.length;
+                    for (var i = 0, len = denominators.length; i < len; i++) {
+                        currentTokens.push({
+                            type: TOKEN_TYPE.NUMBER,
+                            value: denominators[i]
+                        });
+                    }
+                } else {
+                    info.value = denominators;
+                    info.denominator = denominators.length;
+                    // 添加相应个数的占位符
+                    for (var i = 0, len = denominators.length; i < len; i++) {
+                        currentTokens.push({
+                            type: TOKEN_TYPE.NUMBER,
+                            value: "0"
+                        });
+                    }
+                }
+            }
         }
-        function analyzeNumerator(currentTokens, tokens, info) {
+        function analyzeNumerator(newTokens, tokens, info) {
+            var currentTokens = newTokens.numerator;
+            var tmp = [];
             var token;
+            for (var i = tokens.length - 1; i >= 0; i--) {
+                token = tokens[i];
+                if (token.type === TOKEN_TYPE.STRING && token.value.indexOf(" ") !== -1) {
+                    tokens.splice(i + 1);
+                    break;
+                }
+                tmp.push(token);
+            }
+            tokens = tmp;
             while (token = tokens.shift()) {
                 switch (token.type) {
                   case TOKEN_TYPE.STRING:
                     currentTokens.push(token);
-                    if (token.value.indexOf(" ") !== -1) {
-                        return;
-                    }
                     break;
 
                   case TOKEN_TYPE.THOUSANDTH:
@@ -2228,16 +2308,13 @@ _p[26] = {
                     });
                     break;
 
-                  case TOKEN_TYPE.REPEAT:
-                    // ingore
-                    break;
-
                   default:
                     throw new Error("Illegal token: " + token.value);
                 }
             }
         }
-        function analyzerInteger(currentTokens, tokens, info) {
+        function analyzerInteger(newTokens, tokens, info) {
+            var currentTokens = newTokens.integer;
             var token;
             while (token = tokens.shift()) {
                 switch (token.type) {
@@ -2259,10 +2336,6 @@ _p[26] = {
                         type: TOKEN_TYPE.STRING,
                         value: " "
                     });
-                    break;
-
-                  case TOKEN_TYPE.REPEAT:
-                    // ingore
                     break;
 
                   default:
@@ -2550,7 +2623,13 @@ _p[28] = {
             var integer = [];
             // 小数部分
             var decimal;
-            value = value.replace(".", "").split("");
+            value = value.replace(".", "");
+            // 记录小数有效位数到小数点的数量级之差
+            var diff = value.length;
+            value = +value + "";
+            // 计算diff值
+            diff -= value.length;
+            value = value.split("");
             for (var i = 0, len = info.integer; i < len; i++) {
                 integer.push(value.shift() || 0);
             }
@@ -2567,7 +2646,7 @@ _p[28] = {
                 integer: integer,
                 decimal: decimal,
                 // 指数是数值型
-                exponent: originalCount - info.integer
+                exponent: originalCount - info.integer - diff
             };
         }
         function stringify(tokens) {

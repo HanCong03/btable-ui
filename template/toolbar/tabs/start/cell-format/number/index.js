@@ -20,7 +20,9 @@ return '<div unselectable="on" class="b-numberformat-box">\n' +
 '</tab>\n' +
 '<tab unselectable="on" heading="会计专用"\n' +
 'active="status.formatSelected[3]">\n' +
-'常规单元格格式不包含任何特定的数字格式。\n' +
+'<ng-include unselectable="on" b-include-replace\n' +
+'src="\'template/toolbar/tabs/start/cell-format/number/accountant.html\'">\n' +
+'</ng-include>\n' +
 '</tab>\n' +
 '<tab unselectable="on" heading="日期"\n' +
 'active="status.formatSelected[4]">\n' +

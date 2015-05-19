@@ -10,7 +10,7 @@ return '<!-- unselectable="on" Modal -->\n' +
 '<ng-include unselectable="on" src="\'template/toolbar/tabs/start/cell-format/index.html\'"></ng-include>\n' +
 '</div>\n' +
 '<div unselectable="on" class="modal-footer">\n' +
-'<button unselectable="on" type="button" class="btn btn-primary">{{\'common.ok\' | translate}}</button>\n' +
+'<button unselectable="on" type="button" class="btn btn-primary" ng-mousedown="modalOkClick($event);">{{\'common.ok\' | translate}}</button>\n' +
 '<button unselectable="on" type="button" class="btn btn-default" data-dismiss="modal">{{\'common.cancel\' | translate}}</button>\n' +
 '</div>\n' +
 '</div>\n' +

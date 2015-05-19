@@ -79,7 +79,7 @@ angular.module('b.const', []).constant('NUMBER_FORMAT', (function () {
             }
         ],
 
-        'accounting': '_-"%$"* #,##0%p_ ;_-"%$"* -#,##0%p ;_-"%$"* "-"??_ ;_-@_ ',
+        'accountant': '_-"%$"* #,##0%p_ ;_-"%$"* -#,##0%p ;_-"%$"* "-"??_ ;_-@_ ',
         
         'date': [
             {
@@ -290,7 +290,9 @@ angular.module('b.const', []).constant('NUMBER_FORMAT', (function () {
                 text: '百分之几（30/100）',
                 color: ''
             }
-        ]
+        ],
+
+        'percentage': '0%p%'
     };
 })()).constant('FONT_LIST', [
     "Angsana New",
