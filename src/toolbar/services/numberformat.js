@@ -95,6 +95,44 @@ angular.module('app').factory('numberformat', ['NUMBER_FORMAT', 'CURRENCY', func
         });
     })();
 
+    // 初始化 日期类code
+    (function () {
+        var current = CODES.date;
+        var item;
+
+        for (var i = 0, len = current.length; i < len; i++) {
+            item = current[i];
+
+            CODE_MAP[item.code] = CODE_TABLE.length;
+            CODE_TABLE.push({
+                type: 'date',
+                index: i,
+                thousandth: false,
+                code: item.code,
+                color: item.color
+            });
+        }
+    })();
+
+    // 初始化 时间类code
+    (function () {
+        var current = CODES.time;
+        var item;
+
+        for (var i = 0, len = current.length; i < len; i++) {
+            item = current[i];
+
+            CODE_MAP[item.code] = CODE_TABLE.length;
+            CODE_TABLE.push({
+                type: 'time',
+                index: i,
+                thousandth: false,
+                code: item.code,
+                color: item.color
+            });
+        }
+    })();
+
     // 初始化 科学计数法 code
     (function () {
         // scientific

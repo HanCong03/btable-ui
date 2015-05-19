@@ -741,26 +741,20 @@ _p[13] = {
                 var token;
                 var index = 0;
                 tokens.reverse();
-                var lastIndex = -1;
                 for (var i = 0, len = tokens.length; i < len; i++) {
                     token = tokens[i];
-                    result.push(token);
                     if (token.type === TOKEN_TYPE.NUMBER) {
-                        index++;
-                        lastIndex = -1;
                         if (index === 3) {
-                            index = 0;
-                            lastIndex = result.length;
+                            index = 1;
                             result.push({
                                 type: TOKEN_TYPE.STRING,
                                 value: ","
                             });
+                        } else {
+                            index++;
                         }
                     }
-                }
-                // 清除多余的分隔符
-                if (lastIndex !== -1) {
-                    result.splice(lastIndex, 1);
+                    result.push(token);
                 }
                 tokens.reverse();
                 return result.reverse();
@@ -893,7 +887,7 @@ _p[19] = {
               case 1:
                 result[1] = tokens[0];
                 result[2] = tokens[0];
-                result[3] = tokens[0];
+                result[3] = null;
                 break;
 
               case 2:
@@ -983,6 +977,11 @@ _p[19] = {
 
                   case TOKEN_TYPE.SCIENTIFIC:
                     result.scientific = true;
+                    result.tokens.push(token);
+                    break;
+
+                  case TOKEN_TYPE.PERCENTAGE:
+                    result.percentage = true;
                     result.tokens.push(token);
                     break;
 
@@ -1574,6 +1573,8 @@ _p[21] = {
 _p[22] = {
     value: function(require) {
         var NumberForamt = _p.r(23);
+        var TextFormat = _p.r(31);
+        var VALUE_TYPE = _p.r(18);
         return {
             format: function(value, tokens) {
                 var group;
@@ -1587,10 +1588,15 @@ _p[22] = {
                         group = tokens[2];
                     }
                     if (!group) {
-                        return value;
+                        return {
+                            type: VALUE_TYPE.NUMBER,
+                            color: null,
+                            value: value
+                        };
                     }
-                    if (group.tokens.length === 0) {
-                        return "";
+                    // 文本符号,交由文本处理
+                    if (group.text) {
+                        return TextFormat.exec(value, group);
                     }
                     // 所有数字都按非负数处理
                     value = Math.abs(value);
@@ -1599,12 +1605,7 @@ _p[22] = {
                 /* ---- 文本处理 ---- */
                 value += "";
                 group = tokens[3];
-                if (!group) {
-                    return value;
-                }
-                if (group.tokens.length === 0) {
-                    return "";
-                }
+                return TextFormat.exec(value, group);
             }
         };
     }
@@ -1618,9 +1619,10 @@ _p[22] = {
 _p[23] = {
     value: function(require) {
         var DateTime = _p.r(25);
-        var Scientific = _p.r(28);
+        var Scientific = _p.r(29);
         var Numerical = _p.r(27);
         var Fraction = _p.r(26);
+        var Percentage = _p.r(28);
         var VALUE_TYPE = _p.r(18);
         return {
             exec: function(value, group) {
@@ -1647,8 +1649,14 @@ _p[23] = {
                 if (group.scientific) {
                     return Scientific.exec(value, group);
                 }
+                // 分数
                 if (group.fraction) {
                     return Fraction.exec(value, group);
+                }
+                console.log(group.percentage);
+                // 百分比
+                if (group.percentage) {
+                    return Percentage.exec(value, group);
                 }
                 // 数值处理（货币也归类到数字里）
                 return Numerical.exec(value, group);
@@ -1856,9 +1864,10 @@ _p[25] = {
         /* ----------- 日期解析函数 ------------ */
         function parseYear(dateValue, symbol) {
             if (symbol === "yy") {
+                var value = dateValue.year % 100;
                 return {
                     type: TOKEN_TYPE.DATE_YEAR,
-                    value: dateValue.year % 100 + ""
+                    value: value < 10 ? "0" + value : "" + value
                 };
             } else if (symbol === "yyyy") {
                 return {
@@ -2057,9 +2066,9 @@ _p[25] = {
 _p[26] = {
     value: function(require) {
         var TOKEN_TYPE = _p.r(17);
-        var StandardFraction = _p.r(24);
-        var Utils = _p.r(29);
         var VALUE_TYPE = _p.r(18);
+        var Utils = _p.r(30);
+        var StandardFraction = _p.r(24);
         return {
             exec: function(value, group) {
                 var info = {
@@ -2356,7 +2365,7 @@ _p[27] = {
         var TOKEN_TYPE = _p.r(17);
         var DBNumConverter = _p.r(12);
         var ThousandthConverter = _p.r(13);
-        var Utils = _p.r(29);
+        var Utils = _p.r(30);
         var VALUE_TYPE = _p.r(18);
         return {
             exec: function(value, group) {
@@ -2439,16 +2448,46 @@ _p[27] = {
     }
 };
 
+//src/formatter/number/types/percentage.js
+/**
+ * @file 日期时间解析器
+ * @author hancong03@baiud.com
+ */
+_p[28] = {
+    value: function(require) {
+        var VALUE_TYPE = _p.r(18);
+        var Utils = _p.r(30);
+        var ThousandthConverter = _p.r(13);
+        return {
+            exec: function(value, group) {
+                value = (value * 100 + "").split("");
+                var tokens = Utils.parseInteger(group.tokens, value);
+                if (group.thousandth) {
+                    tokens = ThousandthConverter.convert(tokens);
+                }
+                for (var i = 0, len = tokens.length; i < len; i++) {
+                    tokens[i] = tokens[i].value;
+                }
+                return {
+                    type: VALUE_TYPE.PERCENTAGE,
+                    color: group.color,
+                    value: tokens.join("")
+                };
+            }
+        };
+    }
+};
+
 //src/formatter/number/types/scientific.js
 /**
  * @file
  * @author hancong03@baiud.com
  */
-_p[28] = {
+_p[29] = {
     value: function(require) {
         var TOKEN_TYPE = _p.r(17);
         var ThousandthConverter = _p.r(13);
-        var Utils = _p.r(29);
+        var Utils = _p.r(30);
         var VALUE_TYPE = _p.r(18);
         return {
             // 注意：科学计数法忽略DBNum的处理，但是仍然受千分位的影响
@@ -2664,7 +2703,7 @@ _p[28] = {
  * @file
  * @author hancong03@baiud.com
  */
-_p[29] = {
+_p[30] = {
     value: function(require) {
         var TOKEN_TYPE = _p.r(17);
         return {
@@ -2793,12 +2832,65 @@ _p[29] = {
     }
 };
 
+//src/formatter/text.js
+/**
+ * @file
+ * @author hancong03@baiud.com
+ */
+_p[31] = {
+    value: function(require) {
+        var VALUE_TYPE = _p.r(18);
+        var TOKEN_TYPE = _p.r(17);
+        return {
+            exec: function(value, group) {
+                if (!group) {
+                    return {
+                        type: VALUE_TYPE.TEXT,
+                        color: null,
+                        value: value + ""
+                    };
+                }
+                if (group.tokens.length === 0) {
+                    return {
+                        type: VALUE_TYPE.TEXT,
+                        color: group.color,
+                        value: ""
+                    };
+                }
+                var result = [];
+                var tokens = group.tokens;
+                var token;
+                for (var i = 0, len = tokens.length; i < len; i++) {
+                    token = tokens[i];
+                    switch (token.type) {
+                      case TOKEN_TYPE.QUOTE:
+                        result.push(value);
+                        break;
+
+                      case TOKEN_TYPE.STRING:
+                        result.push(token.value);
+                        break;
+
+                      default:
+                        throw new Error("Illegal token: " + token.value);
+                    }
+                }
+                return {
+                    type: VALUE_TYPE.TEXT,
+                    color: group.color,
+                    value: result.join("")
+                };
+            }
+        };
+    }
+};
+
 //src/numfmt.js
 /**
  * @file
  * @author hancong03@baiud.com
  */
-_p[30] = {
+_p[32] = {
     value: function(require) {
         var TokenEngine = _p.r(21);
         var StructedEngine = _p.r(19);
@@ -2836,14 +2928,14 @@ _p[30] = {
 /*!
  * 模块暴露
  */
-_p[31] = {
+_p[33] = {
     value: function(require) {
-        window.NumfmtCode = _p.r(30);
+        window.NumfmtCode = _p.r(32);
     }
 };
 
 var moduleMapping = {
-    "kf.start": 31
+    "kf.start": 33
 };
 
 function use(name) {

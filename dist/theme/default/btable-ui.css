@@ -981,6 +981,9 @@ body {
 .b-toolbar .b-icon-currency {
   background-position: -35px -269px;
 }
+.b-toolbar .b-icon-accountant {
+  background-position: -1px -69px;
+}
 .b-toolbar .b-icon-shortdate {
   background-position: -69px -235px;
 }
@@ -992,6 +995,9 @@ body {
 }
 .b-toolbar .b-icon-percentage {
   background-position: -103px -303px;
+}
+.b-toolbar .b-icon-fraction {
+  background-position: -69px -303px;
 }
 .b-toolbar .b-icon-scientific {
   background-position: -35px -303px;
@@ -1070,7 +1076,7 @@ body {
 }
 .b-toolbar .dropdown-menu a:HOVER {
   cursor: default;
-  background: #d3f0e0;
+  background: #d3f0e0 !important;
 }
 
 .b-mr5 {

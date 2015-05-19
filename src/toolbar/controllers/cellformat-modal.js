@@ -17,7 +17,6 @@
         'VERTICAL_ALIGNMENT',
         'CURRENCY',
         'BORDERS',
-
         'btableNotify',
 
         function ($scope,

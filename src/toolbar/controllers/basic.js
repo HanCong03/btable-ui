@@ -75,7 +75,7 @@ angular.module('app').controller('ToolbarBasicController',
     };
 
     $scope.controlClick = function () {
-        ctrlPanelService.open();
+        $scope.$emit('b-file-click');
     };
 
     $scope.handler = {
@@ -120,8 +120,8 @@ angular.module('app').controller('ToolbarBasicController',
             toolbarNotify.emit('border', type);
         },
 
-        formatSelect: function (type) {
-            toolbarNotify.emit('numberformat', type);
+        formatSelect: function (code) {
+            toolbarNotify.emit('numberformat', code);
         },
 
         selectCellstyle: function (id, isBuiltin) {

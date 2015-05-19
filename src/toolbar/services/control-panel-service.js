@@ -6,10 +6,7 @@
 angular.module('app').factory('ctrlPanelService', [function () {
     return {
         open: function () {
-            $("#controlPanel").show();
-        },
-        close: function () {
-            $("#controlPanel").hide();
+            console.log('click')
         }
     };
 }]);

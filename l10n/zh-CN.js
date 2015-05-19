@@ -46,10 +46,12 @@ var _zhCN = {
                 "general": "常规",
                 "number": "数字",
                 "currency": "货币",
+                "accountant": "会计专用",
                 "shortdate": "短日期",
                 "longdate": "长日期",
                 "time": "时间",
                 "percentage": "百分比",
+                "fraction": "分数",
                 "scientific": "科学记数",
                 "text": "文本"
             }

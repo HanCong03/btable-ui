@@ -64,77 +64,94 @@
 
     <!-- filter start -->
     <script src="src/toolbar/filter/b-currency.js"></script>
-
     <script src="src/toolbar/filter/numberformat/number.js"></script>
     <script src="src/toolbar/filter/numberformat/currency.js"></script>
     <!-- filter end -->
 
+    <style type="text/css">
+        .b-main-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-top: 1px solid #ccc;
+        }
+    </style>
+    <script>
+        angular.module('app').controller('test', ['$scope', function ($scope) {
+            $scope.$on('b-file-click', function () {
+                console.log(3);
+            });
+        }]);
+    </script>
     <title>BTable 演示项目</title>
 </head>
-<body>
-<div class="header"
-     b-toolbar>
-    <div class="b-toolbar"
-         ng-controller="ToolbarBasicController">
+<body ng-controller="test">
+<div class="b-main-container">
+    <div class="header"
+         b-toolbar>
+        <div class="b-toolbar"
+             ng-controller="ToolbarBasicController">
 
-        <tabset class="b-toolbar-tabs-head">
-            <tab class="b-toolbar-tabs-label b-toolbar-file-tab"
-                 disabled="true"
-                 ng-mousedown="controlClick();"
-                 heading="{{'toolbar.tabs.file' | translate}}">
-            </tab>
+            <tabset class="b-toolbar-tabs-head">
+                <tab class="b-toolbar-tabs-label b-toolbar-file-tab"
+                     disabled="true"
+                     ng-mousedown="controlClick();"
+                     heading="{{'toolbar.tabs.file' | translate}}">
+                </tab>
 
-            <tab class="b-toolbar-tabs-label"
-                 heading="{{'toolbar.tabs.start' | translate}}"
-                 active="true">
-                <ng-include b-include-replace src="'template/toolbar/tabs/start/index.html'"></ng-include>
-            </tab>
+                <tab class="b-toolbar-tabs-label"
+                     heading="{{'toolbar.tabs.start' | translate}}"
+                     active="true">
+                    <ng-include b-include-replace src="'template/toolbar/tabs/start/index.html'"></ng-include>
+                </tab>
 
-            <tab class="b-toolbar-tabs-label"
-                 heading="{{'toolbar.tabs.insert' | translate}}">
-            </tab>
+                <tab class="b-toolbar-tabs-label"
+                     heading="{{'toolbar.tabs.insert' | translate}}">
+                </tab>
 
-            <tab class="b-toolbar-tabs-label"
-                 heading="{{'toolbar.tabs.layout' | translate}}">
-            </tab>
+                <tab class="b-toolbar-tabs-label"
+                     heading="{{'toolbar.tabs.layout' | translate}}">
+                </tab>
 
-            <tab class="b-toolbar-tabs-label"
-                 heading="{{'toolbar.tabs.formula' | translate}}">
-            </tab>
+                <tab class="b-toolbar-tabs-label"
+                     heading="{{'toolbar.tabs.formula' | translate}}">
+                </tab>
 
-            <tab class="b-toolbar-tabs-label"
-                 heading="{{'toolbar.tabs.data' | translate}}">
-            </tab>
+                <tab class="b-toolbar-tabs-label"
+                     heading="{{'toolbar.tabs.data' | translate}}">
+                </tab>
 
-            <tab class="b-toolbar-tabs-label"
-                 heading="{{'toolbar.tabs.review' | translate}}">
-            </tab>
+                <tab class="b-toolbar-tabs-label"
+                     heading="{{'toolbar.tabs.review' | translate}}">
+                </tab>
 
-            <tab class="b-toolbar-tabs-label"
-                 heading="{{'toolbar.tabs.view' | translate}}">
-            </tab>
-        </tabset>
+                <tab class="b-toolbar-tabs-label"
+                     heading="{{'toolbar.tabs.view' | translate}}">
+                </tab>
+            </tabset>
+        </div>
+
+        <div class="b-row b-input-area">
+            <div class="b-btable-ctrl-btns"></div>
+            <input id="btableInput" class="btable-input">
+        </div>
     </div>
 
-    <div class="b-row b-input-area">
-        <div class="b-btable-ctrl-btns"></div>
-        <input id="btableInput" class="btable-input">
+    <div class="body">
+        <div btable class="btable-container"></div>
     </div>
+
+    <div class="footer">
+        <div class="b-sheet-list">
+            <div b-sheetlist></div>
+        </div>
+        <div class="b-status-bar">
+            就绪
+        </div>
+    </div>
+    <ng-include src="'template/dialogs/cell-format.html '"></ng-include>
 </div>
-
-<div class="body">
-    <div btable class="btable-container"></div>
-</div>
-
-<div class="footer">
-    <div class="b-sheet-list">
-        <div b-sheetlist></div>
-    </div>
-    <div class="b-status-bar">
-        就绪
-    </div>
-</div>
-<ng-include src="'template/dialogs/cell-format.html '"></ng-include>
-<div id="controlPanel" class="b-control-panel"></div>
 </body>
 </html>

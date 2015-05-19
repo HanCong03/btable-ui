@@ -21,6 +21,7 @@ angular.module('app').factory('toolbarNotify', ['btableNotify', function (btable
                 case 'vertical':
                 case 'horizontal':
 
+                case 'numberformat':
                 case 'wraptext':
                     btableNotify.execCommand(arguments);
                     break;

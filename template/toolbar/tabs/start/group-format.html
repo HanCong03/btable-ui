@@ -1,22 +1,39 @@
 <div class="toolbar-groups b-toolbar-fonts-groups">
     <div class="b-row">
         <div>
-            <b-numberformat onselect="handler.formatSelect(type);"></b-numberformat>
+            <b-numberformat onselect="handler.formatSelect(code);"></b-numberformat>
         </div>
         <div class="b-column">
-            <a class="btn b-btn" role="button" data-name="inc-precision" ng-click="handler.btnclick($event);">
+            <a class="btn b-btn"
+               role="button"
+               data-name="inc-precision"
+               ng-click="handler.btnclick($event);">
+
                 <span class="b-icon b-icon-inc-precision"></span>
+
             </a>
-            <a class="btn b-btn" role="button" data-name="dec-precision" ng-click="handler.btnclick($event);">
+            <a class="btn b-btn"
+               role="button"
+               data-name="dec-precision"
+               ng-click="handler.btnclick($event);">
+
                 <span class="b-icon b-icon-dec-precision"></span>
+
             </a>
-            <a class="btn b-btn" role="button" data-name="thousandth" ng-click="handler.btnclick($event);">
+            <a class="btn b-btn"
+               role="button"
+               data-name="thousandth"
+               ng-click="handler.btnclick($event);">
+
                 <span class="b-icon b-icon-thousands"></span>
+
             </a>
         </div>
     </div>
 
-    <button type="button" class="btn b-btn b-open-cellformat-btn" ng-click="handler.openCellFormat('numberformat')">
+    <button type="button"
+            class="btn b-btn b-open-cellformat-btn"
+            ng-click="handler.openCellFormat('numberformat')">
         <span class="b-icon"></span>
     </button>
 

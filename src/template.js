@@ -788,22 +788,39 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "<div class=\"toolbar-groups b-toolbar-fonts-groups\">\n" +
     "    <div class=\"b-row\">\n" +
     "        <div>\n" +
-    "            <b-numberformat onselect=\"handler.formatSelect(type);\"></b-numberformat>\n" +
+    "            <b-numberformat onselect=\"handler.formatSelect(code);\"></b-numberformat>\n" +
     "        </div>\n" +
     "        <div class=\"b-column\">\n" +
-    "            <a class=\"btn b-btn\" role=\"button\" data-name=\"inc-precision\" ng-click=\"handler.btnclick($event);\">\n" +
+    "            <a class=\"btn b-btn\"\n" +
+    "               role=\"button\"\n" +
+    "               data-name=\"inc-precision\"\n" +
+    "               ng-click=\"handler.btnclick($event);\">\n" +
+    "\n" +
     "                <span class=\"b-icon b-icon-inc-precision\"></span>\n" +
+    "\n" +
     "            </a>\n" +
-    "            <a class=\"btn b-btn\" role=\"button\" data-name=\"dec-precision\" ng-click=\"handler.btnclick($event);\">\n" +
+    "            <a class=\"btn b-btn\"\n" +
+    "               role=\"button\"\n" +
+    "               data-name=\"dec-precision\"\n" +
+    "               ng-click=\"handler.btnclick($event);\">\n" +
+    "\n" +
     "                <span class=\"b-icon b-icon-dec-precision\"></span>\n" +
+    "\n" +
     "            </a>\n" +
-    "            <a class=\"btn b-btn\" role=\"button\" data-name=\"thousandth\" ng-click=\"handler.btnclick($event);\">\n" +
+    "            <a class=\"btn b-btn\"\n" +
+    "               role=\"button\"\n" +
+    "               data-name=\"thousandth\"\n" +
+    "               ng-click=\"handler.btnclick($event);\">\n" +
+    "\n" +
     "                <span class=\"b-icon b-icon-thousands\"></span>\n" +
+    "\n" +
     "            </a>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
-    "    <button type=\"button\" class=\"btn b-btn b-open-cellformat-btn\" ng-click=\"handler.openCellFormat('numberformat')\">\n" +
+    "    <button type=\"button\"\n" +
+    "            class=\"btn b-btn b-open-cellformat-btn\"\n" +
+    "            ng-click=\"handler.openCellFormat('numberformat')\">\n" +
     "        <span class=\"b-icon\"></span>\n" +
     "    </button>\n" +
     "\n" +
@@ -855,25 +872,6 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "    <ng-include b-include-replace class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-cellstyles.html'\"></ng-include>\n" +
     "    <div class=\"b-toolbar-delimiter\"></div>\n" +
-    "</div>"
-  );
-
-
-  $templateCache.put('template/toolbar/tabs/start/numberformat.html',
-    "<div class=\"btn-group b-drop-button\" dropdown on-toggle=\"btnState.numberOpen=open;\">\n" +
-    "    <div type=\"button\" class=\"btn b-drop-button-bottom b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': btnState.numberOpen}\">\n" +
-    "        <span class=\"b-big-icon b-icon-number\"></span>\n" +
-    "        {{'toolbar.buttonlabel.numberformat' | translate}}\n" +
-    "        <span class=\"caret\"></span>\n" +
-    "    </div>\n" +
-    "    <ul class=\"dropdown-menu\" role=\"menu\">\n" +
-    "        <li ng-repeat=\"type in types\" ng-click=\"select($index)\">\n" +
-    "            <a class=\"b-row\">\n" +
-    "                <span class=\"b-big-icon b-icon-{{type}} b-mr5\"></span>\n" +
-    "                {{'toolbar.items.format.' + type | translate}}\n" +
-    "            </a>\n" +
-    "        </li>\n" +
-    "    </ul>\n" +
     "</div>"
   );
 
@@ -994,6 +992,25 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            </li>\n" +
     "        </ul>\n" +
     "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/widget/numberformat.html',
+    "<div class=\"btn-group b-drop-button\" dropdown on-toggle=\"btnState.numberOpen=open;\">\n" +
+    "    <div type=\"button\" class=\"btn b-drop-button-bottom b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': btnState.numberOpen}\">\n" +
+    "        <span class=\"b-big-icon b-icon-number\"></span>\n" +
+    "        {{'toolbar.buttonlabel.numberformat' | translate}}\n" +
+    "        <span class=\"caret\"></span>\n" +
+    "    </div>\n" +
+    "    <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "        <li ng-repeat=\"type in types\" ng-click=\"select($index)\">\n" +
+    "            <a class=\"b-row\">\n" +
+    "                <span class=\"b-big-icon b-icon-{{type}} b-mr5\"></span>\n" +
+    "                {{'toolbar.items.format.' + type | translate}}\n" +
+    "            </a>\n" +
+    "        </li>\n" +
+    "    </ul>\n" +
     "</div>"
   );
 
