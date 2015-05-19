@@ -1,8 +1,8 @@
 @green-color: #217346;
 .file-tab-style() {
-  color: #ffffff;
-  border-color: @green-color;
-  background: @green-color;
+  color: #ffffff!important;
+  border-color: @green-color!important;
+  background: @green-color!important;
 }
 
 .b-toolbar {
@@ -13,7 +13,7 @@
   .b-toolbar-file-tab {
     &:HOVER {
       .file-tab-style();
-      background: none;
+      background: none!important;
 
       a {
         .file-tab-style();
@@ -32,6 +32,10 @@
   .b-toolbar-tabs-label {
     font-size: 15px;
     margin-right: 3px;
+
+    a {
+      cursor: default!important;
+    }
 
     &.active a {
       color: @green-color;

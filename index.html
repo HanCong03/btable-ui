@@ -54,6 +54,7 @@
     <script src="src/toolbar/services/cellformat-modal-notify.js"></script>
     <script src="src/toolbar/services/btable-notify.js"></script>
     <script src="src/toolbar/services/numberformat.js"></script>
+    <script src="src/toolbar/services/control-panel-service.js"></script>
     <!-- services end -->
 
     <!-- controllers start -->
@@ -78,6 +79,8 @@
 
         <tabset class="b-toolbar-tabs-head">
             <tab class="b-toolbar-tabs-label b-toolbar-file-tab"
+                 disabled="true"
+                 ng-mousedown="controlClick();"
                  heading="{{'toolbar.tabs.file' | translate}}">
             </tab>
 
@@ -132,5 +135,6 @@
     </div>
 </div>
 <ng-include src="'template/dialogs/cell-format.html '"></ng-include>
+<div id="controlPanel" class="b-control-panel"></div>
 </body>
 </html>
