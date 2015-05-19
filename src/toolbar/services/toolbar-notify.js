@@ -27,7 +27,7 @@ angular.module('app').factory('toolbarNotify', ['btableNotify', function (btable
                     break;
 
                 case 'thousandth':
-                    btableNotify.execCommand(['format', '_ * #,##0.00_ ;_ * -#,##0.00_ ;_ * “-“??_ ;_ @_']);
+                    btableNotify.execCommand(['numberformat', '_ * #,##0.00_ ;_ * -#,##0.00_ ;_ * "-"??_ ;_ @_ ']);
                     break;
 
                 case 'cellstyle':

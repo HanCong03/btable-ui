@@ -35,7 +35,9 @@ angular.module('app').directive('bInputselect', ['$translate', '$parse', functio
                 $scope.update(this.getAttribute('data-value'));
             });
 
-            $input.on('keydown', function (e) {
+            $input.on('mousedown', function (e) {
+                e.stopPropagation();
+            }).on('keydown', function (e) {
                 var value = this.value;
 
                 if (e.keyCode !== 13) {

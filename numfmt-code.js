@@ -1653,7 +1653,6 @@ _p[23] = {
                 if (group.fraction) {
                     return Fraction.exec(value, group);
                 }
-                console.log(group.percentage);
                 // 百分比
                 if (group.percentage) {
                     return Percentage.exec(value, group);
