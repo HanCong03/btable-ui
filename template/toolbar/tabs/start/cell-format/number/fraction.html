@@ -1,5 +1,10 @@
 <div class="b-numberformat-tabs-content b-column">
     <label>
-        暂不支持
+        类型：
+    </label>
+    <label class="b-column b-numberformat-preview">
+        <ul class="b-cellformat-list">
+            <li ng-repeat="format in status.format.fraction" ng-class="{'b-nubmerformat-preview-active': status._default.code.fraction === $index}" ng-click="status._default.code.fraction=$index;">{{format.text}}</li>
+        </ul>
     </label>
 </div>

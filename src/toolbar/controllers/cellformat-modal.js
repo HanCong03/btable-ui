@@ -58,7 +58,8 @@
                     number: 3,
                     currency: 3,
                     date: 0,
-                    time: 0
+                    time: 0,
+                    fraction: 0
                 },
 
                 // 默认精度
@@ -127,7 +128,8 @@
                 // 格式code信息
                 format: {
                     date: NUMBER_FORMAT.date,
-                    time: NUMBER_FORMAT.time
+                    time: NUMBER_FORMAT.time,
+                    fraction: NUMBER_FORMAT.fraction
                 },
 
                 // 各种类别的默认选中索引
@@ -144,9 +146,6 @@
             $scope.borderStyle = BORDERS;
             $scope.fonts = FONT_LIST;
             $scope.currencyList = CURRENCY;
-
-            status.format.date = NUMBER_FORMAT.date;
-            status.format.time = NUMBER_FORMAT.time;
 
             /* filter */
             var numberFormatFilter = $filter('bNumberformatNumber');

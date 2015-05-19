@@ -400,7 +400,12 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   $templateCache.put('template/toolbar/tabs/start/cell-format/number/fraction.html',
     "<div class=\"b-numberformat-tabs-content b-column\">\n" +
     "    <label>\n" +
-    "        暂不支持\n" +
+    "        类型：\n" +
+    "    </label>\n" +
+    "    <label class=\"b-column b-numberformat-preview\">\n" +
+    "        <ul class=\"b-cellformat-list\">\n" +
+    "            <li ng-repeat=\"format in status.format.fraction\" ng-class=\"{'b-nubmerformat-preview-active': status._default.code.fraction === $index}\" ng-click=\"status._default.code.fraction=$index;\">{{format.text}}</li>\n" +
+    "        </ul>\n" +
     "    </label>\n" +
     "</div>"
   );
@@ -519,7 +524,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   $templateCache.put('template/toolbar/tabs/start/cell-format/number/percentage.html',
     "<div class=\"b-numberformat-tabs-content b-column\">\n" +
     "    <label>\n" +
-    "        小数位数：<input type=\"number\" ng-model=\"status.precision\" min=\"0\" max=\"30\">\n" +
+    "        小数位数：<input type=\"number\" ng-model=\"status._default.precision\" min=\"0\" max=\"30\">\n" +
     "    </label>\n" +
     "</div>"
   );
@@ -528,7 +533,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   $templateCache.put('template/toolbar/tabs/start/cell-format/number/scientific.html',
     "<div class=\"b-numberformat-tabs-content b-column\">\n" +
     "    <label>\n" +
-    "        小数位数：<input type=\"number\" ng-model=\"status.precision\" min=\"0\" max=\"30\">\n" +
+    "        小数位数：<input type=\"number\" ng-model=\"status._default.precision\" min=\"0\" max=\"30\">\n" +
     "    </label>\n" +
     "</div>"
   );

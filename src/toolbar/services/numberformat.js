@@ -114,8 +114,7 @@ angular.module('app').factory('numberformat', ['NUMBER_FORMAT', 'CURRENCY', func
                     return getFormatCode(NUMBER_FORMAT.percentage, precision, '');
 
                 case 'fraction':
-                    console.log('Notice: 分数code未实现');
-                    return NUMBER_FORMAT.normal;
+                    return getFormatCode(NUMBER_FORMAT.fraction[codeSelected.fraction].code, '', '');
 
                 case 'scientific':
                     return getFormatCode(NUMBER_FORMAT.scientific, precision, '');

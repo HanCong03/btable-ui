@@ -14,7 +14,7 @@ angular.module('b.const', []).constant('NUMBER_FORMAT', (function () {
                 text: '(1234%p)',
                 color: '#ff0000'
             }, {
-                code: '0(%p)_);(0%p)',
+                code: '0%p_);(0%p)',
                 text: '(1234%p)',
                 color: ''
             }, {
@@ -22,11 +22,11 @@ angular.module('b.const', []).constant('NUMBER_FORMAT', (function () {
                 text: '1234%p ',
                 color: '#ff0000'
             }, {
-                code: '0%p_',
+                code: '0%p_ ',
                 text: '-1234%p',
                 color: ''
             }, {
-                code: '0%p_ ;[Red]-0%p',
+                code: '0%p_ ;[Red]-0%p ',
                 text: '-1234%p',
                 color: '#ff0000'
             }],
@@ -45,11 +45,11 @@ angular.module('b.const', []).constant('NUMBER_FORMAT', (function () {
                 text: '1,234%p ',
                 color: '#ff0000'
             }, {
-                code: '#,##0%p_',
+                code: '#,##0%p_ ',
                 text: '-1,234%p',
                 color: ''
             }, {
-                code: '#,##0%p_ ;[Red]-#,##0%p',
+                code: '#,##0%p_ ;[Red]-#,##0%p ',
                 text: '-1,234%p',
                 color: '#ff0000'
             }]
@@ -57,7 +57,7 @@ angular.module('b.const', []).constant('NUMBER_FORMAT', (function () {
 
         'currency': [
             {
-                code: '"%$"#,##0%p_);("%$"#,##0%p)',
+                code: '"%$"#,##0%p_);[Red]("%$"#,##0%p)',
                 text: '(%$1,234%p)',
                 color: '#ff0000'
             }, {
@@ -78,6 +78,8 @@ angular.module('b.const', []).constant('NUMBER_FORMAT', (function () {
                 color: '#ff0000'
             }
         ],
+
+        'accounting': '_-"%$"* #,##0%p_ ;_-"%$"* -#,##0%p ;_-"%$"* "-"??_ ;_-@_ ',
         
         'date': [
             {
@@ -236,6 +238,56 @@ angular.module('b.const', []).constant('NUMBER_FORMAT', (function () {
             {
                 code: '[DBNum1][$-804]上午/下午h"时"mm"分";@',
                 text: '下午一时三十分',
+                color: ''
+            }
+        ],
+
+        'scientific': '0%pE+00',
+
+        'fraction': [
+            {
+                code: '# ?/?',
+                text: '分母为一位数（1/4）',
+                color: ''
+            },
+            {
+                code: '# ??/??',
+                text: '分母为两位数（21/25）',
+                color: ''
+            },
+            {
+                code: '# ???/???',
+                text: '分母为三位数（312/943）',
+                color: ''
+            },
+            {
+                code: '# ?/2',
+                text: '以 2 为分母（1/2）',
+                color: ''
+            },
+            {
+                code: '# ?/4',
+                text: '以 4 为分母（2/4）',
+                color: ''
+            },
+            {
+                code: '# ?/8',
+                text: '以 8 为分母（4/8）',
+                color: ''
+            },
+            {
+                code: '# ??/16',
+                text: '以 16 为分母（8/16）',
+                color: ''
+            },
+            {
+                code: '# ?/10',
+                text: '以 10 为分母（3/10）',
+                color: ''
+            },
+            {
+                code: '# ??/100',
+                text: '百分之几（30/100）',
                 color: ''
             }
         ]
