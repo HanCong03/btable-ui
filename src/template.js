@@ -1077,6 +1077,73 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/widget/btable.html',
+    "<div class=\"b-header\"\n" +
+    "     b-toolbar>\n" +
+    "    <div class=\"b-toolbar\"\n" +
+    "         ng-controller=\"ToolbarBasicController\">\n" +
+    "\n" +
+    "        <tabset class=\"b-toolbar-tabs-head\">\n" +
+    "            <tab class=\"b-toolbar-tabs-label b-toolbar-file-tab\"\n" +
+    "                 disabled=\"true\"\n" +
+    "                 ng-mousedown=\"controlClick();\"\n" +
+    "                 heading=\"{{'toolbar.tabs.file' | translate}}\">\n" +
+    "            </tab>\n" +
+    "\n" +
+    "            <tab class=\"b-toolbar-tabs-label\"\n" +
+    "                 heading=\"{{'toolbar.tabs.start' | translate}}\"\n" +
+    "                 active=\"true\">\n" +
+    "                <ng-include b-include-replace src=\"'template/toolbar/tabs/start/index.html'\"></ng-include>\n" +
+    "            </tab>\n" +
+    "\n" +
+    "            <tab class=\"b-toolbar-tabs-label\"\n" +
+    "                 heading=\"{{'toolbar.tabs.insert' | translate}}\">\n" +
+    "            </tab>\n" +
+    "\n" +
+    "            <tab class=\"b-toolbar-tabs-label\"\n" +
+    "                 heading=\"{{'toolbar.tabs.layout' | translate}}\">\n" +
+    "            </tab>\n" +
+    "\n" +
+    "            <tab class=\"b-toolbar-tabs-label\"\n" +
+    "                 heading=\"{{'toolbar.tabs.formula' | translate}}\">\n" +
+    "            </tab>\n" +
+    "\n" +
+    "            <tab class=\"b-toolbar-tabs-label\"\n" +
+    "                 heading=\"{{'toolbar.tabs.data' | translate}}\">\n" +
+    "            </tab>\n" +
+    "\n" +
+    "            <tab class=\"b-toolbar-tabs-label\"\n" +
+    "                 heading=\"{{'toolbar.tabs.review' | translate}}\">\n" +
+    "            </tab>\n" +
+    "\n" +
+    "            <tab class=\"b-toolbar-tabs-label\"\n" +
+    "                 heading=\"{{'toolbar.tabs.view' | translate}}\">\n" +
+    "            </tab>\n" +
+    "        </tabset>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"b-row b-input-area\">\n" +
+    "        <div class=\"b-btable-ctrl-btns\"></div>\n" +
+    "        <input class=\"btable-input\">\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"b-body\">\n" +
+    "    <div class=\"btable-container\"></div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"b-footer\">\n" +
+    "    <div class=\"b-sheet-list\">\n" +
+    "        <div b-sheetlist></div>\n" +
+    "    </div>\n" +
+    "    <div class=\"b-status-bar\">\n" +
+    "        就绪\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "<ng-include src=\"'template/dialogs/cell-format.html '\"></ng-include>"
+  );
+
+
   $templateCache.put('template/widget/sheetlist.html',
     "<div class=\"b-row\">\n" +
     "    <div class=\"b-sl-scrollbtn-wrap b-row\">\n" +
