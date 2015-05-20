@@ -34,7 +34,10 @@ var _zhCN = {
                 "right": "右框线",
                 "none": "无框线",
                 "all": "所有框线",
-                "outer": "外侧框线"
+                "outer": "外侧框线",
+
+                "linecolor":  "线条颜色",
+                "linestyle": "线形"
             },
             "merge": {
                 "center": "合并后居中",

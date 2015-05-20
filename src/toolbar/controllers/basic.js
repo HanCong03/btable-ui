@@ -55,6 +55,7 @@ angular.module('app').controller('ToolbarBasicController',
         status.fontsize = btableStatus.fontsize || 13;
         status.color = btableStatus.color || null;
         status.fill = btableStatus.fill || null;
+        status.merge = btableStatus.merge || false;
 
         $scope.$apply();
     });
@@ -92,7 +93,14 @@ angular.module('app').controller('ToolbarBasicController',
         },
 
         mergechange: function (mode, status) {
-            toolbarNotify.emit('merge', mode, status);
+            var command = {
+                'center': 'centermerge',
+                'across': 'horizontalmerge',
+                'merge': 'merge',
+                'cancel': 'unmerge'
+            };
+
+            toolbarNotify.emit('merge', command[mode]);
         },
 
         pressChange: function (type, status) {
@@ -116,7 +124,19 @@ angular.module('app').controller('ToolbarBasicController',
         },
 
         borderSelect: function (type) {
-            toolbarNotify.emit('border', type);
+            var args = ['setborder'];
+
+            switch (type) {
+                case 'none':
+                    args = ['clearborder', 'all'];
+                    break;
+
+                default:
+                    args[1] = type;
+                    break;
+            }
+
+            toolbarNotify.emit('border', args);
         },
 
         formatSelect: function (code) {

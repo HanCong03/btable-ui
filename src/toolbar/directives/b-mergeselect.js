@@ -9,19 +9,23 @@ angular.module('app').directive('bMergeselect', [function () {
         restrict: 'E',
         replace: true,
         scope: {
-            onchange: '&'
+            onchange: '&',
+            checked: '=?'
         },
         templateUrl: 'template/toolbar/widget/buttonselect.html',
         link: function ($scope, $ele, $attr) {
             var hook = $scope.onchange || angular.noop();
-            var merge = $scope.$eval($attr.merge);
 
-            $scope.isSelected = angular.isDefined(merge) ? merge : false;
+            $scope.isSelected = !!$scope.checked;
             $scope.isOpen = false;
 
             $scope.toggle = function (isOpen) {
                 $scope.isOpen = isOpen;
             };
+
+            $scope.$watch('checked', function (value) {
+                $scope.isSelected = !!value;
+            });
 
             $scope.changeModel = function (mode) {
                 switch (mode) {

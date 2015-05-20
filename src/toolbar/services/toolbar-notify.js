@@ -38,6 +38,14 @@ angular.module('app').factory('toolbarNotify', ['btableNotify', function (btable
                         //btableNotify.execCommand(['cellstyle', arguments[1]]);
                     }
 
+                case 'border':
+                    console.log('borderchange')
+                    break;
+
+                case 'merge':
+                    btableNotify.execCommand([args]);
+                    break;
+
             }
         }
     };

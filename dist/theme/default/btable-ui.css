@@ -266,6 +266,7 @@ body {
   background: #217346;
 }
 
+
 .b-mr5 {
   margin-right: 5px;
 }
@@ -1059,12 +1060,32 @@ body {
 }
 .b-toolbar .dropdown-menu {
   margin-top: 0px;
-  max-height: 400px;
+  max-height: 600px;
   overflow: scroll;
 }
 .b-toolbar .dropdown-menu a:HOVER {
   cursor: default;
   background: #d3f0e0 !important;
+}
+.b-toolbar .b-border-menu {
+  overflow: visible!important;
+}
+.b-toolbar .b-submenu-item {
+  position: relative;
+  top: 0;
+  left: 0;
+  overflow: visible!important;
+}
+.b-toolbar .b-submenu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  display: none;
+  opacity: 0;
+}
+.b-toolbar .b-submenu.b-show {
+  display: block;
+  opacity: 1;
 }
 
 .b-mr5 {

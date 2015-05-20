@@ -19,7 +19,7 @@ return '<div unselectable="on" class="toolbar-groups b-toolbar-fonts-groups">\n'
 '<span unselectable="on" class="b-icon b-icon-border"></span>\n' +
 '<span unselectable="on" class="caret"></span>\n' +
 '</button>\n' +
-'<ul unselectable="on" class="dropdown-menu" role="menu">\n' +
+'<ul unselectable="on" class="dropdown-menu b-border-menu" role="menu">\n' +
 '<li unselectable="on" ng-click="handler.borderSelect(\'bottom\');">\n' +
 '<a unselectable="on" class="b-row">\n' +
 '<span unselectable="on" class="b-icon b-icon-border-bottom b-mr5"></span>\n' +
@@ -61,6 +61,42 @@ return '<div unselectable="on" class="toolbar-groups b-toolbar-fonts-groups">\n'
 '<span unselectable="on" class="b-icon b-icon-border-outer b-mr5"></span>\n' +
 '{{\'toolbar.items.border.outer\' | translate}}\n' +
 '</a>\n' +
+'</li>\n' +
+'<li unselectable="on" class="divider"></li>\n' +
+'<li unselectable="on" class="b-submenu-item">\n' +
+'<a unselectable="on" class="b-row">\n' +
+'<span unselectable="on" class="b-icon b-icon-border-outer b-mr5"></span>\n' +
+'{{\'toolbar.items.border.linecolor\' | translate}}\n' +
+'</a>\n' +
+'<ul unselectable="on" class="dropdown-menu b-submenu" b-submenu>\n' +
+'<li unselectable="on" role="presentation"><a unselectable="on" role="menuitem" tabindex="-1" href="#">Action</a></li>\n' +
+'</ul>\n' +
+'</li>\n' +
+'<li unselectable="on" class="b-submenu-item">\n' +
+'<a unselectable="on" class="b-row">\n' +
+'<span unselectable="on" class="b-icon b-icon-border-outer b-mr5"></span>\n' +
+'{{\'toolbar.items.border.linestyle\' | translate}}\n' +
+'</a>\n' +
+'<ul unselectable="on" class="dropdown-menu b-border-submenu b-submenu" b-submenu>\n' +
+'<li unselectable="on">\n' +
+'<a unselectable="on" class="b-border-linestyle b-border-linestyle-none">无边框</a>\n' +
+'</li>\n' +
+'<li unselectable="on">\n' +
+'<a unselectable="on" class="b-border-linestyle b-border-linestyle-none">无边框</a>\n' +
+'</li>\n' +
+'<li unselectable="on">\n' +
+'<a unselectable="on" class="b-border-linestyle b-border-linestyle-none">无边框</a>\n' +
+'</li>\n' +
+'<li unselectable="on">\n' +
+'<a unselectable="on" class="b-border-linestyle b-border-linestyle-none">无边框</a>\n' +
+'</li>\n' +
+'<li unselectable="on">\n' +
+'<a unselectable="on" class="b-border-linestyle b-border-linestyle-none">无边框</a>\n' +
+'</li>\n' +
+'<li unselectable="on">\n' +
+'<a unselectable="on" class="b-border-linestyle b-border-linestyle-none">无边框</a>\n' +
+'</li>\n' +
+'</ul>\n' +
 '</li>\n' +
 '</ul>\n' +
 '</div>\n' +

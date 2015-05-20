@@ -620,7 +620,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "            <div class=\"b-toolbar-delimiter\"></div>\n" +
     "\n" +
-    "            <b-mergeselect merge=\"res.merge\" onchange=\"handler.mergechange(mode, value);\"></b-mergeselect>\n" +
+    "            <b-mergeselect checked=\"status.merge\" onchange=\"handler.mergechange(mode, value);\"></b-mergeselect>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
@@ -720,7 +720,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                    <span class=\"b-icon b-icon-border\"></span>\n" +
     "                    <span class=\"caret\"></span>\n" +
     "                </button>\n" +
-    "                <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "                <ul class=\"dropdown-menu b-border-menu\" role=\"menu\">\n" +
     "                    <li ng-click=\"handler.borderSelect('bottom');\">\n" +
     "                        <a class=\"b-row\">\n" +
     "                            <span class=\"b-icon b-icon-border-bottom b-mr5\"></span>\n" +
@@ -762,6 +762,42 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                            <span class=\"b-icon b-icon-border-outer b-mr5\"></span>\n" +
     "                            {{'toolbar.items.border.outer' | translate}}\n" +
     "                        </a>\n" +
+    "                    </li>\n" +
+    "                    <li class=\"divider\"></li>\n" +
+    "                    <li class=\"b-submenu-item\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-border-outer b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.border.linecolor' | translate}}\n" +
+    "                        </a>\n" +
+    "                        <ul class=\"dropdown-menu b-submenu\" b-submenu>\n" +
+    "                            <li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\">Action</a></li>\n" +
+    "                        </ul>\n" +
+    "                    </li>\n" +
+    "                    <li class=\"b-submenu-item\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-border-outer b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.border.linestyle' | translate}}\n" +
+    "                        </a>\n" +
+    "                        <ul class=\"dropdown-menu b-border-submenu b-submenu\" b-submenu>\n" +
+    "                            <li>\n" +
+    "                                <a class=\"b-border-linestyle b-border-linestyle-none\">无边框</a>\n" +
+    "                            </li>\n" +
+    "                            <li>\n" +
+    "                                <a class=\"b-border-linestyle b-border-linestyle-none\">无边框</a>\n" +
+    "                            </li>\n" +
+    "                            <li>\n" +
+    "                                <a class=\"b-border-linestyle b-border-linestyle-none\">无边框</a>\n" +
+    "                            </li>\n" +
+    "                            <li>\n" +
+    "                                <a class=\"b-border-linestyle b-border-linestyle-none\">无边框</a>\n" +
+    "                            </li>\n" +
+    "                            <li>\n" +
+    "                                <a class=\"b-border-linestyle b-border-linestyle-none\">无边框</a>\n" +
+    "                            </li>\n" +
+    "                            <li>\n" +
+    "                                <a class=\"b-border-linestyle b-border-linestyle-none\">无边框</a>\n" +
+    "                            </li>\n" +
+    "                        </ul>\n" +
     "                    </li>\n" +
     "                </ul>\n" +
     "            </div>\n" +
