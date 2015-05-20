@@ -3,7 +3,7 @@
  * @author hancong03@baiud.com
  */
 
-angular.module('app').factory('toolbarNotify', ['btableNotify', function (btableNotify) {
+angular.module('app').factory('toolbarNotify', ['btableService', function (btableService) {
 
     return {
         emit: function (type, args) {
@@ -23,19 +23,19 @@ angular.module('app').factory('toolbarNotify', ['btableNotify', function (btable
 
                 case 'numberformat':
                 case 'wraptext':
-                    btableNotify.execCommand(arguments);
+                    btableService.execCommand(arguments);
                     break;
 
                 case 'thousandth':
-                    btableNotify.execCommand(['numberformat', '_ * #,##0.00_ ;_ * -#,##0.00_ ;_ * "-"??_ ;_ @_ ']);
+                    btableService.execCommand(['numberformat', '_ * #,##0.00_ ;_ * -#,##0.00_ ;_ * "-"??_ ;_ @_ ']);
                     break;
 
                 case 'cellstyle':
                     if (arguments[2]) {
-                        btableNotify.execCommand(['builtincellstyle', arguments[1]]);
+                        btableService.execCommand(['builtincellstyle', arguments[1]]);
                     } else {
                         console.error('未处理自定义cellstyle的问题');
-                        //btableNotify.execCommand(['cellstyle', arguments[1]]);
+                        //btableService.execCommand(['cellstyle', arguments[1]]);
                     }
 
                 case 'border':
@@ -43,7 +43,7 @@ angular.module('app').factory('toolbarNotify', ['btableNotify', function (btable
                     break;
 
                 case 'merge':
-                    btableNotify.execCommand([args]);
+                    btableService.execCommand([args]);
                     break;
 
             }

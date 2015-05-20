@@ -3,7 +3,7 @@
  * @author hancong03@baiud.com
  */
 
-angular.module('app').directive('btable', ['btableNotify', function (btableNotify) {
+angular.module('app').directive('btable', ['btableService', function (btableService) {
 
     return {
         restrict: 'A',
@@ -12,23 +12,8 @@ angular.module('app').directive('btable', ['btableNotify', function (btableNotif
             ngModel: '='
         },
         link: function ($scope, $ele, $attr, $controller) {
-            $(document).ready(function () {
-                var btable = new BTable($ele[0]);
-
-                btable.on('change', function () {
-                    btableNotify.emit(btable);
-                });
-
-                btable.on('sheetschange', function () {
-
-                });
-
-                btableNotify.oncommand(function (args) {
-                    btable.execCommand.apply(btable, args);
-                });
-
-                btable.execCommand('init');
-            });;
+            var btable = btableService.createBtable($ele[0]);
+            btable.execCommand('init');
         }
     };
 }]);

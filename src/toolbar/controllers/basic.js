@@ -8,9 +8,9 @@ angular.module('app').controller('ToolbarBasicController',
         '$scope',
         'toolbarNotify',
         'cellformatModalNotify',
-        'btableNotify',
+        'btableService',
 
-    function ($scope, toolbarNotify, cellformatModalNotify, btableNotify) {
+    function ($scope, toolbarNotify, cellformatModalNotify, btableService) {
 
     $scope.btnState = {
         pasteOpen: false,
@@ -42,7 +42,7 @@ angular.module('app').controller('ToolbarBasicController',
         wraptext: false
     };
 
-    btableNotify.on(function (btableStatus) {
+    btableService.onchange(function (btableStatus) {
         status.bold = btableStatus.bold;
         status.italic = btableStatus.italic;
         status.underline = btableStatus.underline;

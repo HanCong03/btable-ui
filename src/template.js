@@ -1122,7 +1122,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            ...\n" +
     "        </button>\n" +
     "\n" +
-    "        <div class=\"b-sl-add-btn\">+</div>\n" +
+    "        <div class=\"b-sl-add-btn\" ng-mousedown=\"addSheet($event);\">+</div>\n" +
     "    </div>\n" +
     "</div>"
   );

@@ -37,7 +37,7 @@ return '<div unselectable="on" class="b-row">\n' +
 'ng-disabled="!status.rightMore">\n' +
 '...\n' +
 '</button>\n' +
-'<div unselectable="on" class="b-sl-add-btn">+</div>\n' +
+'<div unselectable="on" class="b-sl-add-btn" ng-mousedown="addSheet($event);">+</div>\n' +
 '</div>\n' +
 '</div>\n';
 } );

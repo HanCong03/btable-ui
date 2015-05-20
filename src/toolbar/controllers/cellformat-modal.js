@@ -17,7 +17,7 @@
         'VERTICAL_ALIGNMENT',
         'CURRENCY',
         'BORDERS',
-        'btableNotify',
+        'btableService',
 
         function ($scope,
                   cellformatModalNotify,
@@ -31,7 +31,7 @@
                   VERTICAL_ALIGNMENT,
                   CURRENCY,
                   BORDERS,
-                  btableNotify) {
+                  btableService) {
 
             var numberformatTypes = ['normal', 'number', 'currency', 'accountant', 'date', 'time', 'percentage', 'fraction', 'scientific', 'text'];
             var tabs = ['numberformat', 'alignment', 'font', 'border', 'fill'];
@@ -113,7 +113,7 @@
             // 当前的未发生改变的状态快照
             var statusSnapshot;
 
-            btableNotify.on(function (status) {
+            btableService.onchange(function (status) {
                 btableStatus = status;
             });
 
@@ -165,7 +165,7 @@
                 evt.preventDefault();
 
                 var commands = checkChange();
-                btableNotify.execCommand([commands]);
+                btableService.execCommand([commands]);
 
                 $("#cellFormatModal").modal('hide');
             };
@@ -188,7 +188,7 @@
 
             $("#cellFormatModal").on('hidden.bs.modal', function () {
                 //var commands = checkChange();
-                //btableNotify.execCommand([commands]);
+                //btableService.execCommand([commands]);
             });
 
             /* ----- 边框控制 ----- */
