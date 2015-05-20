@@ -1147,44 +1147,53 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   $templateCache.put('template/widget/sheetlist.html',
     "<div class=\"b-row\">\n" +
     "    <div class=\"b-sl-scrollbtn-wrap b-row\">\n" +
-    "        <button class=\"b-sl-scrollbtn\"\n" +
-    "                ng-click=\"moveRight();\"\n" +
+    "        <button class=\"b-sl-scrollbtn b-sl-leftscroll-btn\"\n" +
+    "                ng-mousedown=\"leftClick($event);\"\n" +
     "                ng-class=\"{'b-disabled': !status.leftMore}\"\n" +
     "                ng-disabled=\"!status.leftMore\">\n" +
-    "            <span class=\"b-arrow-icon b-arrow-left\"></span>\n" +
+    "            <span class=\"b-arrow-icon b-big-arrow-left\"></span>\n" +
     "        </button>\n" +
     "\n" +
-    "        <button class=\"b-sl-scrollbtn\"\n" +
+    "        <button class=\"b-sl-scrollbtn b-sl-rightscroll-btn\"\n" +
     "                ng-class=\"{'b-disabled': !status.rightMore}\"\n" +
-    "                ng-click=\"moveLeft();\"\n" +
+    "                ng-mousedown=\"rightClick($event);\"\n" +
     "                ng-disabled=\"!status.rightMore\">\n" +
-    "            <span class=\"b-arrow-icon b-arrow-right\"></span>\n" +
+    "            <span class=\"b-arrow-icon b-big-arrow-right\"></span>\n" +
     "        </button>\n" +
     "    </div>\n" +
     "    <div class=\"b-sl-sheets b-row\">\n" +
+    "\n" +
     "        <button class=\"b-sl-more-button\"\n" +
-    "                ng-click=\"moveRight();\"\n" +
+    "                ng-mousedown=\"leftClick($event);\"\n" +
     "                ng-class=\"{'b-disabled': !status.leftMore}\"\n" +
     "                ng-disabled=\"!status.leftMore\">\n" +
     "            ...\n" +
     "        </button>\n" +
     "\n" +
     "        <div class=\"b-sl-list-wrap\">\n" +
-    "            <ul class=\"b-sl-list\"\n" +
-    "                style=\"transform: translateX({{status.translate}}px);\">\n" +
+    "            <ul class=\"b-sl-list\"></ul>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"b-sl-list-shadow-wrap\">\n" +
+    "            <ul class=\"b-sl-shadow-list\">\n" +
+    "                <!-- 注意：本段代码交由directive内部刷新。\n" +
     "                <li ng-repeat=\"sheet in sheets\"\n" +
-    "                    ng-click=\"itemChange($index);\"\n" +
+    "                    ng-mousedown=\"itemClick($event, $index);\"\n" +
+    "                    class=\"b-sl-item\"\n" +
     "                    ng-class=\"{'b-active': $index === status.selected}\">\n" +
+    "                    <div class=\"b-sl-item-top-space\"></div>\n" +
     "\n" +
     "                    <span class=\"b-sl-item-label\">{{sheet}}</span>\n" +
     "\n" +
+    "                    <div class=\"b-sl-item-bottom-space\"></div>\n" +
     "                </li>\n" +
+    "                -->\n" +
     "            </ul>\n" +
     "        </div>\n" +
     "\n" +
     "        <button class=\"b-sl-more-button\"\n" +
     "                ng-class=\"{'b-disabled': !status.rightMore}\"\n" +
-    "                ng-click=\"moveLeft();\"\n" +
+    "                ng-mousdown=\"rightClick($event);\"\n" +
     "                ng-disabled=\"!status.rightMore\">\n" +
     "            ...\n" +
     "        </button>\n" +

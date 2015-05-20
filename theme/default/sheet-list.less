@@ -1,145 +1,151 @@
 @import "var";
 
 .b-sheet-list {
-  padding: 0 10px;
-  height: 41px;
-  margin-top: -1px;
 
+  /* --- 滚动按钮 ---*/
   .b-sl-scrollbtn-wrap {
-    width: 80px;
-    margin-left: 30px;
-    justify-content: space-around;
+    flex: 0;
+    margin: 0 60px 0 80px;
 
-    .b-arrow-icon {
-      border-width: 5px;
+    .b-sl-leftscroll-btn {
+      margin-right: 30px;
     }
 
-    /* ---- 滚动控制按钮 ---- */
     .b-sl-scrollbtn {
-      cursor: default;
-      border: none;
       background: none;
+      border: none;
+      cursor: default;
 
       &.b-disabled {
-        .b-arrow-left {
-          border-right-color: #cfcfcf!important;
+        opacity: 0.3;
+
+        .b-big-arrow-left {
+          border-right-color: black!important;
         }
 
-        .b-arrow-right {
-          border-left-color: #cfcfcf!important;
+        .b-big-arrow-right {
+          border-left-color: black!important;
         }
       }
 
       &:HOVER {
-        .b-arrow-left {
-          border-right-color: @green-color;
-        }
-
-        .b-arrow-right {
-          border-left-color: @green-color;
+        .b-arrow-icon {
+          border-color: @green-color;
         }
       }
     }
   }
 
-  .b-sl-sheets{
-    /* ---- more按钮 ----  */
-    .b-sl-more-button {
-      width: 50px;
-      border: none;
-      background: none;
+  /* --- more button --- */
 
-      &.b-disabled {
-        opacity: 0;
+  .b-sl-more-button {
+    margin: 0 20px;
+    border: none;
+    background: none;
+    color: black;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    cursor: default;
+
+    &.b-disabled {
+      opacity: 0;
+    }
+
+    &:HOVER {
+      color: @green-color;
+    }
+  }
+
+  /* --- 增加按钮 --- */
+  .b-sl-add-btn {
+    width: 20px;
+    height: 20px;
+    font: 18px/20px Arial, sans-serif;
+    text-align: center;
+    border: 1px solid #626262;
+    border-radius: 20px;
+    color: #626262;
+    cursor: default;
+
+    &:HOVER {
+      color: @green-color;
+      border-color: @green-color;
+    }
+  }
+
+
+  /* ----- list ----- */
+
+  .b-sl-list-wrap {
+    box-sizing: content-box;
+    padding-left: 1px;
+    max-width: 800px;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .b-sl-list, .b-sl-shadow-list {
+    height: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: black;
+  }
+
+  .b-sl-shadow-list {
+    position: fixed;
+    top: -9999999px;
+    left: -9999999999px;
+  }
+
+
+  /* --- item --- */
+  .b-sl-item {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: inline-block;
+
+    .b-sl-item-label {
+      display: block;
+      padding: 2px 20px 4px 20px;
+      border: 1px solid @border-color;
+      border-width: 0 1px;
+    }
+
+    cursor: default;
+    margin-left: -1px;
+
+    &.b-active {
+      color: @green-color;
+      background: #ffffff;
+
+      .b-sl-item-top-space {
+        opacity: 1;
       }
 
-      &:HOVER {
-        color: @green-color;
+      .b-sl-item-bottom-space {
+        opacity: 1;
       }
     }
 
-    /* --- add 按钮 --- */
-    .b-sl-add-btn {
-      cursor: default;
-      width: 16px;
-      height: 16px;
-      border: 1px solid #797979;
-      color: #797979;
-      border-radius: 16px;
-      font: 14px/14px Arial, sans-serif;
-      text-align: center;
-      margin-left: 50px;
-
-      &:HOVER {
-        color: @green-color;
-        border-color: @green-color;
-      }
+    &:HOVER {
+      color: @green-color;
     }
 
-    /* --- sheet list ---- */
-    .b-sl-list-wrap {
-      padding-left: 1px;
-      max-width: 800px;
-      overflow: hidden;
+    .b-sl-item-top-space {
+      opacity: 0;
+      width: 100%;
+      height: 5px;
+      border: 1px solid @border-color;
+      border-width: 0 1px;
+    }
 
-      .b-sl-list {
-        transform: translate(0, 0);
-        width: 100000px;
-        font-size: 14px;
-        display: flex;
-        justify-content: flex-start;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-
-        >li {
-          display: flex;
-          flex-direction: column;
-          align-items: stretch;
-          overflow: hidden;
-          margin-left: -1px;
-          cursor: default;
-
-          &:last-child {
-            .b-sl-item-label {
-              border-right: 1px solid #ccc;
-            }
-          }
-
-          &::before {
-            content: "";
-            display: block;
-            height: 5px;
-            background: transparent;
-          }
-
-          .b-sl-item-label {
-            border-left: 1px solid #ccc;
-            padding: 0 20px 5px 20px;
-          }
-
-          &.b-active {
-            background: #ffffff;
-            color: @green-color;
-
-            &::before {
-              content: "";
-              display: block;
-              height: 5px;
-              background: transparent;
-              border: 1px solid #ccc;
-              border-width: 0 1px;
-            }
-
-            &::after {
-              content: "";
-              display: block;
-              height: 2px;
-              background: @green-color;
-            }
-          }
-        }
-      }
+    .b-sl-item-bottom-space {
+      width: 100%;
+      height: 2px;
+      background: @green-color;
+      opacity: 0;
     }
   }
 }

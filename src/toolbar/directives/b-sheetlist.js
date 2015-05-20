@@ -3,7 +3,11 @@
  * @author hancong03@baiud.com
  */
 
-angular.module('app').directive('bSheetlist', ['$timeout', function ($timeout) {
+angular.module('app').directive('bSheetlist', [
+    '$timeout',
+    'btableService',
+
+    function ($timeout, btableService) {
 
     return {
         restrict: 'A',
@@ -13,137 +17,230 @@ angular.module('app').directive('bSheetlist', ['$timeout', function ($timeout) {
         templateUrl: 'template/widget/sheetlist.html',
         link: {
             post: function ($scope, $ele, $attr, $controller) {
-                var BOX_WIDTH = 800 - 1;
+                var MAX_WIDTH = 800;
+
                 var startIndex = 0;
+                var endIndex = -1;
 
                 var status = {
                     selected: 0,
+
                     overflow: false,
-                    translate: 0,
                     leftMore: false,
                     rightMore: false
                 };
 
-                $timeout(refresh, 0);
+                //$timeout(refresh, 1000);
 
                 var $list = $(".b-sl-list", $ele);
-                var listRect = $list[0].getBoundingClientRect();
-                var RIGHT_WIDTH = Math.round(listRect.left) + BOX_WIDTH;
+                var $shadowList = $(".b-sl-shadow-list", $ele);
 
                 /* ---- scope 挂载 start ---- */
                 $scope.status = status;
-                $scope.sheets = [
-                    'Sheet1', 'Sheet2', 'Sheet3', 'Sheet4', 'Sheet5',
-                    'Sheet6', 'Sheet7', 'Sheet8', 'Sheet9', 'Sheet10',
-                    'Sheet11', 'Sheet12', 'Sheet13', 'Sheet14', 'Sheet15'
-                ];
+                $scope.sheets = btableService.queryCommandValue('sheetnames');
 
-                $scope.itemChange = function (index) {
-                    status.selected = index;
+                btableService.on('sheetchange', function () {
+                    $scope.sheets = btableService.queryCommandValue('sheetnames');
+                    status.selected = btableService.queryCommandValue('sheetindex');
 
-                    // 检查当前点击的元素是否需要右移
-                    var items = $("li", $list);
+                    $scope.$apply();
 
-                    if (Math.round(items[index].getBoundingClientRect().right) > RIGHT_WIDTH) {
-                        $scope.moveLeft();
-                    }
+                    refresh();
+                });
+
+                btableService.on('init', function () {
+                    startIndex = 0;
+                    endIndex = -1;
+
+                    $.extend(status, {
+                        selected: 0,
+
+                        overflow: false,
+                        leftMore: false,
+                        rightMore: false
+                    });
+
+                    $scope.sheets = btableService.queryCommandValue('sheetnames');
+                    status.selected = btableService.queryCommandValue('sheetindex');
+
+                    $scope.$apply();
+
+                    refresh();
+                });
+
+                $scope.addSheet = function (evt) {
+                    evt.stopPropagation();
+                    evt.preventDefault();
+
+                    btableService.execCommand(['createsheet', true]);
                 };
 
-                /**
-                 * 按钮左移
-                 */
-                $scope.moveRight = function () {
-                    var items = $("li", $list);
+                $scope.leftClick = function (evt) {
+                    evt.stopPropagation();
+                    evt.preventDefault();
 
-                    // 左侧没有更多item可供移动
-                    if (!status.leftMore) {
+                    if (startIndex === 0) {
                         return;
                     }
 
-                    status.translate += Math.round(items[startIndex].getBoundingClientRect().width) - 1;
-                    startIndex--;
-
-                    status.leftMore = startIndex > 0;
-                    status.rightMore = true;
-                    status.selected = startIndex;
+                    startIndex -= 1;
+                    btableService.execCommand(['switchsheet', startIndex]);
                 };
 
-                /**
-                 * 按钮右移
-                 */
-                $scope.moveLeft = function () {
-                    var items = $("li", $list);
+                $scope.rightClick = function (evt) {
+                    evt.stopPropagation();
+                    evt.preventDefault();
 
-                    // 右侧没有更多item可供移动
-                    if (!status.rightMore) {
+                    var count = $scope.sheets.length;
+
+                    if (endIndex === count - 1) {
                         return;
                     }
 
-                    var index = findLast(items);
-                    var diff = Math.round(items[index].getBoundingClientRect().right - RIGHT_WIDTH);
-                    var width;
-                    var count = 0;
-
-                    while (diff > 0) {
-                        count++;
-
-                        width = Math.round(items[startIndex].getBoundingClientRect().width);
-                        diff -= width;
-
-                        status.translate -= width - 1;
-                    }
-
-                    startIndex += count;
-                    status.leftMore = true;
-                    status.rightMore = index < items.length - 1;
-
-                    status.selected = index;
+                    btableService.execCommand(['switchsheet', endIndex + 1]);
                 };
-                /* ---- scope 挂载 end ---- */
 
-                function findLast(items) {
-                    var item;
-                    var rect;
+                $scope.itemClick = function (evt, index) {
+                    evt.stopPropagation();
+                    evt.preventDefault();
 
-                    for (var i = 0, len = items.length; i < len; i++) {
-                        item = items[i];
-                        rect = item.getBoundingClientRect();
+                    btableService.execCommand(['switchsheet', index]);
+                };
 
-                        if (rect.right > RIGHT_WIDTH) {
-                            break;
-                        }
-                    }
+                // init item click
+                (function () {
+                    $list.on('mousedown', '.b-sl-item', function (evt) {
+                        evt.stopPropagation();
+                        evt.preventDefault();
 
-                    return i;
-                }
+                        var index = this.getAttribute('data-index') | 0;
+
+                        btableService.execCommand(['switchsheet', index]);
+                    });
+                })();
 
                 function refresh() {
-                    var lastItem = $('li:last-child', $ele)[0];
-                    var rect = lastItem.getBoundingClientRect();
+                    updateItem();
 
-                    if (RIGHT_WIDTH < rect.right) {
-                        addOverflow();
+                    var $items = $(".b-sl-item", $shadowList);
+
+                    var width = getAllWidth($items);
+
+                    if (width < MAX_WIDTH) {
+                        startIndex = 0;
+                        endIndex = startIndex + $items.length - 1;
+                        $list.append($items);
+
+                        status.overflow = false;
+                        status.leftMore = false;
+                        status.rightMore = false;
                     } else {
-                        clearOverflow();
+                        status.overflow = true;
+                        checkOffset($items);
                     }
                 }
 
-                function addOverflow() {
-                    status.overflow = true;
-                    status.leftMore = false;
-                    status.rightMore = true;
+                function updateItem() {
+                    var tpl = '<li class="b-sl-item ${active}" data-index="${index}"><div class="b-sl-item-top-space"></div><span class="b-sl-item-label">${sheetname}</span><div class="b-sl-item-bottom-space"></div></li>'
 
-                    startIndex = 0;
-                    status.translate = 0;
+                    var sheets = $scope.sheets;
+                    var info = {};
+                    var result = [];
+
+                    for (var i = 0, len = sheets.length; i < len; i++) {
+                        if (i === status.selected) {
+                            info.active = 'b-active'
+                        } else {
+                            info.active = '';
+                        }
+
+                        info.index = i;
+                        info.sheetname = sheets[i];
+
+                        result.push(tpl.replace(/\$\{([^}]+)\}/g, function (match, key) {
+                            return info[key] || '';
+                        }));
+                    }
+
+                    $shadowList.html(result.join(''));
+                    $list.html('');
                 }
 
-                function clearOverflow() {
-                    status.overflow = false;
-                    status.rightMore = false;
-                    status.leftMore = false;
+                // 检测当前显示的item是否被隐藏， 如果被隐藏，则要进行偏移校正
+                function checkOffset($items) {
+                    var items = [].slice.call($items, 0);
 
-                    startIndex = 0;
-                    status.translate = 0;
+                    // 可确定已经发生左溢出
+                    if (startIndex > status.selected) {
+                        startIndex = status.selected;
+                        endIndex = startIndex + items.length - 1;
+                        items = getBoundingItems(items.slice(startIndex));
+                        $list.append(items);
+
+                        status.leftMore = startIndex > 0;
+                        status.rightMore = startIndex + items.length < $items.length;
+                        return;
+                    }
+
+                    // 检测右溢出
+                    var currentItems = items.slice(startIndex, status.selected + 1);
+                    var width = getAllWidth(currentItems);
+
+                    // 可确定发生了右溢出
+                    if (width > MAX_WIDTH) {
+                        currentItems.reverse();
+                        items = getBoundingItems(currentItems);
+                        items.reverse();
+                        startIndex += (currentItems.length - items.length);
+
+                        $list.append(items);
+                    // 未发生右溢出，直接选取元素设置即可
+                    } else {
+                        items = getBoundingItems(items.slice(startIndex));
+                        $list.append(items);
+                    }
+
+                    // 更新状态
+                    status.leftMore = startIndex > 0;
+                    status.rightMore = startIndex + items.length < $items.length;
+
+                    endIndex = startIndex + items.length - 1;
+                }
+
+                function getAllWidth($items) {
+                    var sum = 0;
+                    var rect;
+
+                    for (var i = 0, len = $items.length; i < len; i++) {
+                        rect = __getRect($items[i]);
+
+                        sum += Math.round(rect.width);
+                    }
+
+                    return sum - (len - 1);
+                }
+
+                function getBoundingItems($items) {
+                    var result = [];
+                    var sum = 1;
+                    var rect;
+
+                    for (var i = 0, len = $items.length; i < len; i++) {
+                        rect = __getRect($items[i]);
+                        sum += Math.round(rect.width) - 1;
+
+                        if (sum > MAX_WIDTH) {
+                            break;
+                        }
+
+                        result.push($items[i]);
+                    }
+
+                    return result;
+                }
+
+                function __getRect(node) {
+                    return node.getBoundingClientRect();
                 }
             }
         }

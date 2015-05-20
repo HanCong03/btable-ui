@@ -1,43 +1,52 @@
 <div class="b-row">
     <div class="b-sl-scrollbtn-wrap b-row">
-        <button class="b-sl-scrollbtn"
-                ng-click="moveRight();"
+        <button class="b-sl-scrollbtn b-sl-leftscroll-btn"
+                ng-mousedown="leftClick($event);"
                 ng-class="{'b-disabled': !status.leftMore}"
                 ng-disabled="!status.leftMore">
-            <span class="b-arrow-icon b-arrow-left"></span>
+            <span class="b-arrow-icon b-big-arrow-left"></span>
         </button>
 
-        <button class="b-sl-scrollbtn"
+        <button class="b-sl-scrollbtn b-sl-rightscroll-btn"
                 ng-class="{'b-disabled': !status.rightMore}"
-                ng-click="moveLeft();"
+                ng-mousedown="rightClick($event);"
                 ng-disabled="!status.rightMore">
-            <span class="b-arrow-icon b-arrow-right"></span>
+            <span class="b-arrow-icon b-big-arrow-right"></span>
         </button>
     </div>
     <div class="b-sl-sheets b-row">
+
         <button class="b-sl-more-button"
-                ng-click="moveRight();"
+                ng-mousedown="leftClick($event);"
                 ng-class="{'b-disabled': !status.leftMore}"
                 ng-disabled="!status.leftMore">
             ...
         </button>
 
         <div class="b-sl-list-wrap">
-            <ul class="b-sl-list"
-                style="transform: translateX({{status.translate}}px);">
+            <ul class="b-sl-list"></ul>
+        </div>
+
+        <div class="b-sl-list-shadow-wrap">
+            <ul class="b-sl-shadow-list">
+                <!-- 注意：本段代码交由directive内部刷新。
                 <li ng-repeat="sheet in sheets"
-                    ng-click="itemChange($index);"
+                    ng-mousedown="itemClick($event, $index);"
+                    class="b-sl-item"
                     ng-class="{'b-active': $index === status.selected}">
+                    <div class="b-sl-item-top-space"></div>
 
                     <span class="b-sl-item-label">{{sheet}}</span>
 
+                    <div class="b-sl-item-bottom-space"></div>
                 </li>
+                -->
             </ul>
         </div>
 
         <button class="b-sl-more-button"
                 ng-class="{'b-disabled': !status.rightMore}"
-                ng-click="moveLeft();"
+                ng-mousdown="rightClick($event);"
                 ng-disabled="!status.rightMore">
             ...
         </button>

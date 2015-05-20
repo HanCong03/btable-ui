@@ -45,40 +45,76 @@
 
 /* --- arrow start --- */
 
-.b-arrow-up {
+.b-arrow-up, .b-big-arrow-up {
   display: block;
   margin-top: -3px;
   width: 0;
   height: 0;
   border: 3px solid transparent;
+
   border-bottom-color: black;
+  border-top-color: transparent!important;
+  border-left-color: transparent!important;
+  border-right-color: transparent!important;
 }
 
-.b-arrow-down {
+.b-big-arrow-up {
+  margin-top: -5px;
+  border-width: 5px;
+}
+
+.b-arrow-down, .b-big-arrow-down {
   display: block;
   margin-top: 3px;
   width: 0;
   height: 0;
   border: 3px solid transparent;
+
   border-top-color: black;
+  border-bottom-color: transparent!important;
+  border-left-color: transparent!important;
+  border-right-color: transparent!important;
 }
 
-.b-arrow-left {
+.b-big-arrow-down {
+  margin-top: 5px;
+  border-width: 5px;
+}
+
+.b-arrow-left, .b-big-arrow-left {
   display: block;
   margin-left: -3px;
   width: 0;
   height: 0;
   border: 3px solid transparent;
+
   border-right-color: black;
+  border-top-color: transparent!important;
+  border-left-color: transparent!important;
+  border-bottom-color: transparent!important;
 }
 
-.b-arrow-right {
+.b-big-arrow-left {
+  margin-left: -5px;
+  border-width: 5px;
+}
+
+.b-arrow-right, .b-big-arrow-right {
   display: block;
   margin-right: -3px;
   width: 0;
   height: 0;
   border: 3px solid transparent;
+
   border-left-color: black;
+  border-top-color: transparent!important;
+  border-bottom-color: transparent!important;
+  border-right-color: transparent!important;
+}
+
+.b-big-arrow-right {
+  margin-right: -5px;
+  border-width: 5px;
 }
 
 .b-arrow-open {
@@ -90,7 +126,7 @@
     width: 8px;
     height: 1px;
     background: black;
-    transform: translate(-4px, -6px);
+    transform: translate(-5px, -6px);
   }
   width: 0;
   height: 0;
