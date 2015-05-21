@@ -1579,7 +1579,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        就绪\n" +
     "    </div>\n" +
     "</div>\n" +
-    "<ng-include src=\"'template/dialogs/cell-format.html '\"></ng-include>"
+    "<ng-include src=\"'template/dialogs/cell-format.html'\"></ng-include>"
   );
 
 
@@ -3232,10 +3232,6 @@ angular.module('app').controller('ToolbarBasicController', [
             vertical: null,
             wraptext: false
         };
-
-        $(document).ready(function () {
-            btableService.execCommand(['init', BTable.ExcelAdapter.import(excelData)]);
-        });
 
         btableService.onchange(function (btableStatus) {
             status.bold = btableStatus.bold;
