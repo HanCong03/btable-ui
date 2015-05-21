@@ -69,7 +69,7 @@
     <script src="src/toolbar/filter/b-currency.js"></script>
     <script src="src/toolbar/filter/numberformat/number.js"></script>
     <script src="src/toolbar/filter/numberformat/currency.js"></script>
-    <!--&lt;!&ndash; filter end &ndash;&gt;-->
+    <!-- filter end -->
 
     <style type="text/css">
         html, body {
@@ -81,9 +81,13 @@
         }
     </style>
     <script>
-        angular.module('app').controller('test', ['$scope', function ($scope) {
+        angular.module('app').controller('test', ['$scope' , 'btableService', function ($scope, btableService) {
             $scope.$on('b-file-click', function () {
                 console.log(3);
+            });
+
+            $(document).ready(function () {
+                btableService.execCommand(['init', BTable.ExcelAdapter.import(excelData)]);
             });
         }]);
     </script>

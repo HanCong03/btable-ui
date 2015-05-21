@@ -1140,7 +1140,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        就绪\n" +
     "    </div>\n" +
     "</div>\n" +
-    "<ng-include src=\"'template/dialogs/cell-format.html '\"></ng-include>"
+    "<ng-include src=\"'template/dialogs/cell-format.html'\"></ng-include>"
   );
 
 
