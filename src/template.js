@@ -1124,7 +1124,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "    <div class=\"b-row b-input-area\">\n" +
     "        <div class=\"b-btable-ctrl-btns\"></div>\n" +
-    "        <input class=\"btable-input\">\n" +
+    "        <div id=\"btableOuterInput\" spellcheck=\"false\" contenteditable=\"true\" class=\"btable-input\"></div>\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +

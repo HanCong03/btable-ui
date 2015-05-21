@@ -32,11 +32,13 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
 
                 case 'cellstyle':
                     if (arguments[2]) {
+                        debugger;
                         btableService.execCommand(['builtincellstyle', arguments[1]]);
                     } else {
                         console.error('未处理自定义cellstyle的问题');
                         //btableService.execCommand(['cellstyle', arguments[1]]);
                     }
+                    break;
 
                 case 'border':
                     console.log('borderchange')

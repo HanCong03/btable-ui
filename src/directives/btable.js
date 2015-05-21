@@ -12,6 +12,11 @@ angular.module('app').directive('btable', ['btableService', function (btableServ
         link: function ($scope, $ele, $attr, $controller) {
 
             var btable = btableService.createBtable($ele.find('.btable-container')[0]);
+            $("#btableOuterInput").on("mousedown", function (evt) {
+                evt.stopPropagation();
+            });
+
+            btable.execCommand('bindinput', "#btableOuterInput");
             btable.execCommand('init');
         }
     };

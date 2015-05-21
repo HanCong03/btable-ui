@@ -36,7 +36,7 @@ return '<div unselectable="on" class="b-header"\n' +
 '</div>\n' +
 '<div unselectable="on" class="b-row b-input-area">\n' +
 '<div unselectable="on" class="b-btable-ctrl-btns"></div>\n' +
-'<input unselectable="on" class="btable-input">\n' +
+'<div unselectable="on" id="btableOuterInput" spellcheck="false" contenteditable="true" class="btable-input"></div>\n' +
 '</div>\n' +
 '</div>\n' +
 '<div unselectable="on" class="b-body">\n' +
