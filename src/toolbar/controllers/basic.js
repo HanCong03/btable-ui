@@ -41,10 +41,6 @@ angular.module('app').controller('ToolbarBasicController', [
             wraptext: false
         };
 
-        $(document).ready(function () {
-            btableService.execCommand(['init', BTable.ExcelAdapter.import(excelData)]);
-        });
-
         btableService.onchange(function (btableStatus) {
             status.bold = btableStatus.bold;
             status.italic = btableStatus.italic;
