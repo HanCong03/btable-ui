@@ -12,9 +12,9 @@ angular.module('app').directive('bCellstyles', ['$window', function ($window) {
             onselect: '&'
         },
         templateUrl: 'template/toolbar/widget/cellstyles.html',
-        link: function ($scope, $ele, $attr) {
+        link: function ($scope, $ele) {
             var hook = $scope.onselect || angular.noop();
-            var originalBuiltinStyles = $window.t;
+            var originalBuiltinStyles = BTable.BUILTIN_CELLSTYLE;
             var current;
             var offset = 0;
 

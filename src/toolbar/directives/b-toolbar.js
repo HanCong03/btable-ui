@@ -10,7 +10,7 @@ angular.module('app').directive('bToolbar', [function () {
         scope: {
         },
         link: {
-            post: function ($scope, $ele, $attr, $controller) {
+            post: function ($scope, $ele) {
                 $ele.on('mousedown', function (evt) {
                     evt.preventDefault();
                 });

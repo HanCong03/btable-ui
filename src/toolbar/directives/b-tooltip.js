@@ -10,7 +10,7 @@ angular.module('app').directive('bTooltip', ['$translate', function ($translate)
         scope: {
             title: "@bTooltip"
         },
-        link: function ($scope, $ele, $attr) {
+        link: function ($scope, $ele) {
             $translate($scope.title).then(function (text) {
                 $ele.tooltip({
                     delay: {

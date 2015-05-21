@@ -3,7 +3,7 @@
  * @author hancong03@baiud.com
  */
 
-angular.module('app').directive('bNumberformat', ['$translate', function ($translate) {
+angular.module('app').directive('bNumberformat', [function () {
 
     return {
         restrict: 'E',

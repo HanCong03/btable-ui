@@ -9,7 +9,7 @@ angular.module('app').directive('btable', ['btableService', function (btableServ
         restrict: 'A',
         scope: {},
         templateUrl: 'template/widget/btable.html',
-        link: function ($scope, $ele, $attr, $controller) {
+        link: function ($scope, $ele) {
 
             var btable = btableService.createBtable($ele.find('.btable-container')[0]);
             $("#btableOuterInput").on("mousedown", function (evt) {

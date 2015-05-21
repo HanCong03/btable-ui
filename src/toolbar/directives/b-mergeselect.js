@@ -13,7 +13,7 @@ angular.module('app').directive('bMergeselect', [function () {
             checked: '=?'
         },
         templateUrl: 'template/toolbar/widget/buttonselect.html',
-        link: function ($scope, $ele, $attr) {
+        link: function ($scope) {
             var hook = $scope.onchange || angular.noop();
 
             $scope.isSelected = !!$scope.checked;

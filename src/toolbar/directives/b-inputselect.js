@@ -3,7 +3,7 @@
  * @author hancong03@baiud.com
  */
 
-angular.module('app').directive('bInputselect', ['$translate', '$parse', function ($translate, $parse) {
+angular.module('app').directive('bInputselect', [function () {
 
     return {
         restrict: 'E',

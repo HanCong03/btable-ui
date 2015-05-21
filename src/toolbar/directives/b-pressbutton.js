@@ -3,7 +3,7 @@
  * @author hancong03@baiud.com
  */
 
-angular.module('app').directive('bPressbutton', ['$parse', function ($parse) {
+angular.module('app').directive('bPressbutton', [function () {
 
     return {
         restrict: 'E',
@@ -15,7 +15,7 @@ angular.module('app').directive('bPressbutton', ['$parse', function ($parse) {
             pressed: '=?'
         },
         templateUrl: 'template/toolbar/widget/pressbutton.html',
-        link: function ($scope, $ele, $attr) {
+        link: function ($scope) {
             var hook = $scope.onchange || angular.noop;
             $scope.isPressed = !!$scope.pressed;
 
