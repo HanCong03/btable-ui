@@ -1,3 +1,5 @@
+@import "var";
+
 .modal {
   display: flex;
 }
@@ -126,7 +128,7 @@
     width: 8px;
     height: 1px;
     background: black;
-    transform: translate(-5px, -6px);
+    transform: translate(-4px, -6px);
   }
   width: 0;
   height: 0;
@@ -135,3 +137,22 @@
 }
 
 /* --- arrow end --- */
+
+/* --- dialog button start --- */
+.b-modal-btn {
+  padding: 2px 30px;
+  border-color: @green-color;
+  background: #fff;
+  border: 1px solid @border-color;
+
+  &:HOVER {
+    background: @light-green-color;
+    border-color: @light-green-color;
+    bolor: @green-color;
+  }
+}
+
+.b-cancel-btn {
+
+}
+/* --- dialog button end --- */
