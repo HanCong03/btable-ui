@@ -452,8 +452,8 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                <ng-include src=\"'template/toolbar/tabs/start/cell-format/index.html'\"></ng-include>\n" +
     "            </div>\n" +
     "            <div class=\"modal-footer\">\n" +
-    "                <button type=\"button\" class=\"btn btn-primary\" ng-mousedown=\"modalOkClick($event);\">{{'common.ok' | translate}}</button>\n" +
-    "                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">{{'common.cancel' | translate}}</button>\n" +
+    "                <button type=\"button\" class=\"btn b-modal-btn b-ok-btn\" ng-mousedown=\"modalOkClick($event);\">{{'common.ok' | translate}}</button>\n" +
+    "                <button type=\"button\" class=\"btn b-modal-btn b-cancel-btn\" data-dismiss=\"modal\">{{'common.cancel' | translate}}</button>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -760,19 +760,19 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   $templateCache.put('template/toolbar/tabs/start/cell-format/index.html',
     "<div class=\"b-cell-format-box\">\n" +
     "    <tabset>\n" +
-    "        <tab heading=\"{{'dialog.cellformat.number' | translate}}\" active=\"status.tabSelected[0]\">\n" +
+    "        <tab class=\"b-cellformat-tab\" heading=\"{{'dialog.cellformat.number' | translate}}\" active=\"status.tabSelected[0]\">\n" +
     "            <ng-include src=\"'template/toolbar/tabs/start/cell-format/number/index.html'\"></ng-include>\n" +
     "        </tab>\n" +
-    "        <tab heading=\"{{'dialog.cellformat.alignment' | translate}}\" active=\"status.tabSelected[1]\">\n" +
+    "        <tab class=\"b-cellformat-tab\" heading=\"{{'dialog.cellformat.alignment' | translate}}\" active=\"status.tabSelected[1]\">\n" +
     "            <ng-include src=\"'template/toolbar/tabs/start/cell-format/alignment/index.html'\"></ng-include>\n" +
     "        </tab>\n" +
-    "        <tab heading=\"{{'dialog.cellformat.font' | translate}}\" active=\"status.tabSelected[2]\">\n" +
+    "        <tab class=\"b-cellformat-tab\" heading=\"{{'dialog.cellformat.font' | translate}}\" active=\"status.tabSelected[2]\">\n" +
     "            <ng-include src=\"'template/toolbar/tabs/start/cell-format/font/index.html'\"></ng-include>\n" +
     "        </tab>\n" +
-    "        <tab heading=\"{{'dialog.cellformat.border' | translate}}\" active=\"status.tabSelected[3]\">\n" +
+    "        <tab class=\"b-cellformat-tab\" heading=\"{{'dialog.cellformat.border' | translate}}\" active=\"status.tabSelected[3]\">\n" +
     "            <ng-include src=\"'template/toolbar/tabs/start/cell-format/border/index.html'\"></ng-include>\n" +
     "        </tab>\n" +
-    "        <tab heading=\"{{'dialog.cellformat.fill' | translate}}\" active=\"status.tabSelected[4]\">\n" +
+    "        <tab class=\"b-cellformat-tab\" heading=\"{{'dialog.cellformat.fill' | translate}}\" active=\"status.tabSelected[4]\">\n" +
     "            <ng-include src=\"'template/toolbar/tabs/start/cell-format/fill/index.html'\"></ng-include>\n" +
     "        </tab>\n" +
     "    </tabset>\n" +
@@ -1517,69 +1517,71 @@ angular.module('app').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('template/widget/btable.html',
-    "<div class=\"b-header\"\n" +
-    "     b-toolbar>\n" +
-    "    <div class=\"b-toolbar\"\n" +
-    "         ng-controller=\"ToolbarBasicController\">\n" +
+    "<div class=\"b-btable-box\">\n" +
+    "    <div class=\"b-header\"\n" +
+    "         b-toolbar>\n" +
+    "        <div class=\"b-toolbar\"\n" +
+    "             ng-controller=\"ToolbarBasicController\">\n" +
     "\n" +
-    "        <tabset class=\"b-toolbar-tabs-head\">\n" +
-    "            <tab class=\"b-toolbar-tabs-label b-toolbar-file-tab\"\n" +
-    "                 disabled=\"true\"\n" +
-    "                 ng-mousedown=\"controlClick();\"\n" +
-    "                 heading=\"{{'toolbar.tabs.file' | translate}}\">\n" +
-    "            </tab>\n" +
+    "            <tabset class=\"b-toolbar-tabs-head\">\n" +
+    "                <tab class=\"b-toolbar-tabs-label b-toolbar-file-tab\"\n" +
+    "                     disabled=\"true\"\n" +
+    "                     ng-mousedown=\"controlClick();\"\n" +
+    "                     heading=\"{{'toolbar.tabs.file' | translate}}\">\n" +
+    "                </tab>\n" +
     "\n" +
-    "            <tab class=\"b-toolbar-tabs-label\"\n" +
-    "                 heading=\"{{'toolbar.tabs.start' | translate}}\"\n" +
-    "                 active=\"true\">\n" +
-    "                <ng-include b-include-replace src=\"'template/toolbar/tabs/start/index.html'\"></ng-include>\n" +
-    "            </tab>\n" +
+    "                <tab class=\"b-toolbar-tabs-label\"\n" +
+    "                     heading=\"{{'toolbar.tabs.start' | translate}}\"\n" +
+    "                     active=\"true\">\n" +
+    "                    <ng-include b-include-replace src=\"'template/toolbar/tabs/start/index.html'\"></ng-include>\n" +
+    "                </tab>\n" +
     "\n" +
-    "            <tab class=\"b-toolbar-tabs-label\"\n" +
-    "                 heading=\"{{'toolbar.tabs.insert' | translate}}\">\n" +
-    "            </tab>\n" +
+    "                <tab class=\"b-toolbar-tabs-label\"\n" +
+    "                     heading=\"{{'toolbar.tabs.insert' | translate}}\">\n" +
+    "                </tab>\n" +
     "\n" +
-    "            <tab class=\"b-toolbar-tabs-label\"\n" +
-    "                 heading=\"{{'toolbar.tabs.layout' | translate}}\">\n" +
-    "            </tab>\n" +
+    "                <tab class=\"b-toolbar-tabs-label\"\n" +
+    "                     heading=\"{{'toolbar.tabs.layout' | translate}}\">\n" +
+    "                </tab>\n" +
     "\n" +
-    "            <tab class=\"b-toolbar-tabs-label\"\n" +
-    "                 heading=\"{{'toolbar.tabs.formula' | translate}}\">\n" +
-    "            </tab>\n" +
+    "                <tab class=\"b-toolbar-tabs-label\"\n" +
+    "                     heading=\"{{'toolbar.tabs.formula' | translate}}\">\n" +
+    "                </tab>\n" +
     "\n" +
-    "            <tab class=\"b-toolbar-tabs-label\"\n" +
-    "                 heading=\"{{'toolbar.tabs.data' | translate}}\">\n" +
-    "            </tab>\n" +
+    "                <tab class=\"b-toolbar-tabs-label\"\n" +
+    "                     heading=\"{{'toolbar.tabs.data' | translate}}\">\n" +
+    "                </tab>\n" +
     "\n" +
-    "            <tab class=\"b-toolbar-tabs-label\"\n" +
-    "                 heading=\"{{'toolbar.tabs.review' | translate}}\">\n" +
-    "            </tab>\n" +
+    "                <tab class=\"b-toolbar-tabs-label\"\n" +
+    "                     heading=\"{{'toolbar.tabs.review' | translate}}\">\n" +
+    "                </tab>\n" +
     "\n" +
-    "            <tab class=\"b-toolbar-tabs-label\"\n" +
-    "                 heading=\"{{'toolbar.tabs.view' | translate}}\">\n" +
-    "            </tab>\n" +
-    "        </tabset>\n" +
+    "                <tab class=\"b-toolbar-tabs-label\"\n" +
+    "                     heading=\"{{'toolbar.tabs.view' | translate}}\">\n" +
+    "                </tab>\n" +
+    "            </tabset>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"b-row b-input-area\">\n" +
+    "            <div class=\"b-btable-ctrl-btns\"></div>\n" +
+    "            <div id=\"btableOuterInput\" spellcheck=\"false\" contenteditable=\"true\" class=\"btable-input\"></div>\n" +
+    "        </div>\n" +
     "    </div>\n" +
     "\n" +
-    "    <div class=\"b-row b-input-area\">\n" +
-    "        <div class=\"b-btable-ctrl-btns\"></div>\n" +
-    "        <div id=\"btableOuterInput\" spellcheck=\"false\" contenteditable=\"true\" class=\"btable-input\"></div>\n" +
+    "    <div class=\"b-body\">\n" +
+    "        <div class=\"btable-container\"></div>\n" +
     "    </div>\n" +
-    "</div>\n" +
     "\n" +
-    "<div class=\"b-body\">\n" +
-    "    <div class=\"btable-container\"></div>\n" +
-    "</div>\n" +
-    "\n" +
-    "<div class=\"b-footer\">\n" +
-    "    <div class=\"b-sheet-list\">\n" +
-    "        <div b-sheetlist></div>\n" +
+    "    <div class=\"b-footer\">\n" +
+    "        <div class=\"b-sheet-list\">\n" +
+    "            <div b-sheetlist></div>\n" +
+    "        </div>\n" +
+    "        <div class=\"b-status-bar\">\n" +
+    "            就绪\n" +
+    "        </div>\n" +
     "    </div>\n" +
-    "    <div class=\"b-status-bar\">\n" +
-    "        就绪\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "<ng-include src=\"'template/dialogs/cell-format.html'\"></ng-include>"
+    "    <ng-include src=\"'template/dialogs/cell-format.html'\"></ng-include>\n" +
+    "</div>"
   );
 
 
