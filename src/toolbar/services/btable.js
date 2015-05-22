@@ -36,7 +36,7 @@ angular.module('app').factory('btableService', [function () {
         },
 
         execCommand: function (args) {
-            btable.execCommand.apply(btable, args);
+            return btable.execCommand.apply(btable, args);
         },
 
         queryCommandValue: function () {

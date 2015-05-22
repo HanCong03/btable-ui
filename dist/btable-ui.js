@@ -1,6 +1,6 @@
 /*!
  * ====================================================
- * Flex UI - v1.0.0 - 2015-05-21
+ * Flex UI - v1.0.0 - 2015-05-22
  * https://github.com/fex-team/fui
  * GitHub: https://github.com/fex-team/fui.git 
  * Copyright (c) 2015 Baidu Kity Group; Licensed MIT
@@ -2871,7 +2871,7 @@ angular.module('app').factory('btableService', [function () {
         },
 
         execCommand: function (args) {
-            btable.execCommand.apply(btable, args);
+            return btable.execCommand.apply(btable, args);
         },
 
         queryCommandValue: function () {
