@@ -26,6 +26,14 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
                     btableService.execCommand(arguments);
                     break;
 
+                case 'undo':
+                    btableService.execCommand(['undo']);
+                    break;
+
+                case 'redo':
+                    btableService.execCommand(['redo']);
+                    break;
+
                 case 'thousandth':
                     btableService.execCommand(['numberformat', '_ * #,##0.00_ ;_ * -#,##0.00_ ;_ * "-"??_ ;_ @_ ']);
                     break;
@@ -46,8 +54,9 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
                 case 'merge':
                     btableService.execCommand([args]);
                     break;
-
             }
+
+            btableService.execCommand(['inputfocus']);
         }
     };
 

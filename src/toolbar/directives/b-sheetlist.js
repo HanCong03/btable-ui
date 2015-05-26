@@ -42,6 +42,7 @@ angular.module('app').directive('bSheetlist', [
                 btableService.on('sheetchange', function () {
                     $scope.sheets = btableService.queryCommandValue('sheetnames');
                     status.selected = btableService.queryCommandValue('sheetindex');
+                    btableService.execCommand(['inputfocus']);
 
                     $scope.$apply();
 
@@ -62,6 +63,7 @@ angular.module('app').directive('bSheetlist', [
 
                     $scope.sheets = btableService.queryCommandValue('sheetnames');
                     status.selected = btableService.queryCommandValue('sheetindex');
+                    btableService.execCommand(['inputfocus']);
 
                     $scope.$apply();
 
@@ -73,6 +75,7 @@ angular.module('app').directive('bSheetlist', [
                     evt.preventDefault();
 
                     btableService.execCommand(['createsheet', true]);
+                    btableService.execCommand(['inputfocus']);
                 };
 
                 $scope.leftClick = function (evt) {
@@ -85,6 +88,7 @@ angular.module('app').directive('bSheetlist', [
 
                     startIndex -= 1;
                     btableService.execCommand(['switchsheet', startIndex]);
+                    btableService.execCommand(['inputfocus']);
                 };
 
                 $scope.rightClick = function (evt) {
@@ -98,6 +102,7 @@ angular.module('app').directive('bSheetlist', [
                     }
 
                     btableService.execCommand(['switchsheet', endIndex + 1]);
+                    btableService.execCommand(['inputfocus']);
                 };
 
                 $scope.itemClick = function (evt, index) {
@@ -105,6 +110,7 @@ angular.module('app').directive('bSheetlist', [
                     evt.preventDefault();
 
                     btableService.execCommand(['switchsheet', index]);
+                    btableService.execCommand(['inputfocus']);
                 };
 
                 // init item click
@@ -116,6 +122,7 @@ angular.module('app').directive('bSheetlist', [
                         var index = this.getAttribute('data-index') | 0;
 
                         btableService.execCommand(['switchsheet', index]);
+                        btableService.execCommand(['inputfocus']);
                     });
                 })();
 

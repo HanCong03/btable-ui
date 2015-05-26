@@ -652,40 +652,15 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "<div class=\"toolbar-groups b-toolbar-clipboard-groups\">\n" +
     "    <div class=\"b-toolbar-clipboard-button-wrap\">\n" +
     "\n" +
-    "        <div>\n" +
-    "            <!-- 粘贴按钮 -->\n" +
-    "            <div class=\"b-drap-button\" ng-class=\"{'b-open': btnState.pasteOpen}\">\n" +
-    "                <a class=\"btn b-btn\" role=\"button\" data-name=\"paste\" ng-click=\"handler.btnclick($event);\" ng-class=\"{'b-open': btnState.pasteOpen}\">\n" +
-    "                    <span class=\"b-big-icon b-icon-paste\"></span>\n" +
-    "                </a>\n" +
-    "\n" +
-    "                <div class=\"btn-group b-drop-button\" dropdown on-toggle=\"btnState.pasteOpen=open;\">\n" +
-    "                    <div type=\"button\" class=\"btn b-drop-button-bottom b-btn dropdown-toggle\" ng-class=\"{'b-open': btnState.pasteOpen}\" dropdown-toggle>\n" +
-    "                        {{'toolbar.buttonlabel.paste' | translate}}\n" +
-    "                        <span class=\"caret\"></span>\n" +
-    "                    </div>\n" +
-    "                    <ul class=\"dropdown-menu\" role=\"menu\">\n" +
-    "                        <li><a href=\"#\">Action</a></li>\n" +
-    "                        <li><a href=\"#\">Another action</a></li>\n" +
-    "                        <li><a href=\"#\">Something else here</a></li>\n" +
-    "                        <li class=\"divider\"></li>\n" +
-    "                        <li><a href=\"#\">Separated link</a></li>\n" +
-    "                    </ul>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
+    "        <!--<div>-->\n" +
+    "            <!--&lt;!&ndash; 粘贴按钮 &ndash;&gt;-->\n" +
+    "            <!--<b-pastebtn></b-pastebtn>-->\n" +
+    "        <!--</div>-->\n" +
     "\n" +
     "        <!-- 复制 剪切 -->\n" +
     "        <div class=\"b-toolbar-clipboard-right-wrap\">\n" +
-    "            <a class=\"btn b-btn\" role=\"button\" data-name=\"cut\" ng-click=\"handler.btnclick($event);\">\n" +
-    "                <span class=\"b-icon b-icon-cut\"></span>\n" +
-    "                {{'toolbar.buttonlabel.cut' | translate}}\n" +
-    "            </a>\n" +
-    "\n" +
-    "            <a class=\"btn b-btn\" role=\"button\" data-name=\"copy\" ng-click=\"handler.btnclick($event);\">\n" +
-    "                <span class=\"b-icon b-icon-copy\"></span>\n" +
-    "                {{'toolbar.buttonlabel.copy' | translate}}\n" +
-    "            </a>\n" +
+    "            <b-cutbtn></b-cutbtn>\n" +
+    "            <b-copybtn></b-copybtn>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
@@ -997,6 +972,22 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/toolbar/widget/copybtn.html',
+    "<a class=\"btn b-btn\" role=\"button\" data-name=\"copy\" ng-click=\"handler.btnclick($event);\">\n" +
+    "    <span class=\"b-icon b-icon-copy\"></span>\n" +
+    "    {{'toolbar.buttonlabel.copy' | translate}}\n" +
+    "</a>"
+  );
+
+
+  $templateCache.put('template/toolbar/widget/cutbtn.html',
+    "<a class=\"btn b-btn\" role=\"button\" data-name=\"cut\" ng-click=\"handler.btnclick($event);\">\n" +
+    "    <span class=\"b-icon b-icon-cut\"></span>\n" +
+    "    {{'toolbar.buttonlabel.cut' | translate}}\n" +
+    "</a>"
+  );
+
+
   $templateCache.put('template/toolbar/widget/horizontalalign.html',
     "<div>\n" +
     "    <!-- horizontal alignments -->\n" +
@@ -1048,6 +1039,19 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        </li>\n" +
     "    </ul>\n" +
     "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/widget/pastebtn.html',
+    "<a class=\"btn b-btn b-column\"\n" +
+    "   role=\"button\"\n" +
+    "   data-name=\"paste\">\n" +
+    "    <span class=\"b-big-icon b-icon-paste\"></span>\n" +
+    "\n" +
+    "    <div>\n" +
+    "        {{'toolbar.buttonlabel.paste' | translate}}\n" +
+    "    </div>\n" +
+    "</a>\n"
   );
 
 
