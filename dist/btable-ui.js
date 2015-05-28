@@ -1,6 +1,6 @@
 /*!
  * ====================================================
- * Flex UI - v1.0.0 - 2015-05-22
+ * Flex UI - v1.0.0 - 2015-05-28
  * https://github.com/fex-team/fui
  * GitHub: https://github.com/fex-team/fui.git 
  * Copyright (c) 2015 Baidu Kity Group; Licensed MIT
@@ -431,12 +431,16 @@ angular.module('app', ['ui.bootstrap', 'pascalprecht.translate', 'b.const']);
 angular.module('app').config([
     '$translateProvider',
 
-    function($translateProvider) {
+    function ($translateProvider) {
         $translateProvider.translations('zh-CN', _zhCN);
 
         $translateProvider.preferredLanguage('zh-CN');
     }
-]);
+]).run(function () {
+    ZeroClipboard.config({
+        hoverClass: 'b-hover'
+    });
+});
 angular.module('app').run(['$templateCache', function($templateCache) {
   'use strict';
 
@@ -1091,40 +1095,15 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "<div class=\"toolbar-groups b-toolbar-clipboard-groups\">\n" +
     "    <div class=\"b-toolbar-clipboard-button-wrap\">\n" +
     "\n" +
-    "        <div>\n" +
-    "            <!-- 粘贴按钮 -->\n" +
-    "            <div class=\"b-drap-button\" ng-class=\"{'b-open': btnState.pasteOpen}\">\n" +
-    "                <a class=\"btn b-btn\" role=\"button\" data-name=\"paste\" ng-click=\"handler.btnclick($event);\" ng-class=\"{'b-open': btnState.pasteOpen}\">\n" +
-    "                    <span class=\"b-big-icon b-icon-paste\"></span>\n" +
-    "                </a>\n" +
-    "\n" +
-    "                <div class=\"btn-group b-drop-button\" dropdown on-toggle=\"btnState.pasteOpen=open;\">\n" +
-    "                    <div type=\"button\" class=\"btn b-drop-button-bottom b-btn dropdown-toggle\" ng-class=\"{'b-open': btnState.pasteOpen}\" dropdown-toggle>\n" +
-    "                        {{'toolbar.buttonlabel.paste' | translate}}\n" +
-    "                        <span class=\"caret\"></span>\n" +
-    "                    </div>\n" +
-    "                    <ul class=\"dropdown-menu\" role=\"menu\">\n" +
-    "                        <li><a href=\"#\">Action</a></li>\n" +
-    "                        <li><a href=\"#\">Another action</a></li>\n" +
-    "                        <li><a href=\"#\">Something else here</a></li>\n" +
-    "                        <li class=\"divider\"></li>\n" +
-    "                        <li><a href=\"#\">Separated link</a></li>\n" +
-    "                    </ul>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
+    "        <!--<div>-->\n" +
+    "            <!--&lt;!&ndash; 粘贴按钮 &ndash;&gt;-->\n" +
+    "            <!--<b-pastebtn></b-pastebtn>-->\n" +
+    "        <!--</div>-->\n" +
     "\n" +
     "        <!-- 复制 剪切 -->\n" +
     "        <div class=\"b-toolbar-clipboard-right-wrap\">\n" +
-    "            <a class=\"btn b-btn\" role=\"button\" data-name=\"cut\" ng-click=\"handler.btnclick($event);\">\n" +
-    "                <span class=\"b-icon b-icon-cut\"></span>\n" +
-    "                {{'toolbar.buttonlabel.cut' | translate}}\n" +
-    "            </a>\n" +
-    "\n" +
-    "            <a class=\"btn b-btn\" role=\"button\" data-name=\"copy\" ng-click=\"handler.btnclick($event);\">\n" +
-    "                <span class=\"b-icon b-icon-copy\"></span>\n" +
-    "                {{'toolbar.buttonlabel.copy' | translate}}\n" +
-    "            </a>\n" +
+    "            <b-cutbtn></b-cutbtn>\n" +
+    "            <b-copybtn></b-copybtn>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
@@ -1436,6 +1415,22 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/toolbar/widget/copybtn.html',
+    "<a class=\"btn b-btn\" role=\"button\" data-name=\"copy\" ng-click=\"handler.btnclick($event);\">\n" +
+    "    <span class=\"b-icon b-icon-copy\"></span>\n" +
+    "    {{'toolbar.buttonlabel.copy' | translate}}\n" +
+    "</a>"
+  );
+
+
+  $templateCache.put('template/toolbar/widget/cutbtn.html',
+    "<a class=\"btn b-btn\" role=\"button\" data-name=\"cut\" ng-click=\"handler.btnclick($event);\">\n" +
+    "    <span class=\"b-icon b-icon-cut\"></span>\n" +
+    "    {{'toolbar.buttonlabel.cut' | translate}}\n" +
+    "</a>"
+  );
+
+
   $templateCache.put('template/toolbar/widget/horizontalalign.html',
     "<div>\n" +
     "    <!-- horizontal alignments -->\n" +
@@ -1490,6 +1485,19 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/toolbar/widget/pastebtn.html',
+    "<a class=\"btn b-btn b-column\"\n" +
+    "   role=\"button\"\n" +
+    "   data-name=\"paste\">\n" +
+    "    <span class=\"b-big-icon b-icon-paste\"></span>\n" +
+    "\n" +
+    "    <div>\n" +
+    "        {{'toolbar.buttonlabel.paste' | translate}}\n" +
+    "    </div>\n" +
+    "</a>\n"
+  );
+
+
   $templateCache.put('template/toolbar/widget/pressbutton.html',
     "<button type=\"button\" class=\"btn b-btn\" ng-model=\"pressed\" ng-click=\"toggle();\" btn-checkbox>\n" +
     "    <span class=\"b-icon b-icon-{{type}}\"></span>\n" +
@@ -1512,6 +1520,28 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            <span class=\"b-icon b-icon-bottom\"></span>\n" +
     "        </label>\n" +
     "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/widget/btable-preview.html',
+    "<div class=\"b-btable-box b-btable-preview-box\">\n" +
+    "    <div class=\"b-header\">\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"b-body\">\n" +
+    "        <div class=\"btable-container\"></div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"b-footer\">\n" +
+    "        <div class=\"b-sheet-list\">\n" +
+    "            <div b-sheetlist></div>\n" +
+    "        </div>\n" +
+    "        <div class=\"b-status-bar\">\n" +
+    "            就绪\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "    <ng-include src=\"'template/dialogs/cell-format.html'\"></ng-include>\n" +
     "</div>"
   );
 
@@ -2520,6 +2550,7 @@ angular.module('app').directive('bSheetlist', [
                 btableService.on('sheetchange', function () {
                     $scope.sheets = btableService.queryCommandValue('sheetnames');
                     status.selected = btableService.queryCommandValue('sheetindex');
+                    btableService.execCommand(['inputfocus']);
 
                     $scope.$apply();
 
@@ -2540,6 +2571,7 @@ angular.module('app').directive('bSheetlist', [
 
                     $scope.sheets = btableService.queryCommandValue('sheetnames');
                     status.selected = btableService.queryCommandValue('sheetindex');
+                    btableService.execCommand(['inputfocus']);
 
                     $scope.$apply();
 
@@ -2551,6 +2583,7 @@ angular.module('app').directive('bSheetlist', [
                     evt.preventDefault();
 
                     btableService.execCommand(['createsheet', true]);
+                    btableService.execCommand(['inputfocus']);
                 };
 
                 $scope.leftClick = function (evt) {
@@ -2563,6 +2596,7 @@ angular.module('app').directive('bSheetlist', [
 
                     startIndex -= 1;
                     btableService.execCommand(['switchsheet', startIndex]);
+                    btableService.execCommand(['inputfocus']);
                 };
 
                 $scope.rightClick = function (evt) {
@@ -2576,6 +2610,7 @@ angular.module('app').directive('bSheetlist', [
                     }
 
                     btableService.execCommand(['switchsheet', endIndex + 1]);
+                    btableService.execCommand(['inputfocus']);
                 };
 
                 $scope.itemClick = function (evt, index) {
@@ -2583,6 +2618,7 @@ angular.module('app').directive('bSheetlist', [
                     evt.preventDefault();
 
                     btableService.execCommand(['switchsheet', index]);
+                    btableService.execCommand(['inputfocus']);
                 };
 
                 // init item click
@@ -2594,6 +2630,7 @@ angular.module('app').directive('bSheetlist', [
                         var index = this.getAttribute('data-index') | 0;
 
                         btableService.execCommand(['switchsheet', index]);
+                        btableService.execCommand(['inputfocus']);
                     });
                 })();
 
@@ -2775,6 +2812,14 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
                     btableService.execCommand(arguments);
                     break;
 
+                case 'undo':
+                    btableService.execCommand(['undo']);
+                    break;
+
+                case 'redo':
+                    btableService.execCommand(['redo']);
+                    break;
+
                 case 'thousandth':
                     btableService.execCommand(['numberformat', '_ * #,##0.00_ ;_ * -#,##0.00_ ;_ * "-"??_ ;_ @_ ']);
                     break;
@@ -2795,8 +2840,9 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
                 case 'merge':
                     btableService.execCommand([args]);
                     break;
-
             }
+
+            btableService.execCommand(['inputfocus']);
         }
     };
 

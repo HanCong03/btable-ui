@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- common start -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <!-- common end -->
+
+    <link rel="stylesheet" href="bower_components/spectrum/spectrum.css">
+    <link rel="stylesheet" href="bower_components/btable/btable.theme.css">
+    <link rel="stylesheet" href="dist/theme/default/btable-ui.css">
+
+    <script src="test-data.js"></script>
+
+    <script src="bower_components/spectrum/spectrum.js"></script>
+
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
+    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="bower_components/zeroclipboard/dist/ZeroClipboard.min.js"></script>
+    <script src="bower_components/btable/btable.all.js"></script>
+
+    <script src="src/constant.js"></script>
+    <script src="src/main.js"></script>
+    <script src="src/config.js"></script>
+    <script src="src/template.js"></script>
+
+    <!-- l10 -->
+    <script src="l10n/zh-CN.js"></script>
+
+    <!-- directives start -->
+    <script src="src/toolbar/directives/b-include-replace.js"></script>
+    <script src="src/toolbar/directives/b-colorpicker.js"></script>
+    <script src="src/toolbar/directives/b-attr-colorpicker.js"></script>
+    <script src="src/toolbar/directives/b-pressbutton.js"></script>
+    <script src="src/toolbar/directives/b-inputselect.js"></script>
+    <script src="src/toolbar/directives/b-mergeselect.js"></script>
+    <script src="src/toolbar/directives/b-verticalalign.js"></script>
+    <script src="src/toolbar/directives/b-horizontalalign.js"></script>
+    <script src="src/toolbar/directives/b-numberformat.js"></script>
+    <script src="src/toolbar/directives/b-tooltip.js"></script>
+    <script src="src/toolbar/directives/b-cellstyles.js"></script>
+    <script src="src/toolbar/directives/b-toolbar.js"></script>
+    <script src="src/toolbar/directives/b-submenu.js"></script>
+    <script src="src/toolbar/directives/b-sheetlist.js"></script>
+    <script src="src/toolbar/directives/b-cutbtn.js"></script>
+    <script src="src/toolbar/directives/b-copybtn.js"></script>
+    <script src="src/toolbar/directives/b-pastebtn.js"></script>
+    <script src="src/directives/btable.js"></script>
+    <script src="src/directives/btable-preview.js"></script>
+    <!-- directives end -->
+
+    <!-- services start -->
+    <script src="src/toolbar/services/toolbar-notify.js"></script>
+    <script src="src/toolbar/services/cellformat-modal-notify.js"></script>
+    <script src="src/toolbar/services/btable.js"></script>
+    <script src="src/toolbar/services/numberformat.js"></script>
+    <!-- services end -->
+
+    <!-- controllers start -->
+    <script src="src/toolbar/controllers/basic.js"></script>
+    <script src="src/toolbar/controllers/cellformat-modal.js"></script>
+    <!-- controllers end -->
+
+    <!-- filter start -->
+    <script src="src/toolbar/filter/b-currency.js"></script>
+    <script src="src/toolbar/filter/numberformat/number.js"></script>
+    <script src="src/toolbar/filter/numberformat/currency.js"></script>
+    <!-- filter end -->
+
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            min-width: 960px;
+        }
+    </style>
+    <script>
+        angular.module('app').controller('test', ['$scope' , 'btableService', function ($scope, btableService) {
+            $scope.$on('b-file-click', function () {
+                console.log(3);
+            });
+
+            $(document).ready(function () {
+                btableService.execCommand(['init', BTable.ExcelAdapter.import(excelData)]);
+                btableService.execCommand(['readonly', true]);
+            });
+        }]);
+    </script>
+    <title>BTable 演示项目</title>
+</head>
+<body ng-controller="test">
+<div btable-preview></div>
+</body>
+</html>

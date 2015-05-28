@@ -1081,6 +1081,28 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/widget/btable-preview.html',
+    "<div class=\"b-btable-box b-btable-preview-box\">\n" +
+    "    <div class=\"b-header\">\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"b-body\">\n" +
+    "        <div class=\"btable-container\"></div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"b-footer\">\n" +
+    "        <div class=\"b-sheet-list\">\n" +
+    "            <div b-sheetlist></div>\n" +
+    "        </div>\n" +
+    "        <div class=\"b-status-bar\">\n" +
+    "            就绪\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "    <ng-include src=\"'template/dialogs/cell-format.html'\"></ng-include>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/widget/btable.html',
     "<div class=\"b-btable-box\">\n" +
     "    <div class=\"b-header\"\n" +
