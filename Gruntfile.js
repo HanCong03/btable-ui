@@ -90,6 +90,7 @@ module.exports = function (grunt) {
                     "src/toolbar/directives/b-submenu.js",
                     "src/toolbar/directives/b-sheetlist.js",
                     "src/directives/btable.js",
+                    "src/directives/btable-preview.js",
                     "src/toolbar/services/toolbar-notify.js",
                     "src/toolbar/services/cellformat-modal-notify.js",
                     "src/toolbar/services/btable.js",
