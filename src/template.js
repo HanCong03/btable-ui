@@ -696,30 +696,30 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                    <span class=\"caret\"></span>\n" +
     "                </button>\n" +
     "                <ul class=\"dropdown-menu b-border-menu\" role=\"menu\">\n" +
-    "                    <li ng-click=\"handler.borderSelect('bottom');\">\n" +
-    "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-border-bottom b-mr5\"></span>\n" +
-    "                            {{'toolbar.items.border.bottom' | translate}}\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
-    "                    <li ng-click=\"handler.borderSelect('top');\">\n" +
-    "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-border-top b-mr5\"></span>\n" +
-    "                            {{'toolbar.items.border.top' | translate}}\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
-    "                    <li ng-click=\"handler.borderSelect('left');\">\n" +
-    "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-border-left b-mr5\"></span>\n" +
-    "                            {{'toolbar.items.border.left' | translate}}\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
-    "                    <li ng-click=\"handler.borderSelect('right');\">\n" +
-    "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-border-right b-mr5\"></span>\n" +
-    "                            {{'toolbar.items.border.right' | translate}}\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
+    "                    <!--<li ng-click=\"handler.borderSelect('bottom');\">-->\n" +
+    "                        <!--<a class=\"b-row\">-->\n" +
+    "                            <!--<span class=\"b-icon b-icon-border-bottom b-mr5\"></span>-->\n" +
+    "                            <!--{{'toolbar.items.border.bottom' | translate}}-->\n" +
+    "                        <!--</a>-->\n" +
+    "                    <!--</li>-->\n" +
+    "                    <!--<li ng-click=\"handler.borderSelect('top');\">-->\n" +
+    "                        <!--<a class=\"b-row\">-->\n" +
+    "                            <!--<span class=\"b-icon b-icon-border-top b-mr5\"></span>-->\n" +
+    "                            <!--{{'toolbar.items.border.top' | translate}}-->\n" +
+    "                        <!--</a>-->\n" +
+    "                    <!--</li>-->\n" +
+    "                    <!--<li ng-click=\"handler.borderSelect('left');\">-->\n" +
+    "                        <!--<a class=\"b-row\">-->\n" +
+    "                            <!--<span class=\"b-icon b-icon-border-left b-mr5\"></span>-->\n" +
+    "                            <!--{{'toolbar.items.border.left' | translate}}-->\n" +
+    "                        <!--</a>-->\n" +
+    "                    <!--</li>-->\n" +
+    "                    <!--<li ng-click=\"handler.borderSelect('right');\">-->\n" +
+    "                        <!--<a class=\"b-row\">-->\n" +
+    "                            <!--<span class=\"b-icon b-icon-border-right b-mr5\"></span>-->\n" +
+    "                            <!--{{'toolbar.items.border.right' | translate}}-->\n" +
+    "                        <!--</a>-->\n" +
+    "                    <!--</li>-->\n" +
     "                    <li ng-click=\"handler.borderSelect('none');\">\n" +
     "                        <a class=\"b-row\">\n" +
     "                            <span class=\"b-icon b-icon-border-none b-mr5\"></span>\n" +
@@ -732,45 +732,50 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                            {{'toolbar.items.border.all' | translate}}\n" +
     "                        </a>\n" +
     "                    </li>\n" +
-    "                    <li ng-click=\"handler.borderSelect('outer');\">\n" +
-    "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-border-outer b-mr5\"></span>\n" +
-    "                            {{'toolbar.items.border.outer' | translate}}\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
+    "                    <!--<li ng-click=\"handler.borderSelect('outer');\">-->\n" +
+    "                        <!--<a class=\"b-row\">-->\n" +
+    "                            <!--<span class=\"b-icon b-icon-border-outer b-mr5\"></span>-->\n" +
+    "                            <!--{{'toolbar.items.border.outer' | translate}}-->\n" +
+    "                        <!--</a>-->\n" +
+    "                    <!--</li>-->\n" +
     "                    <li class=\"divider\"></li>\n" +
     "                    <li class=\"b-submenu-item\">\n" +
     "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-border-outer b-mr5\"></span>\n" +
+    "                            <div class=\"b-border-color-icon-wrap\">\n" +
+    "                                <span class=\"b-icon b-ico-border-color b-mr5\"></span>\n" +
+    "                                <div class=\"b-border-color-tips\" ng-style=\"{'background': border.color}\"></div>\n" +
+    "                            </div>\n" +
     "                            {{'toolbar.items.border.linecolor' | translate}}\n" +
     "                        </a>\n" +
-    "                        <ul class=\"dropdown-menu b-submenu\" b-submenu>\n" +
-    "                            <li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\">Action</a></li>\n" +
+    "                        <ul class=\"dropdown-menu b-submenu b-show-color-menu\" b-submenu>\n" +
+    "                            <li role=\"presentation\" class=\"b-show-color-item\">\n" +
+    "                                <b-showcolor oncolorchange=\"handler.borderColor(color);\"></b-showcolor>\n" +
+    "                            </li>\n" +
     "                        </ul>\n" +
     "                    </li>\n" +
     "                    <li class=\"b-submenu-item\">\n" +
     "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-border-outer b-mr5\"></span>\n" +
+    "                            <span class=\"b-icon b-icon-empty b-mr5\"></span>\n" +
     "                            {{'toolbar.items.border.linestyle' | translate}}\n" +
     "                        </a>\n" +
     "                        <ul class=\"dropdown-menu b-border-submenu b-submenu\" b-submenu>\n" +
-    "                            <li>\n" +
-    "                                <a class=\"b-border-linestyle b-border-linestyle-none\">无边框</a>\n" +
+    "                            <li class=\"b-border-linestyle-li\" ng-mousedown=\"handler.borderStyle(0)\">\n" +
+    "                                <a class=\"b-border-linestyle b-border-linestyle-none\" ng-class=\"{'b-item-selected': borderStyle[0] === border.style}\">无边框</a>\n" +
     "                            </li>\n" +
-    "                            <li>\n" +
-    "                                <a class=\"b-border-linestyle b-border-linestyle-none\">无边框</a>\n" +
+    "                            <li class=\"b-border-linestyle-li\" ng-mousedown=\"handler.borderStyle(1)\">\n" +
+    "                                <a class=\"b-border-linestyle b-border-linestyle-none\" ng-class=\"{'b-item-selected': borderStyle[1] === border.style}\">\n" +
+    "                                    <div style=\"width: 70px; height: 0; border-top: 1px solid black;\"></div>\n" +
+    "                                </a>\n" +
     "                            </li>\n" +
-    "                            <li>\n" +
-    "                                <a class=\"b-border-linestyle b-border-linestyle-none\">无边框</a>\n" +
+    "                            <li class=\"b-border-linestyle-li\" ng-mousedown=\"handler.borderStyle(2)\">\n" +
+    "                                <a class=\"b-border-linestyle b-border-linestyle-none\" ng-class=\"{'b-item-selected': borderStyle[2] === border.style}\">\n" +
+    "                                    <div style=\"width: 70px; height: 0; border-top: 1px dashed black;\"></div>\n" +
+    "                                </a>\n" +
     "                            </li>\n" +
-    "                            <li>\n" +
-    "                                <a class=\"b-border-linestyle b-border-linestyle-none\">无边框</a>\n" +
-    "                            </li>\n" +
-    "                            <li>\n" +
-    "                                <a class=\"b-border-linestyle b-border-linestyle-none\">无边框</a>\n" +
-    "                            </li>\n" +
-    "                            <li>\n" +
-    "                                <a class=\"b-border-linestyle b-border-linestyle-none\">无边框</a>\n" +
+    "                            <li class=\"b-border-linestyle-li\" ng-mousedown=\"handler.borderStyle(3)\">\n" +
+    "                                <a class=\"b-border-linestyle b-border-linestyle-none\" ng-class=\"{'b-item-selected': borderStyle[3] === border.style}\">\n" +
+    "                                    <div style=\"width: 70px; height: 0; border-top: 1px dotted black;\"></div>\n" +
+    "                                </a>\n" +
     "                            </li>\n" +
     "                        </ul>\n" +
     "                    </li>\n" +
@@ -1063,6 +1068,13 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/toolbar/widget/showcolor.html',
+    "<div class=\"b-show-color-bed\">\n" +
+    "    <input style=\"display: none;\">\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/toolbar/widget/verticalalign.html',
     "<div>\n" +
     "    <!-- vertical alignments -->\n" +
@@ -1123,29 +1135,29 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                    <ng-include b-include-replace src=\"'template/toolbar/tabs/start/index.html'\"></ng-include>\n" +
     "                </tab>\n" +
     "\n" +
-    "                <tab class=\"b-toolbar-tabs-label\"\n" +
-    "                     heading=\"{{'toolbar.tabs.insert' | translate}}\">\n" +
-    "                </tab>\n" +
+    "                <!--<tab class=\"b-toolbar-tabs-label\"-->\n" +
+    "                     <!--heading=\"{{'toolbar.tabs.insert' | translate}}\">-->\n" +
+    "                <!--</tab>-->\n" +
     "\n" +
-    "                <tab class=\"b-toolbar-tabs-label\"\n" +
-    "                     heading=\"{{'toolbar.tabs.layout' | translate}}\">\n" +
-    "                </tab>\n" +
+    "                <!--<tab class=\"b-toolbar-tabs-label\"-->\n" +
+    "                     <!--heading=\"{{'toolbar.tabs.layout' | translate}}\">-->\n" +
+    "                <!--</tab>-->\n" +
     "\n" +
-    "                <tab class=\"b-toolbar-tabs-label\"\n" +
-    "                     heading=\"{{'toolbar.tabs.formula' | translate}}\">\n" +
-    "                </tab>\n" +
+    "                <!--<tab class=\"b-toolbar-tabs-label\"-->\n" +
+    "                     <!--heading=\"{{'toolbar.tabs.formula' | translate}}\">-->\n" +
+    "                <!--</tab>-->\n" +
     "\n" +
-    "                <tab class=\"b-toolbar-tabs-label\"\n" +
-    "                     heading=\"{{'toolbar.tabs.data' | translate}}\">\n" +
-    "                </tab>\n" +
+    "                <!--<tab class=\"b-toolbar-tabs-label\"-->\n" +
+    "                     <!--heading=\"{{'toolbar.tabs.data' | translate}}\">-->\n" +
+    "                <!--</tab>-->\n" +
     "\n" +
-    "                <tab class=\"b-toolbar-tabs-label\"\n" +
-    "                     heading=\"{{'toolbar.tabs.review' | translate}}\">\n" +
-    "                </tab>\n" +
+    "                <!--<tab class=\"b-toolbar-tabs-label\"-->\n" +
+    "                     <!--heading=\"{{'toolbar.tabs.review' | translate}}\">-->\n" +
+    "                <!--</tab>-->\n" +
     "\n" +
-    "                <tab class=\"b-toolbar-tabs-label\"\n" +
-    "                     heading=\"{{'toolbar.tabs.view' | translate}}\">\n" +
-    "                </tab>\n" +
+    "                <!--<tab class=\"b-toolbar-tabs-label\"-->\n" +
+    "                     <!--heading=\"{{'toolbar.tabs.view' | translate}}\">-->\n" +
+    "                <!--</tab>-->\n" +
     "            </tabset>\n" +
     "        </div>\n" +
     "\n" +

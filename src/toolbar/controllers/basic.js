@@ -68,6 +68,15 @@ angular.module('app').controller('ToolbarBasicController', [
             fontfamily: 'Arial'
         };
 
+        $scope.borderStyle = [
+            'none', 'thin', 'dashed', 'dotted'
+        ];
+
+        $scope.border = {
+            style: 'thin',
+            color: '#000000'
+        };
+
         $scope.initValue = {
             fontfamily: ["Angsana New", "Arial", "Arial Black", "Batang", "Book Antiqua", "Browallia New", "Calibri", "Cambria", "Candara", "Century", "Comic Sans MS", "Consolas", "Constantia", "Corbel", "Cordia New", "Courier", "Courier New", "DilleniaUPC", "Dotum", "仿宋", "Garamond", "Georgia", "Gulim", "GungSuh", "楷体", "JasmineUPC", "Malgun Gothic", "Mangal", "Meiryo", "Microsoft JhengHei", "微软雅黑", "MingLiu", "MingLiU_HKSCS", "MS Gothic", "MS Mincho", "MS PGothic", "MS PMincho", "PMingliU", "PMingLiU-ExtB", "黑体", "宋体", "宋体-ExtB", "Tahoma", "Times", "Times New Roman", "Trebuchet MS", "Verdana", "Yu Gothic", "Yu Mincho"],
             fontsize: [8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 36, 48, 72]
@@ -102,6 +111,15 @@ angular.module('app').controller('ToolbarBasicController', [
                 toolbarNotify.emit('merge', command[mode]);
             },
 
+            borderStyle: function (index) {
+                $scope.border.style = $scope.borderStyle[index];
+            },
+
+            borderColor: function (color) {
+                $scope.border.color = color;
+                $scope.$apply();
+            },
+
             pressChange: function (type, status) {
                 toolbarNotify.emit(type);
             },
@@ -124,14 +142,37 @@ angular.module('app').controller('ToolbarBasicController', [
 
             borderSelect: function (type) {
                 var args = ['setborder'];
+                var borderStyle = $scope.border.style;
+                var borderColor = $scope.border.color;
 
                 switch (type) {
                     case 'none':
-                        args = ['clearborder', 'all'];
+                        args = ['clearborder'];
                         break;
 
                     default:
-                        args[1] = type;
+                        if (borderStyle === 'none') {
+                            args = ['clearborder'];
+                        } else {
+                            args = ['border', {
+                                top: {
+                                    style: borderStyle,
+                                    color: borderColor
+                                },
+                                left: {
+                                    style: borderStyle,
+                                    color: borderColor
+                                },
+                                bottom: {
+                                    style: borderStyle,
+                                    color: borderColor
+                                },
+                                right: {
+                                    style: borderStyle,
+                                    color: borderColor
+                                }
+                            }]
+                        }
                         break;
                 }
 

@@ -89,6 +89,7 @@ module.exports = function (grunt) {
                     "src/toolbar/directives/b-toolbar.js",
                     "src/toolbar/directives/b-submenu.js",
                     "src/toolbar/directives/b-sheetlist.js",
+                    "src/toolbar/directives/b-showcolor.js",
                     "src/toolbar/directives/b-pastebtn.js",
                     "src/toolbar/directives/b-copybtn.js",
                     "src/directives/btable.js",

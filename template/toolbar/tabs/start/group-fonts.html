@@ -22,30 +22,30 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu b-border-menu" role="menu">
-                    <li ng-click="handler.borderSelect('bottom');">
-                        <a class="b-row">
-                            <span class="b-icon b-icon-border-bottom b-mr5"></span>
-                            {{'toolbar.items.border.bottom' | translate}}
-                        </a>
-                    </li>
-                    <li ng-click="handler.borderSelect('top');">
-                        <a class="b-row">
-                            <span class="b-icon b-icon-border-top b-mr5"></span>
-                            {{'toolbar.items.border.top' | translate}}
-                        </a>
-                    </li>
-                    <li ng-click="handler.borderSelect('left');">
-                        <a class="b-row">
-                            <span class="b-icon b-icon-border-left b-mr5"></span>
-                            {{'toolbar.items.border.left' | translate}}
-                        </a>
-                    </li>
-                    <li ng-click="handler.borderSelect('right');">
-                        <a class="b-row">
-                            <span class="b-icon b-icon-border-right b-mr5"></span>
-                            {{'toolbar.items.border.right' | translate}}
-                        </a>
-                    </li>
+                    <!--<li ng-click="handler.borderSelect('bottom');">-->
+                        <!--<a class="b-row">-->
+                            <!--<span class="b-icon b-icon-border-bottom b-mr5"></span>-->
+                            <!--{{'toolbar.items.border.bottom' | translate}}-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li ng-click="handler.borderSelect('top');">-->
+                        <!--<a class="b-row">-->
+                            <!--<span class="b-icon b-icon-border-top b-mr5"></span>-->
+                            <!--{{'toolbar.items.border.top' | translate}}-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li ng-click="handler.borderSelect('left');">-->
+                        <!--<a class="b-row">-->
+                            <!--<span class="b-icon b-icon-border-left b-mr5"></span>-->
+                            <!--{{'toolbar.items.border.left' | translate}}-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li ng-click="handler.borderSelect('right');">-->
+                        <!--<a class="b-row">-->
+                            <!--<span class="b-icon b-icon-border-right b-mr5"></span>-->
+                            <!--{{'toolbar.items.border.right' | translate}}-->
+                        <!--</a>-->
+                    <!--</li>-->
                     <li ng-click="handler.borderSelect('none');">
                         <a class="b-row">
                             <span class="b-icon b-icon-border-none b-mr5"></span>
@@ -58,45 +58,50 @@
                             {{'toolbar.items.border.all' | translate}}
                         </a>
                     </li>
-                    <li ng-click="handler.borderSelect('outer');">
-                        <a class="b-row">
-                            <span class="b-icon b-icon-border-outer b-mr5"></span>
-                            {{'toolbar.items.border.outer' | translate}}
-                        </a>
-                    </li>
+                    <!--<li ng-click="handler.borderSelect('outer');">-->
+                        <!--<a class="b-row">-->
+                            <!--<span class="b-icon b-icon-border-outer b-mr5"></span>-->
+                            <!--{{'toolbar.items.border.outer' | translate}}-->
+                        <!--</a>-->
+                    <!--</li>-->
                     <li class="divider"></li>
                     <li class="b-submenu-item">
                         <a class="b-row">
-                            <span class="b-icon b-icon-border-outer b-mr5"></span>
+                            <div class="b-border-color-icon-wrap">
+                                <span class="b-icon b-ico-border-color b-mr5"></span>
+                                <div class="b-border-color-tips" ng-style="{'background': border.color}"></div>
+                            </div>
                             {{'toolbar.items.border.linecolor' | translate}}
                         </a>
-                        <ul class="dropdown-menu b-submenu" b-submenu>
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                        <ul class="dropdown-menu b-submenu b-show-color-menu" b-submenu>
+                            <li role="presentation" class="b-show-color-item">
+                                <b-showcolor oncolorchange="handler.borderColor(color);"></b-showcolor>
+                            </li>
                         </ul>
                     </li>
                     <li class="b-submenu-item">
                         <a class="b-row">
-                            <span class="b-icon b-icon-border-outer b-mr5"></span>
+                            <span class="b-icon b-icon-empty b-mr5"></span>
                             {{'toolbar.items.border.linestyle' | translate}}
                         </a>
                         <ul class="dropdown-menu b-border-submenu b-submenu" b-submenu>
-                            <li>
-                                <a class="b-border-linestyle b-border-linestyle-none">无边框</a>
+                            <li class="b-border-linestyle-li" ng-mousedown="handler.borderStyle(0)">
+                                <a class="b-border-linestyle b-border-linestyle-none" ng-class="{'b-item-selected': borderStyle[0] === border.style}">无边框</a>
                             </li>
-                            <li>
-                                <a class="b-border-linestyle b-border-linestyle-none">无边框</a>
+                            <li class="b-border-linestyle-li" ng-mousedown="handler.borderStyle(1)">
+                                <a class="b-border-linestyle b-border-linestyle-none" ng-class="{'b-item-selected': borderStyle[1] === border.style}">
+                                    <div style="width: 70px; height: 0; border-top: 1px solid black;"></div>
+                                </a>
                             </li>
-                            <li>
-                                <a class="b-border-linestyle b-border-linestyle-none">无边框</a>
+                            <li class="b-border-linestyle-li" ng-mousedown="handler.borderStyle(2)">
+                                <a class="b-border-linestyle b-border-linestyle-none" ng-class="{'b-item-selected': borderStyle[2] === border.style}">
+                                    <div style="width: 70px; height: 0; border-top: 1px dashed black;"></div>
+                                </a>
                             </li>
-                            <li>
-                                <a class="b-border-linestyle b-border-linestyle-none">无边框</a>
-                            </li>
-                            <li>
-                                <a class="b-border-linestyle b-border-linestyle-none">无边框</a>
-                            </li>
-                            <li>
-                                <a class="b-border-linestyle b-border-linestyle-none">无边框</a>
+                            <li class="b-border-linestyle-li" ng-mousedown="handler.borderStyle(3)">
+                                <a class="b-border-linestyle b-border-linestyle-none" ng-class="{'b-item-selected': borderStyle[3] === border.style}">
+                                    <div style="width: 70px; height: 0; border-top: 1px dotted black;"></div>
+                                </a>
                             </li>
                         </ul>
                     </li>

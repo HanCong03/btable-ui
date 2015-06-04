@@ -1,6 +1,6 @@
 /*!
  * ====================================================
- * Flex UI - v1.0.0 - 2015-05-29
+ * Flex UI - v1.0.0 - 2015-06-04
  * https://github.com/fex-team/fui
  * GitHub: https://github.com/fex-team/fui.git 
  * Copyright (c) 2015 Baidu Kity Group; Licensed MIT
@@ -1139,30 +1139,30 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                    <span class=\"caret\"></span>\n" +
     "                </button>\n" +
     "                <ul class=\"dropdown-menu b-border-menu\" role=\"menu\">\n" +
-    "                    <li ng-click=\"handler.borderSelect('bottom');\">\n" +
-    "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-border-bottom b-mr5\"></span>\n" +
-    "                            {{'toolbar.items.border.bottom' | translate}}\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
-    "                    <li ng-click=\"handler.borderSelect('top');\">\n" +
-    "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-border-top b-mr5\"></span>\n" +
-    "                            {{'toolbar.items.border.top' | translate}}\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
-    "                    <li ng-click=\"handler.borderSelect('left');\">\n" +
-    "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-border-left b-mr5\"></span>\n" +
-    "                            {{'toolbar.items.border.left' | translate}}\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
-    "                    <li ng-click=\"handler.borderSelect('right');\">\n" +
-    "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-border-right b-mr5\"></span>\n" +
-    "                            {{'toolbar.items.border.right' | translate}}\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
+    "                    <!--<li ng-click=\"handler.borderSelect('bottom');\">-->\n" +
+    "                        <!--<a class=\"b-row\">-->\n" +
+    "                            <!--<span class=\"b-icon b-icon-border-bottom b-mr5\"></span>-->\n" +
+    "                            <!--{{'toolbar.items.border.bottom' | translate}}-->\n" +
+    "                        <!--</a>-->\n" +
+    "                    <!--</li>-->\n" +
+    "                    <!--<li ng-click=\"handler.borderSelect('top');\">-->\n" +
+    "                        <!--<a class=\"b-row\">-->\n" +
+    "                            <!--<span class=\"b-icon b-icon-border-top b-mr5\"></span>-->\n" +
+    "                            <!--{{'toolbar.items.border.top' | translate}}-->\n" +
+    "                        <!--</a>-->\n" +
+    "                    <!--</li>-->\n" +
+    "                    <!--<li ng-click=\"handler.borderSelect('left');\">-->\n" +
+    "                        <!--<a class=\"b-row\">-->\n" +
+    "                            <!--<span class=\"b-icon b-icon-border-left b-mr5\"></span>-->\n" +
+    "                            <!--{{'toolbar.items.border.left' | translate}}-->\n" +
+    "                        <!--</a>-->\n" +
+    "                    <!--</li>-->\n" +
+    "                    <!--<li ng-click=\"handler.borderSelect('right');\">-->\n" +
+    "                        <!--<a class=\"b-row\">-->\n" +
+    "                            <!--<span class=\"b-icon b-icon-border-right b-mr5\"></span>-->\n" +
+    "                            <!--{{'toolbar.items.border.right' | translate}}-->\n" +
+    "                        <!--</a>-->\n" +
+    "                    <!--</li>-->\n" +
     "                    <li ng-click=\"handler.borderSelect('none');\">\n" +
     "                        <a class=\"b-row\">\n" +
     "                            <span class=\"b-icon b-icon-border-none b-mr5\"></span>\n" +
@@ -1175,45 +1175,50 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                            {{'toolbar.items.border.all' | translate}}\n" +
     "                        </a>\n" +
     "                    </li>\n" +
-    "                    <li ng-click=\"handler.borderSelect('outer');\">\n" +
-    "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-border-outer b-mr5\"></span>\n" +
-    "                            {{'toolbar.items.border.outer' | translate}}\n" +
-    "                        </a>\n" +
-    "                    </li>\n" +
+    "                    <!--<li ng-click=\"handler.borderSelect('outer');\">-->\n" +
+    "                        <!--<a class=\"b-row\">-->\n" +
+    "                            <!--<span class=\"b-icon b-icon-border-outer b-mr5\"></span>-->\n" +
+    "                            <!--{{'toolbar.items.border.outer' | translate}}-->\n" +
+    "                        <!--</a>-->\n" +
+    "                    <!--</li>-->\n" +
     "                    <li class=\"divider\"></li>\n" +
     "                    <li class=\"b-submenu-item\">\n" +
     "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-border-outer b-mr5\"></span>\n" +
+    "                            <div class=\"b-border-color-icon-wrap\">\n" +
+    "                                <span class=\"b-icon b-ico-border-color b-mr5\"></span>\n" +
+    "                                <div class=\"b-border-color-tips\" ng-style=\"{'background': border.color}\"></div>\n" +
+    "                            </div>\n" +
     "                            {{'toolbar.items.border.linecolor' | translate}}\n" +
     "                        </a>\n" +
-    "                        <ul class=\"dropdown-menu b-submenu\" b-submenu>\n" +
-    "                            <li role=\"presentation\"><a role=\"menuitem\" tabindex=\"-1\" href=\"#\">Action</a></li>\n" +
+    "                        <ul class=\"dropdown-menu b-submenu b-show-color-menu\" b-submenu>\n" +
+    "                            <li role=\"presentation\" class=\"b-show-color-item\">\n" +
+    "                                <b-showcolor oncolorchange=\"handler.borderColor(color);\"></b-showcolor>\n" +
+    "                            </li>\n" +
     "                        </ul>\n" +
     "                    </li>\n" +
     "                    <li class=\"b-submenu-item\">\n" +
     "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-border-outer b-mr5\"></span>\n" +
+    "                            <span class=\"b-icon b-icon-empty b-mr5\"></span>\n" +
     "                            {{'toolbar.items.border.linestyle' | translate}}\n" +
     "                        </a>\n" +
     "                        <ul class=\"dropdown-menu b-border-submenu b-submenu\" b-submenu>\n" +
-    "                            <li>\n" +
-    "                                <a class=\"b-border-linestyle b-border-linestyle-none\">无边框</a>\n" +
+    "                            <li class=\"b-border-linestyle-li\" ng-mousedown=\"handler.borderStyle(0)\">\n" +
+    "                                <a class=\"b-border-linestyle b-border-linestyle-none\" ng-class=\"{'b-item-selected': borderStyle[0] === border.style}\">无边框</a>\n" +
     "                            </li>\n" +
-    "                            <li>\n" +
-    "                                <a class=\"b-border-linestyle b-border-linestyle-none\">无边框</a>\n" +
+    "                            <li class=\"b-border-linestyle-li\" ng-mousedown=\"handler.borderStyle(1)\">\n" +
+    "                                <a class=\"b-border-linestyle b-border-linestyle-none\" ng-class=\"{'b-item-selected': borderStyle[1] === border.style}\">\n" +
+    "                                    <div style=\"width: 70px; height: 0; border-top: 1px solid black;\"></div>\n" +
+    "                                </a>\n" +
     "                            </li>\n" +
-    "                            <li>\n" +
-    "                                <a class=\"b-border-linestyle b-border-linestyle-none\">无边框</a>\n" +
+    "                            <li class=\"b-border-linestyle-li\" ng-mousedown=\"handler.borderStyle(2)\">\n" +
+    "                                <a class=\"b-border-linestyle b-border-linestyle-none\" ng-class=\"{'b-item-selected': borderStyle[2] === border.style}\">\n" +
+    "                                    <div style=\"width: 70px; height: 0; border-top: 1px dashed black;\"></div>\n" +
+    "                                </a>\n" +
     "                            </li>\n" +
-    "                            <li>\n" +
-    "                                <a class=\"b-border-linestyle b-border-linestyle-none\">无边框</a>\n" +
-    "                            </li>\n" +
-    "                            <li>\n" +
-    "                                <a class=\"b-border-linestyle b-border-linestyle-none\">无边框</a>\n" +
-    "                            </li>\n" +
-    "                            <li>\n" +
-    "                                <a class=\"b-border-linestyle b-border-linestyle-none\">无边框</a>\n" +
+    "                            <li class=\"b-border-linestyle-li\" ng-mousedown=\"handler.borderStyle(3)\">\n" +
+    "                                <a class=\"b-border-linestyle b-border-linestyle-none\" ng-class=\"{'b-item-selected': borderStyle[3] === border.style}\">\n" +
+    "                                    <div style=\"width: 70px; height: 0; border-top: 1px dotted black;\"></div>\n" +
+    "                                </a>\n" +
     "                            </li>\n" +
     "                        </ul>\n" +
     "                    </li>\n" +
@@ -1506,6 +1511,13 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/toolbar/widget/showcolor.html',
+    "<div class=\"b-show-color-bed\">\n" +
+    "    <input style=\"display: none;\">\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/toolbar/widget/verticalalign.html',
     "<div>\n" +
     "    <!-- vertical alignments -->\n" +
@@ -1566,29 +1578,29 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                    <ng-include b-include-replace src=\"'template/toolbar/tabs/start/index.html'\"></ng-include>\n" +
     "                </tab>\n" +
     "\n" +
-    "                <tab class=\"b-toolbar-tabs-label\"\n" +
-    "                     heading=\"{{'toolbar.tabs.insert' | translate}}\">\n" +
-    "                </tab>\n" +
+    "                <!--<tab class=\"b-toolbar-tabs-label\"-->\n" +
+    "                     <!--heading=\"{{'toolbar.tabs.insert' | translate}}\">-->\n" +
+    "                <!--</tab>-->\n" +
     "\n" +
-    "                <tab class=\"b-toolbar-tabs-label\"\n" +
-    "                     heading=\"{{'toolbar.tabs.layout' | translate}}\">\n" +
-    "                </tab>\n" +
+    "                <!--<tab class=\"b-toolbar-tabs-label\"-->\n" +
+    "                     <!--heading=\"{{'toolbar.tabs.layout' | translate}}\">-->\n" +
+    "                <!--</tab>-->\n" +
     "\n" +
-    "                <tab class=\"b-toolbar-tabs-label\"\n" +
-    "                     heading=\"{{'toolbar.tabs.formula' | translate}}\">\n" +
-    "                </tab>\n" +
+    "                <!--<tab class=\"b-toolbar-tabs-label\"-->\n" +
+    "                     <!--heading=\"{{'toolbar.tabs.formula' | translate}}\">-->\n" +
+    "                <!--</tab>-->\n" +
     "\n" +
-    "                <tab class=\"b-toolbar-tabs-label\"\n" +
-    "                     heading=\"{{'toolbar.tabs.data' | translate}}\">\n" +
-    "                </tab>\n" +
+    "                <!--<tab class=\"b-toolbar-tabs-label\"-->\n" +
+    "                     <!--heading=\"{{'toolbar.tabs.data' | translate}}\">-->\n" +
+    "                <!--</tab>-->\n" +
     "\n" +
-    "                <tab class=\"b-toolbar-tabs-label\"\n" +
-    "                     heading=\"{{'toolbar.tabs.review' | translate}}\">\n" +
-    "                </tab>\n" +
+    "                <!--<tab class=\"b-toolbar-tabs-label\"-->\n" +
+    "                     <!--heading=\"{{'toolbar.tabs.review' | translate}}\">-->\n" +
+    "                <!--</tab>-->\n" +
     "\n" +
-    "                <tab class=\"b-toolbar-tabs-label\"\n" +
-    "                     heading=\"{{'toolbar.tabs.view' | translate}}\">\n" +
-    "                </tab>\n" +
+    "                <!--<tab class=\"b-toolbar-tabs-label\"-->\n" +
+    "                     <!--heading=\"{{'toolbar.tabs.view' | translate}}\">-->\n" +
+    "                <!--</tab>-->\n" +
     "            </tabset>\n" +
     "        </div>\n" +
     "\n" +
@@ -2766,6 +2778,137 @@ angular.module('app').directive('bSheetlist', [
  * @author hancong03@baiud.com
  */
 
+angular.module('app').directive('bShowcolor', ['$translate', function ($translate) {
+
+    return {
+        restrict: 'E',
+        replace: true,
+        scope: {
+            onchange: '&oncolorchange'
+        },
+        templateUrl: 'template/toolbar/widget/showcolor.html',
+        link: function ($scope, $ele, $attr, $controller) {
+            var hook = $scope.onchange || angular.noop;
+
+            var $input = $ele.find("input");
+            var togglePaletteMoreText;
+            var togglePaletteLessText;
+            var chooseText;
+            var cancelText;
+
+            $translate(['toolbar.colorpicker.more', 'toolbar.colorpicker.less', 'toolbar.colorpicker.choose', 'toolbar.colorpicker.cancel']).then(function (res) {
+                togglePaletteMoreText = res['toolbar.colorpicker.more'];
+                togglePaletteLessText = res['toolbar.colorpicker.less'];;
+                chooseText = res['toolbar.colorpicker.choose'];
+                cancelText = res['toolbar.colorpicker.cancel'];
+            }).finally(function () {
+                $input.spectrum({
+                    flat: true,
+                    showPaletteOnly: true,
+                    togglePaletteOnly: true,
+                    hideAfterPaletteSelect: true,
+                    maxSelectionSize: 0,
+                    containerClassName: "b-colorpicker-panel",
+
+                    togglePaletteMoreText: togglePaletteMoreText,
+                    togglePaletteLessText: togglePaletteLessText,
+                    chooseText: chooseText,
+                    cancelText: cancelText,
+                    color: 'blanchedalmond',
+                    showInitial: "true",
+                    palette: [
+                        ["#000","#444","#666","#999","#ccc","#eee","#f3f3f3","#fff"],
+                        ["#f00","#f90","#ff0","#0f0","#0ff","#00f","#90f","#f0f"],
+                        ["#f4cccc","#fce5cd","#fff2cc","#d9ead3","#d0e0e3","#cfe2f3","#d9d2e9","#ead1dc"],
+                        ["#ea9999","#f9cb9c","#ffe599","#b6d7a8","#a2c4c9","#9fc5e8","#b4a7d6","#d5a6bd"],
+                        ["#e06666","#f6b26b","#ffd966","#93c47d","#76a5af","#6fa8dc","#8e7cc3","#c27ba0"],
+                        ["#c00","#e69138","#f1c232","#6aa84f","#45818e","#3d85c6","#674ea7","#a64d79"],
+                        ["#900","#b45f06","#bf9000","#38761d","#134f5c","#0b5394","#351c75","#741b47"],
+                        ["#600","#783f04","#7f6000","#274e13","#0c343d","#073763","#20124d","#4c1130"]
+                    ]
+                });
+
+                $input.on('change.spectrum', function(e, tinycolor) {
+                    $(this).closest('.b-show-color-menu').removeClass('b-show');
+                    hook({
+                        'color': tinycolor.toHexString()
+                    });
+                });
+            });
+        }
+    };
+}]);
+/**
+ * @file
+ * @author hancong03@baiud.com
+ */
+
+angular.module('app').directive('bPastebtn', ['btableService', function (btableService) {
+
+    return {
+        restrict: 'E',
+        replace: true,
+        scope: {},
+        templateUrl: 'template/toolbar/widget/pastebtn.html',
+        link: function ($scope, $ele) {
+            //var client = new ZeroClipboard($ele);
+            //
+            //client.on("ready", function (readyEvent) {
+            //    var text = client.getData("text/plain");
+            //    client.on("copy", function (event) {
+            //        //var clipboard = event.clipboardData;
+            //        //var copyData = btableService.execCommand(['execcopy']);
+            //        //
+            //        //if (!copyData) {
+            //        //    return null;
+            //        //}
+            //        //
+            //        //clipboard.setData("text/plain", copyData.string);
+            //        //clipboard.setData("text/html", copyData.html);
+            //        //console.log(client.getData('text/plain'))
+            //    });
+            //});
+        }
+    };
+}]);
+/**
+ * @file
+ * @author hancong03@baiud.com
+ */
+
+angular.module('app').directive('bCopybtn', ['btableService', function (btableService) {
+
+    return {
+        restrict: 'E',
+        replace: true,
+        scope: {},
+        templateUrl: 'template/toolbar/widget/copybtn.html',
+        link: function ($scope, $ele) {
+            var client = new ZeroClipboard($ele);
+
+            client.on("ready", function (readyEvent) {
+                client.on("copy", function (event) {
+                    var clipboard = event.clipboardData;
+                    var copyData = btableService.execCommand(['execcopy']);
+
+                    if (!copyData) {
+                        return null;
+                    }
+
+                    clipboard.setData("text/plain", copyData.string);
+                    clipboard.setData("text/html", copyData.html);
+
+                    btableService.execCommand(['inputfocus']);
+                });
+            });
+        }
+    };
+}]);
+/**
+ * @file
+ * @author hancong03@baiud.com
+ */
+
 angular.module('app').directive('btable', ['btableService', function (btableService) {
 
     return {
@@ -2856,7 +2999,7 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
                     break;
 
                 case 'border':
-                    //console.log('borderchange')
+                    btableService.execCommand(args);
                     break;
 
                 case 'merge':
@@ -3330,6 +3473,15 @@ angular.module('app').controller('ToolbarBasicController', [
             fontfamily: 'Arial'
         };
 
+        $scope.borderStyle = [
+            'none', 'thin', 'dashed', 'dotted'
+        ];
+
+        $scope.border = {
+            style: 'thin',
+            color: '#000000'
+        };
+
         $scope.initValue = {
             fontfamily: ["Angsana New", "Arial", "Arial Black", "Batang", "Book Antiqua", "Browallia New", "Calibri", "Cambria", "Candara", "Century", "Comic Sans MS", "Consolas", "Constantia", "Corbel", "Cordia New", "Courier", "Courier New", "DilleniaUPC", "Dotum", "仿宋", "Garamond", "Georgia", "Gulim", "GungSuh", "楷体", "JasmineUPC", "Malgun Gothic", "Mangal", "Meiryo", "Microsoft JhengHei", "微软雅黑", "MingLiu", "MingLiU_HKSCS", "MS Gothic", "MS Mincho", "MS PGothic", "MS PMincho", "PMingliU", "PMingLiU-ExtB", "黑体", "宋体", "宋体-ExtB", "Tahoma", "Times", "Times New Roman", "Trebuchet MS", "Verdana", "Yu Gothic", "Yu Mincho"],
             fontsize: [8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 36, 48, 72]
@@ -3364,6 +3516,15 @@ angular.module('app').controller('ToolbarBasicController', [
                 toolbarNotify.emit('merge', command[mode]);
             },
 
+            borderStyle: function (index) {
+                $scope.border.style = $scope.borderStyle[index];
+            },
+
+            borderColor: function (color) {
+                $scope.border.color = color;
+                $scope.$apply();
+            },
+
             pressChange: function (type, status) {
                 toolbarNotify.emit(type);
             },
@@ -3386,14 +3547,37 @@ angular.module('app').controller('ToolbarBasicController', [
 
             borderSelect: function (type) {
                 var args = ['setborder'];
+                var borderStyle = $scope.border.style;
+                var borderColor = $scope.border.color;
 
                 switch (type) {
                     case 'none':
-                        args = ['clearborder', 'all'];
+                        args = ['clearborder'];
                         break;
 
                     default:
-                        args[1] = type;
+                        if (borderStyle === 'none') {
+                            args = ['clearborder'];
+                        } else {
+                            args = ['border', {
+                                top: {
+                                    style: borderStyle,
+                                    color: borderColor
+                                },
+                                left: {
+                                    style: borderStyle,
+                                    color: borderColor
+                                },
+                                bottom: {
+                                    style: borderStyle,
+                                    color: borderColor
+                                },
+                                right: {
+                                    style: borderStyle,
+                                    color: borderColor
+                                }
+                            }]
+                        }
                         break;
                 }
 

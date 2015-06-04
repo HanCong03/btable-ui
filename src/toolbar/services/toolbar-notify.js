@@ -48,7 +48,7 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
                     break;
 
                 case 'border':
-                    //console.log('borderchange')
+                    btableService.execCommand(args);
                     break;
 
                 case 'merge':
