@@ -3474,6 +3474,28 @@ angular.module('app').factory('numberformat', ['NUMBER_FORMAT', 'CURRENCY', func
     }
 }]);
 /**
+ * @file
+ * @author hancong03@baiud.com
+ */
+
+angular.module('app').factory('sheetlistService', [function () {
+    var handler = null;
+
+    return {
+        setHandler: function (h) {
+            handler = h;
+        },
+
+        removeHandler: function () {
+            handler = null;
+        },
+
+        getHandler: function () {
+            return handler;
+        }
+    };
+}]);
+/**
  * @file toolbar基础功能控制器
  * @author hancong03@baiud.com
  */

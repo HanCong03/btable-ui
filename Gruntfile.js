@@ -99,6 +99,7 @@ module.exports = function (grunt) {
                     "src/toolbar/services/cellformat-modal-notify.js",
                     "src/toolbar/services/btable.js",
                     "src/toolbar/services/numberformat.js",
+                    "src/toolbar/services/sheetlist.js",
                     "src/toolbar/controllers/basic.js",
                     "src/toolbar/controllers/cellformat-modal.js",
                     "src/toolbar/filter/b-currency.js",
