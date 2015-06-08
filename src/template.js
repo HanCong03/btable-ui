@@ -1233,7 +1233,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "        <button class=\"b-sl-more-button\"\n" +
     "                ng-class=\"{'b-disabled': !status.rightMore}\"\n" +
-    "                ng-mousdown=\"rightClick($event);\"\n" +
+    "                ng-mousedown=\"rightClick($event);\"\n" +
     "                ng-disabled=\"!status.rightMore\">\n" +
     "            ...\n" +
     "        </button>\n" +

@@ -8,8 +8,9 @@ angular.module('app').controller('ToolbarBasicController', [
     'toolbarNotify',
     'cellformatModalNotify',
     'btableService',
+    'sheetlistService',
 
-    function ($scope, toolbarNotify, cellformatModalNotify, btableService) {
+    function ($scope, toolbarNotify, cellformatModalNotify, btableService, sheetlistService) {
 
         $scope.btnState = {
             pasteOpen: false,

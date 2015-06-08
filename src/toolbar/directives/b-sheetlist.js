@@ -6,8 +6,9 @@
 angular.module('app').directive('bSheetlist', [
     '$timeout',
     'btableService',
+    'sheetlistService',
 
-    function ($timeout, btableService) {
+    function ($timeout, btableService, sheetlistService) {
 
     return {
         restrict: 'A',
@@ -30,10 +31,9 @@ angular.module('app').directive('bSheetlist', [
                     rightMore: false
                 };
 
-                //$timeout(refresh, 1000);
-
                 var $list = $(".b-sl-list", $ele);
                 var $shadowList = $(".b-sl-shadow-list", $ele);
+                var customHandler;
 
                 /* ---- scope 挂载 start ---- */
                 $scope.status = status;
@@ -87,8 +87,18 @@ angular.module('app').directive('bSheetlist', [
                     }
 
                     startIndex -= 1;
-                    btableService.execCommand(['switchsheet', startIndex]);
-                    btableService.execCommand(['inputfocus']);
+
+                    customHandler = sheetlistService.getHandler();
+
+                    // 当前有自定义处理器，则通知自定义处理器
+                    if (customHandler) {
+                        customHandler(startIndex);
+
+                    // 否则，执行默认动作
+                    } else {
+                        btableService.execCommand(['switchsheet', startIndex]);
+                        btableService.execCommand(['inputfocus']);
+                    }
                 };
 
                 $scope.rightClick = function (evt) {
@@ -101,17 +111,35 @@ angular.module('app').directive('bSheetlist', [
                         return;
                     }
 
-                    btableService.execCommand(['switchsheet', endIndex + 1]);
-                    btableService.execCommand(['inputfocus']);
+                    customHandler = sheetlistService.getHandler();
+
+                    // 当前有自定义处理器，则通知自定义处理器
+                    if (customHandler) {
+                        customHandler(endIndex + 1);
+
+                        // 否则，执行默认动作
+                    } else {
+                        btableService.execCommand(['switchsheet', endIndex + 1]);
+                        btableService.execCommand(['inputfocus']);
+                    }
                 };
 
-                $scope.itemClick = function (evt, index) {
-                    evt.stopPropagation();
-                    evt.preventDefault();
-
-                    btableService.execCommand(['switchsheet', index]);
-                    btableService.execCommand(['inputfocus']);
-                };
+                //$scope.itemClick = function (evt, index) {
+                //    evt.stopPropagation();
+                //    evt.preventDefault();
+                //
+                //    customHandler = sheetlistService.getHandler();
+                //
+                //    // 当前有自定义处理器，则通知自定义处理器
+                //    if (customHandler) {
+                //        customHandler(index);
+                //
+                //        // 否则，执行默认动作
+                //    } else {
+                //        btableService.execCommand(['switchsheet', index]);
+                //        btableService.execCommand(['inputfocus']);
+                //    }
+                //};
 
                 // init item click
                 (function () {
@@ -121,8 +149,17 @@ angular.module('app').directive('bSheetlist', [
 
                         var index = this.getAttribute('data-index') | 0;
 
-                        btableService.execCommand(['switchsheet', index]);
-                        btableService.execCommand(['inputfocus']);
+                        customHandler = sheetlistService.getHandler();
+
+                        // 当前有自定义处理器，则通知自定义处理器
+                        if (customHandler) {
+                            customHandler(index);
+
+                            // 否则，执行默认动作
+                        } else {
+                            btableService.execCommand(['switchsheet', index]);
+                            btableService.execCommand(['inputfocus']);
+                        }
                     });
                 })();
 
