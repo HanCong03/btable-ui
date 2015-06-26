@@ -2644,11 +2644,30 @@ angular.module('app').directive('bSheetlist', [
                     }
                 };
 
+                var lastClickTime = -1;
+
                 // init item click
                 (function () {
                     $list.on('mousedown', '.b-sl-item', function (evt) {
                         evt.stopPropagation();
                         evt.preventDefault();
+
+                        var now = Date.now();
+
+                        if (!window.BTB_READ_ONLY && Date.now() - lastClickTime < 500) {
+                            lastClickTime = now;
+
+                            $timeout(function () {
+                                var $input = $('.b-sl-item-label-input', $list.find('.b-active'));
+                                $('.b-sl-item-label', $list.find('.b-active')).hide();
+                                $input.show();
+                                $input[0].focus();
+                                $input[0].setSelectionRange(0, 99999);
+                            }, 0);
+                            return;
+                        }
+
+                        lastClickTime = now;
 
                         var index = this.getAttribute('data-index') | 0;
 
@@ -2665,15 +2684,6 @@ angular.module('app').directive('bSheetlist', [
                         }
                     }).on('mousedown', '.b-sl-item-label-input', function (evt) {
                         evt.stopPropagation();
-                    }).on('dblclick', '.b-sl-item', function (evt) {
-                        evt.preventDefault();
-
-                        $timeout(function () {
-                            var $input = $('.b-sl-item-label-input', $list.find('.b-active'));
-                            $('.b-sl-item-label', $list.find('.b-active')).hide();
-                            $input.show();
-                            $input[0].setSelectionRange(0, 99999);
-                        }, 0);
                     }).on('blur', '.b-sl-item-label-input', function () {
                         btableService.execCommand(['renamesheet', +this.getAttribute('data-index'), this.value]);
                     }).on('keydown', '.b-sl-item-label-input', function (evt) {

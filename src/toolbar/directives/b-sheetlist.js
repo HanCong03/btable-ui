@@ -134,7 +134,7 @@ angular.module('app').directive('bSheetlist', [
 
                         var now = Date.now();
 
-                        if (Date.now() - lastClickTime < 500) {
+                        if (!window.BTB_READ_ONLY && Date.now() - lastClickTime < 500) {
                             lastClickTime = now;
 
                             $timeout(function () {
