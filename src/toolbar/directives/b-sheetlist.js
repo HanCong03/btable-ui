@@ -124,23 +124,6 @@ angular.module('app').directive('bSheetlist', [
                     }
                 };
 
-                //$scope.itemClick = function (evt, index) {
-                //    evt.stopPropagation();
-                //    evt.preventDefault();
-                //
-                //    customHandler = sheetlistService.getHandler();
-                //
-                //    // 当前有自定义处理器，则通知自定义处理器
-                //    if (customHandler) {
-                //        customHandler(index);
-                //
-                //        // 否则，执行默认动作
-                //    } else {
-                //        btableService.execCommand(['switchsheet', index]);
-                //        btableService.execCommand(['inputfocus']);
-                //    }
-                //};
-
                 // init item click
                 (function () {
                     $list.on('mousedown', '.b-sl-item', function (evt) {
@@ -159,6 +142,23 @@ angular.module('app').directive('bSheetlist', [
                         } else {
                             btableService.execCommand(['switchsheet', index]);
                             btableService.execCommand(['inputfocus']);
+                        }
+                    }).on('mousedown', '.b-sl-item-label-input', function (evt) {
+                        evt.stopPropagation();
+                    }).on('dblclick', '.b-sl-item', function (evt) {
+                        evt.preventDefault();
+
+                        $timeout(function () {
+                            var $input = $('.b-sl-item-label-input', $list.find('.b-active'));
+                            $('.b-sl-item-label', $list.find('.b-active')).hide();
+                            $input.show();
+                            $input[0].setSelectionRange(0, 99999);
+                        }, 0);
+                    }).on('blur', '.b-sl-item-label-input', function () {
+                        btableService.execCommand(['renamesheet', +this.getAttribute('data-index'), this.value]);
+                    }).on('keydown', '.b-sl-item-label-input', function (evt) {
+                        if (evt.keyCode === 13) {
+                            this.blur();
                         }
                     });
                 })();
@@ -185,7 +185,7 @@ angular.module('app').directive('bSheetlist', [
                 }
 
                 function updateItem() {
-                    var tpl = '<li class="b-sl-item ${active}" data-index="${index}"><div class="b-sl-item-top-space"></div><span class="b-sl-item-label">${sheetname}</span><div class="b-sl-item-bottom-space"></div></li>'
+                    var tpl = '<li class="b-sl-item ${active}" data-index="${index}"><div class="b-sl-item-top-space"></div><input type="text" data-index="${index}" class="b-sl-item-label-input" value="${sheetname}"><span class="b-sl-item-label">${sheetname}</span><div class="b-sl-item-bottom-space"></div></li>'
 
                     var sheets = $scope.sheets;
                     var info = {};
