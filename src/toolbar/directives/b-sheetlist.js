@@ -37,19 +37,21 @@ angular.module('app').directive('bSheetlist', [
 
                 /* ---- scope 挂载 start ---- */
                 $scope.status = status;
-                $scope.sheets = btableService.queryCommandValue('sheetnames');
+                $scope.sheets = clone(btableService.queryCommandValue('sheetnames'));
 
-                btableService.on('sheetchange', function () {
-                    $scope.sheets = btableService.queryCommandValue('sheetnames');
-                    status.selected = btableService.queryCommandValue('sheetindex');
-                    btableService.execCommand(['inputfocus']);
-
-                    $scope.$apply();
+                btableService.on('sheetschange', function () {
+                    $scope.sheets = clone(btableService.queryCommandValue('sheetnames'));
+                    status.selected = btableService.queryCommandValue('activesheetindex');
 
                     refresh();
                 });
 
-                btableService.on('init', function () {
+                btableService.on('sheetswitch', function () {
+                    status.selected = btableService.queryCommandValue('activesheetindex');
+                    refresh();
+                });
+
+                btableService.on('loaded', function () {
                     startIndex = 0;
                     endIndex = -1;
 
@@ -61,9 +63,8 @@ angular.module('app').directive('bSheetlist', [
                         rightMore: false
                     });
 
-                    $scope.sheets = btableService.queryCommandValue('sheetnames');
-                    status.selected = btableService.queryCommandValue('sheetindex');
-                    btableService.execCommand(['inputfocus']);
+                    $scope.sheets = clone(btableService.queryCommandValue('sheetnames'));
+                    status.selected = btableService.queryCommandValue('activesheetindex');
 
                     $scope.$apply();
 
@@ -74,8 +75,7 @@ angular.module('app').directive('bSheetlist', [
                     evt.stopPropagation();
                     evt.preventDefault();
 
-                    btableService.execCommand(['createsheet', true]);
-                    btableService.execCommand(['inputfocus']);
+                    btableService.execCommand(['addsheet']);
                 };
 
                 $scope.leftClick = function (evt) {
@@ -97,7 +97,6 @@ angular.module('app').directive('bSheetlist', [
                     // 否则，执行默认动作
                     } else {
                         btableService.execCommand(['switchsheet', startIndex]);
-                        btableService.execCommand(['inputfocus']);
                     }
                 };
 
@@ -120,7 +119,6 @@ angular.module('app').directive('bSheetlist', [
                         // 否则，执行默认动作
                     } else {
                         btableService.execCommand(['switchsheet', endIndex + 1]);
-                        btableService.execCommand(['inputfocus']);
                     }
                 };
 
@@ -160,15 +158,26 @@ angular.module('app').directive('bSheetlist', [
                             // 否则，执行默认动作
                         } else {
                             btableService.execCommand(['switchsheet', index]);
-                            btableService.execCommand(['inputfocus']);
                         }
                     }).on('mousedown', '.b-sl-item-label-input', function (evt) {
                         evt.stopPropagation();
                     }).on('blur', '.b-sl-item-label-input', function () {
-                        btableService.execCommand(['renamesheet', +this.getAttribute('data-index'), this.value]);
+                        if (!btableService.execCommand(['renamesheet', this.value, +this.getAttribute('data-index')])) {
+                            alert('重命名失败，名称冲突: ' + this.value);
+                        } else {
+                            btableService.execCommand(['focus']);
+                        }
                     }).on('keydown', '.b-sl-item-label-input', function (evt) {
+                        // enter
                         if (evt.keyCode === 13) {
+                            evt.preventDefault();
                             this.blur();
+                        // esc
+                        } else if (evt.keyCode === 27) {
+                            var $input = $('.b-sl-item-label-input', $list.find('.b-active'));
+                            $('.b-sl-item-label', $list.find('.b-active')).show();
+                            $input.hide();
+                            btableService.execCommand(['focus']);
                         }
                     });
                 })();
@@ -299,4 +308,15 @@ angular.module('app').directive('bSheetlist', [
             }
         }
     };
+
+    function clone(arr) {
+        var keys = Object.keys(arr);
+        var result = [];
+
+        for (var i = 0, len = keys.length; i < len; i++) {
+            result[keys[i]] = arr[keys[i]];
+        }
+
+        return result;
+    }
 }]);

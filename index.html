@@ -24,7 +24,8 @@
     <script src="bower_components/angular-translate/angular-translate.js"></script>
     <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
     <script src="bower_components/zeroclipboard/dist/ZeroClipboard.min.js"></script>
-    <script src="bower_components/btable/btable.all.js"></script>
+    <!--<script src="bower_components/btable/btable.all.js"></script>-->
+    <script src="bower_components/btable/btable2.js"></script>
 
     <script src="src/constant.js"></script>
     <script src="src/main.js"></script>
@@ -91,7 +92,7 @@
             });
 
             $(document).ready(function () {
-                btableService.execCommand(['init', BTable.ExcelAdapter.import(excelData)]);
+                btableService.execCommand(['init']);
             });
         }]);
     </script>
