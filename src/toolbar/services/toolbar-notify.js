@@ -10,7 +10,6 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
             switch (type) {
                 case 'bold':
                 case 'italic':
-                case 'underline':
 
                 case 'font':
                 case 'fontsize':
@@ -39,16 +38,15 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
                     break;
 
                 case 'cellstyle':
-                    if (arguments[2]) {
-                        btableService.execCommand(['builtincellstyle', arguments[1]]);
-                    } else {
-                        //console.error('未处理自定义cellstyle的问题');
-                        //btableService.execCommand(['cellstyle', arguments[1]]);
-                    }
+                    btableService.execCommand(['cellstyle', arguments[1]]);
                     break;
 
                 case 'border':
                     btableService.execCommand(args);
+                    break;
+
+                case 'underline':
+                    btableService.execCommand(['toggleunderline', args]);
                     break;
 
                 case 'merge':

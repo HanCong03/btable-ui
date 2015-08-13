@@ -35,6 +35,7 @@ var _zhCN = {
                 "none": "无框线",
                 "all": "所有框线",
                 "outer": "外侧框线",
+                "outer-medium": "外粗框线",
 
                 "linecolor":  "线条颜色",
                 "linestyle": "线形"
@@ -44,6 +45,10 @@ var _zhCN = {
                 "across": "跨越合并",
                 "merge": "合并单元格",
                 "cancel": "取消单元格合并"
+            },
+            "underline": {
+                "single": "下划线",
+                "double": "双下划线"
             },
             "format": {
                 "general": "常规",

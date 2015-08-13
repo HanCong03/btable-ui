@@ -1,0 +1,27 @@
+<div class="b-button-select b-underline-selector" ng-class="{'b-open': isOpen || isSelected}">
+    <a ng-if="current === 'single'" class="btn b-btn b-underline-button" role="button" ng-class="{'b-open': isOpen || isSelected}" ng-click="changeModel('single');">
+        <span class="b-icon b-icon-underline-single"></span>
+    </a>
+    <a ng-if="current === 'double'" class="btn b-btn b-underline-button" role="button" ng-class="{'b-open': isOpen || isSelected}" ng-click="changeModel('double');">
+        <span class="b-icon b-icon-underline-double"></span>
+    </a>
+    <div class="btn-group" dropdown on-toggle="isOpen=open;">
+        <button type="button" class="btn b-btn dropdown-toggle" dropdown-toggle ng-class="{'b-open': isOpen || isSelected}">
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a class="b-row" ng-click="changeModel('single');">
+                    <span class="b-icon b-icon-underline-single b-mr5"></span>
+                    {{'toolbar.items.underline.single' | translate}}
+                </a>
+            </li>
+            <li>
+                <a class="b-row" ng-click="changeModel('double');">
+                    <span class="b-icon b-icon-underline-double b-mr5"></span>
+                    {{'toolbar.items.underline.double' | translate}}
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

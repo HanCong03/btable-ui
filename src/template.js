@@ -685,7 +685,8 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            <!-- BIU -->\n" +
     "            <b-pressbutton buttontype=\"bold\" onchange=\"handler.pressChange('bold', status)\" pressed=\"status.bold\"></b-pressbutton>\n" +
     "            <b-pressbutton buttontype=\"italic\" onchange=\"handler.pressChange('italic', status)\" pressed=\"status.italic\"></b-pressbutton>\n" +
-    "            <b-pressbutton buttontype=\"underline\" onchange=\"handler.pressChange('underline', status)\" pressed=\"status.underline\"></b-pressbutton>\n" +
+    "\n" +
+    "            <b-underlineselect checked=\"status.underline\" onchange=\"handler.underlineChange(mode);\"></b-underlineselect>\n" +
     "\n" +
     "            <div class=\"b-toolbar-delimiter\"></div>\n" +
     "\n" +
@@ -696,30 +697,33 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                    <span class=\"caret\"></span>\n" +
     "                </button>\n" +
     "                <ul class=\"dropdown-menu b-border-menu\" role=\"menu\">\n" +
-    "                    <!--<li ng-click=\"handler.borderSelect('bottom');\">-->\n" +
-    "                        <!--<a class=\"b-row\">-->\n" +
-    "                            <!--<span class=\"b-icon b-icon-border-bottom b-mr5\"></span>-->\n" +
-    "                            <!--{{'toolbar.items.border.bottom' | translate}}-->\n" +
-    "                        <!--</a>-->\n" +
-    "                    <!--</li>-->\n" +
-    "                    <!--<li ng-click=\"handler.borderSelect('top');\">-->\n" +
-    "                        <!--<a class=\"b-row\">-->\n" +
-    "                            <!--<span class=\"b-icon b-icon-border-top b-mr5\"></span>-->\n" +
-    "                            <!--{{'toolbar.items.border.top' | translate}}-->\n" +
-    "                        <!--</a>-->\n" +
-    "                    <!--</li>-->\n" +
-    "                    <!--<li ng-click=\"handler.borderSelect('left');\">-->\n" +
-    "                        <!--<a class=\"b-row\">-->\n" +
-    "                            <!--<span class=\"b-icon b-icon-border-left b-mr5\"></span>-->\n" +
-    "                            <!--{{'toolbar.items.border.left' | translate}}-->\n" +
-    "                        <!--</a>-->\n" +
-    "                    <!--</li>-->\n" +
-    "                    <!--<li ng-click=\"handler.borderSelect('right');\">-->\n" +
-    "                        <!--<a class=\"b-row\">-->\n" +
-    "                            <!--<span class=\"b-icon b-icon-border-right b-mr5\"></span>-->\n" +
-    "                            <!--{{'toolbar.items.border.right' | translate}}-->\n" +
-    "                        <!--</a>-->\n" +
-    "                    <!--</li>-->\n" +
+    "                    <li ng-click=\"handler.borderSelect('bottom');\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-border-bottom b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.border.bottom' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                    <li ng-click=\"handler.borderSelect('top');\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-border-top b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.border.top' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                    <li ng-click=\"handler.borderSelect('left');\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-border-left b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.border.left' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                    <li ng-click=\"handler.borderSelect('right');\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-border-right b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.border.right' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li class=\"divider\"></li>\n" +
+    "\n" +
     "                    <li ng-click=\"handler.borderSelect('none');\">\n" +
     "                        <a class=\"b-row\">\n" +
     "                            <span class=\"b-icon b-icon-border-none b-mr5\"></span>\n" +
@@ -732,12 +736,20 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                            {{'toolbar.items.border.all' | translate}}\n" +
     "                        </a>\n" +
     "                    </li>\n" +
-    "                    <!--<li ng-click=\"handler.borderSelect('outer');\">-->\n" +
-    "                        <!--<a class=\"b-row\">-->\n" +
-    "                            <!--<span class=\"b-icon b-icon-border-outer b-mr5\"></span>-->\n" +
-    "                            <!--{{'toolbar.items.border.outer' | translate}}-->\n" +
-    "                        <!--</a>-->\n" +
-    "                    <!--</li>-->\n" +
+    "                    <li ng-click=\"handler.borderSelect('outer');\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-border-outer b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.border.outer' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.borderSelect('outer');\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-border-outer b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.border.outer-medium' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
     "                    <li class=\"divider\"></li>\n" +
     "                    <li class=\"b-submenu-item\">\n" +
     "                        <a class=\"b-row\">\n" +
@@ -1071,6 +1083,37 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   $templateCache.put('template/toolbar/widget/showcolor.html',
     "<div class=\"b-show-color-bed\">\n" +
     "    <input style=\"display: none;\">\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/widget/underlineselect.html',
+    "<div class=\"b-button-select b-underline-selector\" ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
+    "    <a ng-if=\"current === 'single'\" class=\"btn b-btn b-underline-button\" role=\"button\" ng-class=\"{'b-open': isOpen || isSelected}\" ng-click=\"changeModel('single');\">\n" +
+    "        <span class=\"b-icon b-icon-underline-single\"></span>\n" +
+    "    </a>\n" +
+    "    <a ng-if=\"current === 'double'\" class=\"btn b-btn b-underline-button\" role=\"button\" ng-class=\"{'b-open': isOpen || isSelected}\" ng-click=\"changeModel('double');\">\n" +
+    "        <span class=\"b-icon b-icon-underline-double\"></span>\n" +
+    "    </a>\n" +
+    "    <div class=\"btn-group\" dropdown on-toggle=\"isOpen=open;\">\n" +
+    "        <button type=\"button\" class=\"btn b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
+    "            <span class=\"caret\"></span>\n" +
+    "        </button>\n" +
+    "        <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "            <li>\n" +
+    "                <a class=\"b-row\" ng-click=\"changeModel('single');\">\n" +
+    "                    <span class=\"b-icon b-icon-underline-single b-mr5\"></span>\n" +
+    "                    {{'toolbar.items.underline.single' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "                <a class=\"b-row\" ng-click=\"changeModel('double');\">\n" +
+    "                    <span class=\"b-icon b-icon-underline-double b-mr5\"></span>\n" +
+    "                    {{'toolbar.items.underline.double' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "    </div>\n" +
     "</div>"
   );
 

@@ -18,7 +18,8 @@ angular.module('app').controller('ToolbarBasicController', [
             fontsizeOpen: false,
             colorOpen: false,
             bgcolorOpen: false,
-            mergeOpen: false
+            mergeOpen: false,
+            underlienOpen: false
         };
 
         var res = {
@@ -103,13 +104,17 @@ angular.module('app').controller('ToolbarBasicController', [
 
             mergechange: function (mode, status) {
                 var command = {
-                    'center': 'centermerge',
-                    'across': 'horizontalmerge',
-                    'merge': 'merge',
-                    'cancel': 'unmerge'
+                    'center': 'centermergecell',
+                    'across': 'horizontalmergecell',
+                    'merge': 'mergecell',
+                    'cancel': 'unmergecell'
                 };
 
                 toolbarNotify.emit('merge', command[mode]);
+            },
+
+            underlineChange: function (mode) {
+                toolbarNotify.emit('underline', mode);
             },
 
             borderStyle: function (index) {
@@ -151,27 +156,68 @@ angular.module('app').controller('ToolbarBasicController', [
                         args = ['clearborder'];
                         break;
 
-                    default:
+                    case 'top':
+                        if (borderStyle === 'none') {
+                            args = ['cleartopborder'];
+                        } else {
+                            args = ['topborder', {
+                                style: borderStyle,
+                                color: borderColor
+                            }]
+                        }
+                        break;
+
+                    case 'bottom':
+                        if (borderStyle === 'none') {
+                            args = ['clearbottomborder'];
+                        } else {
+                            args = ['bottomborder', {
+                                style: borderStyle,
+                                color: borderColor
+                            }]
+                        }
+                        break;
+
+                    case 'left':
+                        if (borderStyle === 'none') {
+                            args = ['clearleftborder'];
+                        } else {
+                            args = ['leftborder', {
+                                style: borderStyle,
+                                color: borderColor
+                            }]
+                        }
+                        break;
+
+                    case 'right':
+                        if (borderStyle === 'none') {
+                            args = ['clearrightborder'];
+                        } else {
+                            args = ['rightborder', {
+                                style: borderStyle,
+                                color: borderColor
+                            }]
+                        }
+                        break;
+
+                    case 'outer':
+                        if (borderStyle === 'none') {
+                            args = ['clearouterborder'];
+                        } else {
+                            args = ['outerborder', {
+                                style: borderStyle,
+                                color: borderColor
+                            }]
+                        }
+                        break;
+
+                    case 'all':
                         if (borderStyle === 'none') {
                             args = ['clearborder'];
                         } else {
                             args = ['border', {
-                                top: {
-                                    style: borderStyle,
-                                    color: borderColor
-                                },
-                                left: {
-                                    style: borderStyle,
-                                    color: borderColor
-                                },
-                                bottom: {
-                                    style: borderStyle,
-                                    color: borderColor
-                                },
-                                right: {
-                                    style: borderStyle,
-                                    color: borderColor
-                                }
+                                style: borderStyle,
+                                color: borderColor
                             }]
                         }
                         break;
@@ -185,7 +231,7 @@ angular.module('app').controller('ToolbarBasicController', [
             },
 
             selectCellstyle: function (id, isBuiltin) {
-                toolbarNotify.emit('cellstyle', id, isBuiltin);
+                toolbarNotify.emit('cellstyle', id);
             },
 
             openCellFormat: function (type) {

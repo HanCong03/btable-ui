@@ -3,7 +3,7 @@
  * @author hancong03@baiud.com
  */
 
-angular.module('app').directive('bCellstyles', ['$window', function ($window) {
+angular.module('app').directive('bCellstyles', ['btableService', function (btableService) {
 
     return {
         restrict: 'E',
@@ -14,7 +14,8 @@ angular.module('app').directive('bCellstyles', ['$window', function ($window) {
         templateUrl: 'template/toolbar/widget/cellstyles.html',
         link: function ($scope, $ele) {
             var hook = $scope.onselect || angular.noop();
-            var originalBuiltinStyles = BTable.BUILTIN_CELLSTYLE;
+            var originalBuiltinStyles = btableService.queryCommandValue('builtincellstyles');
+            var builtinCellStyles = analyzeCellStyls(originalBuiltinStyles);
             var current;
             var offset = 0;
 
@@ -34,6 +35,14 @@ angular.module('app').directive('bCellstyles', ['$window', function ($window) {
                 [5, 4, 7, 3, 6]
             ];
 
+            var categoryNames = [
+                '好、差和适中',
+                '数据和模型',
+                '标题',
+                '主题单元格样式',
+                '数字格式'
+            ];
+
             var builtinStyles = [];
             var uncategoryBuiltinStyles = [];
 
@@ -44,14 +53,15 @@ angular.module('app').directive('bCellstyles', ['$window', function ($window) {
                 }
 
                 for (var j = 0, jlen = cellstyleOrder[i].length; j < jlen; j++) {
-                    current = originalBuiltinStyles[cellstyleOrder[i][j]];
-                    current.styleText = toStyleText(current.style);
+                    current = builtinCellStyles[cellstyleOrder[i][j]];
+                    current.styleText = toStyleText(current.format);
+                    current.categoryName = categoryNames[i];
+                    current.id = cellstyleOrder[i][j];
 
                     builtinStyles[i].push(current);
                     uncategoryBuiltinStyles.push(current);
                 }
             }
-
 
             // 未分类内建样式
             $scope.uncategoryBuiltinStyles = uncategoryBuiltinStyles;
@@ -98,7 +108,7 @@ angular.module('app').directive('bCellstyles', ['$window', function ($window) {
             $scope.select = function (id, isBuiltin) {
                 hook({
                     id: id,
-                    isBuiltin: isBuiltin
+                    isBuiltin: true
                 });
             };
 
@@ -168,7 +178,7 @@ angular.module('app').directive('bCellstyles', ['$window', function ($window) {
                         break;
 
                     case 'size':
-                        result.push('font-size: ' + val + 'px');
+                        result.push('font-size: ' + val + 'pt');
                         break;
 
                     default:
@@ -184,25 +194,25 @@ angular.module('app').directive('bCellstyles', ['$window', function ($window) {
         }
 
         function parseBorder(data) {
-            if (data.left === 'none') {
+            if (!data.left) {
                 result.push('border-left: none');
             } else {
                 result.push('border-left: ' + borderText(data.left));
             }
 
-            if (data.right === 'none') {
+            if (!data.right) {
                 result.push('border-right: none');
             } else {
                 result.push('border-right: ' + borderText(data.right));
             }
 
-            if (data.top === 'none') {
+            if (!data.top) {
                 result.push('border-top: none');
             } else {
                 result.push('border-top: ' + borderText(data.top));
             }
 
-            if (data.bottom === 'none') {
+            if (!data.bottom) {
                 result.push('border-bottom: none');
             } else {
                 result.push('border-bottom: ' + borderText(data.bottom));
@@ -217,8 +227,97 @@ angular.module('app').directive('bCellstyles', ['$window', function ($window) {
             case 'thin':
                 return '1px solid ' + color;
 
-            case 'medium':
+            default:
                 return '2px solid ' + color;
         }
     }
-}]);
+
+    function analyzeCellStyls(styles) {
+        styles = $.extend(true, {}, styles);
+
+        for (var key in styles) {
+            if (!styles.hasOwnProperty(key)) {
+                continue;
+            }
+
+            analyzeItem(styles[key].format);
+        }
+
+        return styles;
+    }
+
+    function analyzeItem(data) {
+        analyzeFont(data.fonts);
+        analyzeFill(data.fills);
+        analyzeBorder(data.borders);
+    }
+
+    function analyzeFont(font) {
+        if (!font) {
+            return;
+        }
+
+        if (font.color) {
+            if (font.color.theme !== undefined) {
+                font.color = btableService.queryCommandValue('themecolor', font.color.theme, font.color.tint);
+            } else {
+                font.color = font.color.value;
+            }
+        }
+
+        if (font.name) {
+            if (font.name.type === 'major') {
+                font.name = btableService.queryCommandValue('majorfont');
+            } else if (font.name.type === 'minor') {
+                font.name = btableService.queryCommandValue('minorfont');
+            } else {
+                font.name = font.name.value;
+            }
+        }
+    }
+
+    function analyzeFill(fills) {
+        if (!fills || !fills.fill) {
+            return;
+        }
+
+        if (fills.fill.theme !== undefined) {
+            fills.fill = btableService.queryCommandValue('themecolor', fills.fill.theme, fills.fill.tint);
+        } else {
+            fills.fill = fills.fill.value;
+        }
+    }
+
+    function analyzeBorder(borders) {
+        if (!borders || !borders.border) {
+            return;
+        }
+
+        var border = borders.border;
+
+        if (border.top) {
+            analyzeSignBorder(border.top);
+        }
+
+        if (border.left) {
+            analyzeSignBorder(border.left);
+        }
+
+        if (border.bottom) {
+            analyzeSignBorder(border.bottom);
+        }
+
+        if (border.right) {
+            analyzeSignBorder(border.right);
+        }
+    }
+
+    function analyzeSignBorder(data) {
+        if (data.color.theme !== undefined) {
+            data.color = btableService.queryCommandValue('themecolor', data.color.theme, data.color.tint);
+        } else {
+            data.color = data.color.value;
+        }
+    }
+}])
+;
