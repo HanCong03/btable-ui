@@ -676,7 +676,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"b-column b-fontsgroup-layout\">\n" +
     "        <div class=\"b-row\">\n" +
     "            <!-- font family -->\n" +
-    "            <b-inputselect classname=\"b-fontfamily-select\" change=\"handler.fontSelect(value);\" select-value=\"status.font\" values=\"initValue.fontfamily\"></b-inputselect>\n" +
+    "            <b-fontselect classname=\"b-fontfamily-select\" change=\"handler.fontSelect(value);\" select-value=\"status.font\" major=\"initValue.major\" minor=\"initValue.minor\" values=\"initValue.fontfamily\"></b-fontselect>\n" +
     "\n" +
     "            <!-- font size -->\n" +
     "            <b-inputselect classname=\"b-fontsize-select\" change=\"handler.fontsizeSelect(value);\" only-number=\"true\" select-value=\"status.fontsize\" values=\"initValue.fontsize\"></b-inputselect>\n" +
@@ -751,6 +751,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                    </li>\n" +
     "\n" +
     "                    <li class=\"divider\"></li>\n" +
+    "\n" +
     "                    <li class=\"b-submenu-item\">\n" +
     "                        <a class=\"b-row\">\n" +
     "                            <div class=\"b-border-color-icon-wrap\">\n" +
@@ -1002,6 +1003,33 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <span class=\"b-icon b-icon-cut\"></span>\n" +
     "    {{'toolbar.buttonlabel.cut' | translate}}\n" +
     "</a>"
+  );
+
+
+  $templateCache.put('template/toolbar/widget/fontselect.html',
+    "<div class=\"b-input-select {{classname}}\" ng-class=\"{'b-open': isOpen}\">\n" +
+    "    <input ng-model=\"selectValue\" class=\"b-input-select-input\">\n" +
+    "    <div class=\"btn-group\" dropdown on-toggle=\"toggle(open)\">\n" +
+    "        <button type=\"button\" class=\"btn b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': isOpen}\">\n" +
+    "            <span class=\"caret\"></span>\n" +
+    "        </button>\n" +
+    "        <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "            <li data-type=\"major\" data-value=\"标题字体({{major}})\" class=\"b-input-select-item\">\n" +
+    "                <a style=\"font-family: {{major}}\">标题字体({{major}})</a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li data-type=\"minor\" data-value=\"正文字体({{minor}})\" class=\"b-input-select-item\">\n" +
+    "                <a style=\"font-family: {{minor}}\">正文字体({{minor}})</a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"divider\"></li>\n" +
+    "\n" +
+    "            <li ng-repeat=\"font in values\" data-value=\"{{font}}\" class=\"b-input-select-item\">\n" +
+    "                <a style='font-family: {{font}};'>{{font}}</a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "    </div>\n" +
+    "</div>"
   );
 
 

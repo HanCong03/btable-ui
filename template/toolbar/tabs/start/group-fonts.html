@@ -2,7 +2,7 @@
     <div class="b-column b-fontsgroup-layout">
         <div class="b-row">
             <!-- font family -->
-            <b-inputselect classname="b-fontfamily-select" change="handler.fontSelect(value);" select-value="status.font" values="initValue.fontfamily"></b-inputselect>
+            <b-fontselect classname="b-fontfamily-select" change="handler.fontSelect(value);" select-value="status.font" major="initValue.major" minor="initValue.minor" values="initValue.fontfamily"></b-fontselect>
 
             <!-- font size -->
             <b-inputselect classname="b-fontsize-select" change="handler.fontsizeSelect(value);" only-number="true" select-value="status.fontsize" values="initValue.fontsize"></b-inputselect>
@@ -77,6 +77,7 @@
                     </li>
 
                     <li class="divider"></li>
+
                     <li class="b-submenu-item">
                         <a class="b-row">
                             <div class="b-border-color-icon-wrap">

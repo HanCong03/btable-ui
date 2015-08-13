@@ -1,0 +1,23 @@
+<div class="b-input-select {{classname}}" ng-class="{'b-open': isOpen}">
+    <input ng-model="selectValue" class="b-input-select-input">
+    <div class="btn-group" dropdown on-toggle="toggle(open)">
+        <button type="button" class="btn b-btn dropdown-toggle" dropdown-toggle ng-class="{'b-open': isOpen}">
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li data-type="major" data-value="标题字体({{major}})" class="b-input-select-item">
+                <a style="font-family: {{major}}">标题字体({{major}})</a>
+            </li>
+
+            <li data-type="minor" data-value="正文字体({{minor}})" class="b-input-select-item">
+                <a style="font-family: {{minor}}">正文字体({{minor}})</a>
+            </li>
+
+            <li class="divider"></li>
+
+            <li ng-repeat="font in values" data-value="{{font}}" class="b-input-select-item">
+                <a style='font-family: {{font}};'>{{font}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -34,7 +34,7 @@ angular.module('app').controller('ToolbarBasicController', [
             underline: false,
             throughline: false,
 
-            font: '宋体',
+            font: '正文字体(宋体)',
             fontsize: 13,
             color: null,
             fill: null,
@@ -80,6 +80,8 @@ angular.module('app').controller('ToolbarBasicController', [
         };
 
         $scope.initValue = {
+            major: '宋体',
+            minor: '宋体',
             fontfamily: ["Angsana New", "Arial", "Arial Black", "Batang", "Book Antiqua", "Browallia New", "Calibri", "Cambria", "Candara", "Century", "Comic Sans MS", "Consolas", "Constantia", "Corbel", "Cordia New", "Courier", "Courier New", "DilleniaUPC", "Dotum", "仿宋", "Garamond", "Georgia", "Gulim", "GungSuh", "楷体", "JasmineUPC", "Malgun Gothic", "Mangal", "Meiryo", "Microsoft JhengHei", "微软雅黑", "MingLiu", "MingLiU_HKSCS", "MS Gothic", "MS Mincho", "MS PGothic", "MS PMincho", "PMingliU", "PMingLiU-ExtB", "黑体", "宋体", "宋体-ExtB", "Tahoma", "Times", "Times New Roman", "Trebuchet MS", "Verdana", "Yu Gothic", "Yu Mincho"],
             fontsize: [8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 36, 48, 72]
         };
