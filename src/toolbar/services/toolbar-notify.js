@@ -56,7 +56,7 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
                     break;
             }
 
-            btableService.execCommand(['inputfocus']);
+            btableService.execCommand(['focus']);
         }
     };
 

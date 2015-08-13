@@ -25,7 +25,7 @@ angular.module('app').directive('bCutbtn', ['btableService', function (btableSer
                     clipboard.setData("text/plain", copyData.string);
                     clipboard.setData("text/html", copyData.html);
 
-                    btableService.execCommand(['inputfocus']);
+                    btableService.execCommand(['focus']);
                 });
             });
         }
