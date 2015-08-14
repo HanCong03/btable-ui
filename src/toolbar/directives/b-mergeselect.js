@@ -28,23 +28,7 @@ angular.module('app').directive('bMergeselect', [function () {
             });
 
             $scope.changeModel = function (mode) {
-                switch (mode) {
-                    case 'center':
-                        $scope.isSelected = !$scope.isSelected;
-                        break;
-
-                    case 'merge':
-                        $scope.isSelected = true;
-                        break;
-
-                    case 'across':
-                        $scope.isSelected = true;
-                        break;
-
-                    case 'cancel':
-                        $scope.isSelected = false;
-                        break;
-                }
+                $scope.isSelected = false;
 
                 hook({
                     mode: mode,

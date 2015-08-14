@@ -12,6 +12,8 @@ angular.module('app').directive('bFontselect', [function () {
             values: '=',
             major: '=',
             minor: '=',
+            ismajor: '=',
+            isminor: '=',
             selectValue: '=',
             onlyNumber: '=',
             onchange: '&change'
@@ -28,13 +30,22 @@ angular.module('app').directive('bFontselect', [function () {
                 $scope.isOpen = isOpen;
             };
 
-            $scope.update = function (newValue) {
+            $scope.update = function (newValue, type) {
+                if (type === 'major') {
+                    console.log(3)
+                } else if (type === 'minor') {
+                    console.log(4)
+                } else {
+                    console.log(5)
+                }
+
                 $scope.selectValue = newValue;
-                hook({value: newValue});
+
+                hook({value: newValue, type: type});
             };
 
             $('.dropdown-menu', $ele).delegate('.b-input-select-item', 'click', function () {
-                $scope.update(this.getAttribute('data-value'));
+                $scope.update(this.getAttribute('data-value'), this.getAttribute('data-type'));
             });
 
             $input.on('mousedown', function (e) {

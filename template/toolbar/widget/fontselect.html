@@ -1,5 +1,7 @@
 <div class="b-input-select {{classname}}" ng-class="{'b-open': isOpen}">
-    <input ng-model="selectValue" class="b-input-select-input">
+    <input ng-if="ismajor" class="b-input-select-input" value="标题字体({{major}})">
+    <input ng-if="isminor" class="b-input-select-input" value="正文字体({{minor}})">
+    <input ng-if="!isminor && !ismajor" ng-model="selectValue" class="b-input-select-input">
     <div class="btn-group" dropdown on-toggle="toggle(open)">
         <button type="button" class="btn b-btn dropdown-toggle" dropdown-toggle ng-class="{'b-open': isOpen}">
             <span class="caret"></span>

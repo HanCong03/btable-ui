@@ -35,7 +35,7 @@ angular.module('app').controller('ToolbarBasicController', [
             throughline: false,
 
             font: '正文字体(宋体)',
-            fontsize: 13,
+            fontsize: 11,
             color: null,
             fill: null,
             horizontal: null,
@@ -52,11 +52,13 @@ angular.module('app').controller('ToolbarBasicController', [
             status.horizontal = btableStatus.horizontal;
             status.wraptext = btableStatus.wraptext;
             // TODO 对默认值的处理需要优化
-            status.font = btableStatus.font || '宋体';
-            status.fontsize = btableStatus.fontsize || 13;
-            status.color = btableStatus.color || null;
-            status.fill = btableStatus.fill || null;
-            status.merge = btableStatus.merge || false;
+            status.font = btableStatus.fontdetail.value;
+            status.isMajor = btableStatus.fontdetail.type === 'major';
+            status.isMinor = btableStatus.fontdetail.type === 'minor';
+            status.fontsize = btableStatus.fontsize;
+            status.color = btableStatus.colordetail.value;
+            status.fill = btableStatus.filldetail ? btableStatus.filldetail.value : null;
+            status.merge = !!btableStatus.mergecell;
 
             $scope.$apply();
         });
@@ -104,7 +106,7 @@ angular.module('app').controller('ToolbarBasicController', [
                 toolbarNotify.emit('fontsize', val);
             },
 
-            mergechange: function (mode, status) {
+            mergechange: function (mode) {
                 var command = {
                     'center': 'centermergecell',
                     'across': 'horizontalmergecell',
@@ -229,7 +231,7 @@ angular.module('app').controller('ToolbarBasicController', [
             },
 
             formatSelect: function (code) {
-                toolbarNotify.emit('numberformat', code);
+                toolbarNotify.emit('numfmt', code);
             },
 
             selectCellstyle: function (id, isBuiltin) {

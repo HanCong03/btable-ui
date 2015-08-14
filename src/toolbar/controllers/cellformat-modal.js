@@ -49,6 +49,9 @@
             }, {
                 text: '单下划线',
                 value: 'single'
+            }, {
+                text: '双下划线',
+                value: 'double'
             }];
 
             var _defaultStatus = {
@@ -295,11 +298,11 @@
 
                 // 重置数字格式
                 function resetNumberformat() {
-                    if (!btableStatus.numberformat) {
+                    if (!btableStatus.numfmt) {
                         return;
                     }
 
-                    var formatCodeInfo = numberformat.match(btableStatus.numberformat);
+                    var formatCodeInfo = numberformat.match(btableStatus.numfmt);
 
                     if (formatCodeInfo) {
                         status.formatSelected = [];
@@ -326,18 +329,18 @@
                     _default.hAlign = getIndex('hAlign', btableStatus.horizontal, _defaultStatus.hAlign);
                     _default.vAlign = getIndex('vAlign', btableStatus.vertical, _defaultStatus.vAlign);
                     _default.wraptext = !!btableStatus.wraptext;
-                    _default.merge = !!btableStatus.merge;
+                    _default.merge = !!btableStatus.mergecell;
                 }
 
                 function resetFont() {
                     var italic = btableStatus.italic ? 1 : 0;
                     var bold = btableStatus.bold ? 2 : 0;
 
-                    _default.font = btableStatus.font || '宋体';
-                    _default.fontsize = btableStatus.fontsize || 13;
+                    _default.font = btableStatus.fontdetail.value;
+                    _default.fontsize = btableStatus.fontsize;
                     _default.fontstyle = italic | bold;
-                    _default.color = btableStatus.color || null;
-                    _default.underline = btableStatus.underline ? 1 : 0;
+                    _default.color = btableStatus.colordetail.value;
+                    _default.underline = btableStatus.underline ? (btableStatus.underline === 'single' ? 1 : 2) : 0;
                     _default.throughline = btableStatus.throughline;
                 }
 
@@ -359,7 +362,7 @@
                 }
 
                 function resetFill() {
-                    _default.fillColor = btableStatus.fill || null;
+                    _default.fillColor = btableStatus.filldetail ? btableStatus.filldetail.value : null;
                 }
             }
 
@@ -407,16 +410,16 @@
 
                     var code = numberformat.getNumberformatCode(index, status);
 
-                    if (btableStatus.numberformat !== code) {
+                    if (btableStatus.numfmt !== code) {
                         if (code) {
                             commands.push({
-                                command: 'numberformat',
+                                command: 'numfmt',
                                 args: [code]
                             });
                         } else {
                             commands.push({
-                                command: 'clearnumberformat',
-                                args: []
+                                command: 'unsetstyle',
+                                args: ['numfmt']
                             });
                         }
                     }
@@ -446,6 +449,14 @@
                     if (statusSnapshot._default.wraptext !== status._default.wraptext) {
                         commands.push({
                             command: 'wraptext',
+                            args: []
+                        });
+                    }
+
+                    // 合并单元格检查
+                    if (statusSnapshot._default.merge !== status._default.merge) {
+                        commands.push({
+                            command: 'centermergecell',
                             args: []
                         });
                     }
@@ -498,14 +509,22 @@
 
                     // 下划线检查
                     if (statusSnapshot._default.underline !== status._default.underline) {
-                        commands.push({
-                            command: 'underline',
-                            args: []
-                        });
+                        if (status._default.underline === '0') {
+                            commands.push({
+                                command: 'unsetstyle',
+                                args: ['underline']
+                            });
+                        } else {
+                            commands.push({
+                                command: 'underline',
+                                args: [status._default.underline === '1' ? 'single' : 'double']
+                            });
+                        }
                     }
 
                     // 删除线检查
                     if (statusSnapshot._default.throughline !== status._default.throughline) {
+                        console.log('throughline')
                         commands.push({
                             command: 'throughline',
                             args: []

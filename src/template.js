@@ -676,8 +676,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"b-column b-fontsgroup-layout\">\n" +
     "        <div class=\"b-row\">\n" +
     "            <!-- font family -->\n" +
-    "            <b-fontselect classname=\"b-fontfamily-select\" change=\"handler.fontSelect(value);\" select-value=\"status.font\" major=\"initValue.major\" minor=\"initValue.minor\" values=\"initValue.fontfamily\"></b-fontselect>\n" +
-    "\n" +
+    "            <b-fontselect classname=\"b-fontfamily-select\" change=\"handler.fontSelect(value);\" isminor=\"status.isMinor\" ismajor=\"status.isMajor\" select-value=\"status.font\" major=\"initValue.major\" minor=\"initValue.minor\" values=\"initValue.fontfamily\"></b-fontselect>\n" +
     "            <!-- font size -->\n" +
     "            <b-inputselect classname=\"b-fontsize-select\" change=\"handler.fontsizeSelect(value);\" only-number=\"true\" select-value=\"status.fontsize\" values=\"initValue.fontsize\"></b-inputselect>\n" +
     "        </div>\n" +
@@ -1008,7 +1007,9 @@ angular.module('app').run(['$templateCache', function($templateCache) {
 
   $templateCache.put('template/toolbar/widget/fontselect.html',
     "<div class=\"b-input-select {{classname}}\" ng-class=\"{'b-open': isOpen}\">\n" +
-    "    <input ng-model=\"selectValue\" class=\"b-input-select-input\">\n" +
+    "    <input ng-if=\"ismajor\" class=\"b-input-select-input\" value=\"标题字体({{major}})\">\n" +
+    "    <input ng-if=\"isminor\" class=\"b-input-select-input\" value=\"正文字体({{minor}})\">\n" +
+    "    <input ng-if=\"!isminor && !ismajor\" ng-model=\"selectValue\" class=\"b-input-select-input\">\n" +
     "    <div class=\"btn-group\" dropdown on-toggle=\"toggle(open)\">\n" +
     "        <button type=\"button\" class=\"btn b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': isOpen}\">\n" +
     "            <span class=\"caret\"></span>\n" +

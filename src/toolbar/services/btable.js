@@ -6,7 +6,6 @@
 angular.module('app').factory('btableService', [function () {
     var DELAY_TIME = 50;
     var timer = null;
-    var changeCblist = [];
     var callbacks = [];
     var btable;
 
@@ -18,11 +17,9 @@ angular.module('app').factory('btableService', [function () {
 
             btable = new BTable(ele);
 
-            btable.on('change', function () {
+            btable.on('refresh', function () {
                 emit();
             });
-
-            btable.on('')
 
             return btable;
         },
@@ -61,21 +58,21 @@ angular.module('app').factory('btableService', [function () {
     }
 
     function reflect() {
-        return btable.queryCommandValue([
-            'font',
-            'fontsize',
-            'color',
-            'bold',
-            'italic',
-            'fill',
-            'horizontal',
-            'vertical',
-            'underline',
-            'throughline',
-            'wraptext',
-            'numberformat',
-            'merge'
-        ]);
+        return btable.queryCommandValue({
+            'fontdetail': null,
+            'fontsize': null,
+            'colordetail': null,
+            'bold': null,
+            'italic': null,
+            'filldetail': null,
+            'horizontal': null,
+            'vertical': null,
+            'underline': null,
+            'throughline': null,
+            'wraptext': null,
+            'numfmt': null,
+            'mergecell': null
+        });
     }
 
 }]);

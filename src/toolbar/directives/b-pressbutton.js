@@ -20,7 +20,7 @@ angular.module('app').directive('bPressbutton', [function () {
             $scope.isPressed = !!$scope.pressed;
 
             $scope.toggle = function () {
-                $scope.isPressed = !$scope.isPressed;
+                $scope.isPressed = false;
                 hook({
                     status: $scope.isPressed
                 });

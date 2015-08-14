@@ -20,7 +20,7 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
                 case 'vertical':
                 case 'horizontal':
 
-                case 'numberformat':
+                case 'numfmt':
                 case 'wraptext':
                     btableService.execCommand(arguments);
                     break;
@@ -34,7 +34,7 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
                     break;
 
                 case 'thousandth':
-                    btableService.execCommand(['numberformat', '_ * #,##0.00_ ;_ * -#,##0.00_ ;_ * "-"??_ ;_ @_ ']);
+                    btableService.execCommand(['numfmt', '_ * #,##0.00_ ;_ * -#,##0.00_ ;_ * "-"??_ ;_ @_ ']);
                     break;
 
                 case 'cellstyle':
