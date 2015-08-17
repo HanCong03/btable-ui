@@ -11,6 +11,9 @@ angular.module('app').controller('ToolbarBasicController', [
     'sheetlistService',
 
     function ($scope, toolbarNotify, cellformatModalNotify, btableService, sheetlistService) {
+        window.onresize = function () {
+            btableService.execCommand(['resize']);
+        };
 
         $scope.btnState = {
             pasteOpen: false,

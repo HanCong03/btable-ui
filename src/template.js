@@ -639,7 +639,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "<div class=\"toolbar-groups b-toolbar-cell-groups\">\n" +
     "    <div class=\"b-row\">\n" +
     "        <div>\n" +
-    "            <div class=\"btn-group b-drop-button\" dropdown on-toggle=\"btnState.numberOpen=open;\">\n" +
+    "            <div class=\"btn-group b-drop-button\" dropdown on-toggle=\"btnState.insertOpen=open;\">\n" +
     "                <div type=\"button\" class=\"btn b-insert-main-btn b-drop-button-bottom b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': btnState.insertOpen}\">\n" +
     "                    <span class=\"b-big-icon b-icon-insert\"></span>\n" +
     "                    {{'toolbar.buttonlabel.insert' | translate}}\n" +
