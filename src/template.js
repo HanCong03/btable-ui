@@ -635,6 +635,67 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/toolbar/tabs/start/group-cell.html',
+    "<div class=\"toolbar-groups b-toolbar-cell-groups\">\n" +
+    "    <div class=\"b-row\">\n" +
+    "        <div>\n" +
+    "            <div class=\"btn-group b-drop-button\" dropdown on-toggle=\"btnState.numberOpen=open;\">\n" +
+    "                <div type=\"button\" class=\"btn b-insert-main-btn b-drop-button-bottom b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': btnState.insertOpen}\">\n" +
+    "                    <span class=\"b-big-icon b-icon-insert\"></span>\n" +
+    "                    {{'toolbar.buttonlabel.insert' | translate}}\n" +
+    "                    <span class=\"caret\"></span>\n" +
+    "                </div>\n" +
+    "                <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "                    <li ng-click=\"handler.insertRightCell();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-insert-cell-right b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.insert.rightcell' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.insertBottomCell();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-insert-cell-bottom b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.insert.bottomcell' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li class=\"divider\"></li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.insertRow();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-insert-row b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.insert.row' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.insertColumn()\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-insert-column b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.insert.column' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li class=\"divider\"></li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.insertSheet();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-insert-sheet b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.insert.sheet' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                </ul>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"b-group-label\">\n" +
+    "        {{'toolbar.grouplabel.cell' | translate}}\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/toolbar/tabs/start/group-cellstyles.html',
     "<div class=\"toolbar-groups b-toolbar-fonts-groups\">\n" +
     "    <div class=\"b-row\">\n" +
@@ -899,6 +960,9 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"b-toolbar-delimiter\"></div>\n" +
     "\n" +
     "    <ng-include b-include-replace class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-cellstyles.html'\"></ng-include>\n" +
+    "    <div class=\"b-toolbar-delimiter\"></div>\n" +
+    "\n" +
+    "    <ng-include b-include-replace class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-cell.html'\"></ng-include>\n" +
     "    <div class=\"b-toolbar-delimiter\"></div>\n" +
     "</div>"
   );

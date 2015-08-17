@@ -240,7 +240,27 @@ angular.module('app').controller('ToolbarBasicController', [
 
             openCellFormat: function (type) {
                 cellformatModalNotify.notify('open', type);
-            }
+            },
+
+            insertRightCell: function () {
+                toolbarNotify.emit('insertleftcell');
+            },
+
+            insertBottomCell: function () {
+                toolbarNotify.emit('inserttopcell');
+            },
+
+            insertRow: function () {
+                toolbarNotify.emit('insertrow');
+            },
+
+            insertColumn: function () {
+                toolbarNotify.emit('insertcolumn');
+            },
+
+            insertSheet: function () {
+                toolbarNotify.emit('insertsheet');
+            },
         };
     }
 ]);

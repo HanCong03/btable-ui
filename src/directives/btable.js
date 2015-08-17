@@ -17,7 +17,7 @@ angular.module('app').directive('btable', ['btableService', function (btableServ
             });
 
             btable.execCommand('bindinput', $("#btableOuterInput")[0]);
-            //btable.execCommand('init');
+            btable.execCommand('init');
         }
     };
 }]);

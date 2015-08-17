@@ -22,6 +22,12 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
 
                 case 'numfmt':
                 case 'wraptext':
+
+                case 'insertleftcell':
+                case 'inserttopcell':
+                case 'insertrow':
+                case 'insertcolumn':
+                case 'insertsheet':
                     btableService.execCommand(arguments);
                     break;
 

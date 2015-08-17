@@ -16,7 +16,8 @@ var _zhCN = {
             "fonts": "字体",
             "alignments": "对齐方式",
             "number": "数字",
-            "style": "样式"
+            "style": "样式",
+            "cell": "单元格"
         },
         "buttonlabel": {
             "paste": "粘贴",
@@ -24,7 +25,8 @@ var _zhCN = {
             "copy": "复制",
             "wraptext": "自动换行",
             "merge": "合并后居中",
-            "numberformat": "数字格式"
+            "numberformat": "数字格式",
+            "insert": "插入"
         },
         "items": {
             "border": {
@@ -62,6 +64,13 @@ var _zhCN = {
                 "fraction": "分数",
                 "scientific": "科学记数",
                 "text": "文本"
+            },
+            "insert": {
+                "rightcell": "插入单元格，活动单元格右移",
+                'bottomcell': "插入单元格，活动单元格下移",
+                "row": "插入工作表行",
+                "column": "插入工作表列",
+                "sheet": "插入工作表"
             }
         },
 

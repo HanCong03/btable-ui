@@ -1,0 +1,57 @@
+<div class="toolbar-groups b-toolbar-cell-groups">
+    <div class="b-row">
+        <div>
+            <div class="btn-group b-drop-button" dropdown on-toggle="btnState.numberOpen=open;">
+                <div type="button" class="btn b-insert-main-btn b-drop-button-bottom b-btn dropdown-toggle" dropdown-toggle ng-class="{'b-open': btnState.insertOpen}">
+                    <span class="b-big-icon b-icon-insert"></span>
+                    {{'toolbar.buttonlabel.insert' | translate}}
+                    <span class="caret"></span>
+                </div>
+                <ul class="dropdown-menu" role="menu">
+                    <li ng-click="handler.insertRightCell();">
+                        <a class="b-row">
+                            <span class="b-icon b-icon-insert-cell-right b-mr5"></span>
+                            {{'toolbar.items.insert.rightcell' | translate}}
+                        </a>
+                    </li>
+
+                    <li ng-click="handler.insertBottomCell();">
+                        <a class="b-row">
+                            <span class="b-icon b-icon-insert-cell-bottom b-mr5"></span>
+                            {{'toolbar.items.insert.bottomcell' | translate}}
+                        </a>
+                    </li>
+
+                    <li class="divider"></li>
+
+                    <li ng-click="handler.insertRow();">
+                        <a class="b-row">
+                            <span class="b-icon b-icon-insert-row b-mr5"></span>
+                            {{'toolbar.items.insert.row' | translate}}
+                        </a>
+                    </li>
+
+                    <li ng-click="handler.insertColumn()">
+                        <a class="b-row">
+                            <span class="b-icon b-icon-insert-column b-mr5"></span>
+                            {{'toolbar.items.insert.column' | translate}}
+                        </a>
+                    </li>
+
+                    <li class="divider"></li>
+
+                    <li ng-click="handler.insertSheet();">
+                        <a class="b-row">
+                            <span class="b-icon b-icon-insert-sheet b-mr5"></span>
+                            {{'toolbar.items.insert.sheet' | translate}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="b-group-label">
+        {{'toolbar.grouplabel.cell' | translate}}
+    </div>
+</div>
