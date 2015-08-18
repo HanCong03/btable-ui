@@ -7,12 +7,28 @@
     vertical-align: middle;
   }
 
+  .b-icon-base2(@size) {
+    width: @size;
+    height: @size;
+    background: url("./icon2.png") no-repeat no-repeat transparent;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
   .b-icon {
     .b-icon-base(16px);
   }
 
   .b-big-icon {
     .b-icon-base(32px);
+  }
+
+  .b-icon2 {
+    .b-icon-base2(16px);
+  }
+
+  .b-big-icon2 {
+    .b-icon-base2(32px);
   }
 
   .b-icon-redo {
@@ -29,6 +45,10 @@
 
   .b-icon-cut {
     background-position: -19px -391px;
+  }
+
+  .b-icon-none {
+    background-position: 9999px 9999px;
   }
 
   .b-icon-copy {
@@ -214,5 +234,17 @@
 
   .b-icon-insert-cell-bottom {
     background-position: -154px -273px;
+  }
+
+  .b-icon-cellformat {
+    background-position: 3px 0;
+  }
+
+  .b-icon-rowheight {
+    background-position: -33px -16px;
+  }
+
+  .b-icon-columnwidth {
+    background-position: -33px 0px;
   }
 }

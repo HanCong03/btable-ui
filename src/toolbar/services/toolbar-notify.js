@@ -28,6 +28,15 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
                 case 'insertrow':
                 case 'insertcolumn':
                 case 'insertsheet':
+                case 'rawrowheight':
+                case 'rawcolumnwidth':
+                case 'bestfitrowheight':
+                case 'bestfitcolumnwidth':
+                case 'rawdefaultcolumnwidth':
+                case 'hiderow':
+                case 'hidecolumn':
+                case "showrow":
+                case "showcolumn":
                     btableService.execCommand(arguments);
                     break;
 

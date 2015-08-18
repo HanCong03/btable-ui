@@ -4,7 +4,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   $templateCache.put('template/dialogs/cell-format.html',
     "<!-- Modal -->\n" +
     "<div class=\"modal\" id=\"cellFormatModal\" style=\"display: none;\" ng-controller=\"CellForamtModalController\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
-    "    <div class=\"modal-dialog\">\n" +
+    "    <div class=\"modal-dialog btable-modal-dialog\">\n" +
     "        <div class=\"modal-content\">\n" +
     "            <div class=\"modal-header\">\n" +
     "                <h4 class=\"modal-title\">{{'dialog.title.cellformat' | translate}}</h4>\n" +
@@ -687,6 +687,86 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                </ul>\n" +
     "            </div>\n" +
     "        </div>\n" +
+    "\n" +
+    "        <div>\n" +
+    "            <div class=\"btn-group b-drop-button\" dropdown on-toggle=\"btnState.cellformatOpen=open;\">\n" +
+    "                <div type=\"button\" class=\"btn b-cellformat-main-btn b-drop-button-bottom b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': btnState.cellformatOpen}\">\n" +
+    "                    <span class=\"b-big-icon2 b-icon-cellformat\"></span>\n" +
+    "                    {{'toolbar.buttonlabel.cellformat' | translate}}\n" +
+    "                    <span class=\"caret\"></span>\n" +
+    "                </div>\n" +
+    "                <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "                    <li ng-click=\"handler.setRowHeight();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-rowheight b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.cellformat.rowheight' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.setBestfitRowHeight();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-none b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.cellformat.bestfitrowheight' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li class=\"divider\"></li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.setColumnWidth();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-columnwidth b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.cellformat.columnwidth' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.setBestfitColumnWidth();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-none b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.cellformat.bestfitcolumnwidth' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.setDefaultColumnWidth();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-none b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.cellformat.defaultcolumnwidth' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li class=\"divider\"></li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.hideRow();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-none b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.cellformat.hiderow' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.hideColumn();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-none b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.cellformat.hidecolumn' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li class=\"divider\"></li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.showRow();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-none b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.cellformat.showrow' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.showColumn();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-none b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.cellformat.showcolumn' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                </ul>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
     "    </div>\n" +
     "\n" +
     "    <div class=\"b-group-label\">\n" +
@@ -1133,6 +1213,23 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/toolbar/widget/namedefine.html',
+    "<div class=\"b-input-select b-namedefine-wrap\">\n" +
+    "    <input class=\"b-input-select-input\">\n" +
+    "    <div class=\"btn-group\" dropdown>\n" +
+    "        <button type=\"button\" class=\"btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': isOpen}\">\n" +
+    "            <span class=\"caret\"></span>\n" +
+    "        </button>\n" +
+    "        <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "            <li ng-repeat=\"name in names\" data-value=\"{{name}}\" class=\"b-input-select-item\">\n" +
+    "                <a>{{name}}</a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/toolbar/widget/numberformat.html',
     "<div class=\"btn-group b-drop-button\" dropdown on-toggle=\"btnState.numberOpen=open;\">\n" +
     "    <div type=\"button\" class=\"btn b-drop-button-bottom b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': btnState.numberOpen}\">\n" +
@@ -1298,7 +1395,9 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        </div>\n" +
     "\n" +
     "        <div class=\"b-row b-input-area\">\n" +
-    "            <div class=\"b-btable-ctrl-btns\"></div>\n" +
+    "            <div class=\"b-btable-ctrl-btns\">\n" +
+    "                <b-namedefine onchange=\"handler.namechange();\"></b-namedefine>\n" +
+    "            </div>\n" +
     "            <div id=\"btableOuterInput\" spellcheck=\"false\" contenteditable=\"true\" class=\"btable-input\"></div>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -1316,6 +1415,20 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        </div>\n" +
     "    </div>\n" +
     "    <ng-include src=\"'template/dialogs/cell-format.html'\"></ng-include>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/widget/error.html',
+    "<div class=\"modal-header\">\n" +
+    "    <h3 class=\"modal-title\">错误提示</h3>\n" +
+    "</div>\n" +
+    "<div class=\"modal-body\">\n" +
+    "    {{errorMsg}}\n" +
+    "</div>\n" +
+    "<div class=\"modal-footer\">\n" +
+    "    <input type=\"text\" style=\"width: 0; height: 0; overflow: hidden; opacity: 0; margin-right: 100px;\" id=\"errorModalHiddenInput\">\n" +
+    "    <button class=\"btn btn-primary\" id=\"errorModalBtn\" type=\"button\" ng-click=\"close();\">OK</button>\n" +
     "</div>"
   );
 

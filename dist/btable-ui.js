@@ -1,6 +1,6 @@
 /*!
  * ====================================================
- * Flex UI - v1.0.0 - 2015-06-26
+ * Flex UI - v1.0.0 - 2015-08-19
  * https://github.com/fex-team/fui
  * GitHub: https://github.com/fex-team/fui.git 
  * Copyright (c) 2015 Baidu Kity Group; Licensed MIT
@@ -427,7 +427,7 @@ angular.module('b.const', []).constant('NUMBER_FORMAT', (function () {
     type: 'solid',
     value: 'medium'
 }]);
-angular.module('app', ['ui.bootstrap', 'pascalprecht.translate', 'b.const']);
+angular.module('app', ['ui.bootstrap', 'pascalprecht.translate', 'cgPrompt', 'b.const']);
 angular.module('app').config([
     '$translateProvider',
 
@@ -447,7 +447,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   $templateCache.put('template/dialogs/cell-format.html',
     "<!-- Modal -->\n" +
     "<div class=\"modal\" id=\"cellFormatModal\" style=\"display: none;\" ng-controller=\"CellForamtModalController\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
-    "    <div class=\"modal-dialog\">\n" +
+    "    <div class=\"modal-dialog btable-modal-dialog\">\n" +
     "        <div class=\"modal-content\">\n" +
     "            <div class=\"modal-header\">\n" +
     "                <h4 class=\"modal-title\">{{'dialog.title.cellformat' | translate}}</h4>\n" +
@@ -1078,6 +1078,147 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/toolbar/tabs/start/group-cell.html',
+    "<div class=\"toolbar-groups b-toolbar-cell-groups\">\n" +
+    "    <div class=\"b-row\">\n" +
+    "        <div>\n" +
+    "            <div class=\"btn-group b-drop-button\" dropdown on-toggle=\"btnState.insertOpen=open;\">\n" +
+    "                <div type=\"button\" class=\"btn b-insert-main-btn b-drop-button-bottom b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': btnState.insertOpen}\">\n" +
+    "                    <span class=\"b-big-icon b-icon-insert\"></span>\n" +
+    "                    {{'toolbar.buttonlabel.insert' | translate}}\n" +
+    "                    <span class=\"caret\"></span>\n" +
+    "                </div>\n" +
+    "                <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "                    <li ng-click=\"handler.insertRightCell();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-insert-cell-right b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.insert.rightcell' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.insertBottomCell();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-insert-cell-bottom b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.insert.bottomcell' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li class=\"divider\"></li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.insertRow();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-insert-row b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.insert.row' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.insertColumn()\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-insert-column b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.insert.column' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li class=\"divider\"></li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.insertSheet();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-insert-sheet b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.insert.sheet' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                </ul>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div>\n" +
+    "            <div class=\"btn-group b-drop-button\" dropdown on-toggle=\"btnState.cellformatOpen=open;\">\n" +
+    "                <div type=\"button\" class=\"btn b-cellformat-main-btn b-drop-button-bottom b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': btnState.cellformatOpen}\">\n" +
+    "                    <span class=\"b-big-icon2 b-icon-cellformat\"></span>\n" +
+    "                    {{'toolbar.buttonlabel.cellformat' | translate}}\n" +
+    "                    <span class=\"caret\"></span>\n" +
+    "                </div>\n" +
+    "                <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "                    <li ng-click=\"handler.setRowHeight();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-rowheight b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.cellformat.rowheight' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.setBestfitRowHeight();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-none b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.cellformat.bestfitrowheight' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li class=\"divider\"></li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.setColumnWidth();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-columnwidth b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.cellformat.columnwidth' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.setBestfitColumnWidth();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-none b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.cellformat.bestfitcolumnwidth' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.setDefaultColumnWidth();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-none b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.cellformat.defaultcolumnwidth' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li class=\"divider\"></li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.hideRow();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-none b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.cellformat.hiderow' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.hideColumn();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-none b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.cellformat.hidecolumn' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li class=\"divider\"></li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.showRow();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-none b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.cellformat.showrow' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.showColumn();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-none b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.cellformat.showcolumn' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                </ul>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"b-group-label\">\n" +
+    "        {{'toolbar.grouplabel.cell' | translate}}\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/toolbar/tabs/start/group-cellstyles.html',
     "<div class=\"toolbar-groups b-toolbar-fonts-groups\">\n" +
     "    <div class=\"b-row\">\n" +
@@ -1119,8 +1260,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <div class=\"b-column b-fontsgroup-layout\">\n" +
     "        <div class=\"b-row\">\n" +
     "            <!-- font family -->\n" +
-    "            <b-inputselect classname=\"b-fontfamily-select\" change=\"handler.fontSelect(value);\" select-value=\"status.font\" values=\"initValue.fontfamily\"></b-inputselect>\n" +
-    "\n" +
+    "            <b-fontselect classname=\"b-fontfamily-select\" change=\"handler.fontSelect(value);\" isminor=\"status.isMinor\" ismajor=\"status.isMajor\" select-value=\"status.font\" major=\"initValue.major\" minor=\"initValue.minor\" values=\"initValue.fontfamily\"></b-fontselect>\n" +
     "            <!-- font size -->\n" +
     "            <b-inputselect classname=\"b-fontsize-select\" change=\"handler.fontsizeSelect(value);\" only-number=\"true\" select-value=\"status.fontsize\" values=\"initValue.fontsize\"></b-inputselect>\n" +
     "        </div>\n" +
@@ -1128,7 +1268,8 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            <!-- BIU -->\n" +
     "            <b-pressbutton buttontype=\"bold\" onchange=\"handler.pressChange('bold', status)\" pressed=\"status.bold\"></b-pressbutton>\n" +
     "            <b-pressbutton buttontype=\"italic\" onchange=\"handler.pressChange('italic', status)\" pressed=\"status.italic\"></b-pressbutton>\n" +
-    "            <b-pressbutton buttontype=\"underline\" onchange=\"handler.pressChange('underline', status)\" pressed=\"status.underline\"></b-pressbutton>\n" +
+    "\n" +
+    "            <b-underlineselect checked=\"status.underline\" onchange=\"handler.underlineChange(mode);\"></b-underlineselect>\n" +
     "\n" +
     "            <div class=\"b-toolbar-delimiter\"></div>\n" +
     "\n" +
@@ -1139,30 +1280,33 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                    <span class=\"caret\"></span>\n" +
     "                </button>\n" +
     "                <ul class=\"dropdown-menu b-border-menu\" role=\"menu\">\n" +
-    "                    <!--<li ng-click=\"handler.borderSelect('bottom');\">-->\n" +
-    "                        <!--<a class=\"b-row\">-->\n" +
-    "                            <!--<span class=\"b-icon b-icon-border-bottom b-mr5\"></span>-->\n" +
-    "                            <!--{{'toolbar.items.border.bottom' | translate}}-->\n" +
-    "                        <!--</a>-->\n" +
-    "                    <!--</li>-->\n" +
-    "                    <!--<li ng-click=\"handler.borderSelect('top');\">-->\n" +
-    "                        <!--<a class=\"b-row\">-->\n" +
-    "                            <!--<span class=\"b-icon b-icon-border-top b-mr5\"></span>-->\n" +
-    "                            <!--{{'toolbar.items.border.top' | translate}}-->\n" +
-    "                        <!--</a>-->\n" +
-    "                    <!--</li>-->\n" +
-    "                    <!--<li ng-click=\"handler.borderSelect('left');\">-->\n" +
-    "                        <!--<a class=\"b-row\">-->\n" +
-    "                            <!--<span class=\"b-icon b-icon-border-left b-mr5\"></span>-->\n" +
-    "                            <!--{{'toolbar.items.border.left' | translate}}-->\n" +
-    "                        <!--</a>-->\n" +
-    "                    <!--</li>-->\n" +
-    "                    <!--<li ng-click=\"handler.borderSelect('right');\">-->\n" +
-    "                        <!--<a class=\"b-row\">-->\n" +
-    "                            <!--<span class=\"b-icon b-icon-border-right b-mr5\"></span>-->\n" +
-    "                            <!--{{'toolbar.items.border.right' | translate}}-->\n" +
-    "                        <!--</a>-->\n" +
-    "                    <!--</li>-->\n" +
+    "                    <li ng-click=\"handler.borderSelect('bottom');\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-border-bottom b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.border.bottom' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                    <li ng-click=\"handler.borderSelect('top');\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-border-top b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.border.top' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                    <li ng-click=\"handler.borderSelect('left');\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-border-left b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.border.left' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                    <li ng-click=\"handler.borderSelect('right');\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-border-right b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.border.right' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li class=\"divider\"></li>\n" +
+    "\n" +
     "                    <li ng-click=\"handler.borderSelect('none');\">\n" +
     "                        <a class=\"b-row\">\n" +
     "                            <span class=\"b-icon b-icon-border-none b-mr5\"></span>\n" +
@@ -1175,13 +1319,22 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                            {{'toolbar.items.border.all' | translate}}\n" +
     "                        </a>\n" +
     "                    </li>\n" +
-    "                    <!--<li ng-click=\"handler.borderSelect('outer');\">-->\n" +
-    "                        <!--<a class=\"b-row\">-->\n" +
-    "                            <!--<span class=\"b-icon b-icon-border-outer b-mr5\"></span>-->\n" +
-    "                            <!--{{'toolbar.items.border.outer' | translate}}-->\n" +
-    "                        <!--</a>-->\n" +
-    "                    <!--</li>-->\n" +
+    "                    <li ng-click=\"handler.borderSelect('outer');\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-border-outer b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.border.outer' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.borderSelect('outer');\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-border-outer b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.border.outer-medium' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
     "                    <li class=\"divider\"></li>\n" +
+    "\n" +
     "                    <li class=\"b-submenu-item\">\n" +
     "                        <a class=\"b-row\">\n" +
     "                            <div class=\"b-border-color-icon-wrap\">\n" +
@@ -1331,6 +1484,9 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "    <ng-include b-include-replace class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-cellstyles.html'\"></ng-include>\n" +
     "    <div class=\"b-toolbar-delimiter\"></div>\n" +
+    "\n" +
+    "    <ng-include b-include-replace class=\"b-tabs-page\" src=\"'template/toolbar/tabs/start/group-cell.html'\"></ng-include>\n" +
+    "    <div class=\"b-toolbar-delimiter\"></div>\n" +
     "</div>"
   );
 
@@ -1436,6 +1592,35 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/toolbar/widget/fontselect.html',
+    "<div class=\"b-input-select {{classname}}\" ng-class=\"{'b-open': isOpen}\">\n" +
+    "    <input ng-if=\"ismajor\" class=\"b-input-select-input\" value=\"标题字体({{major}})\">\n" +
+    "    <input ng-if=\"isminor\" class=\"b-input-select-input\" value=\"正文字体({{minor}})\">\n" +
+    "    <input ng-if=\"!isminor && !ismajor\" ng-model=\"selectValue\" class=\"b-input-select-input\">\n" +
+    "    <div class=\"btn-group\" dropdown on-toggle=\"toggle(open)\">\n" +
+    "        <button type=\"button\" class=\"btn b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': isOpen}\">\n" +
+    "            <span class=\"caret\"></span>\n" +
+    "        </button>\n" +
+    "        <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "            <li data-type=\"major\" data-value=\"标题字体({{major}})\" class=\"b-input-select-item\">\n" +
+    "                <a style=\"font-family: {{major}}\">标题字体({{major}})</a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li data-type=\"minor\" data-value=\"正文字体({{minor}})\" class=\"b-input-select-item\">\n" +
+    "                <a style=\"font-family: {{minor}}\">正文字体({{minor}})</a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"divider\"></li>\n" +
+    "\n" +
+    "            <li ng-repeat=\"font in values\" data-value=\"{{font}}\" class=\"b-input-select-item\">\n" +
+    "                <a style='font-family: {{font}};'>{{font}}</a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/toolbar/widget/horizontalalign.html',
     "<div>\n" +
     "    <!-- horizontal alignments -->\n" +
@@ -1464,6 +1649,23 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        <ul class=\"dropdown-menu\" role=\"menu\">\n" +
     "            <li ng-repeat=\"font in values\" data-value=\"{{font}}\" class=\"b-input-select-item\">\n" +
     "                <a style='font-family: {{font}};'>{{font}}</a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/widget/namedefine.html',
+    "<div class=\"b-input-select b-fontfamily-select\" ng-class=\"{'b-open': isOpen}\">\n" +
+    "    <input ng-model=\"selectValue\" class=\"b-input-select-input\">\n" +
+    "    <div class=\"btn-group\" dropdown on-toggle=\"toggle(open)\">\n" +
+    "        <button type=\"button\" class=\"btn b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': isOpen}\">\n" +
+    "            <span class=\"caret\"></span>\n" +
+    "        </button>\n" +
+    "        <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "            <li ng-repeat=\"value in values\" data-value=\"{{value}}\" class=\"b-input-select-item\">\n" +
+    "                <a>{{value}}</a>\n" +
     "            </li>\n" +
     "        </ul>\n" +
     "    </div>\n" +
@@ -1514,6 +1716,37 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   $templateCache.put('template/toolbar/widget/showcolor.html',
     "<div class=\"b-show-color-bed\">\n" +
     "    <input style=\"display: none;\">\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/widget/underlineselect.html',
+    "<div class=\"b-button-select b-underline-selector\" ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
+    "    <a ng-if=\"current === 'single'\" class=\"btn b-btn b-underline-button\" role=\"button\" ng-class=\"{'b-open': isOpen || isSelected}\" ng-click=\"changeModel('single');\">\n" +
+    "        <span class=\"b-icon b-icon-underline-single\"></span>\n" +
+    "    </a>\n" +
+    "    <a ng-if=\"current === 'double'\" class=\"btn b-btn b-underline-button\" role=\"button\" ng-class=\"{'b-open': isOpen || isSelected}\" ng-click=\"changeModel('double');\">\n" +
+    "        <span class=\"b-icon b-icon-underline-double\"></span>\n" +
+    "    </a>\n" +
+    "    <div class=\"btn-group\" dropdown on-toggle=\"isOpen=open;\">\n" +
+    "        <button type=\"button\" class=\"btn b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
+    "            <span class=\"caret\"></span>\n" +
+    "        </button>\n" +
+    "        <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "            <li>\n" +
+    "                <a class=\"b-row\" ng-click=\"changeModel('single');\">\n" +
+    "                    <span class=\"b-icon b-icon-underline-single b-mr5\"></span>\n" +
+    "                    {{'toolbar.items.underline.single' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "                <a class=\"b-row\" ng-click=\"changeModel('double');\">\n" +
+    "                    <span class=\"b-icon b-icon-underline-double b-mr5\"></span>\n" +
+    "                    {{'toolbar.items.underline.double' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "    </div>\n" +
     "</div>"
   );
 
@@ -1605,7 +1838,9 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        </div>\n" +
     "\n" +
     "        <div class=\"b-row b-input-area\">\n" +
-    "            <div class=\"b-btable-ctrl-btns\"></div>\n" +
+    "            <div class=\"b-btable-ctrl-btns\">\n" +
+    "                <div b-namedefine></div>\n" +
+    "            </div>\n" +
     "            <div id=\"btableOuterInput\" spellcheck=\"false\" contenteditable=\"true\" class=\"btable-input\"></div>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -1623,6 +1858,20 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        </div>\n" +
     "    </div>\n" +
     "    <ng-include src=\"'template/dialogs/cell-format.html'\"></ng-include>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/widget/error.html',
+    "<div class=\"modal-header\">\n" +
+    "    <h3 class=\"modal-title\">错误提示</h3>\n" +
+    "</div>\n" +
+    "<div class=\"modal-body\">\n" +
+    "    {{errorMsg}}\n" +
+    "</div>\n" +
+    "<div class=\"modal-footer\">\n" +
+    "    <input type=\"text\" style=\"width: 0; height: 0; overflow: hidden; opacity: 0; margin-right: 100px;\" id=\"errorModalHiddenInput\">\n" +
+    "    <button class=\"btn btn-primary\" id=\"errorModalBtn\" type=\"button\" ng-click=\"close();\">OK</button>\n" +
     "</div>"
   );
 
@@ -1706,7 +1955,8 @@ var _zhCN = {
             "fonts": "字体",
             "alignments": "对齐方式",
             "number": "数字",
-            "style": "样式"
+            "style": "样式",
+            "cell": "单元格"
         },
         "buttonlabel": {
             "paste": "粘贴",
@@ -1714,7 +1964,9 @@ var _zhCN = {
             "copy": "复制",
             "wraptext": "自动换行",
             "merge": "合并后居中",
-            "numberformat": "数字格式"
+            "numberformat": "数字格式",
+            "insert": "插入",
+            "cellformat": "格式"
         },
         "items": {
             "border": {
@@ -1725,6 +1977,7 @@ var _zhCN = {
                 "none": "无框线",
                 "all": "所有框线",
                 "outer": "外侧框线",
+                "outer-medium": "外粗框线",
 
                 "linecolor":  "线条颜色",
                 "linestyle": "线形"
@@ -1734,6 +1987,10 @@ var _zhCN = {
                 "across": "跨越合并",
                 "merge": "合并单元格",
                 "cancel": "取消单元格合并"
+            },
+            "underline": {
+                "single": "下划线",
+                "double": "双下划线"
             },
             "format": {
                 "general": "常规",
@@ -1747,6 +2004,24 @@ var _zhCN = {
                 "fraction": "分数",
                 "scientific": "科学记数",
                 "text": "文本"
+            },
+            "insert": {
+                "rightcell": "插入单元格，活动单元格右移",
+                'bottomcell': "插入单元格，活动单元格下移",
+                "row": "插入工作表行",
+                "column": "插入工作表列",
+                "sheet": "插入工作表"
+            },
+            "cellformat": {
+                "rowheight": "行高...",
+                "bestfitrowheight": "自动调整行高",
+                "columnwidth": "列宽...",
+                "bestfitcolumnwidth": "自动调整列宽",
+                "defaultcolumnwidth": "默认列宽...",
+                "hiderow": "隐藏行",
+                "hidecolumn": "隐藏列",
+                "showrow": "取消隐藏行",
+                "showcolumn": "取消隐藏列"
             }
         },
 
@@ -1973,7 +2248,7 @@ angular.module('app').directive('bPressbutton', [function () {
             $scope.isPressed = !!$scope.pressed;
 
             $scope.toggle = function () {
-                $scope.isPressed = !$scope.isPressed;
+                $scope.isPressed = false;
                 hook({
                     status: $scope.isPressed
                 });
@@ -2068,23 +2343,7 @@ angular.module('app').directive('bMergeselect', [function () {
             });
 
             $scope.changeModel = function (mode) {
-                switch (mode) {
-                    case 'center':
-                        $scope.isSelected = !$scope.isSelected;
-                        break;
-
-                    case 'merge':
-                        $scope.isSelected = true;
-                        break;
-
-                    case 'across':
-                        $scope.isSelected = true;
-                        break;
-
-                    case 'cancel':
-                        $scope.isSelected = false;
-                        break;
-                }
+                $scope.isSelected = false;
 
                 hook({
                     mode: mode,
@@ -2262,7 +2521,7 @@ angular.module('app').directive('bTooltip', ['$translate', function ($translate)
  * @author hancong03@baiud.com
  */
 
-angular.module('app').directive('bCellstyles', ['$window', function ($window) {
+angular.module('app').directive('bCellstyles', ['btableService', function (btableService) {
 
     return {
         restrict: 'E',
@@ -2273,7 +2532,8 @@ angular.module('app').directive('bCellstyles', ['$window', function ($window) {
         templateUrl: 'template/toolbar/widget/cellstyles.html',
         link: function ($scope, $ele) {
             var hook = $scope.onselect || angular.noop();
-            var originalBuiltinStyles = BTable.BUILTIN_CELLSTYLE;
+            var originalBuiltinStyles = btableService.queryCommandValue('builtincellstyles');
+            var builtinCellStyles = analyzeCellStyls(originalBuiltinStyles);
             var current;
             var offset = 0;
 
@@ -2293,6 +2553,14 @@ angular.module('app').directive('bCellstyles', ['$window', function ($window) {
                 [5, 4, 7, 3, 6]
             ];
 
+            var categoryNames = [
+                '好、差和适中',
+                '数据和模型',
+                '标题',
+                '主题单元格样式',
+                '数字格式'
+            ];
+
             var builtinStyles = [];
             var uncategoryBuiltinStyles = [];
 
@@ -2303,14 +2571,15 @@ angular.module('app').directive('bCellstyles', ['$window', function ($window) {
                 }
 
                 for (var j = 0, jlen = cellstyleOrder[i].length; j < jlen; j++) {
-                    current = originalBuiltinStyles[cellstyleOrder[i][j]];
-                    current.styleText = toStyleText(current.style);
+                    current = builtinCellStyles[cellstyleOrder[i][j]];
+                    current.styleText = toStyleText(current.format);
+                    current.categoryName = categoryNames[i];
+                    current.id = cellstyleOrder[i][j];
 
                     builtinStyles[i].push(current);
                     uncategoryBuiltinStyles.push(current);
                 }
             }
-
 
             // 未分类内建样式
             $scope.uncategoryBuiltinStyles = uncategoryBuiltinStyles;
@@ -2357,7 +2626,7 @@ angular.module('app').directive('bCellstyles', ['$window', function ($window) {
             $scope.select = function (id, isBuiltin) {
                 hook({
                     id: id,
-                    isBuiltin: isBuiltin
+                    isBuiltin: true
                 });
             };
 
@@ -2427,7 +2696,7 @@ angular.module('app').directive('bCellstyles', ['$window', function ($window) {
                         break;
 
                     case 'size':
-                        result.push('font-size: ' + val + 'px');
+                        result.push('font-size: ' + val + 'pt');
                         break;
 
                     default:
@@ -2443,25 +2712,25 @@ angular.module('app').directive('bCellstyles', ['$window', function ($window) {
         }
 
         function parseBorder(data) {
-            if (data.left === 'none') {
+            if (!data.left) {
                 result.push('border-left: none');
             } else {
                 result.push('border-left: ' + borderText(data.left));
             }
 
-            if (data.right === 'none') {
+            if (!data.right) {
                 result.push('border-right: none');
             } else {
                 result.push('border-right: ' + borderText(data.right));
             }
 
-            if (data.top === 'none') {
+            if (!data.top) {
                 result.push('border-top: none');
             } else {
                 result.push('border-top: ' + borderText(data.top));
             }
 
-            if (data.bottom === 'none') {
+            if (!data.bottom) {
                 result.push('border-bottom: none');
             } else {
                 result.push('border-bottom: ' + borderText(data.bottom));
@@ -2476,11 +2745,100 @@ angular.module('app').directive('bCellstyles', ['$window', function ($window) {
             case 'thin':
                 return '1px solid ' + color;
 
-            case 'medium':
+            default:
                 return '2px solid ' + color;
         }
     }
-}]);
+
+    function analyzeCellStyls(styles) {
+        styles = $.extend(true, {}, styles);
+
+        for (var key in styles) {
+            if (!styles.hasOwnProperty(key)) {
+                continue;
+            }
+
+            analyzeItem(styles[key].format);
+        }
+
+        return styles;
+    }
+
+    function analyzeItem(data) {
+        analyzeFont(data.fonts);
+        analyzeFill(data.fills);
+        analyzeBorder(data.borders);
+    }
+
+    function analyzeFont(font) {
+        if (!font) {
+            return;
+        }
+
+        if (font.color) {
+            if (font.color.theme !== undefined) {
+                font.color = btableService.queryCommandValue('themecolor', font.color.theme, font.color.tint);
+            } else {
+                font.color = font.color.value;
+            }
+        }
+
+        if (font.name) {
+            if (font.name.type === 'major') {
+                font.name = btableService.queryCommandValue('majorfont');
+            } else if (font.name.type === 'minor') {
+                font.name = btableService.queryCommandValue('minorfont');
+            } else {
+                font.name = font.name.value;
+            }
+        }
+    }
+
+    function analyzeFill(fills) {
+        if (!fills || !fills.fill) {
+            return;
+        }
+
+        if (fills.fill.theme !== undefined) {
+            fills.fill = btableService.queryCommandValue('themecolor', fills.fill.theme, fills.fill.tint);
+        } else {
+            fills.fill = fills.fill.value;
+        }
+    }
+
+    function analyzeBorder(borders) {
+        if (!borders || !borders.border) {
+            return;
+        }
+
+        var border = borders.border;
+
+        if (border.top) {
+            analyzeSignBorder(border.top);
+        }
+
+        if (border.left) {
+            analyzeSignBorder(border.left);
+        }
+
+        if (border.bottom) {
+            analyzeSignBorder(border.bottom);
+        }
+
+        if (border.right) {
+            analyzeSignBorder(border.right);
+        }
+    }
+
+    function analyzeSignBorder(data) {
+        if (data.color.theme !== undefined) {
+            data.color = btableService.queryCommandValue('themecolor', data.color.theme, data.color.tint);
+        } else {
+            data.color = data.color.value;
+        }
+    }
+}])
+;
 /**
  * @file
  * @author hancong03@baiud.com
@@ -2557,19 +2915,28 @@ angular.module('app').directive('bSheetlist', [
 
                 /* ---- scope 挂载 start ---- */
                 $scope.status = status;
-                $scope.sheets = btableService.queryCommandValue('sheetnames');
+                $scope.sheets = clone(btableService.queryCommandValue('sheetnames'));
 
-                btableService.on('sheetchange', function () {
-                    $scope.sheets = btableService.queryCommandValue('sheetnames');
-                    status.selected = btableService.queryCommandValue('sheetindex');
-                    btableService.execCommand(['inputfocus']);
-
-                    $scope.$apply();
+                btableService.on('beforedataready', function () {
+                    $scope.sheets = clone(btableService.queryCommandValue('sheetnames'));
+                    status.selected = btableService.queryCommandValue('activesheetindex');
 
                     refresh();
                 });
 
-                btableService.on('init', function () {
+                btableService.on('sheetschange', function () {
+                    $scope.sheets = clone(btableService.queryCommandValue('sheetnames'));
+                    status.selected = btableService.queryCommandValue('activesheetindex');
+
+                    refresh();
+                });
+
+                btableService.on('sheetswitch', function () {
+                    status.selected = btableService.queryCommandValue('activesheetindex');
+                    refresh();
+                });
+
+                (function () {
                     startIndex = 0;
                     endIndex = -1;
 
@@ -2581,21 +2948,17 @@ angular.module('app').directive('bSheetlist', [
                         rightMore: false
                     });
 
-                    $scope.sheets = btableService.queryCommandValue('sheetnames');
-                    status.selected = btableService.queryCommandValue('sheetindex');
-                    btableService.execCommand(['inputfocus']);
-
-                    $scope.$apply();
+                    $scope.sheets = clone(btableService.queryCommandValue('sheetnames'));
+                    status.selected = btableService.queryCommandValue('activesheetindex');
 
                     refresh();
-                });
+                })();
 
                 $scope.addSheet = function (evt) {
                     evt.stopPropagation();
                     evt.preventDefault();
 
-                    btableService.execCommand(['createsheet', true]);
-                    btableService.execCommand(['inputfocus']);
+                    btableService.execCommand(['addsheet']);
                 };
 
                 $scope.leftClick = function (evt) {
@@ -2617,7 +2980,6 @@ angular.module('app').directive('bSheetlist', [
                     // 否则，执行默认动作
                     } else {
                         btableService.execCommand(['switchsheet', startIndex]);
-                        btableService.execCommand(['inputfocus']);
                     }
                 };
 
@@ -2640,7 +3002,6 @@ angular.module('app').directive('bSheetlist', [
                         // 否则，执行默认动作
                     } else {
                         btableService.execCommand(['switchsheet', endIndex + 1]);
-                        btableService.execCommand(['inputfocus']);
                     }
                 };
 
@@ -2680,15 +3041,26 @@ angular.module('app').directive('bSheetlist', [
                             // 否则，执行默认动作
                         } else {
                             btableService.execCommand(['switchsheet', index]);
-                            btableService.execCommand(['inputfocus']);
                         }
                     }).on('mousedown', '.b-sl-item-label-input', function (evt) {
                         evt.stopPropagation();
                     }).on('blur', '.b-sl-item-label-input', function () {
-                        btableService.execCommand(['renamesheet', +this.getAttribute('data-index'), this.value]);
+                        if (!btableService.execCommand(['renamesheet', this.value, +this.getAttribute('data-index')])) {
+                            alert('重命名失败，名称冲突: ' + this.value);
+                        } else {
+                            btableService.execCommand(['focus']);
+                        }
                     }).on('keydown', '.b-sl-item-label-input', function (evt) {
+                        // enter
                         if (evt.keyCode === 13) {
+                            evt.preventDefault();
                             this.blur();
+                        // esc
+                        } else if (evt.keyCode === 27) {
+                            var $input = $('.b-sl-item-label-input', $list.find('.b-active'));
+                            $('.b-sl-item-label', $list.find('.b-active')).show();
+                            $input.hide();
+                            btableService.execCommand(['focus']);
                         }
                     });
                 })();
@@ -2819,6 +3191,17 @@ angular.module('app').directive('bSheetlist', [
             }
         }
     };
+
+    function clone(arr) {
+        var keys = Object.keys(arr);
+        var result = [];
+
+        for (var i = 0, len = keys.length; i < len; i++) {
+            result[keys[i]] = arr[keys[i]];
+        }
+
+        return result;
+    }
 }]);
 /**
  * @file
@@ -2912,7 +3295,7 @@ angular.module('app').directive('bCutbtn', ['btableService', function (btableSer
                     clipboard.setData("text/plain", copyData.string);
                     clipboard.setData("text/html", copyData.html);
 
-                    btableService.execCommand(['inputfocus']);
+                    btableService.execCommand(['focus']);
                 });
             });
         }
@@ -2978,7 +3361,7 @@ angular.module('app').directive('bCopybtn', ['btableService', function (btableSe
                     clipboard.setData("text/plain", copyData.string);
                     clipboard.setData("text/html", copyData.html);
 
-                    btableService.execCommand(['inputfocus']);
+                    btableService.execCommand(['focus']);
                 });
             });
         }
@@ -2996,13 +3379,12 @@ angular.module('app').directive('btable', ['btableService', function (btableServ
         scope: {},
         templateUrl: 'template/widget/btable.html',
         link: function ($scope, $ele) {
-
             var btable = btableService.createBtable($ele.find('.btable-container')[0]);
             $("#btableOuterInput").on("mousedown", function (evt) {
                 evt.stopPropagation();
             });
 
-            btable.execCommand('bindinput', "#btableOuterInput");
+            btable.execCommand('bindinput', $("#btableOuterInput")[0]);
             btable.execCommand('init');
         }
     };
@@ -3041,7 +3423,6 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
             switch (type) {
                 case 'bold':
                 case 'italic':
-                case 'underline':
 
                 case 'font':
                 case 'fontsize':
@@ -3052,8 +3433,23 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
                 case 'vertical':
                 case 'horizontal':
 
-                case 'numberformat':
+                case 'numfmt':
                 case 'wraptext':
+
+                case 'insertleftcell':
+                case 'inserttopcell':
+                case 'insertrow':
+                case 'insertcolumn':
+                case 'insertsheet':
+                case 'rawrowheight':
+                case 'rawcolumnwidth':
+                case 'bestfitrowheight':
+                case 'bestfitcolumnwidth':
+                case 'rawdefaultcolumnwidth':
+                case 'hiderow':
+                case 'hidecolumn':
+                case "showrow":
+                case "showcolumn":
                     btableService.execCommand(arguments);
                     break;
 
@@ -3066,20 +3462,19 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
                     break;
 
                 case 'thousandth':
-                    btableService.execCommand(['numberformat', '_ * #,##0.00_ ;_ * -#,##0.00_ ;_ * "-"??_ ;_ @_ ']);
+                    btableService.execCommand(['numfmt', '_ * #,##0.00_ ;_ * -#,##0.00_ ;_ * "-"??_ ;_ @_ ']);
                     break;
 
                 case 'cellstyle':
-                    if (arguments[2]) {
-                        btableService.execCommand(['builtincellstyle', arguments[1]]);
-                    } else {
-                        //console.error('未处理自定义cellstyle的问题');
-                        //btableService.execCommand(['cellstyle', arguments[1]]);
-                    }
+                    btableService.execCommand(['cellstyle', arguments[1]]);
                     break;
 
                 case 'border':
                     btableService.execCommand(args);
+                    break;
+
+                case 'underline':
+                    btableService.execCommand(['toggleunderline', args]);
                     break;
 
                 case 'merge':
@@ -3087,7 +3482,7 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
                     break;
             }
 
-            btableService.execCommand(['inputfocus']);
+            btableService.execCommand(['focus']);
         }
     };
 
@@ -3132,9 +3527,9 @@ angular.module('app').factory('cellformatModalNotify', [function () {
 angular.module('app').factory('btableService', [function () {
     var DELAY_TIME = 50;
     var timer = null;
-    var changeCblist = [];
     var callbacks = [];
     var btable;
+    var readyList = [];
 
     return {
         createBtable: function (ele) {
@@ -3144,17 +3539,23 @@ angular.module('app').factory('btableService', [function () {
 
             btable = new BTable(ele);
 
-            btable.on('change', function () {
+            btable.on('refresh', function () {
                 emit();
             });
 
-            btable.on('')
+            for (var i = 0, len = readyList.length; i < len; i++) {
+                readyList[i]();
+            }
 
             return btable;
         },
 
         onchange: function (cb) {
             callbacks.push(cb);
+        },
+
+        ready: function (cb) {
+            readyList.push(cb);
         },
 
         on: function () {
@@ -3187,21 +3588,21 @@ angular.module('app').factory('btableService', [function () {
     }
 
     function reflect() {
-        return btable.queryCommandValue([
-            'font',
-            'fontsize',
-            'color',
-            'bold',
-            'italic',
-            'fill',
-            'horizontal',
-            'vertical',
-            'underline',
-            'throughline',
-            'wraptext',
-            'numberformat',
-            'merge'
-        ]);
+        return btable.queryCommandValue({
+            'fontdetail': null,
+            'fontsize': null,
+            'colordetail': null,
+            'bold': null,
+            'italic': null,
+            'filldetail': null,
+            'horizontal': null,
+            'vertical': null,
+            'underline': null,
+            'throughline': null,
+            'wraptext': null,
+            'numfmt': null,
+            'mergecell': null
+        });
     }
 
 }]);
@@ -3515,9 +3916,38 @@ angular.module('app').controller('ToolbarBasicController', [
     'toolbarNotify',
     'cellformatModalNotify',
     'btableService',
-    'sheetlistService',
+    '$modal',
+    'prompt',
 
-    function ($scope, toolbarNotify, cellformatModalNotify, btableService, sheetlistService) {
+    function ($scope, toolbarNotify, cellformatModalNotify, btableService, $modal, prompt) {
+        window.onresize = function () {
+            btableService.execCommand(['resize']);
+        };
+
+        btableService.ready(function () {
+            btableService.on('error', function (key, msg) {
+                $modal.open({
+                    animation: false,
+                    templateUrl: 'template/widget/error.html',
+                    controller: 'ModalController',
+                    size: 'sm',
+                    resolve: {
+                        errorMsg: function () {
+                            return msg;
+                        }
+                    }
+                });
+
+                setTimeout(function () {
+                    $("#errorModalHiddenInput").focus();
+                    $("#errorModalBtn").focus();
+                }, 1);
+            });
+        });
+
+        $scope.closeModal = function () {
+            $modalInstance.close();
+        };
 
         $scope.btnState = {
             pasteOpen: false,
@@ -3525,7 +3955,8 @@ angular.module('app').controller('ToolbarBasicController', [
             fontsizeOpen: false,
             colorOpen: false,
             bgcolorOpen: false,
-            mergeOpen: false
+            mergeOpen: false,
+            underlienOpen: false
         };
 
         var res = {
@@ -3540,8 +3971,8 @@ angular.module('app').controller('ToolbarBasicController', [
             underline: false,
             throughline: false,
 
-            font: '宋体',
-            fontsize: 13,
+            font: '正文字体(宋体)',
+            fontsize: 11,
             color: null,
             fill: null,
             horizontal: null,
@@ -3558,11 +3989,13 @@ angular.module('app').controller('ToolbarBasicController', [
             status.horizontal = btableStatus.horizontal;
             status.wraptext = btableStatus.wraptext;
             // TODO 对默认值的处理需要优化
-            status.font = btableStatus.font || '宋体';
-            status.fontsize = btableStatus.fontsize || 13;
-            status.color = btableStatus.color || null;
-            status.fill = btableStatus.fill || null;
-            status.merge = btableStatus.merge || false;
+            status.font = btableStatus.fontdetail.value;
+            status.isMajor = btableStatus.fontdetail.type === 'major';
+            status.isMinor = btableStatus.fontdetail.type === 'minor';
+            status.fontsize = btableStatus.fontsize;
+            status.color = btableStatus.colordetail.value;
+            status.fill = btableStatus.filldetail ? btableStatus.filldetail.value : null;
+            status.merge = !!btableStatus.mergecell;
 
             $scope.$apply();
         });
@@ -3586,6 +4019,8 @@ angular.module('app').controller('ToolbarBasicController', [
         };
 
         $scope.initValue = {
+            major: '宋体',
+            minor: '宋体',
             fontfamily: ["Angsana New", "Arial", "Arial Black", "Batang", "Book Antiqua", "Browallia New", "Calibri", "Cambria", "Candara", "Century", "Comic Sans MS", "Consolas", "Constantia", "Corbel", "Cordia New", "Courier", "Courier New", "DilleniaUPC", "Dotum", "仿宋", "Garamond", "Georgia", "Gulim", "GungSuh", "楷体", "JasmineUPC", "Malgun Gothic", "Mangal", "Meiryo", "Microsoft JhengHei", "微软雅黑", "MingLiu", "MingLiU_HKSCS", "MS Gothic", "MS Mincho", "MS PGothic", "MS PMincho", "PMingliU", "PMingLiU-ExtB", "黑体", "宋体", "宋体-ExtB", "Tahoma", "Times", "Times New Roman", "Trebuchet MS", "Verdana", "Yu Gothic", "Yu Mincho"],
             fontsize: [8, 9, 10, 11, 12, 14, 16, 18, 20, 24, 36, 48, 72]
         };
@@ -3608,15 +4043,19 @@ angular.module('app').controller('ToolbarBasicController', [
                 toolbarNotify.emit('fontsize', val);
             },
 
-            mergechange: function (mode, status) {
+            mergechange: function (mode) {
                 var command = {
-                    'center': 'centermerge',
-                    'across': 'horizontalmerge',
-                    'merge': 'merge',
-                    'cancel': 'unmerge'
+                    'center': 'centermergecell',
+                    'across': 'horizontalmergecell',
+                    'merge': 'mergecell',
+                    'cancel': 'unmergecell'
                 };
 
                 toolbarNotify.emit('merge', command[mode]);
+            },
+
+            underlineChange: function (mode) {
+                toolbarNotify.emit('underline', mode);
             },
 
             borderStyle: function (index) {
@@ -3658,27 +4097,68 @@ angular.module('app').controller('ToolbarBasicController', [
                         args = ['clearborder'];
                         break;
 
-                    default:
+                    case 'top':
+                        if (borderStyle === 'none') {
+                            args = ['cleartopborder'];
+                        } else {
+                            args = ['topborder', {
+                                style: borderStyle,
+                                color: borderColor
+                            }]
+                        }
+                        break;
+
+                    case 'bottom':
+                        if (borderStyle === 'none') {
+                            args = ['clearbottomborder'];
+                        } else {
+                            args = ['bottomborder', {
+                                style: borderStyle,
+                                color: borderColor
+                            }]
+                        }
+                        break;
+
+                    case 'left':
+                        if (borderStyle === 'none') {
+                            args = ['clearleftborder'];
+                        } else {
+                            args = ['leftborder', {
+                                style: borderStyle,
+                                color: borderColor
+                            }]
+                        }
+                        break;
+
+                    case 'right':
+                        if (borderStyle === 'none') {
+                            args = ['clearrightborder'];
+                        } else {
+                            args = ['rightborder', {
+                                style: borderStyle,
+                                color: borderColor
+                            }]
+                        }
+                        break;
+
+                    case 'outer':
+                        if (borderStyle === 'none') {
+                            args = ['clearouterborder'];
+                        } else {
+                            args = ['outerborder', {
+                                style: borderStyle,
+                                color: borderColor
+                            }]
+                        }
+                        break;
+
+                    case 'all':
                         if (borderStyle === 'none') {
                             args = ['clearborder'];
                         } else {
                             args = ['border', {
-                                top: {
-                                    style: borderStyle,
-                                    color: borderColor
-                                },
-                                left: {
-                                    style: borderStyle,
-                                    color: borderColor
-                                },
-                                bottom: {
-                                    style: borderStyle,
-                                    color: borderColor
-                                },
-                                right: {
-                                    style: borderStyle,
-                                    color: borderColor
-                                }
+                                style: borderStyle,
+                                color: borderColor
                             }]
                         }
                         break;
@@ -3688,15 +4168,148 @@ angular.module('app').controller('ToolbarBasicController', [
             },
 
             formatSelect: function (code) {
-                toolbarNotify.emit('numberformat', code);
+                toolbarNotify.emit('numfmt', code);
             },
 
             selectCellstyle: function (id, isBuiltin) {
-                toolbarNotify.emit('cellstyle', id, isBuiltin);
+                toolbarNotify.emit('cellstyle', id);
             },
 
             openCellFormat: function (type) {
                 cellformatModalNotify.notify('open', type);
+            },
+
+            insertRightCell: function () {
+                toolbarNotify.emit('insertleftcell');
+            },
+
+            insertBottomCell: function () {
+                toolbarNotify.emit('inserttopcell');
+            },
+
+            insertRow: function () {
+                toolbarNotify.emit('insertrow');
+            },
+
+            insertColumn: function () {
+                toolbarNotify.emit('insertcolumn');
+            },
+
+            insertSheet: function () {
+                toolbarNotify.emit('insertsheet');
+            },
+
+            setRowHeight: function () {
+                var height = btableService.queryCommandValue('rawrowheight');
+
+                if (height === undefined) {
+                    height = btableService.queryCommandValue('rawstandardheight');
+                }
+
+                prompt({
+                    "title": "行高",
+                    "message": "高度必须在0到409之间",
+                    "input": true,
+                    "label": "行高",
+                    "value": height,
+                    "buttons": [{
+                        label: "取消",
+                        cancel: true
+                    }, {
+                        label: "确定",
+                        primary: true
+                    }]
+                }).then(function(result){
+                    if ($.isNumeric(result) && result >= 0 && result <= 409) {
+                        toolbarNotify.emit('rawrowheight', +result);
+                    } else {
+                        alert('高度必须在0到409之间');
+                    }
+                });
+            },
+
+            setColumnWidth: function () {
+                var width = btableService.queryCommandValue('rawcolumnwidth');
+
+                if (width === undefined) {
+                    width = btableService.queryCommandValue('rawstandardwidth');
+                }
+
+                prompt({
+                    "title": "列宽",
+                    "message": "宽度必须在0到255之间",
+                    "input": true,
+                    "label": "列宽",
+                    "value": width,
+                    "buttons": [{
+                        label: "取消",
+                        cancel: true
+                    }, {
+                        label: "确定",
+                        primary: true
+                    }]
+                }).then(function(result){
+                    if ($.isNumeric(result) && result >= 0 && result <= 255) {
+                        toolbarNotify.emit('rawcolumnwidth', +result);
+                    } else {
+                        alert('宽度必须在0到255之间');
+                        return false;
+                    }
+                });
+            },
+
+            setBestfitRowHeight: function () {
+                toolbarNotify.emit('bestfitrowheight');
+            },
+
+            setBestfitColumnWidth: function () {
+                toolbarNotify.emit('bestfitcolumnwidth');
+            },
+
+            setDefaultColumnWidth: function () {
+                var width = btableService.queryCommandValue('rawdefaultcolumnwidth');
+
+                if (width === undefined) {
+                    width = btableService.queryCommandValue('rawstandardwidth');
+                }
+
+                prompt({
+                    "title": "标准列宽",
+                    "message": "宽度必须在0到255之间",
+                    "input": true,
+                    "label": "标准列宽",
+                    "value": width,
+                    "buttons": [{
+                        label: "取消",
+                        cancel: true
+                    }, {
+                        label: "确定",
+                        primary: true
+                    }]
+                }).then(function(result){
+                    if ($.isNumeric(result) && result >= 0 && result <= 255) {
+                        toolbarNotify.emit('rawdefaultcolumnwidth', +result);
+                    } else {
+                        alert('宽度必须在0到255之间');
+                        return false;
+                    }
+                });
+            },
+
+            hideRow: function () {
+                toolbarNotify.emit('hiderow');
+            },
+
+            hideColumn: function () {
+                toolbarNotify.emit('hidecolumn');
+            },
+
+            showRow: function () {
+                toolbarNotify.emit('showrow');
+            },
+
+            showColumn: function () {
+                toolbarNotify.emit('showcolumn');
             }
         };
     }
@@ -3752,6 +4365,9 @@ angular.module('app').controller('ToolbarBasicController', [
             }, {
                 text: '单下划线',
                 value: 'single'
+            }, {
+                text: '双下划线',
+                value: 'double'
             }];
 
             var _defaultStatus = {
@@ -3998,11 +4614,11 @@ angular.module('app').controller('ToolbarBasicController', [
 
                 // 重置数字格式
                 function resetNumberformat() {
-                    if (!btableStatus.numberformat) {
+                    if (!btableStatus.numfmt) {
                         return;
                     }
 
-                    var formatCodeInfo = numberformat.match(btableStatus.numberformat);
+                    var formatCodeInfo = numberformat.match(btableStatus.numfmt);
 
                     if (formatCodeInfo) {
                         status.formatSelected = [];
@@ -4029,18 +4645,18 @@ angular.module('app').controller('ToolbarBasicController', [
                     _default.hAlign = getIndex('hAlign', btableStatus.horizontal, _defaultStatus.hAlign);
                     _default.vAlign = getIndex('vAlign', btableStatus.vertical, _defaultStatus.vAlign);
                     _default.wraptext = !!btableStatus.wraptext;
-                    _default.merge = !!btableStatus.merge;
+                    _default.merge = !!btableStatus.mergecell;
                 }
 
                 function resetFont() {
                     var italic = btableStatus.italic ? 1 : 0;
                     var bold = btableStatus.bold ? 2 : 0;
 
-                    _default.font = btableStatus.font || '宋体';
-                    _default.fontsize = btableStatus.fontsize || 13;
+                    _default.font = btableStatus.fontdetail.value;
+                    _default.fontsize = btableStatus.fontsize;
                     _default.fontstyle = italic | bold;
-                    _default.color = btableStatus.color || null;
-                    _default.underline = btableStatus.underline ? 1 : 0;
+                    _default.color = btableStatus.colordetail.value;
+                    _default.underline = btableStatus.underline ? (btableStatus.underline === 'single' ? 1 : 2) : 0;
                     _default.throughline = btableStatus.throughline;
                 }
 
@@ -4062,7 +4678,7 @@ angular.module('app').controller('ToolbarBasicController', [
                 }
 
                 function resetFill() {
-                    _default.fillColor = btableStatus.fill || null;
+                    _default.fillColor = btableStatus.filldetail ? btableStatus.filldetail.value : null;
                 }
             }
 
@@ -4110,16 +4726,16 @@ angular.module('app').controller('ToolbarBasicController', [
 
                     var code = numberformat.getNumberformatCode(index, status);
 
-                    if (btableStatus.numberformat !== code) {
+                    if (btableStatus.numfmt !== code) {
                         if (code) {
                             commands.push({
-                                command: 'numberformat',
+                                command: 'numfmt',
                                 args: [code]
                             });
                         } else {
                             commands.push({
-                                command: 'clearnumberformat',
-                                args: []
+                                command: 'unsetstyle',
+                                args: ['numfmt']
                             });
                         }
                     }
@@ -4149,6 +4765,14 @@ angular.module('app').controller('ToolbarBasicController', [
                     if (statusSnapshot._default.wraptext !== status._default.wraptext) {
                         commands.push({
                             command: 'wraptext',
+                            args: []
+                        });
+                    }
+
+                    // 合并单元格检查
+                    if (statusSnapshot._default.merge !== status._default.merge) {
+                        commands.push({
+                            command: 'centermergecell',
                             args: []
                         });
                     }
@@ -4201,14 +4825,22 @@ angular.module('app').controller('ToolbarBasicController', [
 
                     // 下划线检查
                     if (statusSnapshot._default.underline !== status._default.underline) {
-                        commands.push({
-                            command: 'underline',
-                            args: []
-                        });
+                        if (status._default.underline === '0') {
+                            commands.push({
+                                command: 'unsetstyle',
+                                args: ['underline']
+                            });
+                        } else {
+                            commands.push({
+                                command: 'underline',
+                                args: [status._default.underline === '1' ? 'single' : 'double']
+                            });
+                        }
                     }
 
                     // 删除线检查
                     if (statusSnapshot._default.throughline !== status._default.throughline) {
+                        console.log('throughline')
                         commands.push({
                             command: 'throughline',
                             args: []

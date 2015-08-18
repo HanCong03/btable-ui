@@ -8,6 +8,7 @@ angular.module('app').factory('btableService', [function () {
     var timer = null;
     var callbacks = [];
     var btable;
+    var readyList = [];
 
     return {
         createBtable: function (ele) {
@@ -21,11 +22,19 @@ angular.module('app').factory('btableService', [function () {
                 emit();
             });
 
+            for (var i = 0, len = readyList.length; i < len; i++) {
+                readyList[i]();
+            }
+
             return btable;
         },
 
         onchange: function (cb) {
             callbacks.push(cb);
+        },
+
+        ready: function (cb) {
+            readyList.push(cb);
         },
 
         on: function () {

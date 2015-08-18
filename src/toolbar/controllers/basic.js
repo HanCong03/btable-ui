@@ -8,11 +8,37 @@ angular.module('app').controller('ToolbarBasicController', [
     'toolbarNotify',
     'cellformatModalNotify',
     'btableService',
-    'sheetlistService',
+    '$modal',
+    'prompt',
 
-    function ($scope, toolbarNotify, cellformatModalNotify, btableService, sheetlistService) {
+    function ($scope, toolbarNotify, cellformatModalNotify, btableService, $modal, prompt) {
         window.onresize = function () {
             btableService.execCommand(['resize']);
+        };
+
+        btableService.ready(function () {
+            btableService.on('error', function (key, msg) {
+                $modal.open({
+                    animation: false,
+                    templateUrl: 'template/widget/error.html',
+                    controller: 'ModalController',
+                    size: 'sm',
+                    resolve: {
+                        errorMsg: function () {
+                            return msg;
+                        }
+                    }
+                });
+
+                setTimeout(function () {
+                    $("#errorModalHiddenInput").focus();
+                    $("#errorModalBtn").focus();
+                }, 1);
+            });
+        });
+
+        $scope.closeModal = function () {
+            $modalInstance.close();
         };
 
         $scope.btnState = {
@@ -264,6 +290,123 @@ angular.module('app').controller('ToolbarBasicController', [
             insertSheet: function () {
                 toolbarNotify.emit('insertsheet');
             },
+
+            setRowHeight: function () {
+                var height = btableService.queryCommandValue('rawrowheight');
+
+                if (height === undefined) {
+                    height = btableService.queryCommandValue('rawstandardheight');
+                }
+
+                prompt({
+                    "title": "行高",
+                    "message": "高度必须在0到409之间",
+                    "input": true,
+                    "label": "行高",
+                    "value": height,
+                    "buttons": [{
+                        label: "取消",
+                        cancel: true
+                    }, {
+                        label: "确定",
+                        primary: true
+                    }]
+                }).then(function(result){
+                    if ($.isNumeric(result) && result >= 0 && result <= 409) {
+                        toolbarNotify.emit('rawrowheight', +result);
+                    } else {
+                        alert('高度必须在0到409之间');
+                    }
+                });
+            },
+
+            setColumnWidth: function () {
+                var width = btableService.queryCommandValue('rawcolumnwidth');
+
+                if (width === undefined) {
+                    width = btableService.queryCommandValue('rawstandardwidth');
+                }
+
+                prompt({
+                    "title": "列宽",
+                    "message": "宽度必须在0到255之间",
+                    "input": true,
+                    "label": "列宽",
+                    "value": width,
+                    "buttons": [{
+                        label: "取消",
+                        cancel: true
+                    }, {
+                        label: "确定",
+                        primary: true
+                    }]
+                }).then(function(result){
+                    if ($.isNumeric(result) && result >= 0 && result <= 255) {
+                        toolbarNotify.emit('rawcolumnwidth', +result);
+                    } else {
+                        alert('宽度必须在0到255之间');
+                        return false;
+                    }
+                });
+            },
+
+            setBestfitRowHeight: function () {
+                toolbarNotify.emit('bestfitrowheight');
+            },
+
+            setBestfitColumnWidth: function () {
+                toolbarNotify.emit('bestfitcolumnwidth');
+            },
+
+            setDefaultColumnWidth: function () {
+                var width = btableService.queryCommandValue('rawdefaultcolumnwidth');
+
+                if (width === undefined) {
+                    width = btableService.queryCommandValue('rawstandardwidth');
+                }
+
+                prompt({
+                    "title": "标准列宽",
+                    "message": "宽度必须在0到255之间",
+                    "input": true,
+                    "label": "标准列宽",
+                    "value": width,
+                    "buttons": [{
+                        label: "取消",
+                        cancel: true
+                    }, {
+                        label: "确定",
+                        primary: true
+                    }]
+                }).then(function(result){
+                    if ($.isNumeric(result) && result >= 0 && result <= 255) {
+                        toolbarNotify.emit('rawdefaultcolumnwidth', +result);
+                    } else {
+                        alert('宽度必须在0到255之间');
+                        return false;
+                    }
+                });
+            },
+
+            hideRow: function () {
+                toolbarNotify.emit('hiderow');
+            },
+
+            hideColumn: function () {
+                toolbarNotify.emit('hidecolumn');
+            },
+
+            showRow: function () {
+                toolbarNotify.emit('showrow');
+            },
+
+            showColumn: function () {
+                toolbarNotify.emit('showcolumn');
+            },
+
+            namechange: function () {
+                console.log('namechange')
+            }
         };
     }
 ]);

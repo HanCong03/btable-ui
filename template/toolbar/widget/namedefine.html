@@ -1,0 +1,13 @@
+<div class="b-input-select b-namedefine-wrap">
+    <input class="b-input-select-input">
+    <div class="btn-group" dropdown>
+        <button type="button" class="btn dropdown-toggle" dropdown-toggle ng-class="{'b-open': isOpen}">
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="name in names" data-value="{{name}}" class="b-input-select-item">
+                <a>{{name}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

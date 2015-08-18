@@ -26,7 +26,8 @@ var _zhCN = {
             "wraptext": "自动换行",
             "merge": "合并后居中",
             "numberformat": "数字格式",
-            "insert": "插入"
+            "insert": "插入",
+            "cellformat": "格式"
         },
         "items": {
             "border": {
@@ -71,6 +72,17 @@ var _zhCN = {
                 "row": "插入工作表行",
                 "column": "插入工作表列",
                 "sheet": "插入工作表"
+            },
+            "cellformat": {
+                "rowheight": "行高...",
+                "bestfitrowheight": "自动调整行高",
+                "columnwidth": "列宽...",
+                "bestfitcolumnwidth": "自动调整列宽",
+                "defaultcolumnwidth": "默认列宽...",
+                "hiderow": "隐藏行",
+                "hidecolumn": "隐藏列",
+                "showrow": "取消隐藏行",
+                "showcolumn": "取消隐藏列"
             }
         },
 

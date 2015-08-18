@@ -1,1 +1,1 @@
-angular.module('app', ['ui.bootstrap', 'pascalprecht.translate', 'b.const']);
+angular.module('app', ['ui.bootstrap', 'pascalprecht.translate', 'cgPrompt', 'b.const']);

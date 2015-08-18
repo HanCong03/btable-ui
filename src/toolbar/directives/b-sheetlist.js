@@ -39,6 +39,13 @@ angular.module('app').directive('bSheetlist', [
                 $scope.status = status;
                 $scope.sheets = clone(btableService.queryCommandValue('sheetnames'));
 
+                btableService.on('beforedataready', function () {
+                    $scope.sheets = clone(btableService.queryCommandValue('sheetnames'));
+                    status.selected = btableService.queryCommandValue('activesheetindex');
+
+                    refresh();
+                });
+
                 btableService.on('sheetschange', function () {
                     $scope.sheets = clone(btableService.queryCommandValue('sheetnames'));
                     status.selected = btableService.queryCommandValue('activesheetindex');
@@ -51,7 +58,7 @@ angular.module('app').directive('bSheetlist', [
                     refresh();
                 });
 
-                btableService.on('loaded', function () {
+                (function () {
                     startIndex = 0;
                     endIndex = -1;
 
@@ -66,10 +73,8 @@ angular.module('app').directive('bSheetlist', [
                     $scope.sheets = clone(btableService.queryCommandValue('sheetnames'));
                     status.selected = btableService.queryCommandValue('activesheetindex');
 
-                    $scope.$apply();
-
                     refresh();
-                });
+                })();
 
                 $scope.addSheet = function (evt) {
                     evt.stopPropagation();

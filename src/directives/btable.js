@@ -10,7 +10,6 @@ angular.module('app').directive('btable', ['btableService', function (btableServ
         scope: {},
         templateUrl: 'template/widget/btable.html',
         link: function ($scope, $ele) {
-
             var btable = btableService.createBtable($ele.find('.btable-container')[0]);
             $("#btableOuterInput").on("mousedown", function (evt) {
                 evt.stopPropagation();

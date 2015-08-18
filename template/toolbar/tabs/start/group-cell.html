@@ -49,6 +49,86 @@
                 </ul>
             </div>
         </div>
+
+        <div>
+            <div class="btn-group b-drop-button" dropdown on-toggle="btnState.cellformatOpen=open;">
+                <div type="button" class="btn b-cellformat-main-btn b-drop-button-bottom b-btn dropdown-toggle" dropdown-toggle ng-class="{'b-open': btnState.cellformatOpen}">
+                    <span class="b-big-icon2 b-icon-cellformat"></span>
+                    {{'toolbar.buttonlabel.cellformat' | translate}}
+                    <span class="caret"></span>
+                </div>
+                <ul class="dropdown-menu" role="menu">
+                    <li ng-click="handler.setRowHeight();">
+                        <a class="b-row">
+                            <span class="b-icon2 b-icon-rowheight b-mr5"></span>
+                            {{'toolbar.items.cellformat.rowheight' | translate}}
+                        </a>
+                    </li>
+
+                    <li ng-click="handler.setBestfitRowHeight();">
+                        <a class="b-row">
+                            <span class="b-icon2 b-icon-none b-mr5"></span>
+                            {{'toolbar.items.cellformat.bestfitrowheight' | translate}}
+                        </a>
+                    </li>
+
+                    <li class="divider"></li>
+
+                    <li ng-click="handler.setColumnWidth();">
+                        <a class="b-row">
+                            <span class="b-icon2 b-icon-columnwidth b-mr5"></span>
+                            {{'toolbar.items.cellformat.columnwidth' | translate}}
+                        </a>
+                    </li>
+
+                    <li ng-click="handler.setBestfitColumnWidth();">
+                        <a class="b-row">
+                            <span class="b-icon2 b-icon-none b-mr5"></span>
+                            {{'toolbar.items.cellformat.bestfitcolumnwidth' | translate}}
+                        </a>
+                    </li>
+
+                    <li ng-click="handler.setDefaultColumnWidth();">
+                        <a class="b-row">
+                            <span class="b-icon2 b-icon-none b-mr5"></span>
+                            {{'toolbar.items.cellformat.defaultcolumnwidth' | translate}}
+                        </a>
+                    </li>
+
+                    <li class="divider"></li>
+
+                    <li ng-click="handler.hideRow();">
+                        <a class="b-row">
+                            <span class="b-icon2 b-icon-none b-mr5"></span>
+                            {{'toolbar.items.cellformat.hiderow' | translate}}
+                        </a>
+                    </li>
+
+                    <li ng-click="handler.hideColumn();">
+                        <a class="b-row">
+                            <span class="b-icon2 b-icon-none b-mr5"></span>
+                            {{'toolbar.items.cellformat.hidecolumn' | translate}}
+                        </a>
+                    </li>
+
+                    <li class="divider"></li>
+
+                    <li ng-click="handler.showRow();">
+                        <a class="b-row">
+                            <span class="b-icon2 b-icon-none b-mr5"></span>
+                            {{'toolbar.items.cellformat.showrow' | translate}}
+                        </a>
+                    </li>
+
+                    <li ng-click="handler.showColumn();">
+                        <a class="b-row">
+                            <span class="b-icon2 b-icon-none b-mr5"></span>
+                            {{'toolbar.items.cellformat.showcolumn' | translate}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <div class="b-group-label">
