@@ -16,6 +16,10 @@ angular.module('app').controller('ToolbarBasicController', [
             btableService.execCommand(['resize']);
         };
 
+        $scope.isShowGridline = true;
+        $scope.isShowHeader = true;
+        $scope.hasPane = false;
+
         btableService.ready(function () {
             btableService.on('error', function (key, msg) {
                 $modal.open({
@@ -34,6 +38,12 @@ angular.module('app').controller('ToolbarBasicController', [
                     $("#errorModalHiddenInput").focus();
                     $("#errorModalBtn").focus();
                 }, 1);
+            });
+
+            btableService.on('dataready', function () {
+                $scope.isShowGridline = btableService.queryCommandValue('gridline');
+                $scope.isShowHeader = btableService.queryCommandValue('header');
+                $scope.hasPane = !!btableService.queryCommandValue('pane');
             });
         });
 
@@ -88,6 +98,10 @@ angular.module('app').controller('ToolbarBasicController', [
             status.color = btableStatus.colordetail.value;
             status.fill = btableStatus.filldetail ? btableStatus.filldetail.value : null;
             status.merge = !!btableStatus.mergecell;
+
+            $scope.isShowGridline = btableService.queryCommandValue('gridline');
+            $scope.isShowHeader = btableService.queryCommandValue('header');
+            $scope.hasPane = !!btableService.queryCommandValue('pane');
 
             $scope.$apply();
         });
@@ -454,6 +468,30 @@ angular.module('app').controller('ToolbarBasicController', [
 
             namechange: function () {
                 console.log('namechange')
+            },
+
+            toggleHeader: function () {
+                toolbarNotify.emit('header');
+            },
+
+            toggleGridline: function () {
+                toolbarNotify.emit('gridline');
+            },
+
+            frozen: function () {
+                toolbarNotify.emit('frozen');
+            },
+
+            frozenRow: function () {
+                toolbarNotify.emit('frozenfirstrow');
+            },
+
+            frozenColumn: function () {
+                toolbarNotify.emit('frozenfirstcolumn');
+            },
+
+            cancelFrozen: function () {
+                toolbarNotify.emit('cancelfrozen');
             }
         };
     }

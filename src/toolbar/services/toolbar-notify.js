@@ -8,38 +8,6 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
     return {
         emit: function (type, args) {
             switch (type) {
-                case 'bold':
-                case 'italic':
-
-                case 'font':
-                case 'fontsize':
-
-                case 'color':
-                case 'fill':
-
-                case 'vertical':
-                case 'horizontal':
-
-                case 'numfmt':
-                case 'wraptext':
-
-                case 'insertleftcell':
-                case 'inserttopcell':
-                case 'insertrow':
-                case 'insertcolumn':
-                case 'insertsheet':
-                case 'rawrowheight':
-                case 'rawcolumnwidth':
-                case 'bestfitrowheight':
-                case 'bestfitcolumnwidth':
-                case 'rawdefaultcolumnwidth':
-                case 'hiderow':
-                case 'hidecolumn':
-                case "showrow":
-                case "showcolumn":
-                    btableService.execCommand(arguments);
-                    break;
-
                 case 'undo':
                     btableService.execCommand(['undo']);
                     break;
@@ -66,6 +34,43 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
 
                 case 'merge':
                     btableService.execCommand([args]);
+                    break;
+
+                /*
+                 case 'bold':
+                 case 'italic':
+
+                 case 'font':
+                 case 'fontsize':
+
+                 case 'color':
+                 case 'fill':
+
+                 case 'vertical':
+                 case 'horizontal':
+
+                 case 'numfmt':
+                 case 'wraptext':
+
+                 case 'insertleftcell':
+                 case 'inserttopcell':
+                 case 'insertrow':
+                 case 'insertcolumn':
+                 case 'insertsheet':
+                 case 'rawrowheight':
+                 case 'rawcolumnwidth':
+                 case 'bestfitrowheight':
+                 case 'bestfitcolumnwidth':
+                 case 'rawdefaultcolumnwidth':
+                 case 'hiderow':
+                 case 'hidecolumn':
+                 case "showrow":
+                 case "showcolumn":
+                 case "header":
+                 case "gridline":
+                 */
+                default:
+                    btableService.execCommand(arguments);
                     break;
             }
 

@@ -617,7 +617,6 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "        <div class=\"b-row-stretch\">\n" +
     "            <b-horizontalalign onchange=\"handler.alignChange(status);\" value=\"{{status.horizontal}}\"></b-horizontalalign>\n" +
-    "\n" +
     "            <div class=\"b-toolbar-delimiter\"></div>\n" +
     "\n" +
     "            <b-mergeselect checked=\"status.merge\" onchange=\"handler.mergechange(mode, value);\"></b-mergeselect>\n" +
@@ -1074,6 +1073,94 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/toolbar/tabs/view/group-display.html',
+    "<div class=\"toolbar-groups b-toolbar-cell-groups\">\n" +
+    "    <div class=\"b-row\">\n" +
+    "        <div>\n" +
+    "            <label class=\"b-label\">\n" +
+    "                <input type=\"checkbox\" ng-model=\"isShowGridline\" ng-change=\"handler.toggleGridline();\">\n" +
+    "                <span>\n" +
+    "                    {{'toolbar.items.display.gridline' | translate}}\n" +
+    "                </span>\n" +
+    "            </label>\n" +
+    "\n" +
+    "            <label class=\"b-label\">\n" +
+    "                <input type=\"checkbox\" ng-model=\"isShowHeader\" ng-change=\"handler.toggleHeader();\">\n" +
+    "                <span>\n" +
+    "                    {{'toolbar.items.display.header' | translate}}\n" +
+    "                </span>\n" +
+    "            </label>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"b-group-label\">\n" +
+    "        {{'toolbar.grouplabel.display' | translate}}\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/tabs/view/group-window.html',
+    "<div class=\"toolbar-groups b-toolbar-window-groups\">\n" +
+    "    <div class=\"b-row\">\n" +
+    "        <div>\n" +
+    "            <div class=\"btn-group b-drop-button\" dropdown on-toggle=\"btnState.insertOpen=open;\">\n" +
+    "                <div type=\"button\" class=\"btn b-frozen-main-btn b-drop-button-bottom b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': btnState.insertOpen}\">\n" +
+    "                    <span class=\"b-big-icon2 b-icon-frozen\"></span>\n" +
+    "                    {{'toolbar.buttonlabel.frozen' | translate}}\n" +
+    "                    <span class=\"caret\"></span>\n" +
+    "                </div>\n" +
+    "                <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "                    <li ng-if=\"!hasPane\" ng-click=\"handler.frozen();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-big-icon2 b-icon-frozen b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.window.frozen' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-if=\"hasPane\" ng-click=\"handler.cancelFrozen();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-big-icon2 b-icon-frozen b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.window.cancel-frozen' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.frozenRow();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-big-icon2 b-icon-frozen-first-row b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.window.frozen-first-row' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.frozenColumn();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-big-icon2 b-icon-frozen-first-column b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.window.frozen-first-column' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                </ul>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"b-group-label\">\n" +
+    "        {{'toolbar.grouplabel.window' | translate}}\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/tabs/view/index.html',
+    "<div class=\"toolbar-tabs-content\">\n" +
+    "    <ng-include b-include-replace class=\"b-tabs-page\" src=\"'template/toolbar/tabs/view/group-display.html'\"></ng-include>\n" +
+    "    <div class=\"b-toolbar-delimiter\"></div>\n" +
+    "\n" +
+    "    <ng-include b-include-replace class=\"b-tabs-page\" src=\"'template/toolbar/tabs/view/group-window.html'\"></ng-include>\n" +
+    "    <div class=\"b-toolbar-delimiter\"></div>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/toolbar/widget/buttonselect.html',
     "<div class=\"b-button-select b-mergecell-selector\" ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
     "    <a class=\"btn b-btn b-mergeandcenter-button\" role=\"button\" ng-class=\"{'b-open': isOpen || isSelected}\" ng-click=\"changeModel('center');\">\n" +
@@ -1414,9 +1501,10 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                     <!--heading=\"{{'toolbar.tabs.review' | translate}}\">-->\n" +
     "                <!--</tab>-->\n" +
     "\n" +
-    "                <!--<tab class=\"b-toolbar-tabs-label\"-->\n" +
-    "                     <!--heading=\"{{'toolbar.tabs.view' | translate}}\">-->\n" +
-    "                <!--</tab>-->\n" +
+    "                <tab class=\"b-toolbar-tabs-label\"\n" +
+    "                     heading=\"{{'toolbar.tabs.view' | translate}}\">\n" +
+    "                    <ng-include b-include-replace src=\"'template/toolbar/tabs/view/index.html'\"></ng-include>\n" +
+    "                </tab>\n" +
     "            </tabset>\n" +
     "        </div>\n" +
     "\n" +

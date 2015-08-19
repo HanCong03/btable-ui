@@ -37,9 +37,10 @@
                      <!--heading="{{'toolbar.tabs.review' | translate}}">-->
                 <!--</tab>-->
 
-                <!--<tab class="b-toolbar-tabs-label"-->
-                     <!--heading="{{'toolbar.tabs.view' | translate}}">-->
-                <!--</tab>-->
+                <tab class="b-toolbar-tabs-label"
+                     heading="{{'toolbar.tabs.view' | translate}}">
+                    <ng-include b-include-replace src="'template/toolbar/tabs/view/index.html'"></ng-include>
+                </tab>
             </tabset>
         </div>
 

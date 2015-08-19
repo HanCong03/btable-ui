@@ -17,7 +17,9 @@ var _zhCN = {
             "alignments": "对齐方式",
             "number": "数字",
             "style": "样式",
-            "cell": "单元格"
+            "cell": "单元格",
+            "display": "显示",
+            "window": "窗口"
         },
         "buttonlabel": {
             "paste": "粘贴",
@@ -27,7 +29,8 @@ var _zhCN = {
             "merge": "合并后居中",
             "numberformat": "数字格式",
             "insert": "插入",
-            "cellformat": "格式"
+            "cellformat": "格式",
+            "frozen": "冻结窗格"
         },
         "items": {
             "border": {
@@ -86,6 +89,18 @@ var _zhCN = {
                 "hidecolumn": "隐藏列",
                 "showrow": "取消隐藏行",
                 "showcolumn": "取消隐藏列"
+            },
+
+            "display": {
+                "gridline": "网格线",
+                "header": "标题"
+            },
+
+            "window": {
+                "frozen": "冻结拆分窗格",
+                "frozen-first-row": "冻结首行",
+                "frozen-first-column": "冻结首列",
+                "cancel-frozen": "取消冻结窗格"
             }
         },
 

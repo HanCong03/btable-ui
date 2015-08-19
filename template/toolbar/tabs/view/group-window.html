@@ -1,0 +1,46 @@
+<div class="toolbar-groups b-toolbar-window-groups">
+    <div class="b-row">
+        <div>
+            <div class="btn-group b-drop-button" dropdown on-toggle="btnState.insertOpen=open;">
+                <div type="button" class="btn b-frozen-main-btn b-drop-button-bottom b-btn dropdown-toggle" dropdown-toggle ng-class="{'b-open': btnState.insertOpen}">
+                    <span class="b-big-icon2 b-icon-frozen"></span>
+                    {{'toolbar.buttonlabel.frozen' | translate}}
+                    <span class="caret"></span>
+                </div>
+                <ul class="dropdown-menu" role="menu">
+                    <li ng-if="!hasPane" ng-click="handler.frozen();">
+                        <a class="b-row">
+                            <span class="b-big-icon2 b-icon-frozen b-mr5"></span>
+                            {{'toolbar.items.window.frozen' | translate}}
+                        </a>
+                    </li>
+
+                    <li ng-if="hasPane" ng-click="handler.cancelFrozen();">
+                        <a class="b-row">
+                            <span class="b-big-icon2 b-icon-frozen b-mr5"></span>
+                            {{'toolbar.items.window.cancel-frozen' | translate}}
+                        </a>
+                    </li>
+
+                    <li ng-click="handler.frozenRow();">
+                        <a class="b-row">
+                            <span class="b-big-icon2 b-icon-frozen-first-row b-mr5"></span>
+                            {{'toolbar.items.window.frozen-first-row' | translate}}
+                        </a>
+                    </li>
+
+                    <li ng-click="handler.frozenColumn();">
+                        <a class="b-row">
+                            <span class="b-big-icon2 b-icon-frozen-first-column b-mr5"></span>
+                            {{'toolbar.items.window.frozen-first-column' | translate}}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="b-group-label">
+        {{'toolbar.grouplabel.window' | translate}}
+    </div>
+</div>

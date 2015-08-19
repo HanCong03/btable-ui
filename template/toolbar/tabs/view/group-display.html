@@ -1,0 +1,23 @@
+<div class="toolbar-groups b-toolbar-cell-groups">
+    <div class="b-row">
+        <div>
+            <label class="b-label">
+                <input type="checkbox" ng-model="isShowGridline" ng-change="handler.toggleGridline();">
+                <span>
+                    {{'toolbar.items.display.gridline' | translate}}
+                </span>
+            </label>
+
+            <label class="b-label">
+                <input type="checkbox" ng-model="isShowHeader" ng-change="handler.toggleHeader();">
+                <span>
+                    {{'toolbar.items.display.header' | translate}}
+                </span>
+            </label>
+        </div>
+    </div>
+
+    <div class="b-group-label">
+        {{'toolbar.grouplabel.display' | translate}}
+    </div>
+</div>
