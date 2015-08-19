@@ -33,8 +33,42 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            <div class=\"modal-body\">\n" +
     "                <form>\n" +
     "                    <div class=\"form-group\">\n" +
-    "                        <label for=\"message-text\" class=\"control-label\">批注:</label>\n" +
+    "                        <label for=\"commentInput\" class=\"control-label\">批注:</label>\n" +
     "                        <textarea class=\"form-control\" id=\"commentInput\" ng-model=\"comment\"></textarea>\n" +
+    "                    </div>\n" +
+    "                </form>\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-footer\">\n" +
+    "                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" ng-click=\"cancel();\">\n" +
+    "                    {{'common.cancel' | translate}}\n" +
+    "                </button>\n" +
+    "                <button type=\"button\" class=\"btn btn-primary\" ng-click=\"ok();\">\n" +
+    "                    {{'common.ok' | translate}}\n" +
+    "                </button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/modal/hyperlink.html',
+    "<div class=\"b-modal\">\n" +
+    "    <div class=\"modal-dialog\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "            <div class=\"modal-header\">\n" +
+    "                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" ng-click=\"cancel();\"><span aria-hidden=\"true\">&times;</span></button>\n" +
+    "                <h4 class=\"modal-title\">超链接：</h4>\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-body\">\n" +
+    "                <form>\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"hyperlinkTextInput\" class=\"control-label\">显示文本:</label>\n" +
+    "                        <input class=\"form-control\" id=\"hyperlinkTextInput\" ng-model=\"text\">\n" +
+    "                    </div>\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"hyperlinkInput\" class=\"control-label\">链接地址（仅http(s)协议）:</label>\n" +
+    "                        <input class=\"form-control\" id=\"hyperlinkInput\" ng-model=\"hyperlink\">\n" +
     "                    </div>\n" +
     "                </form>\n" +
     "            </div>\n" +
@@ -1339,7 +1373,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                </a>\n" +
     "            </li>\n" +
     "\n" +
-    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.hyperlink();\">\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.insertHyperlink();\">\n" +
     "                <a class=\"b-row\">\n" +
     "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
     "                    {{'contextmenu.hyperlink' | translate}}\n" +
@@ -1636,6 +1670,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "    <ng-include src=\"'template/dialogs/cell-format.html'\"></ng-include>\n" +
     "    <b-contextmenu></b-contextmenu>\n" +
     "    <b-comment></b-comment>\n" +
+    "    <b-hyperlink></b-hyperlink>\n" +
     "</div>"
   );
 

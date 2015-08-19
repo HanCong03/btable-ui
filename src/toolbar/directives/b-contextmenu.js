@@ -53,10 +53,12 @@ angular.module('app').directive('bContextmenu', ['btableService', 'modalService'
 
             $scope.handler = {
                 insertComment: function () {
-                    modalService.open('comment', function () {
-                        debugger
-                    });
+                    modalService.open('comment');
+                    close();
+                },
 
+                insertHyperlink: function () {
+                    modalService.open('hyperlink');
                     close();
                 }
             };
