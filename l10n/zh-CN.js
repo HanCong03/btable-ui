@@ -132,5 +132,19 @@ var _zhCN = {
     "common": {
         "ok": "确认",
         "cancel": "取消"
+    },
+
+    "contextmenu": {
+        "insert": {
+            "main": "插入",
+            "insert-right": "插入单元格，活动单元格右移",
+            "insert-bottom": "插入单元格，活动单元格下移",
+            "insert-row": "插入行",
+            "insert-column": "插入列",
+        },
+        "clearcontent": "清除内容",
+        "comment": "插入批注 ...",
+        "cellformat": "设置单元格格式 ...",
+        "hyperlink": "超链接 ..."
     }
 };

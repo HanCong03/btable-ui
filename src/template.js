@@ -22,6 +22,36 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/modal/comment.html',
+    "<div class=\"b-modal\">\n" +
+    "    <div class=\"modal-dialog\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "            <div class=\"modal-header\">\n" +
+    "                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" ng-click=\"cancel();\"><span aria-hidden=\"true\">&times;</span></button>\n" +
+    "                <h4 class=\"modal-title\">批注：</h4>\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-body\">\n" +
+    "                <form>\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"message-text\" class=\"control-label\">批注:</label>\n" +
+    "                        <textarea class=\"form-control\" id=\"commentInput\" ng-model=\"comment\"></textarea>\n" +
+    "                    </div>\n" +
+    "                </form>\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-footer\">\n" +
+    "                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" ng-click=\"cancel();\">\n" +
+    "                    {{'common.cancel' | translate}}\n" +
+    "                </button>\n" +
+    "                <button type=\"button\" class=\"btn btn-primary\" ng-click=\"ok();\">\n" +
+    "                    {{'common.ok' | translate}}\n" +
+    "                </button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/toolbar/tabs/start/cell-format/alignment/index.html',
     "<div class=\"b-numberformat-box\">\n" +
     "    <fieldset>\n" +
@@ -1246,6 +1276,81 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/toolbar/widget/contextmenu.html',
+    "<div class=\"b-contextmenu-mask\" tabindex=\"-1\">\n" +
+    "    <div class=\"b-contextmenu\">\n" +
+    "        <ul ng-if='type === \"cell\"' class=\"show dropdown-menu b-cell-contextmenu\" role=\"menu\">\n" +
+    "            <li class=\"b-contextmenu-item\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.insert.main' | translate}}\n" +
+    "                    <span class=\"b-arrow-float b-arrow-right\"></span>\n" +
+    "                </a>\n" +
+    "                <ul class=\"dropdown-menu b-submenu\" b-contextsubmenu>\n" +
+    "                    <li class=\"b-contextmenu-item\" ng-click=\"handler.insertRight();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                            {{'contextmenu.insert.insert-right' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                    <li class=\"b-contextmenu-item\" ng-click=\"handler.insertBottom();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                            {{'contextmenu.insert.insert-bottom' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                    <li class=\"b-contextmenu-item\" ng-click=\"handler.insertRow();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                            {{'contextmenu.insert.insert-row' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                    <li class=\"b-contextmenu-item\" ng-click=\"handler.insertColumn();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                            {{'contextmenu.insert.insert-column' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                </ul>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.clearContent();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.clearcontent' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"divider\"></li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.insertComment();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.comment' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"divider\"></li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.cellformat();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.cellformat' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.hyperlink();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.hyperlink' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/toolbar/widget/copybtn.html',
     "<a class=\"btn b-btn\" role=\"button\" data-name=\"copy\" ng-click=\"handler.btnclick($event);\">\n" +
     "    <span class=\"b-icon b-icon-copy\"></span>\n" +
@@ -1529,6 +1634,8 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        </div>\n" +
     "    </div>\n" +
     "    <ng-include src=\"'template/dialogs/cell-format.html'\"></ng-include>\n" +
+    "    <b-contextmenu></b-contextmenu>\n" +
+    "    <b-comment></b-comment>\n" +
     "</div>"
   );
 

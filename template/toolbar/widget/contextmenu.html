@@ -1,0 +1,71 @@
+<div class="b-contextmenu-mask" tabindex="-1">
+    <div class="b-contextmenu">
+        <ul ng-if='type === "cell"' class="show dropdown-menu b-cell-contextmenu" role="menu">
+            <li class="b-contextmenu-item">
+                <a class="b-row">
+                    <span class="b-icon b-icon-none b-mr5"></span>
+                    {{'contextmenu.insert.main' | translate}}
+                    <span class="b-arrow-float b-arrow-right"></span>
+                </a>
+                <ul class="dropdown-menu b-submenu" b-contextsubmenu>
+                    <li class="b-contextmenu-item" ng-click="handler.insertRight();">
+                        <a class="b-row">
+                            <span class="b-icon b-icon-none b-mr5"></span>
+                            {{'contextmenu.insert.insert-right' | translate}}
+                        </a>
+                    </li>
+                    <li class="b-contextmenu-item" ng-click="handler.insertBottom();">
+                        <a class="b-row">
+                            <span class="b-icon b-icon-none b-mr5"></span>
+                            {{'contextmenu.insert.insert-bottom' | translate}}
+                        </a>
+                    </li>
+                    <li class="b-contextmenu-item" ng-click="handler.insertRow();">
+                        <a class="b-row">
+                            <span class="b-icon b-icon-none b-mr5"></span>
+                            {{'contextmenu.insert.insert-row' | translate}}
+                        </a>
+                    </li>
+                    <li class="b-contextmenu-item" ng-click="handler.insertColumn();">
+                        <a class="b-row">
+                            <span class="b-icon b-icon-none b-mr5"></span>
+                            {{'contextmenu.insert.insert-column' | translate}}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="b-contextmenu-item" ng-click="handler.clearContent();">
+                <a class="b-row">
+                    <span class="b-icon b-icon-none b-mr5"></span>
+                    {{'contextmenu.clearcontent' | translate}}
+                </a>
+            </li>
+
+            <li class="divider"></li>
+
+            <li class="b-contextmenu-item" ng-click="handler.insertComment();">
+                <a class="b-row">
+                    <span class="b-icon b-icon-none b-mr5"></span>
+                    {{'contextmenu.comment' | translate}}
+                </a>
+            </li>
+
+            <li class="divider"></li>
+
+            <li class="b-contextmenu-item" ng-click="handler.cellformat();">
+                <a class="b-row">
+                    <span class="b-icon b-icon-none b-mr5"></span>
+                    {{'contextmenu.cellformat' | translate}}
+                </a>
+            </li>
+
+            <li class="b-contextmenu-item" ng-click="handler.hyperlink();">
+                <a class="b-row">
+                    <span class="b-icon b-icon-none b-mr5"></span>
+                    {{'contextmenu.hyperlink' | translate}}
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
