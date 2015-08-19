@@ -68,10 +68,33 @@
                         </a>
                     </li>
 
-                    <li ng-click="handler.borderSelect('outer');">
+                    <li ng-click="handler.borderSelect('outermedium');">
                         <a class="b-row">
-                            <span class="b-icon b-icon-border-outer b-mr5"></span>
+                            <span class="b-icon2 b-icon-border-outer-medium b-mr5"></span>
                             {{'toolbar.items.border.outer-medium' | translate}}
+                        </a>
+                    </li>
+
+                    <li class="divider"></li>
+
+                    <li ng-click="handler.borderSelect('bottommedium');">
+                        <a class="b-row">
+                            <span class="b-icon2 b-icon-border-bottom-mediumn b-mr5"></span>
+                            {{'toolbar.items.border.outer-bottom-medium' | translate}}
+                        </a>
+                    </li>
+
+                    <li ng-click="handler.borderSelect('top-bottom');">
+                        <a class="b-row">
+                            <span class="b-icon2 b-icon-border-outer-top-bottom b-mr5"></span>
+                            {{'toolbar.items.border.outer-top-bottom' | translate}}
+                        </a>
+                    </li>
+
+                    <li ng-click="handler.borderSelect('top-bottom-medium');">
+                        <a class="b-row">
+                            <span class="b-icon2 b-icon-border-outer-top-bottom-medium b-mr5"></span>
+                            {{'toolbar.items.border.outer-top-bottom-medium' | translate}}
                         </a>
                     </li>
 
@@ -84,6 +107,7 @@
                                 <div class="b-border-color-tips" ng-style="{'background': border.color}"></div>
                             </div>
                             {{'toolbar.items.border.linecolor' | translate}}
+                            <span class="b-arrow-float b-arrow-right"></span>
                         </a>
                         <ul class="dropdown-menu b-submenu b-show-color-menu" b-submenu>
                             <li role="presentation" class="b-show-color-item">
@@ -91,10 +115,12 @@
                             </li>
                         </ul>
                     </li>
+
                     <li class="b-submenu-item">
                         <a class="b-row">
                             <span class="b-icon b-icon-empty b-mr5"></span>
                             {{'toolbar.items.border.linestyle' | translate}}
+                            <span class="b-arrow-float b-arrow-right"></span>
                         </a>
                         <ul class="dropdown-menu b-border-submenu b-submenu" b-submenu>
                             <li class="b-border-linestyle-li" ng-mousedown="handler.borderStyle(0)">

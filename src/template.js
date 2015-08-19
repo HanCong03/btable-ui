@@ -883,10 +883,33 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                        </a>\n" +
     "                    </li>\n" +
     "\n" +
-    "                    <li ng-click=\"handler.borderSelect('outer');\">\n" +
+    "                    <li ng-click=\"handler.borderSelect('outermedium');\">\n" +
     "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-border-outer b-mr5\"></span>\n" +
+    "                            <span class=\"b-icon2 b-icon-border-outer-medium b-mr5\"></span>\n" +
     "                            {{'toolbar.items.border.outer-medium' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li class=\"divider\"></li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.borderSelect('bottommedium');\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-border-bottom-mediumn b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.border.outer-bottom-medium' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.borderSelect('top-bottom');\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-border-outer-top-bottom b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.border.outer-top-bottom' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.borderSelect('top-bottom-medium');\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-border-outer-top-bottom-medium b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.border.outer-top-bottom-medium' | translate}}\n" +
     "                        </a>\n" +
     "                    </li>\n" +
     "\n" +
@@ -899,6 +922,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                                <div class=\"b-border-color-tips\" ng-style=\"{'background': border.color}\"></div>\n" +
     "                            </div>\n" +
     "                            {{'toolbar.items.border.linecolor' | translate}}\n" +
+    "                            <span class=\"b-arrow-float b-arrow-right\"></span>\n" +
     "                        </a>\n" +
     "                        <ul class=\"dropdown-menu b-submenu b-show-color-menu\" b-submenu>\n" +
     "                            <li role=\"presentation\" class=\"b-show-color-item\">\n" +
@@ -906,10 +930,12 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                            </li>\n" +
     "                        </ul>\n" +
     "                    </li>\n" +
+    "\n" +
     "                    <li class=\"b-submenu-item\">\n" +
     "                        <a class=\"b-row\">\n" +
     "                            <span class=\"b-icon b-icon-empty b-mr5\"></span>\n" +
     "                            {{'toolbar.items.border.linestyle' | translate}}\n" +
+    "                            <span class=\"b-arrow-float b-arrow-right\"></span>\n" +
     "                        </a>\n" +
     "                        <ul class=\"dropdown-menu b-border-submenu b-submenu\" b-submenu>\n" +
     "                            <li class=\"b-border-linestyle-li\" ng-mousedown=\"handler.borderStyle(0)\">\n" +

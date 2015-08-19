@@ -39,6 +39,9 @@ var _zhCN = {
                 "all": "所有框线",
                 "outer": "外侧框线",
                 "outer-medium": "外粗框线",
+                "outer-bottom-medium": "粗底框线",
+                "outer-top-bottom": "上下框线",
+                "outer-top-bottom-medium": "上框线和粗下框线",
 
                 "linecolor":  "线条颜色",
                 "linestyle": "线形"

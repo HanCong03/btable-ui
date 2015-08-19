@@ -244,6 +244,54 @@ angular.module('app').controller('ToolbarBasicController', [
                         }
                         break;
 
+                    case 'top-bottom':
+                        if (borderStyle === 'none') {
+                            toolbarNotify.emit('border', ['cleartopborder']);
+                            toolbarNotify.emit('border', ['clearbottomborder']);
+                        } else {
+                            toolbarNotify.emit('border', ['topborder', {
+                                style: borderStyle,
+                                color: borderColor
+                            }]);
+                            toolbarNotify.emit('border', ['bottomborder', {
+                                style: borderStyle,
+                                color: borderColor
+                            }]);
+                        }
+                        // 注意，此处直接返回
+                        return;
+
+                    case 'top-bottom-medium':
+                        if (borderStyle === 'none') {
+                            toolbarNotify.emit('border', ['cleartopborder']);
+                        } else {
+                            toolbarNotify.emit('border', ['topborder', {
+                                style: borderStyle,
+                                color: borderColor
+                            }]);
+                        }
+
+                        toolbarNotify.emit('border', ['bottomborder', {
+                            style: 'medium',
+                            color: borderColor
+                        }]);
+                        // 注意，此处直接返回
+                        return;
+
+                    case 'outermedium':
+                        args = ['outerborder', {
+                            style: 'medium',
+                            color: borderColor
+                        }]
+                        break;
+
+                    case 'bottommedium':
+                        args = ['bottomborder', {
+                            style: 'medium',
+                            color: borderColor
+                        }]
+                        break;
+
                     case 'all':
                         if (borderStyle === 'none') {
                             args = ['clearborder'];
