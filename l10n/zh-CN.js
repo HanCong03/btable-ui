@@ -149,6 +149,10 @@ var _zhCN = {
         "cellformat": "设置单元格格式 ...",
         "hyperlink": "超链接 ...",
         "edit-hyperlink": "编辑超链接 ...",
-        "remove-hyperlink": "取消超链接"
+        "remove-hyperlink": "取消超链接",
+        "columnwidth": "列宽 ...",
+        "rowheight": "行高 ...",
+        "hide": "隐藏",
+        "cancel-hide": "取消隐藏"
     }
 };

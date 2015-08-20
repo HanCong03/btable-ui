@@ -1272,6 +1272,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   $templateCache.put('template/toolbar/widget/contextmenu.html',
     "<div class=\"b-contextmenu-mask\" tabindex=\"-1\">\n" +
     "    <div class=\"b-contextmenu\">\n" +
+    "        <!-- 单元格菜单 start -->\n" +
     "        <ul ng-if='type === \"cell\"' class=\"show dropdown-menu b-cell-contextmenu\" role=\"menu\">\n" +
     "            <li class=\"b-contextmenu-item\">\n" +
     "                <a class=\"b-row\">\n" +
@@ -1367,6 +1368,103 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                </a>\n" +
     "            </li>\n" +
     "        </ul>\n" +
+    "        <!-- 单元格菜单 end -->\n" +
+    "\n" +
+    "        <!-- 列菜单 start -->\n" +
+    "        <ul ng-if='type === \"column\"' class=\"show dropdown-menu b-cell-contextmenu\" role=\"menu\">\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.insertColumn();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.insert.insert-column' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.clearContent();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.clearcontent' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"divider\"></li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.cellformat();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-contextmenu-cellformat b-mr5\"></span>\n" +
+    "                    {{'contextmenu.cellformat' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.setColumnWidth();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.columnwidth' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.hideColumn();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.hide' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.showColumn();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.cancel-hide' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "        <!-- 列菜单 end -->\n" +
+    "\n" +
+    "        <!-- 行菜单 start -->\n" +
+    "        <ul ng-if='type === \"row\"' class=\"show dropdown-menu b-cell-contextmenu\" role=\"menu\">\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.insertRow();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.insert.insert-row' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.clearContent();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.clearcontent' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"divider\"></li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.cellformat();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-contextmenu-cellformat b-mr5\"></span>\n" +
+    "                    {{'contextmenu.cellformat' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.setRowHeight();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.rowheight' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.hideRow();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.hide' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.showRow();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.cancel-hide' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "        <!-- 行菜单 end -->\n" +
     "    </div>\n" +
     "</div>"
   );
