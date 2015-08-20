@@ -3,7 +3,7 @@
  * @author hancong03@baiud.com
  */
 
-angular.module('app').directive('bContextmenu', ['btableService', 'modalService', function (btableService, modalService) {
+angular.module('app').directive('bContextmenu', ['btableService', 'modalService', 'cellformatModalNotify', function (btableService, modalService, cellformatModalNotify) {
 
     return {
         restrict: 'E',
@@ -14,6 +14,9 @@ angular.module('app').directive('bContextmenu', ['btableService', 'modalService'
         templateUrl: 'template/toolbar/widget/contextmenu.html',
         link: function ($scope, $ele, $attr) {
             $scope.type = 'cell';
+            $scope.hasHyperlink = false;
+            $scope.hasComment = false;
+
             var $contextment = $(".b-contextmenu", $ele);
 
             btableService.on('contextmenu', function (type, location) {
@@ -39,6 +42,13 @@ angular.module('app').directive('bContextmenu', ['btableService', 'modalService'
             });
 
             function open() {
+                $scope.hasHyperlink = !!btableService.queryCommandValue('containhyperlink');
+                $scope.focusHasHyperlink = !!btableService.queryCommandValue('hyperlink');
+                $scope.hasComment = !!btableService.queryCommandValue('containcomment');
+                $scope.focusHasComment = !!btableService.queryCommandValue('comment');
+
+                $scope.$apply();
+
                 $ele.show().focus();
             }
 
@@ -53,13 +63,53 @@ angular.module('app').directive('bContextmenu', ['btableService', 'modalService'
 
             $scope.handler = {
                 insertComment: function () {
-                    modalService.open('comment');
                     close();
+                    modalService.open('comment');
+                },
+
+                removeComment: function () {
+                    close();
+                    btableService.execCommand(['clearcomment']);
                 },
 
                 insertHyperlink: function () {
-                    modalService.open('hyperlink');
                     close();
+                    modalService.open('hyperlink');
+                },
+
+                removeHyperlink: function () {
+                    close();
+                    btableService.execCommand(['clearhyperlink']);
+                },
+
+                cellformat: function () {
+                    close();
+                    cellformatModalNotify.notify('open', 'fonts');
+                },
+
+                clearContent: function () {
+                    close();
+                    btableService.execCommand(['clearcontent']);
+                },
+
+                insertRight: function () {
+                    close();
+                    btableService.execCommand(['insertleftcell']);
+                },
+
+                insertBottom: function () {
+                    close();
+                    btableService.execCommand(['inserttopcell']);
+                },
+
+                insertRow: function () {
+                    close();
+                    btableService.execCommand(['insertrow']);
+                },
+
+                insertColumn: function () {
+                    close();
+                    btableService.execCommand(['insertcolumn']);
                 }
             };
         }

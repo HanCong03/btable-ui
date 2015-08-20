@@ -144,7 +144,11 @@ var _zhCN = {
         },
         "clearcontent": "清除内容",
         "comment": "插入批注 ...",
+        "edit-comment": "编辑批注 ...",
+        "remove-comment": "删除批注",
         "cellformat": "设置单元格格式 ...",
-        "hyperlink": "超链接 ..."
+        "hyperlink": "超链接 ...",
+        "edit-hyperlink": "编辑超链接 ...",
+        "remove-hyperlink": "取消超链接"
     }
 };

@@ -1,6 +1,6 @@
 /*!
  * ====================================================
- * Flex UI - v1.0.0 - 2015-08-19
+ * Flex UI - v1.0.0 - 2015-08-20
  * https://github.com/fex-team/fui
  * GitHub: https://github.com/fex-team/fui.git 
  * Copyright (c) 2015 Baidu Kity Group; Licensed MIT
@@ -458,6 +458,70 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            <div class=\"modal-footer\">\n" +
     "                <button type=\"button\" class=\"btn b-modal-btn b-ok-btn\" ng-mousedown=\"modalOkClick($event);\">{{'common.ok' | translate}}</button>\n" +
     "                <button type=\"button\" class=\"btn b-modal-btn b-cancel-btn\" data-dismiss=\"modal\">{{'common.cancel' | translate}}</button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/modal/comment.html',
+    "<div class=\"b-modal\">\n" +
+    "    <div class=\"modal-dialog\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "            <div class=\"modal-header\">\n" +
+    "                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" ng-click=\"cancel();\"><span aria-hidden=\"true\">&times;</span></button>\n" +
+    "                <h4 class=\"modal-title\">批注：</h4>\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-body\">\n" +
+    "                <form>\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"commentInput\" class=\"control-label\">批注:</label>\n" +
+    "                        <textarea class=\"form-control\" id=\"commentInput\" ng-model=\"comment\"></textarea>\n" +
+    "                    </div>\n" +
+    "                </form>\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-footer\">\n" +
+    "                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" ng-click=\"cancel();\">\n" +
+    "                    {{'common.cancel' | translate}}\n" +
+    "                </button>\n" +
+    "                <button type=\"button\" class=\"btn btn-primary\" ng-click=\"ok();\">\n" +
+    "                    {{'common.ok' | translate}}\n" +
+    "                </button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/modal/hyperlink.html',
+    "<div class=\"b-modal\">\n" +
+    "    <div class=\"modal-dialog\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "            <div class=\"modal-header\">\n" +
+    "                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\" ng-click=\"cancel();\"><span aria-hidden=\"true\">&times;</span></button>\n" +
+    "                <h4 class=\"modal-title\">超链接：</h4>\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-body\">\n" +
+    "                <form>\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"hyperlinkTextInput\" class=\"control-label\">显示文本:</label>\n" +
+    "                        <input class=\"form-control\" id=\"hyperlinkTextInput\" ng-model=\"text\">\n" +
+    "                    </div>\n" +
+    "                    <div class=\"form-group\">\n" +
+    "                        <label for=\"hyperlinkInput\" class=\"control-label\">链接地址（仅http(s)协议）:</label>\n" +
+    "                        <input class=\"form-control\" id=\"hyperlinkInput\" ng-model=\"hyperlink\">\n" +
+    "                    </div>\n" +
+    "                </form>\n" +
+    "            </div>\n" +
+    "            <div class=\"modal-footer\">\n" +
+    "                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" ng-click=\"cancel();\">\n" +
+    "                    {{'common.cancel' | translate}}\n" +
+    "                </button>\n" +
+    "                <button type=\"button\" class=\"btn btn-primary\" ng-click=\"ok();\">\n" +
+    "                    {{'common.ok' | translate}}\n" +
+    "                </button>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -1060,7 +1124,6 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "        <div class=\"b-row-stretch\">\n" +
     "            <b-horizontalalign onchange=\"handler.alignChange(status);\" value=\"{{status.horizontal}}\"></b-horizontalalign>\n" +
-    "\n" +
     "            <div class=\"b-toolbar-delimiter\"></div>\n" +
     "\n" +
     "            <b-mergeselect checked=\"status.merge\" onchange=\"handler.mergechange(mode, value);\"></b-mergeselect>\n" +
@@ -1326,10 +1389,33 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                        </a>\n" +
     "                    </li>\n" +
     "\n" +
-    "                    <li ng-click=\"handler.borderSelect('outer');\">\n" +
+    "                    <li ng-click=\"handler.borderSelect('outermedium');\">\n" +
     "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-border-outer b-mr5\"></span>\n" +
+    "                            <span class=\"b-icon2 b-icon-border-outer-medium b-mr5\"></span>\n" +
     "                            {{'toolbar.items.border.outer-medium' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li class=\"divider\"></li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.borderSelect('bottommedium');\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-border-bottom-mediumn b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.border.outer-bottom-medium' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.borderSelect('top-bottom');\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-border-outer-top-bottom b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.border.outer-top-bottom' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.borderSelect('top-bottom-medium');\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon2 b-icon-border-outer-top-bottom-medium b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.border.outer-top-bottom-medium' | translate}}\n" +
     "                        </a>\n" +
     "                    </li>\n" +
     "\n" +
@@ -1342,6 +1428,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                                <div class=\"b-border-color-tips\" ng-style=\"{'background': border.color}\"></div>\n" +
     "                            </div>\n" +
     "                            {{'toolbar.items.border.linecolor' | translate}}\n" +
+    "                            <span class=\"b-arrow-float b-arrow-right\"></span>\n" +
     "                        </a>\n" +
     "                        <ul class=\"dropdown-menu b-submenu b-show-color-menu\" b-submenu>\n" +
     "                            <li role=\"presentation\" class=\"b-show-color-item\">\n" +
@@ -1349,10 +1436,12 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                            </li>\n" +
     "                        </ul>\n" +
     "                    </li>\n" +
+    "\n" +
     "                    <li class=\"b-submenu-item\">\n" +
     "                        <a class=\"b-row\">\n" +
     "                            <span class=\"b-icon b-icon-empty b-mr5\"></span>\n" +
     "                            {{'toolbar.items.border.linestyle' | translate}}\n" +
+    "                            <span class=\"b-arrow-float b-arrow-right\"></span>\n" +
     "                        </a>\n" +
     "                        <ul class=\"dropdown-menu b-border-submenu b-submenu\" b-submenu>\n" +
     "                            <li class=\"b-border-linestyle-li\" ng-mousedown=\"handler.borderStyle(0)\">\n" +
@@ -1491,6 +1580,94 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/toolbar/tabs/view/group-display.html',
+    "<div class=\"toolbar-groups b-toolbar-cell-groups\">\n" +
+    "    <div class=\"b-row\">\n" +
+    "        <div>\n" +
+    "            <label class=\"b-label\">\n" +
+    "                <input type=\"checkbox\" ng-model=\"isShowGridline\" ng-change=\"handler.toggleGridline();\">\n" +
+    "                <span>\n" +
+    "                    {{'toolbar.items.display.gridline' | translate}}\n" +
+    "                </span>\n" +
+    "            </label>\n" +
+    "\n" +
+    "            <label class=\"b-label\">\n" +
+    "                <input type=\"checkbox\" ng-model=\"isShowHeader\" ng-change=\"handler.toggleHeader();\">\n" +
+    "                <span>\n" +
+    "                    {{'toolbar.items.display.header' | translate}}\n" +
+    "                </span>\n" +
+    "            </label>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"b-group-label\">\n" +
+    "        {{'toolbar.grouplabel.display' | translate}}\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/tabs/view/group-window.html',
+    "<div class=\"toolbar-groups b-toolbar-window-groups\">\n" +
+    "    <div class=\"b-row\">\n" +
+    "        <div>\n" +
+    "            <div class=\"btn-group b-drop-button\" dropdown on-toggle=\"btnState.insertOpen=open;\">\n" +
+    "                <div type=\"button\" class=\"btn b-frozen-main-btn b-drop-button-bottom b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': btnState.insertOpen}\">\n" +
+    "                    <span class=\"b-big-icon2 b-icon-frozen\"></span>\n" +
+    "                    {{'toolbar.buttonlabel.frozen' | translate}}\n" +
+    "                    <span class=\"caret\"></span>\n" +
+    "                </div>\n" +
+    "                <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "                    <li ng-if=\"!hasPane\" ng-click=\"handler.frozen();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-big-icon2 b-icon-frozen b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.window.frozen' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-if=\"hasPane\" ng-click=\"handler.cancelFrozen();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-big-icon2 b-icon-frozen b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.window.cancel-frozen' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.frozenRow();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-big-icon2 b-icon-frozen-first-row b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.window.frozen-first-row' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "\n" +
+    "                    <li ng-click=\"handler.frozenColumn();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-big-icon2 b-icon-frozen-first-column b-mr5\"></span>\n" +
+    "                            {{'toolbar.items.window.frozen-first-column' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                </ul>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"b-group-label\">\n" +
+    "        {{'toolbar.grouplabel.window' | translate}}\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/tabs/view/index.html',
+    "<div class=\"toolbar-tabs-content\">\n" +
+    "    <ng-include b-include-replace class=\"b-tabs-page\" src=\"'template/toolbar/tabs/view/group-display.html'\"></ng-include>\n" +
+    "    <div class=\"b-toolbar-delimiter\"></div>\n" +
+    "\n" +
+    "    <ng-include b-include-replace class=\"b-tabs-page\" src=\"'template/toolbar/tabs/view/group-window.html'\"></ng-include>\n" +
+    "    <div class=\"b-toolbar-delimiter\"></div>\n" +
+    "</div>"
+  );
+
+
   $templateCache.put('template/toolbar/widget/buttonselect.html',
     "<div class=\"b-button-select b-mergecell-selector\" ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
     "    <a class=\"btn b-btn b-mergeandcenter-button\" role=\"button\" ng-class=\"{'b-open': isOpen || isSelected}\" ng-click=\"changeModel('center');\">\n" +
@@ -1571,6 +1748,81 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/widget/contextmenu.html',
+    "<div class=\"b-contextmenu-mask\" tabindex=\"-1\">\n" +
+    "    <div class=\"b-contextmenu\">\n" +
+    "        <ul ng-if='type === \"cell\"' class=\"show dropdown-menu b-cell-contextmenu\" role=\"menu\">\n" +
+    "            <li class=\"b-contextmenu-item\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.insert.main' | translate}}\n" +
+    "                    <span class=\"b-arrow-float b-arrow-right\"></span>\n" +
+    "                </a>\n" +
+    "                <ul class=\"dropdown-menu b-submenu\" b-contextsubmenu>\n" +
+    "                    <li class=\"b-contextmenu-item\" ng-click=\"handler.insertRight();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                            {{'contextmenu.insert.insert-right' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                    <li class=\"b-contextmenu-item\" ng-click=\"handler.insertBottom();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                            {{'contextmenu.insert.insert-bottom' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                    <li class=\"b-contextmenu-item\" ng-click=\"handler.insertRow();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                            {{'contextmenu.insert.insert-row' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                    <li class=\"b-contextmenu-item\" ng-click=\"handler.insertColumn();\">\n" +
+    "                        <a class=\"b-row\">\n" +
+    "                            <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                            {{'contextmenu.insert.insert-column' | translate}}\n" +
+    "                        </a>\n" +
+    "                    </li>\n" +
+    "                </ul>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.clearContent();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.clearcontent' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"divider\"></li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.insertComment();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.comment' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"divider\"></li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.cellformat();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.cellformat' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.insertHyperlink();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.hyperlink' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
     "    </div>\n" +
     "</div>"
   );
@@ -1657,15 +1909,15 @@ angular.module('app').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('template/toolbar/widget/namedefine.html',
-    "<div class=\"b-input-select b-fontfamily-select\" ng-class=\"{'b-open': isOpen}\">\n" +
-    "    <input ng-model=\"selectValue\" class=\"b-input-select-input\">\n" +
-    "    <div class=\"btn-group\" dropdown on-toggle=\"toggle(open)\">\n" +
-    "        <button type=\"button\" class=\"btn b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': isOpen}\">\n" +
+    "<div class=\"b-input-select b-namedefine-wrap\">\n" +
+    "    <input class=\"b-input-select-input\">\n" +
+    "    <div class=\"btn-group\" dropdown>\n" +
+    "        <button type=\"button\" class=\"btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': isOpen}\">\n" +
     "            <span class=\"caret\"></span>\n" +
     "        </button>\n" +
     "        <ul class=\"dropdown-menu\" role=\"menu\">\n" +
-    "            <li ng-repeat=\"value in values\" data-value=\"{{value}}\" class=\"b-input-select-item\">\n" +
-    "                <a>{{value}}</a>\n" +
+    "            <li ng-repeat=\"name in names\" data-value=\"{{name}}\" class=\"b-input-select-item\">\n" +
+    "                <a>{{name}}</a>\n" +
     "            </li>\n" +
     "        </ul>\n" +
     "    </div>\n" +
@@ -1831,15 +2083,16 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "                     <!--heading=\"{{'toolbar.tabs.review' | translate}}\">-->\n" +
     "                <!--</tab>-->\n" +
     "\n" +
-    "                <!--<tab class=\"b-toolbar-tabs-label\"-->\n" +
-    "                     <!--heading=\"{{'toolbar.tabs.view' | translate}}\">-->\n" +
-    "                <!--</tab>-->\n" +
+    "                <tab class=\"b-toolbar-tabs-label\"\n" +
+    "                     heading=\"{{'toolbar.tabs.view' | translate}}\">\n" +
+    "                    <ng-include b-include-replace src=\"'template/toolbar/tabs/view/index.html'\"></ng-include>\n" +
+    "                </tab>\n" +
     "            </tabset>\n" +
     "        </div>\n" +
     "\n" +
     "        <div class=\"b-row b-input-area\">\n" +
     "            <div class=\"b-btable-ctrl-btns\">\n" +
-    "                <div b-namedefine></div>\n" +
+    "                <b-namedefine onchange=\"handler.namechange();\"></b-namedefine>\n" +
     "            </div>\n" +
     "            <div id=\"btableOuterInput\" spellcheck=\"false\" contenteditable=\"true\" class=\"btable-input\"></div>\n" +
     "        </div>\n" +
@@ -1858,6 +2111,9 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        </div>\n" +
     "    </div>\n" +
     "    <ng-include src=\"'template/dialogs/cell-format.html'\"></ng-include>\n" +
+    "    <b-contextmenu></b-contextmenu>\n" +
+    "    <b-comment></b-comment>\n" +
+    "    <b-hyperlink></b-hyperlink>\n" +
     "</div>"
   );
 
@@ -1956,7 +2212,9 @@ var _zhCN = {
             "alignments": "对齐方式",
             "number": "数字",
             "style": "样式",
-            "cell": "单元格"
+            "cell": "单元格",
+            "display": "显示",
+            "window": "窗口"
         },
         "buttonlabel": {
             "paste": "粘贴",
@@ -1966,7 +2224,8 @@ var _zhCN = {
             "merge": "合并后居中",
             "numberformat": "数字格式",
             "insert": "插入",
-            "cellformat": "格式"
+            "cellformat": "格式",
+            "frozen": "冻结窗格"
         },
         "items": {
             "border": {
@@ -1978,6 +2237,9 @@ var _zhCN = {
                 "all": "所有框线",
                 "outer": "外侧框线",
                 "outer-medium": "外粗框线",
+                "outer-bottom-medium": "粗底框线",
+                "outer-top-bottom": "上下框线",
+                "outer-top-bottom-medium": "上框线和粗下框线",
 
                 "linecolor":  "线条颜色",
                 "linestyle": "线形"
@@ -2022,6 +2284,18 @@ var _zhCN = {
                 "hidecolumn": "隐藏列",
                 "showrow": "取消隐藏行",
                 "showcolumn": "取消隐藏列"
+            },
+
+            "display": {
+                "gridline": "网格线",
+                "header": "标题"
+            },
+
+            "window": {
+                "frozen": "冻结拆分窗格",
+                "frozen-first-row": "冻结首行",
+                "frozen-first-column": "冻结首列",
+                "cancel-frozen": "取消冻结窗格"
             }
         },
 
@@ -2053,6 +2327,20 @@ var _zhCN = {
     "common": {
         "ok": "确认",
         "cancel": "取消"
+    },
+
+    "contextmenu": {
+        "insert": {
+            "main": "插入",
+            "insert-right": "插入单元格，活动单元格右移",
+            "insert-bottom": "插入单元格，活动单元格下移",
+            "insert-row": "插入行",
+            "insert-column": "插入列",
+        },
+        "clearcontent": "清除内容",
+        "comment": "插入批注 ...",
+        "cellformat": "设置单元格格式 ...",
+        "hyperlink": "超链接 ..."
     }
 };
 /**
@@ -3421,38 +3709,6 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
     return {
         emit: function (type, args) {
             switch (type) {
-                case 'bold':
-                case 'italic':
-
-                case 'font':
-                case 'fontsize':
-
-                case 'color':
-                case 'fill':
-
-                case 'vertical':
-                case 'horizontal':
-
-                case 'numfmt':
-                case 'wraptext':
-
-                case 'insertleftcell':
-                case 'inserttopcell':
-                case 'insertrow':
-                case 'insertcolumn':
-                case 'insertsheet':
-                case 'rawrowheight':
-                case 'rawcolumnwidth':
-                case 'bestfitrowheight':
-                case 'bestfitcolumnwidth':
-                case 'rawdefaultcolumnwidth':
-                case 'hiderow':
-                case 'hidecolumn':
-                case "showrow":
-                case "showcolumn":
-                    btableService.execCommand(arguments);
-                    break;
-
                 case 'undo':
                     btableService.execCommand(['undo']);
                     break;
@@ -3479,6 +3735,43 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
 
                 case 'merge':
                     btableService.execCommand([args]);
+                    break;
+
+                /*
+                 case 'bold':
+                 case 'italic':
+
+                 case 'font':
+                 case 'fontsize':
+
+                 case 'color':
+                 case 'fill':
+
+                 case 'vertical':
+                 case 'horizontal':
+
+                 case 'numfmt':
+                 case 'wraptext':
+
+                 case 'insertleftcell':
+                 case 'inserttopcell':
+                 case 'insertrow':
+                 case 'insertcolumn':
+                 case 'insertsheet':
+                 case 'rawrowheight':
+                 case 'rawcolumnwidth':
+                 case 'bestfitrowheight':
+                 case 'bestfitcolumnwidth':
+                 case 'rawdefaultcolumnwidth':
+                 case 'hiderow':
+                 case 'hidecolumn':
+                 case "showrow":
+                 case "showcolumn":
+                 case "header":
+                 case "gridline":
+                 */
+                default:
+                    btableService.execCommand(arguments);
                     break;
             }
 
@@ -3924,6 +4217,10 @@ angular.module('app').controller('ToolbarBasicController', [
             btableService.execCommand(['resize']);
         };
 
+        $scope.isShowGridline = true;
+        $scope.isShowHeader = true;
+        $scope.hasPane = false;
+
         btableService.ready(function () {
             btableService.on('error', function (key, msg) {
                 $modal.open({
@@ -3942,6 +4239,12 @@ angular.module('app').controller('ToolbarBasicController', [
                     $("#errorModalHiddenInput").focus();
                     $("#errorModalBtn").focus();
                 }, 1);
+            });
+
+            btableService.on('dataready', function () {
+                $scope.isShowGridline = btableService.queryCommandValue('gridline');
+                $scope.isShowHeader = btableService.queryCommandValue('header');
+                $scope.hasPane = !!btableService.queryCommandValue('pane');
             });
         });
 
@@ -3996,6 +4299,10 @@ angular.module('app').controller('ToolbarBasicController', [
             status.color = btableStatus.colordetail.value;
             status.fill = btableStatus.filldetail ? btableStatus.filldetail.value : null;
             status.merge = !!btableStatus.mergecell;
+
+            $scope.isShowGridline = btableService.queryCommandValue('gridline');
+            $scope.isShowHeader = btableService.queryCommandValue('header');
+            $scope.hasPane = !!btableService.queryCommandValue('pane');
 
             $scope.$apply();
         });
@@ -4150,6 +4457,54 @@ angular.module('app').controller('ToolbarBasicController', [
                                 color: borderColor
                             }]
                         }
+                        break;
+
+                    case 'top-bottom':
+                        if (borderStyle === 'none') {
+                            toolbarNotify.emit('border', ['cleartopborder']);
+                            toolbarNotify.emit('border', ['clearbottomborder']);
+                        } else {
+                            toolbarNotify.emit('border', ['topborder', {
+                                style: borderStyle,
+                                color: borderColor
+                            }]);
+                            toolbarNotify.emit('border', ['bottomborder', {
+                                style: borderStyle,
+                                color: borderColor
+                            }]);
+                        }
+                        // 注意，此处直接返回
+                        return;
+
+                    case 'top-bottom-medium':
+                        if (borderStyle === 'none') {
+                            toolbarNotify.emit('border', ['cleartopborder']);
+                        } else {
+                            toolbarNotify.emit('border', ['topborder', {
+                                style: borderStyle,
+                                color: borderColor
+                            }]);
+                        }
+
+                        toolbarNotify.emit('border', ['bottomborder', {
+                            style: 'medium',
+                            color: borderColor
+                        }]);
+                        // 注意，此处直接返回
+                        return;
+
+                    case 'outermedium':
+                        args = ['outerborder', {
+                            style: 'medium',
+                            color: borderColor
+                        }]
+                        break;
+
+                    case 'bottommedium':
+                        args = ['bottomborder', {
+                            style: 'medium',
+                            color: borderColor
+                        }]
                         break;
 
                     case 'all':
@@ -4310,6 +4665,34 @@ angular.module('app').controller('ToolbarBasicController', [
 
             showColumn: function () {
                 toolbarNotify.emit('showcolumn');
+            },
+
+            namechange: function () {
+                console.log('namechange')
+            },
+
+            toggleHeader: function () {
+                toolbarNotify.emit('header');
+            },
+
+            toggleGridline: function () {
+                toolbarNotify.emit('gridline');
+            },
+
+            frozen: function () {
+                toolbarNotify.emit('frozen');
+            },
+
+            frozenRow: function () {
+                toolbarNotify.emit('frozenfirstrow');
+            },
+
+            frozenColumn: function () {
+                toolbarNotify.emit('frozenfirstcolumn');
+            },
+
+            cancelFrozen: function () {
+                toolbarNotify.emit('cancelfrozen');
             }
         };
     }

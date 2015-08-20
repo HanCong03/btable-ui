@@ -1,6 +1,6 @@
 <div class="b-button-select b-mergecell-selector" ng-class="{'b-open': isOpen || isSelected}">
     <a class="btn b-btn b-mergeandcenter-button" role="button" ng-class="{'b-open': isOpen || isSelected}" ng-click="changeModel('center');">
-        <span class="b-icon b-icon-merge"></span>
+        <span class="b-icon2 b-icon-merge-center"></span>
         {{'toolbar.buttonlabel.merge' | translate}}
     </a>
     <div class="btn-group" dropdown on-toggle="isOpen=open;">
@@ -10,25 +10,25 @@
         <ul class="dropdown-menu" role="menu">
             <li>
                 <a class="b-row" ng-click="changeModel('center');">
-                    <span class="b-icon b-icon-merge b-mr5"></span>
+                    <span class="b-icon2 b-icon-merge-center b-mr5"></span>
                     {{'toolbar.items.merge.center' | translate}}
                 </a>
             </li>
             <li>
                 <a class="b-row" ng-click="changeModel('across');">
-                    <span class="b-icon b-icon-merge b-mr5"></span>
+                    <span class="b-icon2 b-icon-cross-merge b-mr5"></span>
                     {{'toolbar.items.merge.across' | translate}}
                 </a>
             </li>
             <li>
                 <a class="b-row" ng-click="changeModel('merge');">
-                    <span class="b-icon b-icon-merge b-mr5"></span>
+                    <span class="b-icon2 b-icon-merge b-mr5"></span>
                     {{'toolbar.items.merge.merge' | translate}}
                 </a>
             </li>
             <li>
                 <a class="b-row" ng-click="changeModel('cancel');">
-                    <span class="b-icon b-icon-merge b-mr5"></span>
+                    <span class="b-icon2 b-icon-cancel-merge b-mr5"></span>
                     {{'toolbar.items.merge.cancel' | translate}}
                 </a>
             </li>

@@ -12,7 +12,7 @@ angular.module('app').directive('bMergeselect', [function () {
             onchange: '&',
             checked: '=?'
         },
-        templateUrl: 'template/toolbar/widget/buttonselect.html',
+        templateUrl: 'template/toolbar/widget/mergecell.html',
         link: function ($scope) {
             var hook = $scope.onchange || angular.noop();
 

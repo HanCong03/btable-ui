@@ -1225,47 +1225,6 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('template/toolbar/widget/buttonselect.html',
-    "<div class=\"b-button-select b-mergecell-selector\" ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
-    "    <a class=\"btn b-btn b-mergeandcenter-button\" role=\"button\" ng-class=\"{'b-open': isOpen || isSelected}\" ng-click=\"changeModel('center');\">\n" +
-    "        <span class=\"b-icon b-icon-merge\"></span>\n" +
-    "        {{'toolbar.buttonlabel.merge' | translate}}\n" +
-    "    </a>\n" +
-    "    <div class=\"btn-group\" dropdown on-toggle=\"isOpen=open;\">\n" +
-    "        <button type=\"button\" class=\"btn b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
-    "            <span class=\"caret\"></span>\n" +
-    "        </button>\n" +
-    "        <ul class=\"dropdown-menu\" role=\"menu\">\n" +
-    "            <li>\n" +
-    "                <a class=\"b-row\" ng-click=\"changeModel('center');\">\n" +
-    "                    <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
-    "                    {{'toolbar.items.merge.center' | translate}}\n" +
-    "                </a>\n" +
-    "            </li>\n" +
-    "            <li>\n" +
-    "                <a class=\"b-row\" ng-click=\"changeModel('across');\">\n" +
-    "                    <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
-    "                    {{'toolbar.items.merge.across' | translate}}\n" +
-    "                </a>\n" +
-    "            </li>\n" +
-    "            <li>\n" +
-    "                <a class=\"b-row\" ng-click=\"changeModel('merge');\">\n" +
-    "                    <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
-    "                    {{'toolbar.items.merge.merge' | translate}}\n" +
-    "                </a>\n" +
-    "            </li>\n" +
-    "            <li>\n" +
-    "                <a class=\"b-row\" ng-click=\"changeModel('cancel');\">\n" +
-    "                    <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
-    "                    {{'toolbar.items.merge.cancel' | translate}}\n" +
-    "                </a>\n" +
-    "            </li>\n" +
-    "        </ul>\n" +
-    "    </div>\n" +
-    "</div>"
-  );
-
-
   $templateCache.put('template/toolbar/widget/cellstyles.html',
     "<div class=\"b-drappanel-wrap\">\n" +
     "    <div class=\"b-drappanel b-row\">\n" +
@@ -1316,32 +1275,32 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        <ul ng-if='type === \"cell\"' class=\"show dropdown-menu b-cell-contextmenu\" role=\"menu\">\n" +
     "            <li class=\"b-contextmenu-item\">\n" +
     "                <a class=\"b-row\">\n" +
-    "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
     "                    {{'contextmenu.insert.main' | translate}}\n" +
     "                    <span class=\"b-arrow-float b-arrow-right\"></span>\n" +
     "                </a>\n" +
     "                <ul class=\"dropdown-menu b-submenu\" b-contextsubmenu>\n" +
     "                    <li class=\"b-contextmenu-item\" ng-click=\"handler.insertRight();\">\n" +
     "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                            <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
     "                            {{'contextmenu.insert.insert-right' | translate}}\n" +
     "                        </a>\n" +
     "                    </li>\n" +
     "                    <li class=\"b-contextmenu-item\" ng-click=\"handler.insertBottom();\">\n" +
     "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                            <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
     "                            {{'contextmenu.insert.insert-bottom' | translate}}\n" +
     "                        </a>\n" +
     "                    </li>\n" +
     "                    <li class=\"b-contextmenu-item\" ng-click=\"handler.insertRow();\">\n" +
     "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                            <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
     "                            {{'contextmenu.insert.insert-row' | translate}}\n" +
     "                        </a>\n" +
     "                    </li>\n" +
     "                    <li class=\"b-contextmenu-item\" ng-click=\"handler.insertColumn();\">\n" +
     "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                            <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
     "                            {{'contextmenu.insert.insert-column' | translate}}\n" +
     "                        </a>\n" +
     "                    </li>\n" +
@@ -1350,17 +1309,31 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "            <li class=\"b-contextmenu-item\" ng-click=\"handler.clearContent();\">\n" +
     "                <a class=\"b-row\">\n" +
-    "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
     "                    {{'contextmenu.clearcontent' | translate}}\n" +
     "                </a>\n" +
     "            </li>\n" +
     "\n" +
     "            <li class=\"divider\"></li>\n" +
     "\n" +
-    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.insertComment();\">\n" +
+    "            <li ng-if=\"!focusHasComment\" class=\"b-contextmenu-item\" ng-click=\"handler.insertComment();\">\n" +
     "                <a class=\"b-row\">\n" +
-    "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                    <span class=\"b-icon2  b-icon-contextmenu-comment b-mr5\"></span>\n" +
     "                    {{'contextmenu.comment' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li ng-if=\"focusHasComment\" class=\"b-contextmenu-item\" ng-click=\"handler.insertComment();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-contextmenu-comment b-mr5\"></span>\n" +
+    "                    {{'contextmenu.edit-comment' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li ng-if=\"hasComment\" class=\"b-contextmenu-item\" ng-click=\"handler.removeComment();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-contextmenu-remove-comment b-mr5\"></span>\n" +
+    "                    {{'contextmenu.remove-comment' | translate}}\n" +
     "                </a>\n" +
     "            </li>\n" +
     "\n" +
@@ -1368,15 +1341,29 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "            <li class=\"b-contextmenu-item\" ng-click=\"handler.cellformat();\">\n" +
     "                <a class=\"b-row\">\n" +
-    "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                    <span class=\"b-icon2  b-icon-contextmenu-cellformat b-mr5\"></span>\n" +
     "                    {{'contextmenu.cellformat' | translate}}\n" +
     "                </a>\n" +
     "            </li>\n" +
     "\n" +
-    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.insertHyperlink();\">\n" +
+    "            <li ng-if=\"!focusHasHyperlink\" class=\"b-contextmenu-item\" ng-click=\"handler.insertHyperlink();\">\n" +
     "                <a class=\"b-row\">\n" +
-    "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                    <span class=\"b-icon2  b-icon-contextmenu-hyperlink b-mr5\"></span>\n" +
     "                    {{'contextmenu.hyperlink' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li ng-if=\"focusHasHyperlink\" class=\"b-contextmenu-item\" ng-click=\"handler.insertHyperlink();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-contextmenu-hyperlink b-mr5\"></span>\n" +
+    "                    {{'contextmenu.edit-hyperlink' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li ng-if=\"hasHyperlink\" class=\"b-contextmenu-item\" ng-click=\"handler.removeHyperlink();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-contextmenu-remove-hyperlink b-mr5\"></span>\n" +
+    "                    {{'contextmenu.remove-hyperlink' | translate}}\n" +
     "                </a>\n" +
     "            </li>\n" +
     "        </ul>\n" +
@@ -1458,6 +1445,47 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        <ul class=\"dropdown-menu\" role=\"menu\">\n" +
     "            <li ng-repeat=\"font in values\" data-value=\"{{font}}\" class=\"b-input-select-item\">\n" +
     "                <a style='font-family: {{font}};'>{{font}}</a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/widget/mergecell.html',
+    "<div class=\"b-button-select b-mergecell-selector\" ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
+    "    <a class=\"btn b-btn b-mergeandcenter-button\" role=\"button\" ng-class=\"{'b-open': isOpen || isSelected}\" ng-click=\"changeModel('center');\">\n" +
+    "        <span class=\"b-icon2 b-icon-merge-center\"></span>\n" +
+    "        {{'toolbar.buttonlabel.merge' | translate}}\n" +
+    "    </a>\n" +
+    "    <div class=\"btn-group\" dropdown on-toggle=\"isOpen=open;\">\n" +
+    "        <button type=\"button\" class=\"btn b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
+    "            <span class=\"caret\"></span>\n" +
+    "        </button>\n" +
+    "        <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "            <li>\n" +
+    "                <a class=\"b-row\" ng-click=\"changeModel('center');\">\n" +
+    "                    <span class=\"b-icon2 b-icon-merge-center b-mr5\"></span>\n" +
+    "                    {{'toolbar.items.merge.center' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "                <a class=\"b-row\" ng-click=\"changeModel('across');\">\n" +
+    "                    <span class=\"b-icon2 b-icon-cross-merge b-mr5\"></span>\n" +
+    "                    {{'toolbar.items.merge.across' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "                <a class=\"b-row\" ng-click=\"changeModel('merge');\">\n" +
+    "                    <span class=\"b-icon2 b-icon-merge b-mr5\"></span>\n" +
+    "                    {{'toolbar.items.merge.merge' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "                <a class=\"b-row\" ng-click=\"changeModel('cancel');\">\n" +
+    "                    <span class=\"b-icon2 b-icon-cancel-merge b-mr5\"></span>\n" +
+    "                    {{'toolbar.items.merge.cancel' | translate}}\n" +
+    "                </a>\n" +
     "            </li>\n" +
     "        </ul>\n" +
     "    </div>\n" +
