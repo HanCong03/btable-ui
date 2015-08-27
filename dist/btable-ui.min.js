@@ -1,6 +1,6 @@
 /*!
  * ====================================================
- * Flex UI - v1.0.0 - 2015-08-24
+ * Flex UI - v1.0.0 - 2015-08-27
  * https://github.com/fex-team/fui
  * GitHub: https://github.com/fex-team/fui.git 
  * Copyright (c) 2015 Baidu Kity Group; Licensed MIT
