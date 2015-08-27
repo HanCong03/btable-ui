@@ -42,6 +42,18 @@ module.exports = function (grunt) {
             }
         },
 
+        clean: {
+            build: ["dist/*"]
+        },
+
+        copy: {
+            img: {
+                files: [
+                    {cwd: 'css/', expand: true, src: ['*.png'], dest: 'dist/theme/default', filter: 'isFile'}
+                ]
+            }
+        },
+
         ngtemplates: {
             app: {
                 src: 'template/**/*.html',
@@ -98,11 +110,11 @@ module.exports = function (grunt) {
                     "src/toolbar/directives/b-sheetlist.js",
                     "src/toolbar/directives/b-cutbtn.js",
                     "src/toolbar/directives/b-showcolor.js",
+                    "src/toolbar/directives/b-filepanel.js",
                     "src/toolbar/directives/b-copybtn.js",
                     "src/toolbar/directives/modal/b-comment.js",
                     "src/toolbar/directives/modal/b-hyperlink.js",
                     "src/toolbar/directives/b-pastebtn.js",
-                    "src/toolbar/directives/b-filepanel.js",
                     "src/directives/btable.js",
 
                     "src/toolbar/services/toolbar-notify.js",
@@ -111,7 +123,6 @@ module.exports = function (grunt) {
                     "src/toolbar/services/btable.js",
                     "src/toolbar/services/sheetlist.js",
                     "src/toolbar/services/numberformat.js",
-
                     "src/toolbar/controllers/basic.js",
                     "src/toolbar/controllers/modal.js",
                     "src/toolbar/controllers/cellformat-modal.js",
@@ -186,19 +197,14 @@ module.exports = function (grunt) {
                     'dist/theme/default/btable-ui.min.css': ['dist/theme/default/btable-ui.css']
                 }
             }
-        },
-
-        // 临时目录清理
-        clean: {
-            files: ['.tmp_build']
         }
-
     });
 
     // These plugins provide necessary tasks.
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-module-dependence');
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -210,5 +216,5 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['jshint']);
     grunt.registerTask('test', ['uglify']);
     grunt.registerTask('dev', ['less', 'ngtemplates', 'watch']);
-    grunt.registerTask('build', ['less', 'ngtemplates', 'concat', 'uglify', 'cssmin']);
+    grunt.registerTask('build', ['clean', 'less', 'ngtemplates', 'concat', 'uglify', 'cssmin', 'copy']);
 };
