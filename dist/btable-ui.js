@@ -1,6 +1,6 @@
 /*!
  * ====================================================
- * Flex UI - v1.0.0 - 2015-08-20
+ * Flex UI - v1.0.0 - 2015-08-24
  * https://github.com/fex-team/fui
  * GitHub: https://github.com/fex-team/fui.git 
  * Copyright (c) 2015 Baidu Kity Group; Licensed MIT
@@ -465,6 +465,11 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/file-default.html',
+    "默认文件"
+  );
+
+
   $templateCache.put('template/modal/comment.html',
     "<div class=\"b-modal\">\n" +
     "    <div class=\"modal-dialog\">\n" +
@@ -525,6 +530,13 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/tabs/file.html',
+    "<div class=\"b-fileoptions-container\" tabindex=\"-1\">\n" +
+    "    <ng-include src=\"url\"></ng-include>\n" +
     "</div>"
   );
 
@@ -1668,47 +1680,6 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
-  $templateCache.put('template/toolbar/widget/buttonselect.html',
-    "<div class=\"b-button-select b-mergecell-selector\" ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
-    "    <a class=\"btn b-btn b-mergeandcenter-button\" role=\"button\" ng-class=\"{'b-open': isOpen || isSelected}\" ng-click=\"changeModel('center');\">\n" +
-    "        <span class=\"b-icon b-icon-merge\"></span>\n" +
-    "        {{'toolbar.buttonlabel.merge' | translate}}\n" +
-    "    </a>\n" +
-    "    <div class=\"btn-group\" dropdown on-toggle=\"isOpen=open;\">\n" +
-    "        <button type=\"button\" class=\"btn b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
-    "            <span class=\"caret\"></span>\n" +
-    "        </button>\n" +
-    "        <ul class=\"dropdown-menu\" role=\"menu\">\n" +
-    "            <li>\n" +
-    "                <a class=\"b-row\" ng-click=\"changeModel('center');\">\n" +
-    "                    <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
-    "                    {{'toolbar.items.merge.center' | translate}}\n" +
-    "                </a>\n" +
-    "            </li>\n" +
-    "            <li>\n" +
-    "                <a class=\"b-row\" ng-click=\"changeModel('across');\">\n" +
-    "                    <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
-    "                    {{'toolbar.items.merge.across' | translate}}\n" +
-    "                </a>\n" +
-    "            </li>\n" +
-    "            <li>\n" +
-    "                <a class=\"b-row\" ng-click=\"changeModel('merge');\">\n" +
-    "                    <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
-    "                    {{'toolbar.items.merge.merge' | translate}}\n" +
-    "                </a>\n" +
-    "            </li>\n" +
-    "            <li>\n" +
-    "                <a class=\"b-row\" ng-click=\"changeModel('cancel');\">\n" +
-    "                    <span class=\"b-icon b-icon-merge b-mr5\"></span>\n" +
-    "                    {{'toolbar.items.merge.cancel' | translate}}\n" +
-    "                </a>\n" +
-    "            </li>\n" +
-    "        </ul>\n" +
-    "    </div>\n" +
-    "</div>"
-  );
-
-
   $templateCache.put('template/toolbar/widget/cellstyles.html',
     "<div class=\"b-drappanel-wrap\">\n" +
     "    <div class=\"b-drappanel b-row\">\n" +
@@ -1756,35 +1727,36 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   $templateCache.put('template/toolbar/widget/contextmenu.html',
     "<div class=\"b-contextmenu-mask\" tabindex=\"-1\">\n" +
     "    <div class=\"b-contextmenu\">\n" +
+    "        <!-- 单元格菜单 start -->\n" +
     "        <ul ng-if='type === \"cell\"' class=\"show dropdown-menu b-cell-contextmenu\" role=\"menu\">\n" +
     "            <li class=\"b-contextmenu-item\">\n" +
     "                <a class=\"b-row\">\n" +
-    "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
     "                    {{'contextmenu.insert.main' | translate}}\n" +
     "                    <span class=\"b-arrow-float b-arrow-right\"></span>\n" +
     "                </a>\n" +
     "                <ul class=\"dropdown-menu b-submenu\" b-contextsubmenu>\n" +
     "                    <li class=\"b-contextmenu-item\" ng-click=\"handler.insertRight();\">\n" +
     "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                            <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
     "                            {{'contextmenu.insert.insert-right' | translate}}\n" +
     "                        </a>\n" +
     "                    </li>\n" +
     "                    <li class=\"b-contextmenu-item\" ng-click=\"handler.insertBottom();\">\n" +
     "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                            <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
     "                            {{'contextmenu.insert.insert-bottom' | translate}}\n" +
     "                        </a>\n" +
     "                    </li>\n" +
     "                    <li class=\"b-contextmenu-item\" ng-click=\"handler.insertRow();\">\n" +
     "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                            <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
     "                            {{'contextmenu.insert.insert-row' | translate}}\n" +
     "                        </a>\n" +
     "                    </li>\n" +
     "                    <li class=\"b-contextmenu-item\" ng-click=\"handler.insertColumn();\">\n" +
     "                        <a class=\"b-row\">\n" +
-    "                            <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                            <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
     "                            {{'contextmenu.insert.insert-column' | translate}}\n" +
     "                        </a>\n" +
     "                    </li>\n" +
@@ -1793,17 +1765,31 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "            <li class=\"b-contextmenu-item\" ng-click=\"handler.clearContent();\">\n" +
     "                <a class=\"b-row\">\n" +
-    "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
     "                    {{'contextmenu.clearcontent' | translate}}\n" +
     "                </a>\n" +
     "            </li>\n" +
     "\n" +
     "            <li class=\"divider\"></li>\n" +
     "\n" +
-    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.insertComment();\">\n" +
+    "            <li ng-if=\"!focusHasComment\" class=\"b-contextmenu-item\" ng-click=\"handler.insertComment();\">\n" +
     "                <a class=\"b-row\">\n" +
-    "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                    <span class=\"b-icon2  b-icon-contextmenu-comment b-mr5\"></span>\n" +
     "                    {{'contextmenu.comment' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li ng-if=\"focusHasComment\" class=\"b-contextmenu-item\" ng-click=\"handler.insertComment();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-contextmenu-comment b-mr5\"></span>\n" +
+    "                    {{'contextmenu.edit-comment' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li ng-if=\"hasComment\" class=\"b-contextmenu-item\" ng-click=\"handler.removeComment();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-contextmenu-remove-comment b-mr5\"></span>\n" +
+    "                    {{'contextmenu.remove-comment' | translate}}\n" +
     "                </a>\n" +
     "            </li>\n" +
     "\n" +
@@ -1811,18 +1797,129 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "\n" +
     "            <li class=\"b-contextmenu-item\" ng-click=\"handler.cellformat();\">\n" +
     "                <a class=\"b-row\">\n" +
-    "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                    <span class=\"b-icon2  b-icon-contextmenu-cellformat b-mr5\"></span>\n" +
     "                    {{'contextmenu.cellformat' | translate}}\n" +
     "                </a>\n" +
     "            </li>\n" +
     "\n" +
-    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.insertHyperlink();\">\n" +
+    "            <li ng-if=\"!focusHasHyperlink\" class=\"b-contextmenu-item\" ng-click=\"handler.insertHyperlink();\">\n" +
     "                <a class=\"b-row\">\n" +
-    "                    <span class=\"b-icon b-icon-none b-mr5\"></span>\n" +
+    "                    <span class=\"b-icon2  b-icon-contextmenu-hyperlink b-mr5\"></span>\n" +
     "                    {{'contextmenu.hyperlink' | translate}}\n" +
     "                </a>\n" +
     "            </li>\n" +
+    "\n" +
+    "            <li ng-if=\"focusHasHyperlink\" class=\"b-contextmenu-item\" ng-click=\"handler.insertHyperlink();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-contextmenu-hyperlink b-mr5\"></span>\n" +
+    "                    {{'contextmenu.edit-hyperlink' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li ng-if=\"hasHyperlink\" class=\"b-contextmenu-item\" ng-click=\"handler.removeHyperlink();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-contextmenu-remove-hyperlink b-mr5\"></span>\n" +
+    "                    {{'contextmenu.remove-hyperlink' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
     "        </ul>\n" +
+    "        <!-- 单元格菜单 end -->\n" +
+    "\n" +
+    "        <!-- 列菜单 start -->\n" +
+    "        <ul ng-if='type === \"column\"' class=\"show dropdown-menu b-cell-contextmenu\" role=\"menu\">\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.insertColumn();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.insert.insert-column' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.clearContent();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.clearcontent' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"divider\"></li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.cellformat();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-contextmenu-cellformat b-mr5\"></span>\n" +
+    "                    {{'contextmenu.cellformat' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.setColumnWidth();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.columnwidth' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.hideColumn();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.hide' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.showColumn();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.cancel-hide' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "        <!-- 列菜单 end -->\n" +
+    "\n" +
+    "        <!-- 行菜单 start -->\n" +
+    "        <ul ng-if='type === \"row\"' class=\"show dropdown-menu b-cell-contextmenu\" role=\"menu\">\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.insertRow();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.insert.insert-row' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.clearContent();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.clearcontent' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"divider\"></li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.cellformat();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-contextmenu-cellformat b-mr5\"></span>\n" +
+    "                    {{'contextmenu.cellformat' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.setRowHeight();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.rowheight' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.hideRow();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.hide' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <li class=\"b-contextmenu-item\" ng-click=\"handler.showRow();\">\n" +
+    "                <a class=\"b-row\">\n" +
+    "                    <span class=\"b-icon2  b-icon-none b-mr5\"></span>\n" +
+    "                    {{'contextmenu.cancel-hide' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "        <!-- 行菜单 end -->\n" +
     "    </div>\n" +
     "</div>"
   );
@@ -1901,6 +1998,47 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        <ul class=\"dropdown-menu\" role=\"menu\">\n" +
     "            <li ng-repeat=\"font in values\" data-value=\"{{font}}\" class=\"b-input-select-item\">\n" +
     "                <a style='font-family: {{font}};'>{{font}}</a>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/widget/mergecell.html',
+    "<div class=\"b-button-select b-mergecell-selector\" ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
+    "    <a class=\"btn b-btn b-mergeandcenter-button\" role=\"button\" ng-class=\"{'b-open': isOpen || isSelected}\" ng-click=\"changeModel('center');\">\n" +
+    "        <span class=\"b-icon2 b-icon-merge-center\"></span>\n" +
+    "        {{'toolbar.buttonlabel.merge' | translate}}\n" +
+    "    </a>\n" +
+    "    <div class=\"btn-group\" dropdown on-toggle=\"isOpen=open;\">\n" +
+    "        <button type=\"button\" class=\"btn b-btn dropdown-toggle\" dropdown-toggle ng-class=\"{'b-open': isOpen || isSelected}\">\n" +
+    "            <span class=\"caret\"></span>\n" +
+    "        </button>\n" +
+    "        <ul class=\"dropdown-menu\" role=\"menu\">\n" +
+    "            <li>\n" +
+    "                <a class=\"b-row\" ng-click=\"changeModel('center');\">\n" +
+    "                    <span class=\"b-icon2 b-icon-merge-center b-mr5\"></span>\n" +
+    "                    {{'toolbar.items.merge.center' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "                <a class=\"b-row\" ng-click=\"changeModel('across');\">\n" +
+    "                    <span class=\"b-icon2 b-icon-cross-merge b-mr5\"></span>\n" +
+    "                    {{'toolbar.items.merge.across' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "                <a class=\"b-row\" ng-click=\"changeModel('merge');\">\n" +
+    "                    <span class=\"b-icon2 b-icon-merge b-mr5\"></span>\n" +
+    "                    {{'toolbar.items.merge.merge' | translate}}\n" +
+    "                </a>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "                <a class=\"b-row\" ng-click=\"changeModel('cancel');\">\n" +
+    "                    <span class=\"b-icon2 b-icon-cancel-merge b-mr5\"></span>\n" +
+    "                    {{'toolbar.items.merge.cancel' | translate}}\n" +
+    "                </a>\n" +
     "            </li>\n" +
     "        </ul>\n" +
     "    </div>\n" +
@@ -2050,6 +2188,8 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        <div class=\"b-toolbar\"\n" +
     "             ng-controller=\"ToolbarBasicController\">\n" +
     "\n" +
+    "            <b-filepanel filestatus=\"fileStatus\" url=\"fileTemplateSrc\"></b-filepanel>\n" +
+    "\n" +
     "            <tabset class=\"b-toolbar-tabs-head\">\n" +
     "                <tab class=\"b-toolbar-tabs-label b-toolbar-file-tab\"\n" +
     "                     disabled=\"true\"\n" +
@@ -2110,6 +2250,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            就绪\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "\n" +
     "    <ng-include src=\"'template/dialogs/cell-format.html'\"></ng-include>\n" +
     "    <b-contextmenu></b-contextmenu>\n" +
     "    <b-comment></b-comment>\n" +
@@ -2339,8 +2480,16 @@ var _zhCN = {
         },
         "clearcontent": "清除内容",
         "comment": "插入批注 ...",
+        "edit-comment": "编辑批注 ...",
+        "remove-comment": "删除批注",
         "cellformat": "设置单元格格式 ...",
-        "hyperlink": "超链接 ..."
+        "hyperlink": "超链接 ...",
+        "edit-hyperlink": "编辑超链接 ...",
+        "remove-hyperlink": "取消超链接",
+        "columnwidth": "列宽 ...",
+        "rowheight": "行高 ...",
+        "hide": "隐藏",
+        "cancel-hide": "取消隐藏"
     }
 };
 /**
@@ -2606,6 +2755,155 @@ angular.module('app').directive('bInputselect', [function () {
  * @author hancong03@baiud.com
  */
 
+angular.module('app').directive('bNamedefine', ['btableService', function (btableService) {
+
+    return {
+        restrict: 'E',
+        replace: true,
+        scope: {
+            onchange: '&change'
+        },
+        templateUrl: 'template/toolbar/widget/namedefine.html',
+        link: function ($scope, $ele, $attr) {
+            var inputNode = $('.b-input-select-input', $ele)[0];
+            var hook = $scope.onchange || angular.noop;
+
+            updateName();
+            reset();
+
+            btableService.on('namedefinechange', function () {
+                updateName();
+                $scope.$apply();
+            });
+
+            btableService.on('rangechange', function () {
+                reset();
+            });
+
+            $('.dropdown-menu', $ele).delegate('.b-input-select-item', 'click', function () {
+                //$scope.update(this.getAttribute('data-value'));
+                console.log('select')
+            });
+
+            $(inputNode).on('mousedown', function (e) {
+                e.stopPropagation();
+            }).on('keydown', function (e) {
+                e.stopPropagation();
+                var value = this.value;
+                //
+                console.log(3)
+                //if (e.keyCode !== 13) {
+                //    return;
+                //}
+                //
+                //if ($scope.onlyNumber && $.isNumeric(value) && parseInt(value, 10) === parseFloat(value)) {
+                //    value = +value;
+                //} else {
+                //    value = $scope.selectValue;
+                //}
+                //
+                //$scope.update(value);
+            });
+
+            function updateName() {
+                var names = btableService.queryCommandValue('names');
+                var result = [];
+
+                for (var key in names) {
+                    if (!names.hasOwnProperty(key)) {
+                        continue;
+                    }
+
+                    result.push(key);
+                }
+
+                $scope.names = result;
+            }
+
+            function reset() {
+                var range = btableService.queryCommandValue('range');
+                var rowTitle = range.entry.row + 1;
+                var columnTitle = btableService.queryCommandValue('columntitle', range.entry.col);
+                inputNode.value = columnTitle + rowTitle;
+            }
+        }
+    };
+}]);
+/**
+ * @file
+ * @author hancong03@baiud.com
+ */
+
+angular.module('app').directive('bFontselect', [function () {
+
+    return {
+        restrict: 'E',
+        replace: true,
+        scope: {
+            values: '=',
+            major: '=',
+            minor: '=',
+            ismajor: '=',
+            isminor: '=',
+            selectValue: '=',
+            onlyNumber: '=',
+            onchange: '&change'
+        },
+        templateUrl: 'template/toolbar/widget/fontselect.html',
+        link: function ($scope, $ele, $attr) {
+            var $input = $('.b-input-select-input', $ele);
+            var hook = $scope.onchange || angular.noop;
+
+            $scope.isOpen = false;
+            $scope.classname = $attr.classname || '';
+
+            $scope.toggle = function (isOpen) {
+                $scope.isOpen = isOpen;
+            };
+
+            $scope.update = function (newValue, type) {
+                if (type === 'major') {
+                    console.log(3)
+                } else if (type === 'minor') {
+                    console.log(4)
+                } else {
+                    console.log(5)
+                }
+
+                $scope.selectValue = newValue;
+
+                hook({value: newValue, type: type});
+            };
+
+            $('.dropdown-menu', $ele).delegate('.b-input-select-item', 'click', function () {
+                $scope.update(this.getAttribute('data-value'), this.getAttribute('data-type'));
+            });
+
+            $input.on('mousedown', function (e) {
+                e.stopPropagation();
+            }).on('keydown', function (e) {
+                var value = this.value;
+
+                if (e.keyCode !== 13) {
+                    return;
+                }
+
+                if ($scope.onlyNumber && $.isNumeric(value) && parseInt(value, 10) === parseFloat(value)) {
+                    value = +value;
+                } else {
+                    value = $scope.selectValue;
+                }
+
+                $scope.update(value);
+            });
+        }
+    };
+}]);
+/**
+ * @file
+ * @author hancong03@baiud.com
+ */
+
 angular.module('app').directive('bMergeselect', [function () {
 
     return {
@@ -2615,7 +2913,7 @@ angular.module('app').directive('bMergeselect', [function () {
             onchange: '&',
             checked: '=?'
         },
-        templateUrl: 'template/toolbar/widget/buttonselect.html',
+        templateUrl: 'template/toolbar/widget/mergecell.html',
         link: function ($scope) {
             var hook = $scope.onchange || angular.noop();
 
@@ -2636,6 +2934,54 @@ angular.module('app').directive('bMergeselect', [function () {
                 hook({
                     mode: mode,
                     value: $scope.isSelected
+                });
+            };
+        }
+    };
+}]);
+/**
+ * @file
+ * @author hancong03@baiud.com
+ */
+
+angular.module('app').directive('bUnderlineselect', [function () {
+
+    return {
+        restrict: 'E',
+        replace: true,
+        scope: {
+            onchange: '&',
+            checked: '=?'
+        },
+        templateUrl: 'template/toolbar/widget/underlineselect.html',
+        link: function ($scope) {
+            var hook = $scope.onchange || angular.noop();
+
+            $scope.isSelected = !!$scope.checked;
+            $scope.isOpen = false;
+            $scope.current = 'single';
+
+            $scope.toggle = function (isOpen) {
+                $scope.isOpen = isOpen;
+            };
+
+            $scope.$watch('checked', function (value) {
+                $scope.isSelected = !!value;
+            });
+
+            $scope.changeModel = function (mode) {
+                switch (mode) {
+                    case 'single':
+                        $scope.current = 'single';
+                        break;
+
+                    case 'double':
+                        $scope.current = 'double';
+                        break;
+                }
+
+                hook({
+                    mode: mode
                 });
             };
         }
@@ -2720,6 +3066,231 @@ angular.module('app').directive('bHorizontalalign', [function () {
                     status: $scope.__initValue
                 });
             };
+        }
+    };
+}]);
+/**
+ * @file
+ * @author hancong03@baiud.com
+ */
+
+angular.module('app').directive('bContextmenu', [
+    'btableService',
+    'modalService',
+    'cellformatModalNotify',
+    'prompt',
+
+    function (btableService, modalService, cellformatModalNotify, prompt) {
+
+    return {
+        restrict: 'E',
+        replace: true,
+        scope: {
+
+        },
+        templateUrl: 'template/toolbar/widget/contextmenu.html',
+        link: function ($scope, $ele, $attr) {
+            $scope.type = 'cell';
+            $scope.hasHyperlink = false;
+            $scope.hasComment = false;
+
+            var $contextment = $(".b-contextmenu", $ele);
+
+            btableService.on('contextmenu', function (type, location) {
+                $scope.type = type;
+
+                $contextment.css({
+                    top: location.clientY,
+                    left: location.clientX
+                });
+
+                open();
+
+                $scope.$apply();
+            });
+
+            $ele.on('mousedown', function () {
+                close();
+            }).on('keydown', function (evt) {
+                // esc
+                if (evt.keyCode === 27) {
+                    close();
+                }
+            });
+
+            function open() {
+                $scope.hasHyperlink = !!btableService.queryCommandValue('containhyperlink');
+                $scope.focusHasHyperlink = !!btableService.queryCommandValue('hyperlink');
+                $scope.hasComment = !!btableService.queryCommandValue('containcomment');
+                $scope.focusHasComment = !!btableService.queryCommandValue('comment');
+
+                $scope.$apply();
+
+                $ele.show().focus();
+            }
+
+            function close() {
+                $ele.hide();
+            }
+
+            $contextment.on('mousedown keydown', function (evt) {
+                evt.stopPropagation();
+            });
+
+
+            $scope.handler = {
+                insertComment: function () {
+                    close();
+                    modalService.open('comment');
+                },
+
+                removeComment: function () {
+                    close();
+                    btableService.execCommand(['clearcomment']);
+                },
+
+                insertHyperlink: function () {
+                    close();
+                    modalService.open('hyperlink');
+                },
+
+                removeHyperlink: function () {
+                    close();
+                    btableService.execCommand(['clearhyperlink']);
+                },
+
+                cellformat: function () {
+                    close();
+                    cellformatModalNotify.notify('open', 'fonts');
+                },
+
+                clearContent: function () {
+                    close();
+                    btableService.execCommand(['clearcontent']);
+                },
+
+                insertRight: function () {
+                    close();
+                    btableService.execCommand(['insertleftcell']);
+                },
+
+                insertBottom: function () {
+                    close();
+                    btableService.execCommand(['inserttopcell']);
+                },
+
+                insertRow: function () {
+                    close();
+                    btableService.execCommand(['insertrow']);
+                },
+
+                insertColumn: function () {
+                    close();
+                    btableService.execCommand(['insertcolumn']);
+                },
+
+                setColumnWidth: function () {
+                    close();
+                    var width = btableService.queryCommandValue('rawcolumnwidth');
+
+                    if (width === undefined) {
+                        width = btableService.queryCommandValue('rawstandardwidth');
+                    }
+
+                    prompt({
+                        "title": "列宽",
+                        "message": "宽度必须在0到255之间",
+                        "input": true,
+                        "label": "列宽",
+                        "value": width,
+                        "buttons": [{
+                            label: "取消",
+                            cancel: true
+                        }, {
+                            label: "确定",
+                            primary: true
+                        }]
+                    }).then(function(result){
+                        if ($.isNumeric(result) && result >= 0 && result <= 255) {
+                            btableService.execCommand(['rawcolumnwidth', +result]);
+                        } else {
+                            alert('宽度必须在0到255之间');
+                            return false;
+                        }
+                    });
+                },
+
+                hideColumn: function () {
+                    close();
+                    btableService.execCommand(['hidecolumn']);
+                },
+
+                showColumn: function () {
+                    close();
+                    btableService.execCommand(['showcolumn']);
+                },
+
+                setRowHeight: function () {
+                    close();
+                    var height = btableService.queryCommandValue('rawrowheight');
+
+                    if (height === undefined) {
+                        height = btableService.queryCommandValue('rawstandardheight');
+                    }
+
+                    prompt({
+                        "title": "行高",
+                        "message": "高度必须在0到409之间",
+                        "input": true,
+                        "label": "行高",
+                        "value": height,
+                        "buttons": [{
+                            label: "取消",
+                            cancel: true
+                        }, {
+                            label: "确定",
+                            primary: true
+                        }]
+                    }).then(function(result){
+                        if ($.isNumeric(result) && result >= 0 && result <= 409) {
+                            btableService.execCommand(['rawrowheight', +result]);
+                        } else {
+                            alert('高度必须在0到409之间');
+                        }
+                    });
+                },
+
+                hideRow: function () {
+                    close();
+                    btableService.execCommand(['hiderow']);
+                },
+
+                showRow: function () {
+                    close();
+                    btableService.execCommand(['showrow']);
+                }
+            };
+        }
+    };
+}]);
+/**
+ * @file
+ * @author hancong03@baiud.com
+ */
+
+angular.module('app').directive('bContextsubmenu', ['btableService', function (btableService) {
+
+    return {
+        restrict: 'A',
+        replace: true,
+        scope: {
+        },
+        link: function ($scope, $ele, $attr) {
+            $ele.parent().hover(function () {
+                $ele.show();
+            }, function () {
+                $ele.hide();
+            });
         }
     };
 }]);
@@ -3496,6 +4067,39 @@ angular.module('app').directive('bSheetlist', [
  * @author hancong03@baiud.com
  */
 
+angular.module('app').directive('bCutbtn', ['btableService', function (btableService) {
+
+    return {
+        restrict: 'E',
+        replace: true,
+        scope: {},
+        templateUrl: 'template/toolbar/widget/cutbtn.html',
+        link: function ($scope, $ele) {
+            var client = new ZeroClipboard($ele);
+
+            client.on("ready", function (readyEvent) {
+                client.on("copy", function (event) {
+                    var clipboard = event.clipboardData;
+                    var copyData = btableService.execCommand(['execcut']);
+
+                    if (!copyData) {
+                        return null;
+                    }
+
+                    clipboard.setData("text/plain", copyData.string);
+                    clipboard.setData("text/html", copyData.html);
+
+                    btableService.execCommand(['focus']);
+                });
+            });
+        }
+    };
+}]);
+/**
+ * @file
+ * @author hancong03@baiud.com
+ */
+
 angular.module('app').directive('bShowcolor', ['$translate', function ($translate) {
 
     return {
@@ -3561,20 +4165,20 @@ angular.module('app').directive('bShowcolor', ['$translate', function ($translat
  * @author hancong03@baiud.com
  */
 
-angular.module('app').directive('bCutbtn', ['btableService', function (btableService) {
+angular.module('app').directive('bCopybtn', ['btableService', function (btableService) {
 
     return {
         restrict: 'E',
         replace: true,
         scope: {},
-        templateUrl: 'template/toolbar/widget/cutbtn.html',
+        templateUrl: 'template/toolbar/widget/copybtn.html',
         link: function ($scope, $ele) {
             var client = new ZeroClipboard($ele);
 
             client.on("ready", function (readyEvent) {
                 client.on("copy", function (event) {
                     var clipboard = event.clipboardData;
-                    var copyData = btableService.execCommand(['execcut']);
+                    var copyData = btableService.execCommand(['execcopy']);
 
                     if (!copyData) {
                         return null;
@@ -3586,6 +4190,104 @@ angular.module('app').directive('bCutbtn', ['btableService', function (btableSer
                     btableService.execCommand(['focus']);
                 });
             });
+        }
+    };
+}]);
+/**
+ * @file
+ * @author hancong03@baiud.com
+ */
+
+angular.module('app').directive('bComment', ['btableService', 'modalService', function (btableService, modalService) {
+    return {
+        restrict: 'E',
+        replace: false,
+        scope: {
+        },
+        templateUrl: 'template/modal/comment.html',
+        link: function ($scope, $ele, $attr) {
+            $scope.comment = null;
+
+            var $mask = $('<div class="b-modal-box"></div>');
+            var commentInput = $("#commentInput", $ele[0]);
+
+            $mask.append($ele);
+            $ele[0].ownerDocument.body.appendChild($mask[0]);
+
+            modalService.register('comment', {
+                open: function () {
+                    $scope.comment = btableService.queryCommandValue('comment');
+                    $mask.show();
+                    commentInput.focus();
+                }
+            });
+
+            $mask.on('mousedown', function () {
+                $mask.hide();
+            });
+
+            $ele.on('mousedown', function (evt) {
+                evt.stopPropagation();
+            });
+
+            $scope.ok = function () {
+                $mask.hide();
+                btableService.execCommand(['comment', $scope.comment]);
+            };
+
+            $scope.cancel = function () {
+                $mask.hide();
+            };
+        }
+    };
+}]);
+/**
+ * @file
+ * @author hancong03@baiud.com
+ */
+
+angular.module('app').directive('bHyperlink', ['btableService', 'modalService', function (btableService, modalService) {
+    return {
+        restrict: 'E',
+        replace: false,
+        scope: {
+        },
+        templateUrl: 'template/modal/hyperlink.html',
+        link: function ($scope, $ele, $attr) {
+            $scope.hyperlink = null;
+            $scope.text = null;
+
+            var $mask = $('<div class="b-modal-box"></div>');
+            var hyperlinkTextInput = $("#hyperlinkTextInput", $ele[0]);
+
+            $mask.append($ele);
+            $ele[0].ownerDocument.body.appendChild($mask[0]);
+
+            modalService.register('hyperlink', {
+                open: function () {
+                    $scope.hyperlink = btableService.queryCommandValue('hyperlink');
+                    $scope.text = btableService.queryCommandValue('content');
+                    $mask.show();
+                    hyperlinkTextInput.focus();
+                }
+            });
+
+            $mask.on('mousedown', function () {
+                $mask.hide();
+            });
+
+            $ele.on('mousedown', function (evt) {
+                evt.stopPropagation();
+            });
+
+            $scope.ok = function () {
+                $mask.hide();
+                btableService.execCommand(['hyperlink', $scope.text || $scope.hyperlink, $scope.hyperlink]);
+            };
+
+            $scope.cancel = function () {
+                $mask.hide();
+            };
         }
     };
 }]);
@@ -3627,30 +4329,53 @@ angular.module('app').directive('bPastebtn', ['btableService', function (btableS
  * @author hancong03@baiud.com
  */
 
-angular.module('app').directive('bCopybtn', ['btableService', function (btableService) {
-
+angular.module('app').directive('bFilepanel', ['btableService', function (btableService) {
     return {
         restrict: 'E',
         replace: true,
-        scope: {},
-        templateUrl: 'template/toolbar/widget/copybtn.html',
-        link: function ($scope, $ele) {
-            var client = new ZeroClipboard($ele);
+        scope: {
+            'filestatus': '&',
+            'url': '='
+        },
+        templateUrl: 'template/toolbar/tabs/file.html',
+        link: function ($scope, $ele, attrs) {
+            $ele.on('mousedown', function (evt) {
+                evt.stopPropagation();
+            });
 
-            client.on("ready", function (readyEvent) {
-                client.on("copy", function (event) {
-                    var clipboard = event.clipboardData;
-                    var copyData = btableService.execCommand(['execcopy']);
+            btableService.onRequireCloseFilePanel(function () {
+                $ele.hide();
+                btableService.notify('close');
+            });
 
-                    if (!copyData) {
-                        return null;
-                    }
+            btableService.onRequireOpenFilePanel(function () {
+                $ele.show();
+                $ele.focus();
+                btableService.notify('open');
+            });
 
-                    clipboard.setData("text/plain", copyData.string);
-                    clipboard.setData("text/html", copyData.html);
+            $scope.$watch($scope.filestatus, function (opended) {
+                if (opended.status) {
+                    $ele.show();
+                    $ele.focus();
+                    btableService.notify('open');
+                } else {
+                    $ele.hide();
+                    btableService.notify('close');
+                }
+            });
 
-                    btableService.execCommand(['focus']);
-                });
+            $ele.on('keydown', function (evt) {
+                evt.stopPropagation();
+                evt.preventDefault();
+
+                if (evt.keyCode === 27) {
+                    evt.preventDefault();
+                    $ele.hide();
+
+                    btableService.notify('close');
+                    $scope.$apply();
+                }
             });
         }
     };
@@ -3674,28 +4399,6 @@ angular.module('app').directive('btable', ['btableService', function (btableServ
 
             btable.execCommand('bindinput', $("#btableOuterInput")[0]);
             btable.execCommand('init');
-        }
-    };
-}]);
-/**
- * @file
- * @author hancong03@baiud.com
- */
-
-angular.module('app').directive('btablePreview', ['btableService', function (btableService) {
-
-    return {
-        restrict: 'A',
-        scope: {},
-        templateUrl: 'template/widget/btable-preview.html',
-        link: function ($scope, $ele) {
-            var btable = btableService.createBtable($ele.find('.btable-container')[0]);
-            $("#btableOuterInput").on("mousedown", function (evt) {
-                evt.stopPropagation();
-            });
-
-            btable.execCommand('init');
-            btable.execCommand('readonly', true);
         }
     };
 }]);
@@ -3785,6 +4488,24 @@ angular.module('app').factory('toolbarNotify', ['btableService', function (btabl
  * @author hancong03@baiud.com
  */
 
+angular.module('app').factory('modalService', [function () {
+    var instace = {};
+
+    return {
+        open: function (name, cb) {
+            instace[name].open(cb);
+        },
+
+        register: function (name, handler) {
+            instace[name] = handler;
+        }
+    };
+}]);
+/**
+ * @file
+ * @author hancong03@baiud.com
+ */
+
 angular.module('app').factory('cellformatModalNotify', [function () {
 
     var listeners = {};
@@ -3823,6 +4544,12 @@ angular.module('app').factory('btableService', [function () {
     var callbacks = [];
     var btable;
     var readyList = [];
+    var closeFilePanelCb = null;
+    var openFilePanelCb = null;
+
+    var openCbs = [];
+    var closeCbs = [];
+    var changeCb = function () {};
 
     return {
         createBtable: function (ele) {
@@ -3843,6 +4570,14 @@ angular.module('app').factory('btableService', [function () {
             return btable;
         },
 
+        onRequireCloseFilePanel: function (cb) {
+            closeFilePanelCb = cb;
+        },
+
+        onRequireOpenFilePanel: function (cb) {
+            openFilePanelCb = cb;
+        },
+
         onchange: function (cb) {
             callbacks.push(cb);
         },
@@ -3861,6 +4596,42 @@ angular.module('app').factory('btableService', [function () {
 
         queryCommandValue: function () {
             return btable.queryCommandValue.apply(btable, arguments);
+        },
+
+        onopen: function (cb) {
+            openCbs.push(cb);
+        },
+
+        onclose: function (cb) {
+            closeCbs.push(cb);
+        },
+
+        setFileTemplate: function (url) {
+            changeCb(url);
+        },
+
+        onTemplateChange: function (cb) {
+            changeCb = cb;
+        },
+
+        openFilePanel: function () {
+            openFilePanelCb && openFilePanelCb();
+        },
+
+        closeFilePanel: function () {
+            closeFilePanelCb && closeFilePanelCb();
+        },
+
+        notify: function (type) {
+            if (type === 'open') {
+                for (var i = 0, len = openCbs.length; i < len; i++) {
+                    openCbs[i]();
+                }
+            } else {
+                for (var i = 0, len = openCbs.length; i < len; i++) {
+                    closeCbs[i]();
+                }
+            }
         }
     };
 
@@ -3898,6 +4669,28 @@ angular.module('app').factory('btableService', [function () {
         });
     }
 
+}]);
+/**
+ * @file
+ * @author hancong03@baiud.com
+ */
+
+angular.module('app').factory('sheetlistService', [function () {
+    var handler = null;
+
+    return {
+        setHandler: function (h) {
+            handler = h;
+        },
+
+        removeHandler: function () {
+            handler = null;
+        },
+
+        getHandler: function () {
+            return handler;
+        }
+    };
 }]);
 /**
  * @file
@@ -4178,28 +4971,6 @@ angular.module('app').factory('numberformat', ['NUMBER_FORMAT', 'CURRENCY', func
     }
 }]);
 /**
- * @file
- * @author hancong03@baiud.com
- */
-
-angular.module('app').factory('sheetlistService', [function () {
-    var handler = null;
-
-    return {
-        setHandler: function (h) {
-            handler = h;
-        },
-
-        removeHandler: function () {
-            handler = null;
-        },
-
-        getHandler: function () {
-            return handler;
-        }
-    };
-}]);
-/**
  * @file toolbar基础功能控制器
  * @author hancong03@baiud.com
  */
@@ -4220,6 +4991,17 @@ angular.module('app').controller('ToolbarBasicController', [
         $scope.isShowGridline = true;
         $scope.isShowHeader = true;
         $scope.hasPane = false;
+
+        $scope.fileStatus = {
+            status: false
+        };
+
+        $scope.fileTemplateSrc = 'template/file-default.html';
+
+        btableService.onTemplateChange(function (url) {
+            $scope.fileTemplateSrc = url;
+            $scope.$apply();
+        });
 
         btableService.ready(function () {
             btableService.on('error', function (key, msg) {
@@ -4308,6 +5090,7 @@ angular.module('app').controller('ToolbarBasicController', [
         });
 
         $scope.status = status;
+        $scope.fileOpen = false;
 
         $scope.res = res;
 
@@ -4333,7 +5116,9 @@ angular.module('app').controller('ToolbarBasicController', [
         };
 
         $scope.controlClick = function () {
-            $scope.$emit('b-file-click');
+            $scope.fileStatus = {
+                status: true
+            };
         };
 
         $scope.handler = {
@@ -4697,6 +5482,25 @@ angular.module('app').controller('ToolbarBasicController', [
         };
     }
 ]);
+/**
+ * @file toolbar基础功能控制器
+ * @author hancong03@baiud.com
+ */
+
+angular.module('app').controller('ModalController', [
+    '$scope',
+    '$modalInstance',
+    'errorMsg',
+    'btableService',
+
+    function ($scope, $modalInstance, errorMsg, btableService) {
+        $scope.errorMsg = errorMsg;
+
+        $scope.close = function () {
+            $modalInstance.close();
+            btableService.execCommand(['focus']);
+        }
+    }]);
 /**
  * @file modal通信控制器
  * @author hancong03@baiud.com

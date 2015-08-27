@@ -4,6 +4,8 @@
         <div class="b-toolbar"
              ng-controller="ToolbarBasicController">
 
+            <b-filepanel filestatus="fileStatus" url="fileTemplateSrc"></b-filepanel>
+
             <tabset class="b-toolbar-tabs-head">
                 <tab class="b-toolbar-tabs-label b-toolbar-file-tab"
                      disabled="true"
@@ -64,6 +66,7 @@
             就绪
         </div>
     </div>
+
     <ng-include src="'template/dialogs/cell-format.html'"></ng-include>
     <b-contextmenu></b-contextmenu>
     <b-comment></b-comment>

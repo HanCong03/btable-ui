@@ -20,6 +20,17 @@ angular.module('app').controller('ToolbarBasicController', [
         $scope.isShowHeader = true;
         $scope.hasPane = false;
 
+        $scope.fileStatus = {
+            status: false
+        };
+
+        $scope.fileTemplateSrc = 'template/file-default.html';
+
+        btableService.onTemplateChange(function (url) {
+            $scope.fileTemplateSrc = url;
+            $scope.$apply();
+        });
+
         btableService.ready(function () {
             btableService.on('error', function (key, msg) {
                 $modal.open({
@@ -107,6 +118,7 @@ angular.module('app').controller('ToolbarBasicController', [
         });
 
         $scope.status = status;
+        $scope.fileOpen = false;
 
         $scope.res = res;
 
@@ -132,7 +144,9 @@ angular.module('app').controller('ToolbarBasicController', [
         };
 
         $scope.controlClick = function () {
-            $scope.$emit('b-file-click');
+            $scope.fileStatus = {
+                status: true
+            };
         };
 
         $scope.handler = {

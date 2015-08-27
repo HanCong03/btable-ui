@@ -22,6 +22,11 @@ angular.module('app').run(['$templateCache', function($templateCache) {
   );
 
 
+  $templateCache.put('template/file-default.html',
+    "默认文件"
+  );
+
+
   $templateCache.put('template/modal/comment.html',
     "<div class=\"b-modal\">\n" +
     "    <div class=\"modal-dialog\">\n" +
@@ -82,6 +87,13 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "</div>"
+  );
+
+
+  $templateCache.put('template/toolbar/tabs/file.html',
+    "<div class=\"b-fileoptions-container\" tabindex=\"-1\">\n" +
+    "    <ng-include src=\"url\"></ng-include>\n" +
     "</div>"
   );
 
@@ -1733,6 +1745,8 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "        <div class=\"b-toolbar\"\n" +
     "             ng-controller=\"ToolbarBasicController\">\n" +
     "\n" +
+    "            <b-filepanel filestatus=\"fileStatus\" url=\"fileTemplateSrc\"></b-filepanel>\n" +
+    "\n" +
     "            <tabset class=\"b-toolbar-tabs-head\">\n" +
     "                <tab class=\"b-toolbar-tabs-label b-toolbar-file-tab\"\n" +
     "                     disabled=\"true\"\n" +
@@ -1793,6 +1807,7 @@ angular.module('app').run(['$templateCache', function($templateCache) {
     "            就绪\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "\n" +
     "    <ng-include src=\"'template/dialogs/cell-format.html'\"></ng-include>\n" +
     "    <b-contextmenu></b-contextmenu>\n" +
     "    <b-comment></b-comment>\n" +

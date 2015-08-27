@@ -9,6 +9,12 @@ angular.module('app').factory('btableService', [function () {
     var callbacks = [];
     var btable;
     var readyList = [];
+    var closeFilePanelCb = null;
+    var openFilePanelCb = null;
+
+    var openCbs = [];
+    var closeCbs = [];
+    var changeCb = function () {};
 
     return {
         createBtable: function (ele) {
@@ -29,6 +35,14 @@ angular.module('app').factory('btableService', [function () {
             return btable;
         },
 
+        onRequireCloseFilePanel: function (cb) {
+            closeFilePanelCb = cb;
+        },
+
+        onRequireOpenFilePanel: function (cb) {
+            openFilePanelCb = cb;
+        },
+
         onchange: function (cb) {
             callbacks.push(cb);
         },
@@ -47,6 +61,42 @@ angular.module('app').factory('btableService', [function () {
 
         queryCommandValue: function () {
             return btable.queryCommandValue.apply(btable, arguments);
+        },
+
+        onopen: function (cb) {
+            openCbs.push(cb);
+        },
+
+        onclose: function (cb) {
+            closeCbs.push(cb);
+        },
+
+        setFileTemplate: function (url) {
+            changeCb(url);
+        },
+
+        onTemplateChange: function (cb) {
+            changeCb = cb;
+        },
+
+        openFilePanel: function () {
+            openFilePanelCb && openFilePanelCb();
+        },
+
+        closeFilePanel: function () {
+            closeFilePanelCb && closeFilePanelCb();
+        },
+
+        notify: function (type) {
+            if (type === 'open') {
+                for (var i = 0, len = openCbs.length; i < len; i++) {
+                    openCbs[i]();
+                }
+            } else {
+                for (var i = 0, len = openCbs.length; i < len; i++) {
+                    closeCbs[i]();
+                }
+            }
         }
     };
 
